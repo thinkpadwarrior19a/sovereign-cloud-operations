@@ -232,24 +232,24 @@ The GitOps pipeline described in this chapter assumes that the artefacts it depl
 
 ## References
 
-[1] D. Sato, "The Rise of AI Agents in Software Delivery," *ThoughtWorks Technology Radar*, vol. 31, 2025. Available: https://www.thoughtworks.com/radar
+[1] D. Sato, "The Rise of AI Agents in Software Delivery," *ThoughtWorks Technology Radar*, vol. 31, 2025. [Online]. Available: https://www.thoughtworks.com/radar
 
-[2] IBM, "IBM Concert Documentation," IBM Cloud Docs, 2025. Available: https://www.ibm.com/docs/en/concert
+[2] IBM, "IBM Concert Documentation," IBM Cloud Docs, 2025. [Online]. Available: https://www.ibm.com/docs/en/concert
 
-[3] IBM, "IBM watsonx Orchestrate Documentation," IBM Cloud Docs, 2025. Available: https://www.ibm.com/docs/en/watsonx-orchestrate
+[3] IBM, "IBM watsonx Orchestrate Documentation," IBM Cloud Docs, 2025. [Online]. Available: https://www.ibm.com/docs/en/watsonx-orchestrate
 
-[4] A. Richardson, "GitOps — Operations by Pull Request," Weaveworks Blog, 2017. Available: https://www.weave.works/blog/gitops-operations-by-pull-request
+[4] A. Richardson, "GitOps — Operations by Pull Request," Weaveworks Blog, 2017. [Online]. Available: https://www.weave.works/blog/gitops-operations-by-pull-request
 
-[5] OpenGitOps, "GitOps Principles v1.0.0," CNCF, 2022. Available: https://opengitops.dev/
+[5] OpenGitOps, "GitOps Principles v1.0.0," CNCF, 2022. [Online]. Available: https://opengitops.dev/
 
-[6] Argo Project, "Argo CD — Declarative GitOps CD for Kubernetes," CNCF, 2024. Available: https://argo-cd.readthedocs.io/
+[6] Argo Project, "Argo CD — Declarative GitOps CD for Kubernetes," CNCF, 2024. [Online]. Available: https://argo-cd.readthedocs.io/
 
-[7] Flux Project, "Flux — the GitOps family of projects," CNCF, 2024. Available: https://fluxcd.io/
+[7] Flux Project, "Flux — the GitOps family of projects," CNCF, 2024. [Online]. Available: https://fluxcd.io/
 
-[8] Red Hat, "OpenShift GitOps Documentation," Red Hat, 2025. Available: https://docs.openshift.com/gitops/
+[8] Red Hat, "OpenShift GitOps Documentation," Red Hat, 2025. [Online]. Available: https://docs.openshift.com/gitops/
 
-[9] Mozilla, "SOPS: Secrets OPerationS," GitHub, 2024. Available: https://github.com/getsops/sops
+[9] Mozilla, "SOPS: Secrets OPerationS," GitHub, 2024. [Online]. Available: https://github.com/getsops/sops
 
-[10] Open Policy Agent, "OPA Documentation," CNCF, 2024. Available: https://www.openpolicyagent.org/docs/
+[10] Open Policy Agent, "OPA Documentation," CNCF, 2024. [Online]. Available: https://www.openpolicyagent.org/docs/
 
-[11] IBM, "IBM DevOps Insights Documentation," IBM Cloud Docs, 2025. Available: https://www.ibm.com/docs/en/devops-insights
+[11] IBM, "IBM DevOps Insights Documentation," IBM Cloud Docs, 2025. [Online]. Available: https://www.ibm.com/docs/en/devops-insights

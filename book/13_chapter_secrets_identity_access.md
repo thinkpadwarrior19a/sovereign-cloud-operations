@@ -132,7 +132,7 @@ The connection back to Chapter 11's treatment of IaC is not merely structural. T
 
 ***
 
-### Key Takeaways
+## Key Takeaways
 
 - Identity has replaced the network perimeter as the primary control boundary in multi-cloud operations. Zero trust architecture principles, as codified in NIST SP 800-207 and the CISA Zero Trust Maturity Model, require that every actor — human and machine — presents a verified identity before access is granted, regardless of network location.
 
@@ -150,7 +150,7 @@ The connection back to Chapter 11's treatment of IaC is not merely structural. T
 
 ***
 
-### Chapter Summary and Bridge to Chapter 14
+## Chapter Summary and Bridge to Chapter 14
 
 Identity, secrets and access form the control fabric that makes everything else in the sovereign operations architecture trustworthy. The zero-copy integration substrate depends on access policies to enforce data governance at source. Sovereign zones depend on identity isolation to maintain their boundaries. Agentic operations depend on scoped, auditable non-human identities to remain within their authorised domains. The Governance and Audit Plane depends on the identity event stream as a first-class source of audit evidence. Without a principled approach to these foundations, the assurances promised by the rest of the architecture are hollow.
 
@@ -160,7 +160,7 @@ Chapter 14 turns to IBM Concert, the platform that sits at the centre of this bo
 
 ***
 
-### References
+## References
 
 [1] National Institute of Standards and Technology, "Zero Trust Architecture," NIST Special Publication 800-207, U.S. Department of Commerce, Gaithersburg, MD, Aug. 2020. [Online]. Available: https://doi.org/10.6028/NIST.SP.800-207
 

@@ -192,7 +192,7 @@ Autonomous self-healing addresses the operational incidents whose patterns are k
 
 ***
 
-### References
+## References
 
 [1] SAE International, "Taxonomy and Definitions for Terms Related to Driving Automation Systems for On-Road Motor Vehicles," SAE Standard J3016_202104, Apr. 2021. [Online]. Available: https://www.sae.org/standards/content/j3016_202104/
 

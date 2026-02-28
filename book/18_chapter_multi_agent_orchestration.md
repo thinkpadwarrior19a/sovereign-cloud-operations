@@ -242,7 +242,7 @@ Chapter 19 moves from the general patterns of multi-agent orchestration to their
 
 [8] Apache Software Foundation, *Apache Kafka documentation*, version 3.7, 2024. [Online]. Available: https://kafka.apache.org/documentation/
 
-[9] S. Anthropic, "Constitutional AI: Harmlessness from AI feedback," Anthropic Technical Report, Anthropic, San Francisco, CA, 2022. [Online]. Available: https://www.anthropic.com/research/constitutional-ai-harmlessness-from-ai-feedback
+[9] Y. Bai et al., "Constitutional AI: Harmlessness from AI feedback," Anthropic Technical Report, Anthropic, San Francisco, CA, 2022. [Online]. Available: https://www.anthropic.com/research/constitutional-ai-harmlessness-from-ai-feedback
 
 [10] M. T. Nygard, *Release It! Design and Deploy Production-Ready Software*, 2nd ed. Raleigh, NC: Pragmatic Bookshelf, 2018.
 

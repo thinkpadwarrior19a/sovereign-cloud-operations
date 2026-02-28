@@ -283,28 +283,28 @@ These blueprints describe structural patterns—topologies, connectivity models,
 
 ## References
 
-[1] IBM, "IBM Cloud for Financial Services," IBM Cloud Documentation, 2025. Available: https://cloud.ibm.com/docs/framework-financial-services
+[1] IBM, "IBM Cloud for Financial Services," IBM Cloud Documentation, 2025. [Online]. Available: https://cloud.ibm.com/docs/framework-financial-services
 
 [2] A. Khan, R. Zurawski, and J. Hjelm, "Container Isolation in Multi-Tenant Kubernetes Environments," *IEEE Transactions on Cloud Computing*, vol. 11, no. 2, pp. 1245–1260, 2023.
 
-[3] W. Morgan and O. Gould, "The Service Mesh: What Every Software Engineer Needs to Know about the World's Most Over-Hyped Technology," 2020. Available: https://servicemesh.io
+[3] W. Morgan and O. Gould, "The Service Mesh: What Every Software Engineer Needs to Know about the World's Most Over-Hyped Technology," 2020. [Online]. Available: https://servicemesh.io
 
-[4] IBM, "IBM Instana Observability," IBM Documentation, 2025. Available: https://www.ibm.com/docs/en/instana-observability
+[4] IBM, "IBM Instana Observability," IBM Documentation, 2025. [Online]. Available: https://www.ibm.com/docs/en/instana-observability
 
-[5] IBM, "IBM OpenPages with Watson," IBM Documentation, 2025. Available: https://www.ibm.com/docs/en/openpages
+[5] IBM, "IBM OpenPages with Watson," IBM Documentation, 2025. [Online]. Available: https://www.ibm.com/docs/en/openpages
 
 [6] K. Morris, *Infrastructure as Code: Dynamic Systems for the Cloud Age*, 2nd ed. Sebastopol, CA: O'Reilly Media, 2021.
 
-[7] European Commission, "EU Cloud Rulebook," Shaping Europe's Digital Future, 2024. Available: https://digital-strategy.ec.europa.eu/en/library/eu-cloud-rulebook
+[7] European Commission, "EU Cloud Rulebook," Shaping Europe's Digital Future, 2024. [Online]. Available: https://digital-strategy.ec.europa.eu/en/library/eu-cloud-rulebook
 
 [8] M. Stonebraker and U. Cetintemel, "One Size Fits All: An Idea Whose Time Has Come and Gone," in *Proc. 21st Int. Conf. on Data Engineering (ICDE)*, IEEE, 2005, pp. 2–11.
 
-[9] IBM, "IBM watsonx Orchestrate," IBM Documentation, 2025. Available: https://www.ibm.com/docs/en/watsonx-orchestrate
+[9] IBM, "IBM watsonx Orchestrate," IBM Documentation, 2025. [Online]. Available: https://www.ibm.com/docs/en/watsonx-orchestrate
 
-[10] IBM, "IBM Cloud Satellite," IBM Documentation, 2025. Available: https://cloud.ibm.com/docs/satellite
+[10] IBM, "IBM Cloud Satellite," IBM Documentation, 2025. [Online]. Available: https://cloud.ibm.com/docs/satellite
 
-[11] The Linux Foundation, "Sigstore: A New Standard for Signing, Verifying and Protecting Software," 2023. Available: https://www.sigstore.dev
+[11] The Linux Foundation, "Sigstore: A New Standard for Signing, Verifying and Protecting Software," 2023. [Online]. Available: https://www.sigstore.dev
 
 [12] S. Gugger et al., "Efficient Inference of Large Language Models in Resource-Constrained Environments," *arXiv preprint arXiv:2312.11514*, 2023.
 
-[13] OpenTelemetry Authors, "OpenTelemetry Specification," Cloud Native Computing Foundation, 2024. Available: https://opentelemetry.io/docs/specs/otel/
+[13] OpenTelemetry Authors, "OpenTelemetry Specification," Cloud Native Computing Foundation, 2024. [Online]. Available: https://opentelemetry.io/docs/specs/otel/

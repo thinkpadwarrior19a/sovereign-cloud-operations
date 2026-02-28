@@ -164,7 +164,7 @@ A large telecommunications operator presents a distinct set of sovereign operati
 
 ### 35.6.1 Network function sovereignty
 
-Modern telecoms networks are increasingly software-defined. Network functions that were once implemented in proprietary hardware — core network elements, session border controllers, subscriber databases, policy and charging functions — now run as virtualised or containerised workloads on commodity infrastructure. This transformation, broadly described as network function virtualisation (NFV) and its evolution into cloud-native network functions (CNFs), creates both an opportunity and a risk for sovereignty.
+Modern telecoms networks are increasingly software-defined. Network functions that were once implemented in proprietary hardware — core network elements, session border controllers, subscriber databases, policy and charging functions — now run as virtualised or containerised workloads on commodity infrastructure. This transformation, broadly described as network function virtualisation (NFV) [9] and its evolution into cloud-native network functions (CNFs), creates both an opportunity and a risk for sovereignty.
 
 The opportunity is that software-defined network functions can, in principle, be deployed and managed with the same infrastructure-as-code, policy-as-code, and observability patterns described throughout this book. The risk is that the management and orchestration layers — the control planes that configure, scale, and monitor network functions — may themselves be hosted on platforms or by providers whose operational jurisdiction does not align with national security requirements.
 
@@ -198,7 +198,7 @@ Having examined four industry contexts in some detail, it is worth stepping back
 
 Every sector examined in this chapter shares five structural patterns.
 
-First, **sovereign zones are explicit, architected constructs**. In every case, the organisation has moved beyond vague contractual assurances about data location to define zones with precise technical boundaries — cloud accounts, cluster configurations, network topologies, identity domains — that are enforced by infrastructure-as-code and policy-as-code, not merely documented in policy papers.
+First, **sovereign zones are explicit, architected constructs**. In every case, the organisation has moved beyond vague contractual assurances about data location to define zones with precise technical boundaries — cloud accounts, cluster configurations, network topologies, identity domains — that are enforced by infrastructure-as-code and policy-as-code, not merely documented in policy papers. National cybersecurity guidance frameworks reinforce this pattern: the UK National Cyber Security Centre's cloud security principles [10], for example, provide a structured assessment model that maps directly onto the zone-boundary and access-control decisions every sector must make.
 
 Second, **zero-copy integration reduces uncontrolled data replication**. Whether the data in question is payment transactions, tax returns, patient records, or subscriber information, the pattern is the same: systems of record expose data through governed APIs and event streams, and downstream consumers operate on projections rather than independent copies. This reduces the regulatory surface area, improves data freshness, and makes flows observable.
 
@@ -228,7 +228,7 @@ The first is that **sovereignty must be designed into the architecture, not bolt
 
 The second is that **agentic operations are only as safe as the substrate they operate on**. Agents amplify the capabilities of the observability plane, the event fabric, the runbook library, and the policy-as-code framework. If those foundations are weak — if observability is patchy, if runbooks are incomplete, if policies are not machine-enforceable — then agents will either be ineffective or dangerous. The maturity model of Chapter 33 applies regardless of sector.
 
-The third is that **regulatory frameworks are converging in direction even as they diverge in detail**. DORA, NIS 2, GDPR, the EU AI Act [8], and their national-level implementations all point in the same direction: operational transparency, demonstrable control, continuous compliance, and meaningful human oversight of automated systems. An organisation that builds for these principles — rather than for the letter of any single regulation — will find itself better prepared for the regulatory developments that are already visible on the horizon.
+The third is that **regulatory frameworks are converging in direction even as they diverge in detail**. DORA, NIS 2, GDPR, the EU AI Act [8], and their national-level implementations all point in the same direction: operational transparency, demonstrable control, continuous compliance, and meaningful human oversight of automated systems. ENISA's analysis of the European cloud cybersecurity market confirms this convergence, noting that security expectations across sectors are increasingly aligned around common principles of supply-chain transparency, operational accountability, and continuous assurance [11]. An organisation that builds for these principles — rather than for the letter of any single regulation — will find itself better prepared for the regulatory developments that are already visible on the horizon.
 
 ***
 

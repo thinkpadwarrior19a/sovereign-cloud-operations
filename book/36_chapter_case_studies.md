@@ -355,22 +355,22 @@ These case studies describe what organisations are achieving today and in the ne
 
 ## References
 
-[1] IBM, "IBM Concert: AI-Powered IT Operations Management," IBM Documentation, 2025. Available: https://www.ibm.com/docs/en/concert
+[1] IBM, "IBM Concert: AI-Powered IT Operations Management," IBM Documentation, 2025. [Online]. Available: https://www.ibm.com/docs/en/concert
 
 [2] Gartner, "Market Guide for AIOps Platforms," Gartner Research, 2024.
 
 [3] S. Earley, "The Role of Organisational Change in Digital Transformation," *MIT Sloan Management Review*, vol. 64, no. 2, pp. 42-49, 2023.
 
-[4] Open Policy Agent, "OPA: Policy-Based Control for Cloud Native Environments," CNCF, 2024. Available: https://www.openpolicyagent.org
+[4] Open Policy Agent, "OPA: Policy-Based Control for Cloud Native Environments," CNCF, 2024. [Online]. Available: https://www.openpolicyagent.org
 
 [5] A. Aslett, "Zero-Copy Data Integration: Eliminating Redundancy in Regulated Environments," *Bloor Research*, 2024.
 
-[6] IBM, "IBM Instana Observability," IBM Documentation, 2025. Available: https://www.ibm.com/docs/en/instana-observability
+[6] IBM, "IBM Instana Observability," IBM Documentation, 2025. [Online]. Available: https://www.ibm.com/docs/en/instana-observability
 
 [7] European Commission, "Ethics Guidelines for Trustworthy AI," High-Level Expert Group on Artificial Intelligence, Brussels, 2019.
 
 [8] European Parliament and Council, "Regulation (EU) 2024/1689 Laying Down Harmonised Rules on Artificial Intelligence (AI Act)," *Official Journal of the European Union*, L 2024/1689, Jul. 2024.
 
-[9] IBM, "IBM watsonx Orchestrate," IBM Documentation, 2025. Available: https://www.ibm.com/docs/en/watsonx-orchestrate
+[9] IBM, "IBM watsonx Orchestrate," IBM Documentation, 2025. [Online]. Available: https://www.ibm.com/docs/en/watsonx-orchestrate
 
 [10] European Parliament and Council, "Directive (EU) 2022/2555 on Measures for a High Common Level of Cybersecurity across the Union (NIS2)," *Official Journal of the European Union*, L 333, pp. 80-152, Dec. 2022.

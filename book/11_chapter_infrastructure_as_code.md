@@ -200,7 +200,7 @@ The next chapter turns from the skeleton to the muscles. If IaC defines the stru
 
 ***
 
-### References
+## References
 
 [1] European Banking Authority, "Guidelines on ICT and Security Risk Management," EBA/GL/2019/04, November 2019. [Online]. Available: https://www.eba.europa.eu/regulation-and-policy/internal-governance/guidelines-on-ict-and-security-risk-management
 

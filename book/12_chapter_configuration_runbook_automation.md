@@ -154,7 +154,7 @@ These capabilities are only as trustworthy as the identity and access controls u
 
 ***
 
-## Key takeaways
+## Key Takeaways
 
 - A production-quality runbook is not a document but an operational contract: it must specify trigger conditions, pre-conditions, procedural steps, decision points with sovereign zone branches, rollback steps, escalation path, and an owner—everything required for a competent engineer to act correctly under incident pressure without improvisation.
 - The five-minute rule is a practical quality standard: if a runbook cannot be meaningfully engaged with within five minutes of arriving at an incident, it is too complex and must be restructured.
@@ -166,7 +166,7 @@ These capabilities are only as trustworthy as the identity and access controls u
 
 ***
 
-### References
+## References
 
 [1] B. Beyer, N. R. Murphy, D. K. Rensin, K. Kawahara, and S. Thorne, Eds., *The Site Reliability Workbook: Practical Ways to Implement SRE*. Sebastopol, CA: O'Reilly Media, 2018.
 

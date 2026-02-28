@@ -118,7 +118,7 @@ This architecture respects the reality that **hyperscalers provide the bulk of c
 
 No amount of tooling will deliver sovereign operations if the human system around it is not ready. Agentic operations, zero‑copy architecture and multi‑cloud control planes require **changes in how people think about their work**, not just in what screens they look at.
 
-A central theme in this book is **shift‑left operations**. Traditionally, operations considerations—resilience, monitoring, runbooks, capacity, sovereignty—have often been addressed late: after systems are designed, sometimes after they are built, occasionally only after they have failed. This pattern produces brittle systems and reactive cultures. Forsgren and colleagues, in *Accelerate*, document with empirical rigour that the organisational practices associated with high software delivery performance—continuous integration, deployment automation, monitoring driven by business outcomes, and loosely coupled, team-owned architectures—are not independent variables but are deeply intertwined with the culture and information-flow patterns of the organisation itself [16]. Westrum's organisational culture model, applied to technology organisations, distinguishes pathological, bureaucratic and generative cultures; research consistently shows that generative cultures—characterised by the free flow of information, shared accountability and willingness to surface problems—are the enabling condition for high operational performance rather than a by-product of it [17].
+A central theme in this book is **shift‑left operations**. Traditionally, operations considerations—resilience, monitoring, runbooks, capacity, sovereignty—have often been addressed late: after systems are designed, sometimes after they are built, occasionally only after they have failed. This pattern produces brittle systems and reactive cultures. Forsgren and colleagues, in *Accelerate*, document with empirical rigour that the organisational practices associated with high software delivery performance—continuous integration, deployment automation, monitoring driven by business outcomes, and loosely coupled, team-owned architectures—are not independent variables but are deeply intertwined with the culture and information-flow patterns of the organisation itself [6]. Westrum's organisational culture model, applied to technology organisations, distinguishes pathological, bureaucratic and generative cultures; research consistently shows that generative cultures—characterised by the free flow of information, shared accountability and willingness to surface problems—are the enabling condition for high operational performance rather than a by-product of it [16].
 
 Shifting left means bringing operational thinking into design and development. When a new service is conceived, teams already consider:
 
@@ -172,7 +172,7 @@ What unifies the whole is a single proposition: **in a world of zero‑copy data
 
 - IBM Concert and watsonx Orchestrate are designed as cross-cloud control and intelligence planes, not as replacements for hyperscaler infrastructure: their value lies in providing coherent governance, observability and AI-assisted operations across environments that the organisation has no intention of consolidating [11][14].
 
-- Organisational culture is not a soft addendum to technical architecture; it is a co-equal determinant of operational outcomes. Generative cultures characterised by psychological safety, free information flow and blameless learning are the enabling condition for both shift-left operations and trusted automation [16][17].
+- Organisational culture is not a soft addendum to technical architecture; it is a co-equal determinant of operational outcomes. Generative cultures characterised by psychological safety, free information flow and blameless learning are the enabling condition for both shift-left operations and trusted automation [6][16].
 
 - The practical path to sovereign cloud operations combines three disciplines in sequence: establish the architectural foundation (zero-copy, multi-cloud, policy-as-code); build the intelligent control plane (observability, agentic intelligence, governance); and cultivate the human system that can design, supervise and improve it over time.
 
@@ -218,6 +218,4 @@ Chapter 2 will ground these arguments in economics, examining the measurable cos
 
 [15] IBM, *IBM watsonx Code Assistant for Z and Hybrid Cloud (Bob): Documentation*, IBM Corp., Armonk, NY, USA, 2024. [Online]. Available: https://www.ibm.com/docs/en/watsonx-code-assistant
 
-[16] N. Forsgren, J. Humble, and G. Kim, *Accelerate: The Science of Lean Software and DevOps*, IT Revolution Press, Portland, OR, USA, 2018.
-
-[17] R. Westrum, "A typology of organisational cultures," *Quality and Safety in Health Care*, vol. 13, suppl. 2, pp. ii22–ii27, Dec. 2004.
+[16] R. Westrum, "A typology of organisational cultures," *Quality and Safety in Health Care*, vol. 13, suppl. 2, pp. ii22–ii27, Dec. 2004.
