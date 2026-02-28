@@ -1,0 +1,19 @@
+---
+title: "Sovereign Cloud Operations"
+subtitle: "Agentic AI, Observability, and Automation for the Fully Sovereign, Multi-Cloud Enterprise"
+author: "Alan Hamilton"
+date: \today
+toc: true
+toc-depth: 2
+numbersections: true
+documentclass: book
+papersize: a4
+fontsize: 11pt
+mainfont: "DejaVu Serif"
+sansfont: "DejaVu Sans"
+monofont: "DejaVu Sans Mono"
+colorlinks: true
+linkcolor: blue
+urlcolor: blue
+citecolor: blue
+---

@@ -1,0 +1,70 @@
+% ============================================================
+% Sovereign Cloud Operations — LaTeX Preamble
+% ============================================================
+
+% --- Page geometry ---
+\usepackage[
+  a4paper,
+  top=25mm,
+  bottom=25mm,
+  inner=30mm,
+  outer=20mm,
+  headheight=14pt
+]{geometry}
+
+% --- Headers and footers ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\small\itshape Sovereign Cloud Operations}
+\fancyhead[RO]{\small\itshape \leftmark}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Plain style for chapter-opening pages
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \fancyfoot[C]{\thepage}%
+  \renewcommand{\headrulewidth}{0pt}%
+}
+
+% --- Code blocks ---
+\usepackage{fvextra}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{
+  breaklines,
+  breaksymbolleft={},
+  commandchars=\\\{\}
+}
+
+% --- Tables ---
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{array}
+
+% --- Graphics ---
+\usepackage{graphicx}
+\usepackage{float}
+
+% --- Hyperlinks (loaded by pandoc; configure here) ---
+\hypersetup{
+  pdfauthor={Alan Hamilton},
+  pdftitle={Sovereign Cloud Operations},
+  pdfsubject={Agentic AI, Observability, and Automation for the Fully Sovereign, Multi-Cloud Enterprise},
+  pdfkeywords={cloud, AI, observability, automation, sovereign},
+  bookmarksnumbered=true,
+  bookmarksopen=true
+}
+
+% --- Chapter title style ---
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries}
+  {\chaptertitlename\ \thechapter}
+  {20pt}
+  {\Huge}
+\titlespacing*{\chapter}{0pt}{40pt}{20pt}
+
+% --- Orphan / widow control ---
+\widowpenalty=10000
+\clubpenalty=10000

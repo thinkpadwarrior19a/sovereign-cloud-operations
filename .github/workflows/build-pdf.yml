@@ -1,0 +1,43 @@
+name: Build PDF
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "book/**"
+      - "config/**"
+      - "scripts/build-pdf.sh"
+      - ".github/workflows/build-pdf.yml"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install pandoc and TeX Live
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends \
+            pandoc \
+            texlive-xetex \
+            texlive-fonts-recommended \
+            texlive-fonts-extra \
+            texlive-latex-recommended \
+            texlive-latex-extra \
+            fonts-dejavu
+
+      - name: Build PDF
+        run: bash scripts/build-pdf.sh
+
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: sovereign-cloud-operations-pdf
+          path: sovereign-cloud-operations.pdf
+          retention-days: 90
+          if-no-files-found: error
