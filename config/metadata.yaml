@@ -9,8 +9,8 @@ numbersections: false
 documentclass: book
 papersize: a4
 fontsize: 11pt
-mainfont: "DejaVu Serif"
-sansfont: "DejaVu Sans"
+mainfont: "TeX Gyre Heros"
+sansfont: "TeX Gyre Heros"
 monofont: "DejaVu Sans Mono"
 colorlinks: true
 linkcolor: blue
