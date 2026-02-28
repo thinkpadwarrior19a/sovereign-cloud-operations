@@ -146,7 +146,7 @@ The primary architectural control is the reviewer agent, which independently ver
 
 **Scope creep** occurs when an agent interprets its mandate more broadly than intended and takes actions beyond its authorisation. This may happen gradually—a single "sensible" extension of scope at each step—or abruptly, if an agent's reasoning leads it to conclude that achieving its objective requires actions it was not explicitly authorised to take. Scope creep is particularly concerning in sovereign operations because unauthorised actions may cross zone boundaries, affect resources that belong to a different regulatory context, or trigger changes to shared infrastructure that other teams depend on.
 
-The control for scope creep is the combination of a blast radius limit and explicit authorisation scope. Each agent is issued credentials that have been scoped to the specific resources, zones and operations it is permitted to affect. An executor agent assigned to investigate a payment service in Zone 2 holds credentials that are valid only for reading telemetry in Zone 2. Even if the agent reasons that it should also examine Zone 1 because the payment service has a dependency there, its credentials will not permit that action. Policy-as-code evaluation at the action level enforces this at runtime, as described in Section 18.7.
+The control for scope creep is the combination of a blast radius limit and explicit authorisation scope. Each agent is issued credentials that have been scoped to the specific resources, zones and operations it is permitted to affect. An executor agent assigned to investigate a payment service in Zone 2 holds credentials that are valid only for reading telemetry in Zone 2. Even if the agent reasons that it should also examine Zone 1 because the payment service has a dependency there, its credentials will not permit that action. Policy-as-code evaluation at the action level enforces this at runtime, as described in Section 18.8.
 
 **Coordination deadlock** occurs when two agents each wait for the other to complete before proceeding, and neither can proceed without the other. In operational terms, Agent A may be waiting for Agent B to release a lock on a configuration resource before it can read the current state, while Agent B is waiting for Agent A to complete a dependency check before it will release that lock. Neither makes progress; the task blocks indefinitely.
 
@@ -162,7 +162,41 @@ The control for audit gaps is the mandatory attribution logging requirement that
 
 ***
 
-## 18.7 Guardrails architecture
+## 18.7 Multi-vendor agent collision
+
+The failure modes catalogued in the preceding section are internal to the agentic operations layer. In practice, however, a sovereign cloud estate hosts multiple independent sources of automated action, many of which predate the agentic layer and operate with no awareness of it. A realistic multi-cloud environment typically runs cloud-native auto-scalers (AWS Auto Scaling Groups, Azure VMSS, Google Cloud managed instance groups), Kubernetes HPA and VPA controllers, a resource optimisation platform such as IBM Turbonomic, and the agentic operations layer described in this chapter. Each system is individually well-designed. The problem is that they can issue contradictory instructions on the same resource within the same time window, and the resulting oscillation is worse than either system acting alone.
+
+This is not a hypothetical concern. Any organisation that has deployed Turbonomic alongside a Kubernetes HPA on the same workload has encountered it: the HPA scales pods based on CPU utilisation while Turbonomic right-sizes the same pods based on a broader set of resource signals. Without explicit coordination, the two systems fight each other in alternating cycles, and the problem grows more acute as the agentic layer introduces additional actors capable of proposing infrastructure changes.
+
+### Resource locking and lease patterns
+
+Three architectural patterns address the collision problem at the prevention layer, before conflicting actions reach the resource.
+
+**Advisory locks with time-limited leases.** Before any agent—whether a Turbonomic action, an Orchestrate executor, or a Kubernetes operator—modifies a resource, it must acquire a lease from a coordination service. The lease is a time-bounded exclusive claim, stored in a distributed consensus system such as etcd, a DynamoDB table with conditional writes, or a purpose-built coordination service exposed through the control plane. It records the acquiring agent's identity, the intended action category, and an expiry time. Other agents check the lease before proceeding; if a valid lease exists, the requesting agent defers or escalates for conflict resolution. The time-limited expiry prevents a crashed agent from holding a lock indefinitely.
+
+**Priority hierarchy.** Not all automated actions carry equal urgency or authority. The recommended hierarchy, from highest to lowest, is: safety and incident-response agents (responding to active outages or security events); human-initiated actions; sovereignty enforcement agents (correcting zone-boundary or compliance violations); and optimisation agents (cost right-sizing, performance tuning, capacity rebalancing). When a higher-priority agent requests a lease that a lower-priority agent currently holds, the lower-priority lease is pre-empted: the lower-priority agent receives a cancellation signal, rolls back if necessary, and yields the resource. Conflicts between agents at the same priority level are escalated to a human operator rather than resolved by arbitrary tie-breaking.
+
+**Single writer principle.** For any given resource and action category, exactly one system should be authoritative. If Turbonomic owns scaling decisions for a workload, the Kubernetes HPA should be disabled or configured in a passive, metrics-only mode. The principle does not mean that only one system exists in the estate; it means that for each specific resource, the question "who is allowed to change this?" has a single, unambiguous answer recorded in the resource registry. The agentic operations layer consults this registry before proposing any action, and the OPA policy evaluation described in Section 18.8 enforces it.
+
+### Conflict detection and resolution
+
+Prevention cannot eliminate all collisions, particularly when legacy automation operates outside the lease framework. Concert's topology model, which continuously ingests state changes from across the estate, can detect conflicting recommendations: when two systems have proposed contradictory actions on the same resource within a configurable time window, Concert flags a collision event. The supervisory agent resolves the conflict automatically if the priority hierarchy is unambiguous, or escalates to a human operator otherwise. Every collision event is logged with full attribution—which agents were involved, what each proposed, and how the conflict was resolved. Recurring collisions on a specific resource class signal that the single-writer assignment needs to be revisited.
+
+### The "disable native" versus "integrate native" decision
+
+Architects must confront a genuine trade-off. The first option is to disable native auto-scaling entirely and delegate all scaling decisions to Turbonomic or the agentic layer. This eliminates collision by construction. The cost is that cloud-native auto-scalers are deeply integrated with their platform's health-checking and availability-zone logic; disabling them forfeits that responsiveness and requires the replacement system to replicate platform-specific awareness.
+
+The second option is to retain native auto-scaling with guardrails—configuring auto-scalers to operate within a bounded range (minimum and maximum instance counts set by Turbonomic or policy), while the optimisation layer adjusts those bounds periodically rather than issuing individual scale actions. The native auto-scaler acts within its authorised range; the agentic layer modifies the range itself, on a slower cadence. Conflicts can still arise at the boundary, but they are less frequent and more predictable than unconstrained dual-control.
+
+For sovereign operations, the second approach is generally preferable. It preserves platform-specific resilience logic and confines the agentic layer to setting policy boundaries rather than issuing individual commands—a separation that is easier to audit and less likely to produce surprising behaviour during incidents.
+
+### Sovereign zone scoping of agent authority
+
+The collision domain can be further partitioned by aligning agent authority with sovereign zone boundaries. An agent authorised to act in Zone A must not hold leases on resources in Zone B, enforced through the zone-aware credential mechanism described in Section 18.8. Collision detection and resolution thus become zone-local problems, and a misbehaving agent in one zone cannot interfere with resources in another. For multi-jurisdictional organisations, this partitioning is not merely a performance optimisation—it is a governance necessity.
+
+***
+
+## 18.8 Guardrails architecture
 
 Guardrails are the runtime enforcement mechanisms that ensure agent behaviour remains within authorised bounds, regardless of what the agent's model-based reasoning might otherwise produce. They are the complement to governance policies expressed at the lifecycle level by watsonx.governance: where governance defines what is permitted over time, guardrails enforce it moment by moment.
 
@@ -184,7 +218,7 @@ The integration of watsonx.governance with the orchestration layer is what makes
 
 ***
 
-## 18.8 Testing and validating multi-agent systems
+## 18.9 Testing and validating multi-agent systems
 
 Testing a multi-agent system is substantially more demanding than testing individual agents or individual automation scripts. Unit-level testing of a single agent—verifying that it produces the correct tool call given a specific input prompt, or that its output parser correctly extracts a service name from a model response—is necessary but not sufficient. The characteristic failure modes described in Section 18.6 are emergent properties of agent interaction: they arise from the combination of agents and communication mechanisms, not from any individual component in isolation.
 
@@ -215,6 +249,8 @@ The **feedback loop from production behaviour to agent improvement** is the mech
 - Shared context and memory—grounded in Concert's topology model, extended by vector database retrieval of operational history, and maintained in structured working memory with event-sourced or CRDT-based conflict resolution—provides the situational awareness that agents need to reason coherently without requiring raw data to cross zone boundaries.
 
 - The five principal failure modes of multi-agent systems—cascading hallucination, scope creep, coordination deadlock, conflicting actions, and audit gap—each have specific architectural controls: reviewer agents, scoped credentials, timeout and deadlock detection, idempotent executors with resource locking, and mandatory pre-action attribution logging respectively.
+
+- Multi-vendor agent collision—where cloud-native auto-scalers, Kubernetes HPA/VPA, Turbonomic and agentic operations agents simultaneously target the same resource—is addressed through advisory locks with time-limited leases, a priority hierarchy (safety > human-initiated > sovereignty enforcement > optimisation), the single writer principle for each resource and action category, and sovereign zone scoping that partitions the collision domain along jurisdictional boundaries.
 
 - A layered guardrails architecture—OPA policy-as-code, blast radius limits, zone-aware credentials, rate limiters, circuit breakers, and human-in-the-loop checkpoints for high-stakes categories—enforced through the watsonx.governance policy lifecycle, is the runtime expression of the governance plane across the full agent orchestration stack.
 

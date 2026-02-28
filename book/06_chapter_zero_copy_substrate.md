@@ -4,7 +4,7 @@
 
 ## Summary
 
-This chapter reframes zero-copy integration as an operational substrate rather than a purely architectural pattern, showing how the shift from copy-heavy to event-driven, in-place data access fundamentally changes what it means to run a multi-cloud estate. It exposes the operational fragility of copy-heavy architectures — synchronisation lag, silent ETL failures, schema drift, exploding compliance surface area and impoverished data lineage — and contrasts these with the simpler failure surface, richer event signals and tighter audit trails that a zero-copy model provides. The chapter examines four event patterns (notification, event-carried state transfer, event sourcing and CQRS), treats lineage as both an operational debugging tool and a sovereign control mechanism, and explains how agentic systems exploit the structured, event-rich substrate to reason about the estate in real time. Architects are cautioned that whilst zero-copy simplifies structural reasoning, it increases real-time sensitivity and demands correspondingly better observability, disciplined change management and network-aware design.
+This chapter reframes zero-copy integration as an operational substrate rather than a purely architectural pattern, showing how the shift from copy-heavy to event-driven, in-place data access fundamentally changes what it means to run a multi-cloud estate. It exposes the operational fragility of copy-heavy architectures — synchronisation lag, silent ETL failures, schema drift, exploding compliance surface area and impoverished data lineage — and contrasts these with the simpler failure surface, richer event signals and tighter audit trails that a zero-copy model provides. The chapter examines four event patterns (notification, event-carried state transfer, event sourcing and CQRS), treats lineage as both an operational debugging tool and a sovereign control mechanism, and explains how agentic systems exploit the structured, event-rich substrate to reason about the estate in real time. Architects are cautioned that whilst zero-copy simplifies structural reasoning, it increases real-time sensitivity and demands correspondingly better observability, disciplined change management and network-aware design. The chapter also confronts the realistic limits of zero-copy — acknowledging that whilst it is the right principle for operational data (telemetry, events, lineage metadata, policy artefacts), it cannot eliminate all data movement for multi-petabyte analytical workloads, and introduces the authorised-copy pattern for governed exceptions where data gravity makes in-place access impractical.
 
 ***
 
@@ -226,6 +226,36 @@ This is not a theoretical architecture. Every component described—the CloudEve
 
 ***
 
+## 6.10 Data gravity, honest scope and the authorised-copy pattern
+
+### What zero-copy covers — and what it does not
+
+The preceding sections present a compelling case for zero-copy integration as the operational substrate for sovereign cloud estates. It is important, however, to be intellectually honest about where that principle applies and where it encounters hard physical and economic limits.
+
+Zero-copy is an architectural principle for **operational data**. It works well — and should be the default — for metrics, logs, traces, events, topology data, configuration artefacts, policy definitions, lineage metadata, compliance evidence and the telemetry that feeds agentic reasoning. These datasets are characterised by modest record sizes, high velocity, wide fan-out and a need for real-time or near-real-time access. For them, in-place access via APIs, virtualisation and event streaming is superior to copying on every relevant dimension: freshness, consistency, auditability and compliance surface area.
+
+Zero-copy has structural limits, however, for a different class of workload. Multi-petabyte analytical data lakes, machine-learning training corpora, data warehouse ETL pipelines and batch analytics that require tight co-location of compute and storage operate under constraints that no amount of architectural elegance can override. When fifty petabytes of transaction history sit in an object store in a specific sovereign zone, the processing must happen where the data is. This is the principle of **data gravity** — a term coined by Dave McCrory to describe the observation that data, like a celestial body, attracts applications, services and further data in proportion to its mass [24]. At petabyte scale, moving compute to data is orders of magnitude cheaper than moving data to compute. Cross-zone queries against remote multi-petabyte stores incur network egress costs that can dwarf the cost of the analysis itself, and latencies that make interactive or even batch-window queries impractical. This is physics and economics, not a solvable architectural problem.
+
+A storage architect who has spent a decade managing petabyte-scale data platforms will rightly dismiss any framework that ignores data gravity. The honest position is that zero-copy reduces unnecessary data proliferation by eighty to ninety per cent, but the remaining ten to twenty per cent of data movement must be explicitly governed, not eliminated. The architecture's value lies in making every copy visible, justified and governed — not in pretending that copies never need to happen.
+
+### The authorised-copy pattern
+
+For analytical workloads where data gravity demands co-location of compute and storage, the zero-copy architecture accommodates a governed exception: the **authorised copy**. This is not a retreat from the zero-copy principle; it is the disciplined complement that makes the principle credible in the real world.
+
+An authorised copy differs from the ad-hoc replication of a copy-heavy estate in every dimension that matters. Each copy is **explicitly approved** through a data governance workflow — there is no self-service replication without oversight. Each copy is **classified** according to the organisation's data classification scheme, inheriting the sensitivity labels and handling restrictions of the source dataset. Each copy is **tracked** in the data lineage graph: the OpenLineage record captures what was copied, from which source, to which destination, by which principal, for which stated purpose and with which expiry date [15]. Each copy has a **defined lifetime** — a retention policy attached at creation, enforced by automated policy rather than by manual housekeeping. And each copy is subject to the same **sovereign zone policies** as any other data movement: if the source data is restricted to a particular jurisdiction, the copy may only be created within a zone that satisfies the same residency and sovereignty constraints.
+
+The lineage system transforms a copy from a liability into a governed artefact. When an analyst in a European sovereign zone requests a subset of a North American transaction dataset for regulatory modelling, the authorised-copy workflow records the provenance chain end to end: source dataset, transformation applied (aggregation, pseudonymisation, column filtering), destination, requesting and approving principals, purpose code, retention period and the policy rules evaluated to permit the transfer. If a regulator asks where copies of that dataset exist, the answer is a graph query rather than an archaeological expedition. If the retention period expires, the automated policy engine deletes the copy and records the deletion in the same lineage graph. The copy's entire lifecycle — creation, access, expiry, deletion — is auditable.
+
+### Federated query as the middle ground
+
+Between pure zero-copy access and full authorised copies lies a middle ground. Federated query engines — including watsonx.data's Presto and Spark engines [22], Starburst, Trino and Dremio — execute analytical queries across data residing in multiple stores and sovereign zones, pushing predicates and aggregations down to the source engines and returning only the result set to the requesting zone. For moderate-scale analytical queries — reports, dashboards, ad-hoc investigations involving gigabytes to low terabytes of source data — federation delivers acceptable performance without any data copying.
+
+Federation has its own limits. Queries requiring full-table scans of petabyte-scale datasets, complex multi-way joins across zones, or iterative machine-learning training loops that make hundreds of passes over the same data will not perform adequately through a federation layer alone. This is where the authorised-copy pattern takes over: the data is copied once, under governance, to a location where compute can operate at local-storage speeds, and the copy is retired when the analysis is complete [25].
+
+The practical architecture therefore operates on a spectrum. At one end, operational telemetry and event data flow through the zero-copy substrate with no copies at all. In the middle, moderate-scale analytics are served by federated query engines that access data in place. At the far end, large-scale analytical and machine-learning workloads use authorised copies with full lineage governance. The zero-copy principle is not violated by the existence of this spectrum; it is *fulfilled* by it, because every point on the spectrum is governed, visible and auditable. The alternative — the copy-heavy estate where data replicates without oversight — is what zero-copy exists to prevent [26].
+
+***
+
 ## Key Takeaways
 
 - Copy-heavy integration estates impose a compounding "data copy tax" in the form of storage cost, synchronisation lag, consistency failures and expanded regulatory compliance surface area; each copy of personal data is, in UK GDPR terms, a separate instance of processing subject to the data minimisation principle [6].
@@ -241,6 +271,12 @@ This is not a theoretical architecture. Every component described—the CloudEve
 - IBM Event Streams and IBM Data Fabric provide the sovereign-zone-aware implementations of these capabilities within the IBM stack, enabling organisations to deploy event streaming and data virtualisation under customer-controlled operational authority within jurisdictional boundaries [14][21].
 
 - Agentic operations are significantly more effective in a zero-copy estate because the information landscape is more coherent: fewer copies to disentangle, richer event signals to reason over, and more precisely targeted remediation actions available to AI-assisted systems [17].
+
+- Zero-copy is the right principle for operational data — telemetry, events, lineage metadata, configuration and policy artefacts — but it cannot eliminate all data movement for multi-petabyte analytical workloads where data gravity dictates that compute must move to the data; intellectual honesty about this scope is essential to the architecture's credibility with practitioners [24].
+
+- Where data co-location is unavoidable, the authorised-copy pattern provides a governed exception: each copy is explicitly approved, classified, tracked in the OpenLineage lineage graph with full provenance, given a defined retention lifetime and subject to the same sovereign zone policies as any other data movement — transforming copies from uncontrolled liabilities into auditable, time-bounded artefacts [15][26].
+
+- Federated query engines (watsonx.data, Trino, Starburst, Dremio) occupy the middle ground between pure zero-copy access and full authorised copies, serving moderate-scale analytical queries by pushing computation to source data without moving it, though they reach performance limits at extreme scale [22][25].
 
 ***
 
@@ -301,3 +337,9 @@ Chapter 7 builds directly on this foundation. With a zero-copy substrate in plac
 [22] IBM Corporation, "IBM watsonx.data: Open Data Lakehouse for AI and Analytics," IBM Documentation, Armonk, NY, USA, 2024. [Online]. Available: https://www.ibm.com/products/watsonx-data
 
 [23] IBM Corporation, "IBM StreamSets: Data Integration and Pipeline Management," IBM Documentation, Armonk, NY, USA, 2024. [Online]. Available: https://www.ibm.com/products/streamsets
+
+[24] D. McCrory, "Data Gravity — In the Clouds," *Data Gravity Blog*, 2010. [Online]. Available: https://datagravity.org/2010/12/18/data-gravity-in-the-clouds/
+
+[25] A. Lakshman and P. Malik, "Cassandra: A Decentralized Structured Storage System," *ACM SIGOPS Operating Systems Review*, vol. 44, no. 2, pp. 35–40, 2010. (Cited for the general principle that distributed query performance degrades as data volume and network distance increase, motivating compute-to-data placement strategies.)
+
+[26] DAMA International, *DAMA-DMBOK: Data Management Body of Knowledge*, 2nd ed. Basking Ridge, NJ: Technics Publications, 2017. (Chapter 8: Data Integration and Interoperability; Chapter 13: Data Quality; guidance on governed replication and data movement policies.)
