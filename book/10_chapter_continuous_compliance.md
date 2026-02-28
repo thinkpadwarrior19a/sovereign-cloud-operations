@@ -90,6 +90,10 @@ Concert's compliance posture dashboard surfaces the aggregate compliance state a
 >
 > A flow diagram showing four signal sources — cloud configuration APIs, IAM event streams, network flow logs, and CI/CD change records — converging through the OpenTelemetry Collector and Concert ingestion layer into the Governance and Audit Plane, where IBM Concert aggregates them into a compliance posture view and IBM OpenPages records control findings and remediation status.
 
+### The compliance signal fabric across regulatory frameworks
+
+The discussion above has illustrated the compliance signal fabric primarily through the lens of DORA and NIS 2, but the same architecture must accommodate a considerably wider regulatory surface. Chapter 3 surveys the full landscape; the implications for the signal fabric are worth making explicit. HIPAA's Security Rule requires continuous monitoring of access to electronic protected health information, making access signals and audit logs for healthcare workloads a compliance deliverable rather than merely an operational convenience [17]. PCI DSS v4.0 formalises what was previously best practice by requiring a targeted risk analysis and continuous monitoring of security controls — not merely periodic scanning — extending the compliance signal fabric into payment card environments with explicit expectations for real-time alerting on control failures [18]. For industrial and manufacturing estates, IEC 62443 defines security levels for industrial automation and control systems (IACS) and requires ongoing monitoring of zone and conduit integrity, mapping directly onto the network and configuration signals described above [19]. The Corporate Sustainability Reporting Directive (CSRD) introduces a non-traditional compliance signal: energy consumption, emissions and resource efficiency metrics from data centre and cloud infrastructure, which must now be captured, retained and reported with the same evidentiary rigour as security telemetry [20]. For organisations serving US federal government workloads, the FedRAMP Continuous Monitoring (ConMon) programme requires monthly vulnerability scanning, annual penetration testing and ongoing delivery of security posture data to authorising officials [21]. The policy-as-code approach described in the next section scales naturally across all of these frameworks: each regulatory obligation is expressed as a machine-readable rule, evaluated against the signal fabric, and the resulting compliance posture is unified in Concert and OpenPages regardless of which framework the rule implements.
+
 ***
 
 ## 10.4 Policy‑as‑code as the foundation
@@ -299,3 +303,13 @@ Chapter 11 turns from the governance of change to the mechanism of change itself
 [15] Chef Software (Progress), "Buyer's Guide for Continuous Compliance Solutions in DevOps," Progress Software Corporation, Waltham, MA, USA, 2023. [Online]. Available: https://www.chef.io/whitepapers/buyers-guide-for-continuous-compliance-solutions-in-devops
 
 [16] JupiterOne, "DevOps Continuous Compliance Automation," JupiterOne, Inc., Morrisville, NC, USA, 2024. [Online]. Available: https://www.jupiterone.com/glossary-topics/devops-continuous-compliance-automation
+
+[17] U.S. Department of Health and Human Services, "HIPAA Security Rule: Security Standards for the Protection of Electronic Protected Health Information," 45 CFR Parts 160, 162, and 164, Feb. 2003 (as amended).
+
+[18] PCI Security Standards Council, "Payment Card Industry Data Security Standard (PCI DSS), Version 4.0," PCI SSC, Wakefield, MA, USA, Mar. 2022. [Online]. Available: https://www.pcisecuritystandards.org/document_library/
+
+[19] International Electrotechnical Commission, "IEC 62443: Industrial Communication Networks — Network and System Security," IEC, Geneva, Switzerland, 2018–2024 (multi-part standard).
+
+[20] European Parliament and Council of the European Union, "Directive (EU) 2022/2464 as regards corporate sustainability reporting (CSRD)," *Official Journal of the European Union*, vol. L 322, pp. 15–80, Dec. 2022.
+
+[21] Federal Risk and Authorization Management Program (FedRAMP), "Continuous Monitoring Strategy Guide," General Services Administration, Washington, DC, USA, 2023. [Online]. Available: https://www.fedramp.gov/assets/resources/documents/CSP_Continuous_Monitoring_Strategy_Guide.pdf

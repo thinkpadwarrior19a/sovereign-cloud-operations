@@ -101,7 +101,13 @@ The OpenTelemetry Collector is the natural point at which routing decisions are 
 
 Kleppmann [6] observes that in distributed data systems, the question of where data is processed is as consequential as the question of what processing is performed. This insight applies directly to telemetry pipelines: routing decisions made in collection infrastructure are, in effect, data governance decisions, and they should be treated with the same rigour as routing decisions in primary data pipelines.
 
-### 7.3.4 Retention limits and the DORA–GDPR tension
+### 7.3.4 Sector-specific telemetry obligations
+
+The data minimisation and routing patterns described above address the broad DORA–GDPR tension, but sector-specific regulatory frameworks impose additional requirements on what the observability pipeline must capture, scrub, or retain (see Chapter 3 for a comprehensive treatment). In healthcare environments, HIPAA's Security Rule requires that electronic protected health information (ePHI) be safeguarded wherever it appears, including in observability telemetry; log scrubbing pipelines must therefore identify and redact patient identifiers, diagnostic codes and clinician notes that may leak into application traces or structured log fields before those records reach the storage tier [18]. The EU Medical Device Regulation (EU MDR) introduces a complementary obligation for software classified as a medical device (SaMD): manufacturers must conduct post-market surveillance that includes operational telemetry — performance metrics, anomaly rates and failure events — feeding continuous safety monitoring over the device's lifetime [19]. This means the observability plane is not merely an operational convenience for SaMD workloads; it is a regulatory deliverable whose scope and retention must satisfy the notified body's expectations.
+
+Sustainability reporting adds a further dimension. The Corporate Sustainability Reporting Directive (CSRD) requires in-scope organisations to disclose energy consumption and greenhouse gas emissions for their digital infrastructure [20]. Capturing data centre power draw, cooling efficiency metrics and workload energy attribution as part of the observability plane — rather than relying on separate facilities-management systems — ensures that sustainability evidence is produced with the same rigour, timeliness and auditability as operational telemetry. Organisations that treat energy metrics as first-class observability signals will find CSRD reporting substantially less burdensome than those that must assemble the data retrospectively from disparate sources.
+
+### 7.3.5 Retention limits and the DORA–GDPR tension
 
 DORA requires financial entities to retain logs and ICT incident records for periods that may extend to five years for major incidents [2]. GDPR's data minimisation and storage limitation principles [3] require that personal data not be retained beyond the period necessary for its collection purpose. These two requirements pull in opposite directions when the evidence required to satisfy DORA contains, even incidentally, personal data.
 
@@ -282,3 +288,9 @@ Chapter 8 deepens one dimension of this architecture: network observability. Whe
 [16] D. Hiraoka, "Instana: Introduction to LLM Observability — New Architecture," IBM Community Blog, 4 Feb. 2026. [Online]. Available: https://community.ibm.com/community/user/blogs/daisuke-hiraoka2/2026/02/04/instana-introduction-to-llm-observability-new-arch. [Accessed: Feb. 2026].
 
 [17] IBM Corporation, "Introducing IBM Sovereign Core: A new software foundation for sovereignty," IBM Newsroom, 2024. [Online]. Available: https://www.ibm.com/new/announcements/introducing-ibm-sovereign-core-a-new-software-foundation-for-sovereignty. [Accessed: Feb. 2026].
+
+[18] U.S. Department of Health and Human Services, "Security Standards: Technical Safeguards," *HIPAA Security Rule*, 45 CFR § 164.312, 2013. [Online]. Available: https://www.hhs.gov/hipaa/for-professionals/security/laws-regulations/index.html
+
+[19] European Parliament and Council of the European Union, "Regulation (EU) 2017/745 on medical devices (EU MDR)," *Official Journal of the European Union*, vol. L 117, pp. 1–175, May 2017. [Art. 83–86: Post-market surveillance obligations.]
+
+[20] European Parliament and Council of the European Union, "Directive (EU) 2022/2464 amending Regulation (EU) No 537/2014, Directive 2004/109/EC, Directive 2006/43/EC and Directive 2013/34/EU, as regards corporate sustainability reporting (CSRD)," *Official Journal of the European Union*, vol. L 322, pp. 15–80, Dec. 2022.

@@ -102,6 +102,10 @@ In practice, full packet capture in a sovereign estate should be restricted to s
 >
 > A layered architecture diagram showing four instrumentation planes stacked from infrastructure to application: the bottom layer shows IPFIX/NetFlow flow export from physical and virtual network infrastructure; above it an eBPF/Cilium Hubble layer capturing kernel‑level and intra‑node flows with L7 visibility; above that an Istio/Envoy service mesh layer reporting per‑service‑pair L7 metrics and distributed traces; and at the top a synthetic probing layer generating controlled inter‑zone test traffic. Arrows indicate how each layer's telemetry flows to a central observability backend for correlation.
 
+### 8.3.6 Regulatory mandates for network monitoring in critical infrastructure
+
+Several sector-specific regulatory frameworks impose explicit network monitoring obligations that go beyond the general-purpose observability patterns described above (see Chapter 3 for the full regulatory landscape). In the transport sector, the US Transportation Security Administration's Security Directives for pipeline and surface transportation operators mandate continuous monitoring of network segmentation controls and the ability to detect lateral movement between operational technology (OT) and information technology (IT) network segments [25]. Operators must demonstrate that segmentation is not merely configured but actively verified through monitoring, making eBPF-based flow observation and Cilium network policy audit trails directly relevant compliance evidence. In aviation, EASA Part-IS (Information Security) requires organisations within the European aviation safety ecosystem to implement continuous monitoring of their network and information systems, with particular attention to interfaces between safety-critical avionics networks and connected IT infrastructure [26]. For sovereign estates hosting workloads in either of these domains, the network observability architecture must be extended to cover OT/IT boundary flows and must retain network telemetry for the periods and in the formats that sector regulators expect.
+
 ***
 
 ## 8.4 Network‑aware observability in a zero‑copy world
@@ -295,3 +299,7 @@ Chapter 9 builds on this foundation by examining events, lineage and operational
 [23] Hoop.dev, "How to Keep AI Data Lineage and AI Regulatory Compliance Secure with Database Governance Observability," Hoop.dev Blog, 2024. [Online]. Available: https://hoop.dev/blog/how-to-keep-ai-data-lineage-and-ai-regulatory-compliance-secure-with-database-governance-observability/
 
 [24] Amazon Web Services and IBM Red Hat, "Reduce Network Costs and Secure Observability with IBM Instana and AWS PrivateLink," AWS and IBM Blog, 2024. [Online]. Available: https://aws.amazon.com/blogs/ibm-redhat/reduce-network-costs-and-secure-observability-with-ibm-instana-and-aws-privatelink/
+
+[25] Transportation Security Administration, "Security Directive Pipeline-2021-02 Series: Cybersecurity Mitigation Actions, Contingency Planning and Testing," U.S. Department of Homeland Security, Washington, DC, 2023.
+
+[26] European Union Aviation Safety Agency, "Implementing Regulation (EU) 2023/203 — Information Security (Part-IS)," EASA, Cologne, Germany, 2023. [Online]. Available: https://www.easa.europa.eu/en/document-library/easy-access-rules/easy-access-rules-information-security

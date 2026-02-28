@@ -26,6 +26,8 @@ Readers should treat this chapter as a companion to Chapter 34. Where Chapter 34
 
 Consider a pan-European bank with operations in seven member states, a mix of legacy mainframes and modern microservices, and regulatory obligations under the Payment Services Directive (PSD2), the General Data Protection Regulation (GDPR) [2], DORA [1], and a patchwork of national supervisory requirements. Its board has made three commitments: to keep critical services — payments, card processing, core banking — available even under geopolitical stress; to ensure that customer data stays within defined jurisdictions and under local control where required; and to adopt AI-assisted operations without creating unmanageable new risks.
 
+The regulatory surface for financial services is broader than even this list suggests (see Chapter 3 for the full landscape). PSD2's Strong Customer Authentication requirements constrain how payment flows may be rerouted during incidents, because failover paths must continue to satisfy the authentication obligations. The Markets in Crypto-Assets Regulation (MiCA) [12] extends comparable operational resilience and disclosure requirements to crypto-asset service providers, meaning that institutions with digital-asset operations must include those workloads within the same sovereign zone and compliance signal fabric. PCI DSS v4.0's continuous monitoring mandate [13] requires that security controls for cardholder data environments be verified on an ongoing basis, not merely at quarterly assessment time — reinforcing the need for the real-time compliance posture view that Concert and OpenPages provide.
+
 ### 35.2.1 Sovereign zones aligned to supervisory boundaries
 
 The bank defines sovereign zones aligned not merely to data residency requirements but to the broader concept of supervisory boundaries. An EU zone encompasses the core eurozone processing estate. A UK zone handles post-Brexit regulatory divergence, particularly around the Prudential Regulation Authority's expectations for operational resilience [3]. National zones exist for member states where local supervisors impose additional constraints — Germany's BaFin requirements for critical outsourcing, for example, or France's ACPR expectations around third-party cloud usage.
@@ -96,6 +98,8 @@ For architects, the implication is that the agentic operations architecture must
 
 Now consider a national tax authority. It holds some of the most sensitive data in the country: income, assets, employers, benefits, family relationships. It faces intense public scrutiny and is subject to constitutional, privacy, and administrative law constraints as well as cybersecurity mandates under the NIS 2 Directive [6] for entities providing essential services. Its commitments look different from those of a bank: maintain availability of core services during filing seasons and crises; ensure that citizen data remains under national jurisdiction and that operational control is not ceded to foreign entities; and use AI to improve operations and citizen experience, but with strong transparency and accountability.
 
+The regulatory framework for public-sector digital services varies by jurisdiction but converges on common themes of data sovereignty, operational control and supply-chain assurance (see Chapter 3). In the United States, FedRAMP establishes the security assessment and continuous monitoring baseline that cloud services must satisfy before hosting federal data [14]. In Europe, the proposed EU Cybersecurity Certification Scheme for Cloud Services (EUCS) aims to provide an equivalent assurance framework, with sovereignty tiers that map onto the zone-based architecture described throughout this book [15]. National frameworks — the UK's Cyber Essentials and the German BSI C5 catalogue, among others — add further requirements that shape how sovereign zones are configured, audited and maintained for government workloads.
+
 ### 35.4.1 Sovereign core and zones of trust
 
 The authority adopts a sovereign stack in which core tax processing systems run on a platform under national operational authority — whether in government data centres, trusted sovereign cloud regions, or a combination of both. Identity management, cryptographic key management, log aggregation, and AI control planes are operated domestically by personnel holding appropriate security clearances.
@@ -131,6 +135,8 @@ The governance framework for public-sector agents must also account for the poli
 ## 35.5 Healthcare: clinical and operational sovereignty
 
 A national or regional health system deals with some of the most sensitive data that exists and operates under tight clinical safety and privacy requirements. Health data regulations — GDPR [2], national health data legislation, and sector-specific frameworks such as the UK's Data Security and Protection Toolkit or Germany's Patientendaten-Schutz-Gesetz — impose constraints that are at once similar to and different from financial regulation. The similarity lies in the emphasis on data protection and access control. The difference lies in the immediacy of consequences: in healthcare, a system failure or an incorrect automated recommendation can affect clinical outcomes in ways that are irreversible.
+
+Three regulatory frameworks deserve specific mention because they impose operational requirements that directly shape the sovereign architecture (see Chapter 3). HIPAA's Security Rule requires administrative, physical and technical safeguards for electronic protected health information (ePHI), including access controls, audit logging and encryption, that must be enforced within every sovereign zone hosting clinical data [16]. The EU Medical Device Regulation (EU MDR) [7] classifies certain health software — including clinical decision support tools and AI-based diagnostic aids — as medical devices subject to conformity assessment, clinical evaluation and post-market surveillance, obligations that extend to the observability plane and change management processes for those workloads. The US FDA's 21 CFR Part 11 requires that electronic records and electronic signatures used in regulated pharmaceutical and clinical trial processes satisfy validation, audit trail and access control requirements [17], imposing constraints on CI/CD pipelines and configuration management systems that serve GxP-regulated environments within the health system's estate.
 
 ### 35.5.1 Clinical and operational zones
 
@@ -168,6 +174,8 @@ The guardrail framework for clinical agents must enforce several non-negotiable 
 
 A large telecommunications operator presents a distinct set of sovereign operations challenges. Telecoms networks are classified as critical national infrastructure in most jurisdictions, subject to obligations under NIS 2 [6] and national security legislation that can impose requirements going well beyond those faced by other regulated sectors. The operator must maintain network availability for emergency services, law enforcement communications, and national resilience scenarios. Its infrastructure spans national borders for interconnection purposes, yet national regulators demand that the control and management planes for domestic network functions remain under national jurisdiction.
 
+Beyond NIS 2, the telecoms sector operates under a layered regulatory framework (see Chapter 3). The European Electronic Communications Code (EECC) [18] establishes security and integrity obligations for providers of electronic communications networks and services, including incident reporting requirements and expectations for network resilience that inform how sovereign zones for network functions are designed and monitored. In the United Kingdom, the Telecommunications (Security) Act 2021 [19] imposes specific security duties on providers, with a Code of Practice that mandates network segmentation, supply-chain risk management and continuous monitoring of critical infrastructure — requirements that align closely with the eBPF-based and service-mesh-based observability patterns described in Chapter 8.
+
 ### 35.6.1 Network function sovereignty
 
 Modern telecoms networks are increasingly software-defined. Network functions that were once implemented in proprietary hardware — core network elements, session border controllers, subscriber databases, policy and charging functions — now run as virtualised or containerised workloads on commodity infrastructure. This transformation, broadly described as network function virtualisation (NFV) [9] and its evolution into cloud-native network functions (CNFs), creates both an opportunity and a risk for sovereignty.
@@ -193,6 +201,12 @@ The operator must manage these boundaries with particular care. Signalling proto
 Policy-as-code guardrails at interconnection boundaries enforce constraints on what data may cross, what signalling messages are permitted, and what management operations may be initiated from external sources. These guardrails operate at the network function level, complementing the infrastructure-level policies applied to the hosting platform.
 
 > **[FIGURE 35.6 — Telecoms sovereign operations: network function zones, real-time operational constraints, and interconnection sovereignty boundaries]**
+
+***
+
+## 35.6A Manufacturing and industrial operations
+
+Although this chapter's detailed scenarios focus on financial services, public sector, healthcare and telecommunications, manufacturing and industrial operations represent a growing area of sovereign cloud adoption that warrants brief treatment. The regulatory landscape for connected manufacturing is shaped by three instruments discussed in Chapter 3. The EU Cyber Resilience Act (CRA) [20] imposes cybersecurity requirements on products with digital elements — including industrial IoT devices, programmable logic controllers and connected machinery — covering vulnerability handling, software bill of materials and security update obligations that affect both the products a manufacturer ships and the operational technology it uses on its own factory floor. IEC 62443 [21] provides the detailed security framework for industrial automation and control systems (IACS), defining zones and conduits that must be mapped onto the sovereign zone model, with security levels assigned based on threat analysis and enforced through policy-as-code. The EU Machinery Regulation [22], which replaces the Machinery Directive from 2027, introduces cybersecurity requirements for machinery with digital components, requiring manufacturers to address risks arising from software updates, connectivity and potential corruption of safety functions. For sovereign estates hosting manufacturing workloads, these frameworks demand that OT networks and IT networks are segmented, monitored and governed as distinct but interconnected sovereign zones, with the observability plane extending to cover industrial protocols, PLC state changes and safety system events alongside conventional cloud telemetry.
 
 ***
 
@@ -279,3 +293,25 @@ This chapter has shown how the reference patterns of this book adapt when they m
 [10] National Cyber Security Centre (UK), "Cloud Security Guidance," NCSC, London, UK, 2024. [Online]. Available: https://www.ncsc.gov.uk/collection/cloud
 
 [11] European Union Agency for Cybersecurity (ENISA), "Cloud Cybersecurity Market Analysis," ENISA, Athens, Greece, 2023. [Online]. Available: https://www.enisa.europa.eu/publications/cloud-cybersecurity-market-analysis
+
+[12] European Parliament and Council of the European Union, "Regulation (EU) 2023/1114 on markets in crypto-assets (MiCA)," *Official Journal of the European Union*, vol. L 150, pp. 40–205, Jun. 2023.
+
+[13] PCI Security Standards Council, "Payment Card Industry Data Security Standard (PCI DSS), Version 4.0," PCI SSC, Wakefield, MA, USA, Mar. 2022. [Online]. Available: https://www.pcisecuritystandards.org/document_library/
+
+[14] Federal Risk and Authorization Management Program (FedRAMP), "FedRAMP Authorization Framework," General Services Administration, Washington, DC, USA, 2024. [Online]. Available: https://www.fedramp.gov/
+
+[15] European Union Agency for Cybersecurity (ENISA), "European Cybersecurity Certification Scheme for Cloud Services (EUCS)," ENISA, Athens, Greece, 2024. [Online]. Available: https://www.enisa.europa.eu/publications/eucs-cloud-service-scheme
+
+[16] U.S. Department of Health and Human Services, "HIPAA Security Rule: Security Standards for the Protection of Electronic Protected Health Information," 45 CFR Parts 160, 162, and 164, Feb. 2003 (as amended).
+
+[17] U.S. Food and Drug Administration, "21 CFR Part 11: Electronic Records; Electronic Signatures," Code of Federal Regulations, Title 21, Part 11, U.S. Government Publishing Office, Washington, DC, 1997 (as amended).
+
+[18] European Parliament and Council of the European Union, "Directive (EU) 2018/1972 establishing the European Electronic Communications Code (EECC)," *Official Journal of the European Union*, vol. L 321, pp. 36–214, Dec. 2018.
+
+[19] UK Parliament, "Telecommunications (Security) Act 2021," Chapter 31, London, UK, Nov. 2021. [Online]. Available: https://www.legislation.gov.uk/ukpga/2021/31
+
+[20] European Parliament and Council of the European Union, "Regulation (EU) 2024/2847 on horizontal cybersecurity requirements for products with digital elements (Cyber Resilience Act — CRA)," *Official Journal of the European Union*, vol. L, Nov. 2024.
+
+[21] International Electrotechnical Commission, "IEC 62443: Industrial Communication Networks — Network and System Security," IEC, Geneva, Switzerland, 2018–2024 (multi-part standard).
+
+[22] European Parliament and Council of the European Union, "Regulation (EU) 2023/1230 on machinery products (EU Machinery Regulation)," *Official Journal of the European Union*, vol. L 165, pp. 1–87, Jun. 2023.
