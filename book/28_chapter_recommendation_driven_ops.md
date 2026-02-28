@@ -2,6 +2,12 @@
 
 ***
 
+## Summary
+
+This chapter describes the shift from reactive alerting to proactive, recommendation-driven operations in which AI agents identify situations meriting attention, formulate structured proposals, and present them to operators with evidence, confidence assessments, and policy context. It defines the seven structural elements of a well-formed recommendation — observation, analysis, proposed action, expected outcome, confidence score, risk assessment, and policy compliance status — and examines the generation patterns that produce them, including historical incident matching, anomaly detection with causal reasoning, and predictive analytics. The chapter addresses confidence scoring, uncertainty quantification, and the calibration practices required to sustain operator trust, as well as recommendation routing based on service ownership, skill requirements, and regulatory exposure. Sovereign constraints are treated throughout: models must execute within zone boundaries, cross-zone actions must be detected and governed, and every recommendation must satisfy transparency and audit requirements regardless of its disposition.
+
+***
+
 The previous chapter examined how conversational interfaces lower the barrier between operators and the operational intelligence embedded in agentic platforms. A chat-first experience makes it possible for an engineer to ask a question in natural language and receive an answer drawn from topology, telemetry, knowledge bases and policy. But there is a fundamental limitation to a question-and-answer model: it is reactive. The operator must know that something warrants investigation before they ask. Recommendation-driven operations inverts this relationship. Rather than waiting for a human to pose a question, the system identifies situations that merit attention, formulates structured recommendations, and presents them to the appropriate operator with the evidence, confidence assessment and policy context required for an informed decision.
 
 This chapter examines how operational recommendations are generated, structured, scored, routed and governed within a sovereign operations architecture. It traces the evolution from simple alerting to intelligent recommendation, describes the anatomy of a well-formed recommendation, explores the AI patterns that produce recommendations, addresses the critical question of confidence and uncertainty, and considers how sovereign zone constraints shape what recommendation systems are permitted to propose.

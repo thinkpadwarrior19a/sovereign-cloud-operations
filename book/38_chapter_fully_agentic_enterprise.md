@@ -2,6 +2,12 @@
 
 ***
 
+## Summary
+
+This closing chapter describes what the mature state of agentic operations looks like in practice: an enterprise in which AI agents participate persistently across every significant operational process — detection, diagnosis, remediation, compliance, capacity planning and knowledge management — as capable, bounded, supervised colleagues operating predominantly at autonomy Levels 3 and 4. It grounds the vision in a detailed day-in-the-life narrative set in 2030, illustrating how the four architectural planes converge into a lived operational reality, and examines the trust equation that makes such an enterprise possible through transparency, track record, governance and humility. The chapter confronts the risks honestly — over-reliance, skills atrophy, correlated agent failures, adversarial attack and the accountability gap — before articulating the sovereignty dividend: optionality, resilience, speed, cost efficiency and regulatory confidence that together make sovereignty a competitive advantage rather than a compliance burden.
+
+***
+
 The previous chapter examined the near-term trajectory of generative AI in sovereign operations: how foundation models, retrieval-augmented generation, and multi-agent orchestration are reshaping the operational surface. That chapter looked forward in months and single-digit years. This chapter looks further, and in a different register. It asks not "what will the next product release enable?" but "what does the mature state of agentic operations look like, and what kind of enterprise emerges on the other side?"
 
 The answer is neither utopian nor dystopian. It is an enterprise in which AI agents participate in every significant operational process—detection, diagnosis, remediation, change management, compliance, capacity planning, knowledge management—as capable, bounded, supervised colleagues. Humans remain accountable. Sovereignty remains non-negotiable. But the texture of daily operations, the distribution of cognitive labour between people and machines, and the speed at which the organisation learns from its own behaviour are qualitatively different from what came before.

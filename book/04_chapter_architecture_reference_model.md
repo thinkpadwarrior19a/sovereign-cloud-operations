@@ -2,6 +2,12 @@
 
 ***
 
+## Summary
+
+This chapter proposes a four-plane reference model for sovereign cloud operations — the Observability Plane, the Automation and Orchestration Plane, the Agentic Intelligence Plane, and the Governance and Audit Plane — extending the zero-copy integration framework with an operations-specific decomposition that gives each concern a clear architectural home. It details the responsibilities and key technologies within each plane: federated telemetry collection with zone-local retention for observability; infrastructure as code, GitOps and workflow orchestration for automation; AI-driven correlation, reasoning and conversational interfaces for agentic intelligence; and policy-as-code, immutable audit trails and the sovereign AI record for governance. The chapter maps IBM's technology portfolio — Instana, Turbonomic, Concert, watsonx Orchestrate and watsonx.governance — into the model and explains how it complements, rather than replaces, hyperscaler-native tooling. Architects will find practical guidance on using the model as a shared vocabulary for design, gap analysis and evolution of their sovereign operations estate.
+
+***
+
 ## 4.1 Why we need a reference model
 
 When systems were fewer and simpler, it was possible for a small group of architects or operators to keep the entire estate in their heads. They knew which applications talked to which databases, which network segments connected which data centres, which monitoring tools covered which components. If you asked them, in a war room, "What happens if we lose this system?", they could sketch a plausible answer on a whiteboard and be roughly right.

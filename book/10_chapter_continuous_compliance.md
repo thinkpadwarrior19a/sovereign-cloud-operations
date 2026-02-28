@@ -2,6 +2,12 @@
 
 ***
 
+## Summary
+
+This chapter reframes compliance as a continuous operational property rather than a periodic audit exercise, showing how sovereign cloud estates can observe, evaluate and demonstrate adherence to policy obligations in near-real time. It introduces the compliance signal fabric comprising configuration, access, network and change signals and explains how IBM Concert aggregates these into a unified posture view while IBM OpenPages serves as the governance system of record. The chapter provides practical guidance on policy-as-code with Open Policy Agent and Rego, Kubernetes admission control via Gatekeeper, Terraform plan evaluation with Conftest, and CIS Benchmark automation through Chef InSpec. Architects will also find a treatment of automated evidence collection, the regulatory mapping of controls to frameworks such as DORA, ISO/IEC 27001 and NIST SP 800-53, and the design of agentic compliance workflows that detect and remediate drift within sovereign zone boundaries.
+
+***
+
 ## 10.1 From point‑in‑time audits to continuous assurance
 
 For years, many organisations treated compliance as a sequence of projects and check‑ups. A regulation would arrive, a programme would be launched, controls and documents would be produced, and auditors would review a snapshot of evidence. Between those moments, operations were assumed to be "close enough" if no major incident occurred.

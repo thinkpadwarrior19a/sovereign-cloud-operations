@@ -2,6 +2,12 @@
 
 ***
 
+## Summary
+
+This chapter translates the book's architectural principles into four concrete, reusable reference blueprints that cover the most common sovereign deployment patterns: a single-sovereign-zone estate, a multi-zone multi-cloud estate, an air-gapped sovereign environment, and a hybrid sovereign-commercial topology. Each blueprint is presented with a consistent structure covering topology, networking, observability, automation, agentic operations and key trade-offs, enabling architects to select and adapt the pattern closest to their regulatory and operational context. The chapter also identifies the common platform layer shared across all blueprints — including infrastructure-as-code, policy-as-code, observability and the Concert reasoning layer — and provides a decision framework for customising blueprints through zone boundary adjustment, provider selection and graduated agent autonomy.
+
+***
+
 ## 34.1 From principles to blueprints
 
 Throughout this book we have developed a set of principles: sovereign zones with explicit boundaries, zero-copy integration, policy-as-code enforcement, rich observability planes, agentic operations within guardrails, and continuous compliance as an operational property rather than a periodic achievement. These principles are, by design, abstract. They describe what a well-governed sovereign estate ought to look like without prescribing how any particular organisation should build one. That abstraction is valuable—it lets the ideas travel across industries and jurisdictions—but it creates a gap. Principles do not deploy themselves. Between "we believe in sovereign zones" and a running, compliant, observable multi-cloud estate lies a great deal of architectural decision-making, and much of it is not obvious from first principles alone.

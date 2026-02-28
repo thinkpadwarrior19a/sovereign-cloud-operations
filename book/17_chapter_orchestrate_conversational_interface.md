@@ -2,6 +2,12 @@
 
 ***
 
+## Summary
+
+This chapter explains how IBM watsonx Orchestrate bridges the gap between Concert's prioritised recommendations and the multi-tool actions required to execute them, providing a single conversational interface that translates natural-language operator intent into authenticated, logged tool calls. It covers Orchestrate's five-layer architecture—language model, tool registry, workflow engine, memory, and governance integration—and examines the tool-calling model, zone-scoped registries, and short-lived scoped credentials that enforce sovereign-zone boundaries. The chapter details how YAML-defined workflows handle multi-step operations with approval gates, how Orchestrate functions as the planner agent in multi-agent architectures, and how governance controls at the prompt, output, and model-monitoring levels satisfy regulatory obligations including the EU AI Act. Architects will find practical guidance on deployment models, conversational UX design principles, and the systematic refinement of tool descriptions and workflow definitions that builds operator trust over time.
+
+***
+
 There is a gap that sits between knowing and doing. IBM watsonx Concert, described in Chapter 16, excels at the knowing side: it ingests telemetry, maps application topology, evaluates risk posture and surfaces prioritised recommendations. An operator looking at the Concert dashboard can see, with reasonable confidence, that a certificate is approaching expiry in a regulated zone, that a vulnerability has been scored critical, or that a capacity anomaly has been detected in a production workload. What Concert cannot do, by design, is act. It observes; it recommends; it stops.
 
 Crossing from recommendation to action has historically meant opening a second browser tab, then a third. The operator consults a runbook, raises a ServiceNow change request, logs into an Ansible controller, approves a Terraform plan, monitors a Kubernetes rollout, and then—if everything goes well—closes the ticket and adds a comment. Each of those steps is a context switch, a place where intent can be misread and where the chain of evidence can be broken. Audit logs exist in four systems, none of which fully agrees with the others.

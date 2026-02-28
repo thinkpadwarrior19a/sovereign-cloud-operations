@@ -2,6 +2,12 @@
 
 ***
 
+## Summary
+
+This chapter addresses major incidents that exceed the envelope of autonomous self-healing — situations demanding human investigation, judgement, cross-team coordination, and regulatory accountability — and describes how AI agents augment each phase of the incident lifecycle without displacing human responsibility. It covers agent-assisted triage that produces structured situation reports within minutes, automated root cause analysis that synthesises temporal alignment and causal graph reasoning into ranked hypotheses, and war room coordination agents that handle action tracking, progress summarisation, and multi-audience communication drafting. The chapter examines cross-zone remediation patterns in which agents operate within sovereign boundaries while exchanging abstracted situational awareness, and details agent-assisted post-incident review that automates timeline reconstruction, root cause documentation, and knowledge base updates. Architects will find guidance on incident management metrics that capture both speed and quality, along with the feedback loops that make each incident a source of institutional improvement.
+
+***
+
 The previous chapter examined autonomous self-healing: the closed-loop patterns through which known failure modes are detected, diagnosed and remediated without human intervention. That capability is powerful, but it operates within a well-defined envelope. The failure must have been anticipated, the remediation must have been pre-approved, and the blast radius must fall within the guardrails that policy permits an agent to act upon alone. For a significant proportion of operational events—the routine, the repetitive, the well-understood—autonomous self-healing is sufficient and appropriate.
 
 Major incidents are different. A P1 incident affecting a regulated payment processing service at peak transaction volume, with cascading failures across three dependent services and ambiguous root cause signals, is not a problem that falls within any pre-approved remediation envelope. It demands investigation, judgement, coordination across multiple teams, communication with stakeholders who have differing information needs, and decisions that carry regulatory consequences. These are fundamentally human responsibilities. No responsible enterprise delegates them to an agent acting alone, regardless of how capable the underlying models may be.

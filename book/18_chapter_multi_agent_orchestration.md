@@ -2,6 +2,12 @@
 
 ***
 
+## Summary
+
+This chapter establishes the architectural foundations for multi-agent collaboration in sovereign cloud operations, addressing why a single general-purpose agent is insufficient at enterprise scale and how specialised agents—planners, executors, reviewers, guardrails, and synthesisers—must be composed into governed pipelines. It examines orchestration topologies (centralised supervisor, peer-to-peer mesh, and hierarchical), communication mechanisms based on durable message queues, and shared-context models grounded in Concert's topology and vector-database retrieval. The chapter catalogues the principal failure modes of multi-agent systems—cascading hallucination, scope creep, coordination deadlock, conflicting actions, and audit gaps—and pairs each with specific architectural controls. Architects will find detailed guidance on layered guardrails enforced through OPA policy-as-code, blast-radius limits, zone-aware credentials, and human-in-the-loop checkpoints, along with testing and validation practices for agent pipelines before and after production deployment.
+
+***
+
 Part VI of this book turns from the individual components of the sovereign operations control plane to the question of how multiple AI agents work together. Earlier chapters established what Concert does as the operational brain, what watsonx Orchestrate does as the conversational interface, and how the four planes—Observability, Automation & Orchestration, Agentic Intelligence, and Governance & Audit—relate to one another. This chapter and those that follow examine the patterns through which agents collaborate to handle operational tasks that no single agent can manage alone, and how those collaborative patterns can be designed to respect the sovereignty, auditability and resilience requirements that have been the book's constant concern.
 
 ***

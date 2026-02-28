@@ -2,6 +2,12 @@
 
 ***
 
+## Summary
+
+This chapter surveys the generative AI landscape from the vantage point of the sovereign operations architect, identifying the directional trends — open-weight and specialised foundation models, the agentic progression from assistants to autonomous operators, sovereign AI infrastructure, and an intensifying regulatory environment — that are structurally stable enough to warrant architectural planning. It examines the practical requirements for running capable models within sovereign boundaries, including GPU capacity, inference serving, model registries and training pipelines, and maps the emerging regulatory obligations under the EU AI Act and sector-specific frameworks onto the operational foundations described throughout this book. The chapter argues that designing for uncertainty — through model abstraction layers, composable agent architectures, and feedback loops that accelerate learning — is more resilient than attempting to predict a future that is changing faster than any committee can convene.
+
+***
+
 ## 37.1 The pace of change
 
 In late 2022, the release of ChatGPT introduced hundreds of millions of people to large language models in the space of a few weeks. Within eighteen months, every major technology vendor had repositioned its product portfolio around generative AI, dozens of open-weight foundation models had been published, and regulatory bodies on multiple continents had begun drafting rules for a technology whose capabilities were changing faster than any committee could convene. By early 2026, the landscape has shifted again: agentic frameworks are maturing, multimodal models process text, images, audio and structured data in a single pass, and specialised small models trained on domain-specific corpora are challenging the assumption that only the largest models are useful. The pace is, by any historical measure, extraordinary.

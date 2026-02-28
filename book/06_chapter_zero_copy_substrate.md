@@ -2,6 +2,12 @@
 
 ***
 
+## Summary
+
+This chapter reframes zero-copy integration as an operational substrate rather than a purely architectural pattern, showing how the shift from copy-heavy to event-driven, in-place data access fundamentally changes what it means to run a multi-cloud estate. It exposes the operational fragility of copy-heavy architectures — synchronisation lag, silent ETL failures, schema drift, exploding compliance surface area and impoverished data lineage — and contrasts these with the simpler failure surface, richer event signals and tighter audit trails that a zero-copy model provides. The chapter examines four event patterns (notification, event-carried state transfer, event sourcing and CQRS), treats lineage as both an operational debugging tool and a sovereign control mechanism, and explains how agentic systems exploit the structured, event-rich substrate to reason about the estate in real time. Architects are cautioned that whilst zero-copy simplifies structural reasoning, it increases real-time sensitivity and demands correspondingly better observability, disciplined change management and network-aware design.
+
+***
+
 ## 6.1 From integration pattern to operating surface
 
 Zero‑Copy Integration began as an answer to a familiar architectural mess: data replicated into warehouses, marts, caches and shadow databases until no one could say with confidence where the truth lived. The original argument was primarily about **architecture** and **governance**—about reducing copies, exposing data via well‑governed APIs or virtualisation layers, and propagating changes as streams of events rather than as opaque batch jobs [1].

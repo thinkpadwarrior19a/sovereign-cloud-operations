@@ -2,6 +2,12 @@
 
 ***
 
+## Summary
+
+This chapter addresses the human dimension of sovereign cloud operations: the skills, cultural shifts and organisational practices without which even the most sophisticated architecture will underperform. It examines the compound skills gap facing operations teams — spanning policy-as-code fluency, agent supervision, sovereignty engineering and AI governance — and proposes the T-shaped engineer model as the development target. The chapter traces the cultural transformation from gatekeeping to enabling, arguing that controls must be encoded in the platform rather than enforced through manual gates, and draws on Westrum's generative culture typology to connect culture to operational performance. Practical guidance covers training pathways, trust calibration between human operators and AI agents, cognitive load management, and the knowledge management practices that sustain institutional memory in an estate where both people and agents depend on current, retrievable operational knowledge.
+
+***
+
 ## 32.1 The skills gap in sovereign operations
 
 There is a moment, usually about six months into a sovereign cloud transformation programme, when the technology components are becoming clear—the zones are drawn, the observability plane is taking shape, the first agents are under test—and someone asks the question that should have been asked at the beginning: "Who is going to run all this?" The answer, in most organisations, is unsettling. The existing operations workforce was hired and trained for a different world: a world of manually provisioned infrastructure, ticket-driven change management, siloed monitoring tools, and compliance obligations met through periodic audit exercises rather than continuous, codified enforcement. The new world demands skills that most of those teams do not yet possess, in combinations that most training programmes do not yet offer.

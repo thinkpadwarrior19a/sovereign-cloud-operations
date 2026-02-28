@@ -2,6 +2,12 @@
 
 ***
 
+## Summary
+
+This chapter makes the case that observability in a sovereign, multi-cloud estate must move beyond traditional monitoring into a sovereignty-aware discipline that treats telemetry as regulated data, respects jurisdictional boundaries and provides evidence of continuous operational control. It extends the conventional three-pillar model (metrics, logs, traces) with events and topology as the fourth and fifth signals, and details the OpenTelemetry data model, OTLP protocol and context propagation mechanisms that standardise their collection. The chapter presents a federated observability architecture — zone-local backends retaining raw telemetry within sovereign boundaries, with only filtered aggregates exported to a central resilience view — and addresses the practical tension between DORA's demands for rich, durable evidence and GDPR's data minimisation requirements through patterns such as log scrubbing, field-level masking and tiered retention. It also covers the observability of AI components themselves, treating model invocations, agent decisions and confidence scores as first-class telemetry that feeds both operational diagnosis and the sovereign AI record required by the EU AI Act.
+
+***
+
 ## 7.1 Why observability must become sovereignty‑aware
 
 Observability started life as a mostly technical concern. The goal was to understand how applications behaved in production by collecting metrics, logs and traces, then using them to diagnose performance issues and bugs. As systems moved to the cloud and became more distributed, observability expanded into a discipline concerned with the full MELT stack—metrics, events, logs and traces—and with providing engineers the context they need to ask and answer arbitrary questions about system behaviour [1].

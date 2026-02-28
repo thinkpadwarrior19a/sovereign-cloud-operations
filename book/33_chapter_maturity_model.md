@@ -2,6 +2,12 @@
 
 ***
 
+## Summary
+
+This chapter presents a maturity model purpose-built for sovereign, agentic operations, filling a gap left by existing frameworks such as CMMI, DORA metrics and the CNCF Cloud Native Maturity Model, none of which address sovereignty constraints, policy-as-code enforcement or agent governance. Five maturity levels — from Ad-hoc and Reactive through to Optimised and Autonomous — define a progression across eight assessment dimensions: infrastructure codification, observability depth, automation coverage, sovereignty enforcement, agent adoption, governance maturity, cultural readiness and knowledge management. The chapter provides concrete guidance on conducting honest, evidence-based assessments, navigating the migration paths between levels, and recognising the interdependencies that make advancing one dimension contingent on progress in others. It closes with practical advice on combining quick wins with structural moves such as the sovereign core pattern, avoiding common transformation anti-patterns, and connecting maturity improvements to measurable business outcomes through quarterly reviews and leading indicators.
+
+***
+
 ## 33.1 Why a maturity model
 
 There is a moment in every transformation programme when the steering committee asks a question that sounds simple but is remarkably difficult to answer: "How far along are we?" The difficulty is not that nobody has an opinion. Everybody does. The infrastructure team believes they are well advanced because Terraform is in use for two cloud providers. The observability team considers themselves leading because they have adopted OpenTelemetry. The security group feels behind because policy-as-code covers only a fraction of the estate. The programme director suspects the whole thing is further behind than anyone will admit. Without a shared framework for assessment, these perspectives remain incommensurable. Investment cases are built on intuition rather than evidence, and accountability dissolves into competing narratives about progress [1].

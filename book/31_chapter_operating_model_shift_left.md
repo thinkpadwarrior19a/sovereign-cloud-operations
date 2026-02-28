@@ -2,6 +2,12 @@
 
 ***
 
+## Summary
+
+This chapter argues that technical capabilities alone are insufficient without a corresponding transformation of the operating model, and presents the shift-left operations paradigm in which operational concerns — SLOs, observability instrumentation, policy-as-code evaluation, runbook authorship, and resilience testing — are addressed within the development lifecycle rather than deferred to downstream operations teams. It introduces new roles including sovereign zone owners, AI agent supervisors, policy engineers, and platform engineers, and defines a three-tier decision framework that clarifies which actions are automated, which require human approval, and which demand committee review. The chapter covers toil measurement with sovereignty-specific categories, the transformation of on-call practices when agents handle first response, and the skills atrophy risks that must be managed through game days and deliberate practice. Operating model effectiveness is measured through metrics spanning team cognitive load, toil percentage, automation coverage, sovereignty compliance rate, and continuous improvement cadence.
+
+***
+
 ## 31.1 Why operating models must change
 
 The preceding chapters of this book have described an expanding set of technical capabilities: topology-aware observability, zero-copy integration, policy-as-code guardrails, agentic automation with bounded autonomy, and agent-assisted incident management. Each of these capabilities represents a significant advance over the tooling that most enterprises relied upon a decade ago. Yet the organisations deploying them often discover, sometimes painfully, that the new technology sits uneasily within their existing organisational structures. The operating model—the combination of team structures, decision rights, processes, incentives and cultural norms through which an enterprise manages its technology estate—was designed for an earlier era. Attempting to run an agentic, sovereign, multi-cloud estate with the operating model of a traditional ITIL service desk is like fitting a modern turbofan engine to a biplane airframe: the power is there, but the structure cannot make productive use of it.

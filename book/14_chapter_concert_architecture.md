@@ -2,6 +2,12 @@
 
 ***
 
+## Summary
+
+This chapter presents the architecture of IBM Concert as the operational brain of a sovereign, multi-cloud estate. It explains how Concert continuously discovers and maintains a typed entity graph of services, deployments, infrastructure components and their dependencies, then ingests metrics, logs, traces, change events and business signals to correlate them against that live topology model. The chapter details Concert's correlation engine, its causal inference approach combining graph-based reasoning with historical pattern matching, and its health scoring and recommendation generation system that converts raw signals into prioritised, evidence-backed guidance for operators and agents. Architects will also find coverage of Concert's sovereign zone awareness, its collector and integration architecture, the governance controls that constrain recommendations within zone boundaries, and the federated deployment patterns required for estates spanning multiple jurisdictions.
+
+***
+
 ## 14.1 Concert as the operational brain
 
 Every large organisation running software across multiple clouds and multiple jurisdictions faces the same underlying problem: the estate is too large, too dynamic, and too interconnected for any human team to hold in its head. Engineers know their own services well; they know their immediate dependencies reasonably well; beyond that, the picture becomes hazy. When something goes wrong—and in complex distributed systems something always eventually goes wrong—the critical questions are rarely answered quickly. Which business services are affected? What is the probable cause? What should be done first? Who should be told? Traditional operations tooling answers none of these questions well, because it was not designed to.

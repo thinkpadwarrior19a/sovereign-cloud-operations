@@ -2,6 +2,12 @@
 
 ***
 
+## Summary
+
+This chapter closes the gap between software delivery performance and operational stability by showing how IBM DevOps Insights aggregates build, test and deployment data from CI/CD toolchains and feeds it into Concert's risk model as a first-class signal source. It explains the four DORA key metrics, the DevOps Insights data model and quality gate mechanism, and the composite change risk score that Concert calculates from historical failure rates, change scope, quality gate disposition, deployment cadence and sovereign zone modifiers. Architects will find guidance on sovereign-specific quality dimensions including SBOM completeness, dependency vulnerability status, licence compliance and sovereignty constraint checks, as well as the toolchain federation pattern that publishes only aggregate metrics across sovereign zone boundaries while keeping raw delivery data local. The chapter also covers agentic consumption of DevOps Insights data and the quarterly performance review cadence that converts accumulated delivery intelligence into organisational accountability.
+
+***
+
 ## 16.1 The missing link between delivery and operations
 
 For much of the history of enterprise IT, the pipeline that carried software from development into production and the systems that kept that software running were governed by entirely separate disciplines, measured by different metrics, and staffed by teams with little reason to speak to one another. Development organisations celebrated deployment velocity; operations organisations braced for it. A release that a delivery team counted as a success—on time, on specification, all tests green—could materialise in production as a sequence of incidents, degraded SLOs and frantic rollbacks. Conversely, operations teams that had learned to protect stability through change freezes and heavyweight approval processes could inadvertently starve the organisation of the very improvements it needed.

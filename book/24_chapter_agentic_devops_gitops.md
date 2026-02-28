@@ -2,6 +2,12 @@
 
 ***
 
+## Summary
+
+This chapter explores how agentic AI systems extend DevOps and GitOps practices for sovereign estates, using the GitOps control loop—where Git serves as the single source of declared state, approval mechanism, and tamper-evident audit trail—as the foundational substrate for agent-managed infrastructure. It covers zone-local GitOps controller deployment with Argo CD and Flux, secrets management within sovereign boundaries, and the three roles agents play in the pull request lifecycle: proposing changes (drift remediation, security patching, configuration tuning), reviewing changes (policy analysis, cross-cutting impact assessment), and validating changes through adaptive gate checks. The chapter details policy enforcement shifted left into the GitOps pipeline via OPA/Rego, progressive delivery with zone-aware canary sequencing driven by agent analysis of observability signals, and operational feedback loops that close the gap between observed production behaviour and declared configuration. Architects will find guidance on guardrails—scope constraints, rate limits, approval escalation, and revert triggers—that ensure agentic feedback loops operate safely within bounded autonomy.
+
+***
+
 ## 24.1 The convergence of agentic AI and DevOps
 
 DevOps, in its original articulation, was a cultural and organisational movement before it was a technical one. Its central insight—that development and operations should share accountability for the software they deliver—was always more about feedback loops, shared metrics, and mutual visibility than about any particular tool. Yet the tooling that grew up around DevOps became, over time, the medium through which the movement's principles were expressed in practice. CI/CD pipelines, infrastructure-as-code repositories, declarative deployment manifests, and automated test suites are, collectively, the operational vocabulary of modern software delivery. They embody the principle that known, repeatable processes should be automated, reviewed, and versioned rather than performed ad hoc by individuals acting from memory.

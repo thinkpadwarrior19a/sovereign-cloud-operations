@@ -2,6 +2,12 @@
 
 ***
 
+## Summary
+
+This chapter examines how agentic operations must integrate with IT Service Management disciplines to remain governable, traceable, and trusted at enterprise scale, arguing that agents must operate through ITSM processes rather than around them. It maps the four ITIL 4 practices most affected by agent participation—incident management, change enablement, problem management, and service request management—to concrete patterns in which Concert, Orchestrate, and multi-agent pipelines interact with ServiceNow, Jira, and GitHub. The chapter demonstrates how agent-assisted workflows produce consistently richer operational records, with every investigative and remediation action logged as an attributed entry on the ITSM record in real time. Architects will find guidance on tiered change management (standard, normal, and emergency), agent-driven root cause correlation across Concert's knowledge graph, and the construction of a unified operational record that satisfies DORA, NIS2, and ISO 27001 evidence requirements as a natural by-product of correct operation.
+
+***
+
 The previous chapter established the architectural substrate for multi-agent orchestration: the role taxonomy, the communication mechanisms, the shared-context model, and the guardrails that allow agents to operate safely inside regulated sovereign zones. What that chapter deliberately did not address was the institutional layer that sits above the technical substrate—the managed processes, the accountability structures, and the documented records through which an organisation demonstrates control to regulators, auditors, customers and its own leadership. This chapter addresses that layer. It examines how an agentic operations capability, however sophisticated its internal architecture, must integrate with IT Service Management disciplines if it is to be governable, traceable, and trusted at enterprise scale.
 
 ***

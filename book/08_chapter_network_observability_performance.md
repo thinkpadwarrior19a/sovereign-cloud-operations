@@ -2,6 +2,12 @@
 
 ***
 
+## Summary
+
+This chapter elevates the network from invisible utility to first-class risk and control surface, arguing that in a zero-copy, multi-cloud architecture every cross-region query and event flow depends on specific paths whose performance and jurisdictional compliance directly determine whether the estate is operationally viable. It defines network service-level objectives with explicit latency, loss, jitter and bandwidth targets, augmented by a jurisdiction predicate that ensures SLOs are only meaningful on paths that themselves respect sovereignty constraints. The chapter surveys the full instrumentation stack — IPFIX flow records, eBPF-based observability via Cilium and Hubble, Istio service mesh telemetry and synthetic probing — and shows how these layers combine to transform the network from a black box into an observable, auditable fabric. Architects will find guidance on establishing baselines using Concert historical telemetry, applying error budgets to network SLOs, and integrating network signals into agentic remediation workflows that respect both performance and sovereignty requirements.
+
+***
+
 ## 8.1 Why the network becomes a first‑class risk
 
 In many organisations, the network has historically been treated as a mostly invisible utility: if pings succeed and basic health checks pass, attention gravitates toward applications, databases and security tools. In a sovereign, zero‑copy, multi‑cloud world, that posture is no longer viable. When systems depend on live, in‑place access to data across regions and providers, the network is the **integration fabric** rather than just "plumbing." The gravity of large datasets and the latency sensitivity of real‑time access means that network performance directly determines whether the architecture is operationally feasible or merely theoretically sound [1].

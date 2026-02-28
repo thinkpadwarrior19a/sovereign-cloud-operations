@@ -2,6 +2,12 @@
 
 ***
 
+## Summary
+
+This chapter applies the reference blueprints of Chapter 34 to four regulated industry contexts — financial services, public sector, healthcare and telecommunications — showing how the same core architectural patterns adapt when they encounter sector-specific regulatory constraints, failure tolerances and transparency expectations. It examines sovereign zone design aligned to supervisory boundaries, zero-copy integration for transaction and patient data, agentic incident response calibrated to each sector's risk profile, and the governance implications of frameworks such as DORA, NIS 2 and medical device regulation. The chapter closes by identifying the five structural patterns shared across all industries and the key divergences — autonomy thresholds, regulatory specificity, transparency obligations and political dimensions — that architects must calibrate for their own context.
+
+***
+
 ## 35.1 Why industry context matters
 
 The reference blueprints developed in Chapter 34 are deliberately technology-centric. They describe the structural patterns — sovereign zones, zero-copy integration layers, observability planes, agentic orchestration — that any large organisation can assemble from the components discussed throughout this book. What they do not do is account for the fact that a payment outage in a retail bank is not the same event as a degraded patient-record service in a hospital, a portal failure in a national tax authority, or a routing misconfiguration at a telecoms operator serving emergency services. The underlying architectural patterns may rhyme, but the constraints — regulatory, ethical, operational — are profoundly different.

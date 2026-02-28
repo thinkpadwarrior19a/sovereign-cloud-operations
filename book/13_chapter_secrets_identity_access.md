@@ -2,6 +2,12 @@
 
 ***
 
+## Summary
+
+This chapter establishes identity, secrets and access management as the control fabric on which every other assurance in the sovereign operations architecture depends. It traces the shift from network-perimeter security to zero trust principles, showing how federated identity stacks, sovereign zone constraints on trust relationships, and privileged access management with just-in-time credentials replace the assumptions that multi-cloud estates have rendered obsolete. Architects will find practical guidance on HashiCorp Vault for federated secrets management with dynamic credential issuance, SPIFFE/SPIRE for vendor-neutral workload identity, certificate lifecycle automation with cert-manager and Vault PKI, and the encoding of identity policy as infrastructure as code enforced by Open Policy Agent. The chapter also addresses the specific identity requirements of non-human actors, including AI agents and automation pipelines, and the access governance processes needed to satisfy DORA, ISO/IEC 27001 and GDPR audit obligations.
+
+***
+
 ## 13.1 Why identity is the new perimeter
 
 There was a time when the discipline of network security could be summarised in a single mental model: draw a hard boundary around the organisation's infrastructure, defend that boundary vigorously, and trust everything inside it. Firewalls at the data centre edge, VPNs for remote workers, and strict controls over physical access to premises gave this perimeter its teeth. For decades, it was the primary answer to the question of how you kept the wrong people out of sensitive systems.

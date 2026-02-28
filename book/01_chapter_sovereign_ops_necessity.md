@@ -2,6 +2,12 @@
 
 ***
 
+## Summary
+
+This chapter argues that the convergence of multi-cloud complexity, binding regulatory mandates and the limitations of dashboard-centric operations creates a structural necessity for a new operational model built around sovereignty, AI-assisted intelligence and zero-copy integration. It introduces operational sovereignty as the governing principle — concerned not merely with where data resides but with who can act on which systems, from which jurisdictions, under which policies — and traces the regulatory foundations in DORA, ENISA guidance and EBA requirements. The chapter makes the case for agentic operations, in which conversational AI systems correlate signals, propose remediations and execute approved changes, shifting human engineers from repetitive execution into supervisory and design roles. It positions IBM Concert and watsonx Orchestrate as a cross-cloud control and intelligence plane that spans hyperscaler estates rather than replacing them, and introduces shift-left operations and organisational culture as co-equal determinants of success alongside the technical architecture.
+
+***
+
 ## 1.1 The limits of yesterday's "cloud success"
 
 For many organisations, the past decade of cloud adoption has looked like progress. Data centres have thinned out. New features ship faster. Teams can spin up infrastructure with a few lines of code. Dashboards are abundant; alerts are plentiful; incident bridges are busy but mostly under control. On paper, the story is one of modernisation.

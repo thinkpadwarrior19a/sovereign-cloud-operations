@@ -2,6 +2,12 @@
 
 ***
 
+## Summary
+
+This chapter defines the architecture of CI/CD pipelines purpose-built for sovereign cloud estates, where every stage from source checkout through deployment verification must satisfy jurisdictional residency, provenance, and policy constraints. It examines supply chain security through the SLSA framework, in-toto attestations, and Sigstore signing; multi-stage quality gates that enforce progressively stricter criteria at each promotion boundary; and the composition of SAST, DAST, SCA, container scanning, and IaC scanning into a unified security evidence record. The chapter establishes that the pipeline itself is a sovereign system whose build infrastructure, artefact registries, execution environments, and secrets management must reside within the sovereign boundary. Architects will find practical guidance on agent-enhanced pipeline intelligence, override governance for emergency changes, and pipeline observability grounded in OpenTelemetry instrumentation and DORA metrics.
+
+***
+
 ## 25.1 Anatomy of a sovereign CI/CD pipeline
 
 A CI/CD pipeline in its most elementary form is a sequence of automated stages that carry a code change from a developer's workstation into a running production environment. The stages are familiar to any practitioner: source checkout, build, test, scan, gate, stage, deploy, verify. What makes a pipeline sovereign is not the addition of new stages—though some stages do expand—but the set of constraints that every stage must satisfy, the provenance guarantees that must be maintained end to end, and the architectural decisions about where the pipeline itself executes and where its artefacts reside.

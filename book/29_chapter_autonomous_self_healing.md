@@ -2,6 +2,12 @@
 
 ***
 
+## Summary
+
+This chapter maps the spectrum of operational autonomy from fully manual intervention through conditionally autonomous self-healing, and provides the architectural patterns, policy frameworks, and safety mechanisms required to operate responsibly at higher autonomy levels in sovereign estates. It examines the closed-loop remediation cycle — detect, diagnose, plan, execute, verify — and defines the autonomous action boundary through a classification matrix of reversibility, blast radius, and regulatory sensitivity, encoded as policy-as-code and evaluated at execution time. The chapter details agent-driven remediation workflows that integrate Concert's recommendation engine, watsonx Orchestrate's agentic reasoning, and Ansible Automation Platform's controlled execution, alongside a progressive autonomy model with quantitative promotion criteria and asymmetric demotion triggers. Safety mechanisms including rate limiting, blast radius containment, automatic rollback, dead man's switch patterns, and escalation cascades are presented as defence-in-depth layers, with zone-specific governance ensuring that self-healing in regulated sovereign zones satisfies DORA, NIS2, and comparable regulatory obligations.
+
+***
+
 ## 29.1 The spectrum of operational autonomy
 
 Every operations team occupies a position on a spectrum. At one end, every action is manual: an engineer reads an alert, opens a terminal, diagnoses the problem, types commands, and verifies the outcome. At the other end, the system detects the anomaly, diagnoses the root cause, selects and executes a remediation, validates the result, and only afterwards informs the humans what happened and why. Most organisations sit somewhere in between, and where they sit is rarely the result of a deliberate architectural decision. It is the accumulated consequence of which problems were painful enough to automate, which automation was trusted enough to let run unsupervised, and which incidents were frightening enough to pull back to manual control.

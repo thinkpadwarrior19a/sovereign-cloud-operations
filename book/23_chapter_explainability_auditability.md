@@ -2,6 +2,12 @@
 
 ***
 
+## Summary
+
+This chapter addresses the operational requirement that every significant decision made by an AI agent must be explainable to human overseers and auditable after the fact, treating "the agent did it" as an unacceptable explanation under DORA, NIS2, and the EU AI Act. It defines three levels of explainability—model, agent, and system—and introduces the Structured Decision Record as the core provenance artefact capturing inputs, reasoning, alternatives considered, policy evaluations, approvals, and outcomes for every material agent action. The chapter examines chain-of-thought logging with configurable verbosity, multi-agent audit trail design using correlation identifiers and event-sourced persistence, and decision reconstruction tools including timeline views, decision tree visualisations, and counterfactual analysis. Architects will find guidance on balancing transparency with security through tiered access controls, code-defined redaction policies, sovereign-zone log isolation, and encryption of decision provenance data.
+
+***
+
 ## 23.1 The explainability imperative in regulated operations
 
 When an experienced engineer restarts a degraded service at two o'clock in the morning, the post-incident review can ask that engineer why they chose that action over the alternatives, what evidence they consulted, what risks they weighed, and what they expected to happen. The engineer may give an imperfect answer — memory is fallible, stress compresses reasoning, and the retrospective narrative inevitably smooths over the actual uncertainty of the moment — but the answer exists. There is a person who can be questioned, and the questioning itself is a governance act: it establishes accountability, surfaces learning, and provides the audit record that regulators expect.

@@ -2,6 +2,12 @@
 
 ***
 
+## Summary
+
+This chapter moves beyond risk registers to the governance structures, lifecycle processes, and evidence management practices required to make AI operations demonstrably accountable in a sovereign cloud context. It describes an AI governance operating model comprising an AI Governance Board, an AI Ethics Committee, a Model Risk Management function, and a Sovereign Compliance function, each with defined mandates and decision rights that integrate with existing enterprise governance bodies. The chapter covers model lifecycle governance from development through retirement, foundation model selection under sovereign constraints (including training data residency and inference location), policy-as-code enforcement through OPA/Rego, and bias detection across operational segments. Architects will find practical guidance on constructing a single structured evidence repository from which EU AI Act conformity documentation, DORA ICT risk management evidence, and NIS2 notification packages can be generated, reducing the manual overhead of multi-framework regulatory compliance.
+
+***
+
 The previous chapter established a taxonomy of risks associated with deploying AI agents in sovereign operational environments and described the control mechanisms—guardrails, autonomy tiers, human-in-the-loop checkpoints—through which those risks are mitigated at the point of execution. That chapter answered the question "what can go wrong, and how do we prevent it?" This chapter addresses a different and arguably more consequential question: "who decides, and how do we prove it?"
 
 Risk identification and control implementation are necessary but insufficient conditions for trustworthy AI operations. A well-designed guardrail that prevents an agent from executing an unauthorised change is valuable, but it does not, by itself, answer the questions that a regulator, an auditor, or a board member will ask. Who approved the policy that defines what constitutes an unauthorised change? Who reviewed the model that the agent relies upon, and when was it last validated? What process governs the introduction of a new foundation model into the estate? How does the organisation ensure that its AI systems do not systematically disadvantage certain geographies, customer segments, or operational domains? Where is the evidence that these governance processes are not merely documented but actually followed?

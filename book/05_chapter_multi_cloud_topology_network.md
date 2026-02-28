@@ -2,6 +2,12 @@
 
 ***
 
+## Summary
+
+This chapter establishes topology as a first-class design instrument in sovereign cloud operations, introducing the sovereign zone — a bounded set of compute, network and storage resources defined by jurisdiction, permitted operators, data classification and key management boundary — as the fundamental unit of placement and policy enforcement. It describes three recurring zone types (primary sovereign, auxiliary and edge), shows how they map to Kubernetes clusters managed by Red Hat Advanced Cluster Management, and explains how IBM Cloud Satellite provides a practical instantiation of the sovereign zone concept on customer-owned infrastructure. The chapter treats the network as the integration fabric through which sovereignty is enforced, covering private connectivity options, BGP routing policy, service mesh enforcement with Istio and OPA/Gatekeeper admission control. Three topology patterns — hub-and-spoke, provider-aligned ring and edge-anchored mesh — are presented as architectural responses to DORA's concentration risk requirements and the operational realities of multi-cloud estates.
+
+***
+
 ## 5.1 Why topology is no longer a background detail
 
 Topology used to be something architects sketched late in the project—an arrangement of boxes and lines to reassure stakeholders that redundancy existed and traffic could flow. In a sovereign, zero‑copy, multi‑cloud world, topology moves from the margin to the centre. It becomes a primary design variable for performance, resilience and compliance.

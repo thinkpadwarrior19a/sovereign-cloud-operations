@@ -2,6 +2,12 @@
 
 ***
 
+## Summary
+
+This chapter treats runbooks as executable operational contracts that convert tribal knowledge into shared, auditable capability usable by both human engineers and AI agents. It defines the anatomy of a production-quality runbook, including trigger conditions, pre-conditions, sovereign zone decision branches, rollback steps and escalation paths, and presents a four-rung automation maturity ladder from fully manual execution through to bounded autonomous operation. Architects will find detailed guidance on Ansible and IBM Ansible Automation Platform as the bridge between human-readable procedures and machine-executable playbooks, the safe-to-automate test for evaluating which steps merit automation, and the agent apprentice model in which Concert and watsonx Orchestrate progressively learn from human decisions. The chapter also covers the design of sovereignty-aware guardrails for automated remediation, the audit trail requirements of DORA and ITIL 4, and the organisational habits needed to keep runbooks aligned with evolving systems.
+
+***
+
 ## 12.1 When tribal knowledge isn't enough
 
 In most long‑lived organisations, there is at least one person everyone calls when things go wrong at 2 a.m. They know which process to restart "in the right order," which feature flag to flip, which database index to rebuild, which firewall rule to toggle. None of this is written down in a way a new joiner could safely follow. It lives in a handful of heads and in half‑remembered chat threads.

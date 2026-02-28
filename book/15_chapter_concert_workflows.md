@@ -2,6 +2,12 @@
 
 ***
 
+## Summary
+
+This chapter traces the path from Concert's intelligence to operational action, covering the three response modes (human-initiated, agent-assisted and automated), the four canonical AIOps workflow patterns (incident correlation, change risk assessment, capacity optimisation and proactive risk identification), and the situation lifecycle that replaces alert-by-alert investigation with unified, evidence-rich operational engagement. It explains Concert's change risk scoring, its bidirectional integration with ITSM platforms such as ServiceNow, and the automation paths through IBM Ansible Automation Platform and GitOps pull requests that translate recommendations into auditable, governed execution. Architects will find guidance on configuring action risk classification thresholds, embedding human approval gates that cannot be bypassed under pressure, and measuring Concert's operational impact through recommendation acceptance rate, mean time to resolution, change failure rate trends, false positive rate and operator escalation rate.
+
+***
+
 The previous chapter established Concert as the operational brain of the sovereign cloud estate: a system that ingests signals from dozens of monitoring sources, correlates them against a live application topology, and surfaces prioritised recommendations. A brain that merely recommends, however, is only half a story. The other half is what happens next — how those recommendations travel from Concert's recommendation panel into the hands of operators, automation engines, and ultimately the infrastructure itself. That is the subject of this chapter.
 
 Concert's value proposition rests on a chain of translation: raw telemetry becomes correlated situations, situations become recommendations, and recommendations become actions. Each step in that chain involves judgement — human, algorithmic, or some combination of both — and each step must be traceable for audit and learning. Understanding how that chain works, where it can be tightened, and where human oversight must be preserved is essential for any organisation deploying Concert in a regulated or operationally sensitive environment.

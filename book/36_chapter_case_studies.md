@@ -2,6 +2,12 @@
 
 ***
 
+## Summary
+
+This chapter presents five composite case studies — drawn from patterns observed across real organisations in banking, healthcare, insurance, government digital services and critical infrastructure — that illustrate how sovereign operations programmes unfold in practice, including their false starts, organisational friction and hard-won outcomes. Each study follows a consistent structure of context, challenge, approach, implementation, outcomes and lessons, grounding the book's architectural principles in concrete operational narratives with quantitative results. Cross-cutting lessons distilled from the five cases reinforce that observability must precede automation, that zero-copy integration is a sovereignty enabler, that policy-as-code requires iterative refinement under real conditions, and that organisational and cultural change is at least as demanding as the technical migration.
+
+***
+
 ## 36.1 How to read these case studies
 
 The preceding chapters of this book have built a conceptual and architectural framework: sovereign zones, zero-copy integration, observability planes, policy-as-code, agentic operations, progressive autonomy, and the platforms that support them. Frameworks, however, are abstractions. They explain what ought to be done and why, but they do not show what it feels like to do it—the false starts, the organisational friction, the moments when an architecture diagram meets a legacy estate and something has to give.

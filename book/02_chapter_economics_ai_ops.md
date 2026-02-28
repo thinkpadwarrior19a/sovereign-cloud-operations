@@ -2,6 +2,12 @@
 
 ***
 
+## Summary
+
+This chapter reframes cloud economics beyond simple infrastructure pricing, exposing the hidden costs that dominate the total cost of operating a sovereign, multi-cloud estate: incident exposure measured through MTTD and MTTR, the cognitive and financial burden of toil, regulatory fine risk under DORA and NIS2, talent attrition driven by repetitive work, and the opportunity cost of engineering capacity consumed by reactive firefighting. It demonstrates how sovereignty and multi-cloud amplify these costs through an ever-expanding operational surface area and a rising integration tax. The chapter presents agentic operations — AI-assisted correlation, remediation and workflow automation — as a structural economic response rather than an incremental efficiency gain, and introduces value metrics such as cost-per-incident, mean-time-to-context and automation coverage ratio that connect operational investment to measurable business outcomes. Architects and finance leaders will find guidance on constructing a pragmatic business case for a cross-cutting sovereign operations control plane.
+
+***
+
 ## 2.1 Why the old cost model no longer works
 
 For a long time, cloud economics was framed in relatively simple terms. Finance and technology leaders looked at unit prices for compute, storage and network across providers; they compared reserved instances with on‑demand, optimised their storage tiers, and negotiated discounts for committed spend. When operations came up in those conversations, it was usually as a supporting detail—headcount in the operations centre, licence costs for monitoring tools, maybe an estimate of overtime during major incidents.

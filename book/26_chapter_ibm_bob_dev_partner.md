@@ -2,6 +2,12 @@
 
 ***
 
+## Summary
+
+This chapter examines how AI-assisted development, delivered through IBM watsonx Code Assistant and its Granite code models, addresses the cognitive load that sovereign multi-cloud estates impose on engineering teams. It covers the architecture and deployment topologies — SaaS, on-premises, and hybrid — that satisfy data residency requirements ranging from commercial workloads to air-gapped regulated zones. The chapter details sovereignty-aware code generation for infrastructure as code, Ansible playbook generation and legacy automation modernisation, and AI-assisted code review that identifies contextual violations such as cross-zone references, encryption gaps, and privilege escalation patterns. Enterprise customisation through retrieval-augmented generation and fine-tuning is presented as the mechanism for grounding the assistant in organisational standards, while a governance framework addresses intellectual property, provenance tracking, audit trails, and the non-negotiable principle that human responsibility is not diminished by AI assistance.
+
+***
+
 ## 26.1 The case for AI-assisted development in sovereign operations
 
 There is a particular kind of fatigue that accumulates in engineering teams responsible for sovereign, multi-cloud estates. It is not the fatigue of writing too many lines of code, though that is real enough. It is the fatigue of holding too many constraints in one's head simultaneously. When an engineer sits down to write a Terraform module for a new service deployment, they are not simply defining infrastructure; they are navigating a maze of jurisdictional requirements, encryption mandates, network segmentation rules, tagging conventions, identity trust boundaries, and organisational standards that vary by sovereign zone, by cloud provider, and sometimes by the regulatory mood of the quarter. The cognitive load is immense, and it grows with every new regulation, every new zone, and every new provider added to the estate.

@@ -2,6 +2,12 @@
 
 ***
 
+## Summary
+
+This chapter traces the shift from periodic compliance projects to continuous, demonstrable operational control, examining the specific obligations that DORA, NIS2, GDPR, the EU AI Act and supervisory guidance from the EBA, FCA and PRA now impose on organisations in regulated and critical sectors. It shows how DORA's five ICT risk management pillars, NIS2's 24-hour early warning requirement and the EU AI Act's transparency, human oversight and risk management mandates translate directly into architectural design criteria rather than policy documents. The chapter establishes that operational data flows — logs, metrics, traces and model outputs — are themselves regulated data subject to the same residency and access governance as primary application data. It concludes by distilling the regulatory landscape into a set of stable design criteria — continuous topology visibility, governed automation, sovereign telemetry and bounded, explainable AI — that, if genuinely met, make compliance a by-product of well-designed operational architecture.
+
+***
+
 ## 3.1 From compliance projects to operational obligations
 
 For much of the cloud adoption era, regulatory work has been organised as a sequence of projects. A new law appears, a programme spins up, consultants are engaged, gap analyses are performed, policies are rewritten, some systems are modified, and a collection of slide decks and attestations is produced. For a time, the organisation can say with a straight face that it is "compliant", at least in the narrow sense that a particular regulatory requirement has been mapped to a set of controls.

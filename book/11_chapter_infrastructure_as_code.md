@@ -2,6 +2,12 @@
 
 ***
 
+## Summary
+
+This chapter positions infrastructure as code not as a tooling preference but as a precondition for sovereign, auditable operations at scale. It shows how Terraform, Pulumi and Ansible translate organisational intent into executable, version-controlled declarations that encode sovereign zone boundaries, encryption requirements, network segmentation and identity trust relationships directly into the codebase. Architects will find guidance on sovereign zone modules with built-in preconditions, provider aliases for multi-account and multi-cloud estates, state file residency within jurisdictional boundaries, and the composition of shared module registries that turn sovereignty patterns into reusable contracts. The chapter also covers drift detection pipelines, policy-as-code enforcement with Open Policy Agent at every stage from pull request to runtime, and the integration of IaC with agentic operations so that automated systems can reason about declared intent rather than reverse-engineering console state.
+
+***
+
 ## 11.1 Why clicks and consoles don't scale to sovereignty
 
 There is a particular kind of silence that falls in a war room when someone asks, "What exactly is running in production right now?" and no one can give a confident answer. People open tabs. Someone scrolls through a cloud console. Another digs out an old Visio diagram. Everyone knows that whatever is on the diagram and whatever is on the screen are only loosely correlated. More troublingly, no one knows precisely how large the gap is.

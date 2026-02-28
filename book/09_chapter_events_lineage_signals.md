@@ -2,6 +2,12 @@
 
 ***
 
+## Summary
+
+This chapter establishes that business events and data lineage are not auxiliary governance concerns but core operational signals in any distributed, event-driven, sovereign estate. It examines the observability challenges unique to event-driven architectures, including causal distance, consumer group lag, schema evolution and dead-letter queue management, and shows how the CloudEvents specification and OpenLineage standard make these signals machine-readable and interoperable across providers. Architects will find detailed guidance on building an event catalogue, integrating event-level and lineage-level signals into IBM Concert's topology model, and using lineage graphs to accelerate incident diagnosis and satisfy the traceability requirements of DORA and GDPR. The chapter also addresses event sourcing as an operational pattern, sovereign zone routing within the event fabric, and the construction of SLOs expressed in business-event terms rather than purely infrastructure metrics.
+
+***
+
 ## 9.1 Why events and lineage belong in the operations cockpit
 
 Most operations teams grew up on a diet of infrastructure metrics and application logs. CPU spikes, memory pressure, disk saturation, error counts and generic latency graphs formed the core of the daily view. In a monolithic world, that was often enough. In a distributed, event-driven, zero-copy estate, it no longer is.

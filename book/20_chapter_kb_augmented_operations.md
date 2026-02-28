@@ -2,6 +2,12 @@
 
 ***
 
+## Summary
+
+This chapter addresses the knowledge dimension of agentic operations: how organisations build, maintain, and query an operational knowledge base that delivers accumulated institutional knowledge—runbooks, post-incident reviews, architecture decision records, regulatory guidance—to agents and human operators at the moment of need. It presents Retrieval-Augmented Generation as the architecturally appropriate mechanism, examining the critical design decisions around chunking strategy, embedding model selection, and metadata filtering that determine retrieval quality. The chapter covers knowledge base construction, staleness detection, and the complementary roles of the Concert topology model (structural, relational, real-time queries) and the vector database (semantic, contextual, historical queries). Architects will find practical guidance on sovereign-zone constraints for the entire RAG pipeline, continuous quality measurement through retrieval relevance and accuracy metrics, and the IBM watsonx platform components that realise the knowledge layer.
+
+***
+
 The previous two chapters addressed how agents collaborate and how those collaborations integrate with ITSM workflows. Throughout both discussions, one assumption has been quietly in play: that agents have access to the right knowledge at the right moment. A planner agent investigating an incident needs to know how similar incidents were resolved last quarter. An executor agent preparing a remediation needs to know which runbook applies and whether it has been superseded. A reviewer agent evaluating a proposed change needs to know whether an architecture decision record constrains the approach. Without this knowledge, agents are reduced to reasoning from model pre-training alone—a foundation that is generic, potentially outdated, and entirely unaware of the organisation's specific environment, constraints and accumulated operational experience.
 
 This chapter examines how organisations can build, maintain and query an operational knowledge base that makes accumulated knowledge available—to agents and to human operators—at the moment of need.
