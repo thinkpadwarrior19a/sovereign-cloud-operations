@@ -23,6 +23,10 @@ The observability plane described in Chapter 4 is, in effect, the **sensory syst
 
 Regulatory obligations make this more than an architectural preference. The Digital Operational Resilience Act (DORA) [2] requires financial entities to maintain comprehensive logs and audit records of their information and communication technology operations, with retention periods of up to five years for certain categories of evidence. The General Data Protection Regulation (GDPR) [3] imposes simultaneous constraints: personal data in those logs must not be kept longer than necessary, and its processing must be proportionate to the purpose. Log management guidance from NIST SP 800‑92 [4] establishes a foundation for what a defensible log management programme looks like, yet it pre‑dates cloud‑native observability by over a decade. Applying these requirements simultaneously—and across multiple jurisdictions with different national implementations—demands that observability be treated as a first‑class architectural concern from the outset, not a bolt‑on.
 
+### Executive Perspective
+
+Observability is the mechanism by which an organisation proves — to itself, to its board, and to its regulators — that it is in control of what it operates. Without sovereignty-aware observability, an enterprise running workloads across multiple clouds and jurisdictions cannot demonstrate that sensitive data stayed where it was supposed to, that incidents were detected within required timeframes, or that the operational evidence demanded by DORA, GDPR and equivalent frameworks actually exists. The cost of getting this wrong is not abstract: regulatory penalties, protracted audit findings, and the inability to diagnose cross-border incidents under time pressure all translate directly into financial and reputational exposure. Investing in a federated observability architecture — one that keeps raw telemetry within sovereign boundaries whilst still providing a consolidated operational view — is therefore not a technical preference but a precondition for operating a regulated multi-cloud estate at scale.
+
 ***
 
 ## 7.2 From monitoring to contextual observability
@@ -58,6 +62,8 @@ Modern observability tools such as IBM Instana operate on a different premise fr
 The mechanism by which these signals are captured, transmitted and correlated has been substantially standardised by the OpenTelemetry project, now a graduated CNCF project [8]. OpenTelemetry defines a vendor‑neutral data model and collection framework covering metrics, logs and traces, with events handled as a specialised log record type.
 
 The OpenTelemetry data model is built on three foundational concepts. A **resource** is a set of attributes describing the entity that produces telemetry—the service name, service version, cloud provider, region, Kubernetes cluster and pod, or any other environmental attribute. Resources provide the context that makes individual signals interpretable. A **scope** (also called an instrumentation scope) identifies the library or component that produced a given signal, allowing consumers to filter or route data by its origin. A **signal** is the actual telemetry data—a metric data point, a log record, or a trace span—accompanied by its resource and scope context [8].
+
+> **[FIGURE 7.3 — The five observability signals: metrics, logs, traces, events and topology with their correlation relationships]**
 
 Signals are transmitted using the OpenTelemetry Protocol (OTLP), a gRPC‑ and HTTP‑based protocol designed for efficient, reliable transmission of telemetry from instrumented applications to collection endpoints. OTLP's design deliberately avoids vendor lock‑in: any OTLP‑compliant collector can receive data from any OTLP‑compliant SDK, enabling organisations to change their observability backend without re‑instrumenting their applications [8].
 
@@ -102,6 +108,8 @@ DORA requires financial entities to retain logs and ICT incident records for per
 The architectural resolution lies in **separating the retention of operational evidence from the retention of personal data within that evidence**. Logs retained for DORA compliance purposes can have personal data fields redacted or pseudonymised at or before the point of storage, leaving the operational content—timestamps, error codes, service identifiers, transaction references, action outcomes—intact for audit purposes whilst removing the personal data that GDPR would require to be deleted. This approach requires that personal data fields be identified and classified in advance, which is itself a valuable exercise in data governance.
 
 The observability architecture must therefore include explicit retention and deletion policies, applied per data type and per sovereign zone, and enforced by the storage tier rather than left to manual process. The combination of automated scrubbing, pseudonymisation and retention enforcement means that the organisation can hold the evidence DORA requires without accumulating personal data liabilities that GDPR prohibits.
+
+> **[FIGURE 7.4 — DORA-GDPR retention tension: tiered data classification with scrubbing, pseudonymisation and retention policies by sensitivity level]**
 
 The resolution of this tension also requires an explicit **data classification layer** within the observability architecture itself. Not all telemetry is equally sensitive. Infrastructure metrics—CPU utilisation, memory pressure, disk I/O—are unlikely to contain personal data and may be retained for longer periods under more permissive access controls. Application traces that include request parameters or user session identifiers are more sensitive and warrant shorter retention windows, stricter access controls and the pseudonymisation techniques described above. Log records that include payload fragments from financial transactions may be subject to the most stringent controls of all, requiring storage in a dedicated, access‑controlled store separate from general operational logs. Defining and maintaining this classification—and automating its enforcement through storage tier configuration, not manual discipline—is a prerequisite for operating in a multi‑jurisdiction environment where the applicable rules differ by data type, zone and regulatory regime.
 
@@ -160,6 +168,8 @@ This is especially important for sovereign operations because many sovereign zon
 Secure connectivity patterns, such as routing Instana traffic over AWS PrivateLink instead of the public internet, illustrate how observability and network design intersect [12]. PrivateLink allows telemetry to flow from AWS VPCs to Instana backends without traversing public networks, reducing exposure and egress costs while maintaining visibility. Similar patterns exist for other cloud providers.
 
 In a sovereign context, network‑aware observability must also differentiate between **internal** and **cross‑boundary** paths. Engineers and agents need to see, for a given transaction, which parts stayed within a sovereign zone and which crossed to other zones or providers. That information underpins both incident response and compliance evidence.
+
+> **[FIGURE 7.5 — Network-aware observability: attributing latency across service-to-service paths spanning sovereign zone boundaries]**
 
 Network‑aware observability also supports the detection of anomalous data flows—a category of compliance risk that is distinct from application errors. If a service that should only communicate within a sovereign zone is observed establishing connections to endpoints outside that zone, the topology model will record that path, and alerting rules can be configured to flag it immediately. This capability effectively makes the observability plane a continuously operating sovereignty assurance mechanism, not just an operational tool. It transforms what would otherwise be a periodic audit activity—checking that network policies match the declared architecture—into a continuous, automated control.
 
@@ -229,7 +239,7 @@ To fulfil this evidentiary role, observability data must be **retained and prote
 
 ***
 
-## 7.9 Chapter summary and bridge to Chapter 8
+## Bridge to Chapter 8 — Network Observability and Performance
 
 This chapter has established that observability in a sovereign cloud environment is not a passive monitoring capability but an active, multi‑layered architecture that enforces data governance, supports regulatory compliance and makes AI behaviour transparent. We have traced the conceptual journey from threshold‑based monitoring through the three‑pillar telemetry model to the five‑signal contextual observability framework—metrics, logs, traces, events and topology—that sovereign operations demands. The OpenTelemetry data model and OTLP protocol provide the standardised, vendor‑neutral instrumentation substrate; the OpenTelemetry Collector provides the zone‑local enforcement point for data minimisation, jurisdiction‑constrained routing and cross‑boundary control. The three‑tier architecture—collector, aggregation and federation—realises the principle that raw telemetry belongs to its zone, whilst derived and aggregated views can be shared safely across boundaries. AI agents have been positioned as first‑class observability subjects, with their own metrics, traces and the durable sovereign AI record introduced as the governance anchor for agentic behaviour.
 

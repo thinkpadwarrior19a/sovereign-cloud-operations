@@ -298,7 +298,7 @@ Finally, the model is a starting point for **evolution**. As new technologies an
 
 ***
 
-## Chapter summary and bridge
+## Bridge to Chapter 5 — Multi-Cloud Topology and Network Foundations
 
 This chapter has proposed a four-planes reference model for sovereign cloud operations—observability, automation and orchestration, agentic intelligence, and governance and audit—and has shown how this decomposition maps onto both the regulatory design criteria derived in Chapter 3 and the IBM sovereign stack technologies that instantiate each plane. The model is not a prescription but a scaffold: it organises the concerns of sovereign operations into tractable domains, provides a shared vocabulary for cross-functional architectural conversations, and ensures that each element of the technology stack has a clear and deliberate home within the overall architecture. The emphasis throughout has been on the relationships between planes—signals flowing from observability into agentic intelligence, recommendations flowing from agentic intelligence into automation, every action flowing into governance—because it is those relationships, not the individual planes in isolation, that determine whether the architecture actually behaves as a sovereign, governed whole.
 

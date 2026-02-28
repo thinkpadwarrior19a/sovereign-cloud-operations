@@ -156,7 +156,7 @@ The connection back to Chapter 11's treatment of IaC is not merely structural. T
 
 ***
 
-## Chapter Summary and Bridge to Chapter 14
+## Bridge to Chapter 14 — IBM Concert Architecture
 
 Identity, secrets and access form the control fabric that makes everything else in the sovereign operations architecture trustworthy. The zero-copy integration substrate depends on access policies to enforce data governance at source. Sovereign zones depend on identity isolation to maintain their boundaries. Agentic operations depend on scoped, auditable non-human identities to remain within their authorised domains. The Governance and Audit Plane depends on the identity event stream as a first-class source of audit evidence. Without a principled approach to these foundations, the assurances promised by the rest of the architecture are hollow.
 

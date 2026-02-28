@@ -184,7 +184,7 @@ The practical implication is that the decision provenance infrastructure must be
 
 ***
 
-## Bridge to Chapter 24
+## Bridge to Chapter 24 — Agentic DevOps and GitOps
 
 This chapter has addressed how to make agent decisions explainable and auditable — the retrospective dimension of agentic governance. But explainability alone does not ensure that agents operate correctly in the first place. The next chapter turns to the prospective dimension: how agentic operations integrate with DevOps and GitOps practices to ensure that the infrastructure, configurations, and policies that agents act upon are themselves version-controlled, tested, and deployed through governed pipelines. Chapter 24 examines how the principles of infrastructure as code, continuous integration, and declarative configuration management apply when the consumers of those artefacts are not only human operators but autonomous agents, and how GitOps workflows provide the governance substrate for the agent-managed estate.
 

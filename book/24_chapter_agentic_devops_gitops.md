@@ -24,6 +24,10 @@ This chapter explores how that convergence is operationalised. We begin with Git
 
 > **[FIGURE 24.1 — The evolution from manual operations through pipeline automation to agentic DevOps, showing the expanding scope of machine-assisted decision-making at each stage]**
 
+### Executive Perspective
+
+The operational cost of managing infrastructure across multiple sovereign jurisdictions scales combinatorially: every new zone, every regulatory regime and every approval hierarchy multiplies the manual coordination burden. Agentic DevOps addresses this directly by embedding AI-assisted reasoning into the delivery pipeline — not to remove human judgement, but to handle the routine complexity that currently consumes engineering capacity and slows deployment velocity. For the CIO, the return is measurable: faster time to market for new services across jurisdictions, reduced change failure rates through agent-driven policy checks and progressive delivery, and a complete, tamper-evident audit trail of every infrastructure change that satisfies regulatory expectations without manual evidence gathering. Critically, the GitOps model ensures that bounded autonomy — not unconstrained automation — is the operating principle, which means the organisation gains speed without sacrificing the governance controls that regulators and boards require.
+
 ***
 
 ## 24.2 GitOps as the sovereign control loop
@@ -230,7 +234,7 @@ These guardrails ensure that the feedback loop accelerates convergence on good c
 
 ***
 
-## Bridge to Chapter 25
+## Bridge to Chapter 25 — CI/CD and Quality Gates
 
 The GitOps pipeline described in this chapter assumes that the artefacts it deploys—container images, Helm charts, policy bundles—are trustworthy. Chapter 25 examines how that trust is established and maintained through CI/CD quality gates, supply-chain security, and the continuous verification of artefact provenance and integrity across sovereign zones.
 

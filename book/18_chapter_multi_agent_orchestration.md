@@ -220,7 +220,7 @@ The **feedback loop from production behaviour to agent improvement** is the mech
 
 ***
 
-## Chapter Summary and Bridge to Chapter 19
+## Bridge to Chapter 19 — ITSM and Multi-Agent Workflows
 
 This chapter has established the architectural principles governing how multiple AI agents collaborate in a sovereign operations context. It has defined a functional taxonomy of agent roles, analysed the trade-offs between orchestration topologies in the light of sovereign zone constraints, described the communication mechanisms that provide durable and auditable inter-agent coordination, explained how shared context and memory can be maintained consistently across concurrent agents, catalogued the failure modes unique to multi-agent systems and their corresponding controls, detailed the layered guardrails architecture that enforces governance at runtime, and outlined the testing and validation practices necessary to build confidence in agent pipeline behaviour before and after production deployment.
 

@@ -152,7 +152,7 @@ In a sovereign, agentic estate, these habits are not optional hygiene; they are 
 
 ***
 
-## Chapter summary and bridge
+## Bridge to Chapter 13 — Secrets, Identity, and Access
 
 This chapter has established that runbooks are not administrative documents but executable operational contracts: structured procedures that encode expert knowledge in a form followable by any competent engineer, and increasingly by agents, under the pressure of real incidents. The anatomy of a production-quality runbook—trigger conditions, pre-conditions, step-by-step procedure, decision points with sovereign zone branches, rollback steps, escalation path, and owner—provides the template. The automation maturity ladder—from fully manual through tool-assisted and partially automated to bounded autonomous execution—provides the progression model. Ansible and IBM Ansible Automation Platform provide the bridge between human-readable specification and machine-executable implementation, with the audit trail and credential isolation that regulated environments require. The agent apprentice model extends this further: agents that observe, propose, execute with approval, and eventually operate autonomously within carefully defined bounds, learning from human decisions and escalating gracefully when conditions exceed their scope.
 

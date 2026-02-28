@@ -20,6 +20,10 @@ Infrastructure as code (IaC) is the way out of that silence. It replaces informa
 
 In this chapter, we treat IaC not as a tooling choice, but as a precondition for sovereign, agentic operations.
 
+### Executive Perspective
+
+Infrastructure as code is the difference between an organisation that can answer the question "what is running in production right now?" with confidence and one that cannot. For the CIO, this is not a tooling discussion — it is a governance and risk discussion. When every resource in the estate has a corresponding, version-controlled definition, change control becomes auditable by default, regulatory inquiries can be answered from code rather than from memory, and the organisation's dependence on the tacit knowledge of individual engineers is structurally reduced. The cost dimension is equally compelling: codified infrastructure patterns can be reused across sovereign zones and new national deployments, turning what would otherwise be months of bespoke engineering into parameterised instantiation. Perhaps most importantly, IaC is the precondition for agentic operations — automated systems cannot reason about, or safely modify, infrastructure that exists only as undocumented console state.
+
 ***
 
 ## 11.2 From heroic builds to declarative intent
@@ -100,6 +104,8 @@ Policy-as-code tools sit naturally on top of this. Open Policy Agent (OPA), a po
 
 The DORA Regulation reinforces this requirement from the regulatory side, mandating that financial entities implement ICT risk management frameworks that operate continuously rather than periodically [8]. Policy-as-code is the technical implementation of that requirement: it transforms the periodic checklist into a continuous enforcement mechanism that cannot be skipped under time pressure.
 
+> **[FIGURE 11.3 — Network, identity and key management as code: OPA policy evaluation against Terraform plan output for sovereign zone constraints]**
+
 ***
 
 ## 11.6 Sovereign patterns as shared modules
@@ -111,6 +117,8 @@ The platform engineering model—a dedicated team responsible for the internal d
 A regulated database module, built and maintained by the platform team, might enforce encryption of data at rest using a KMS key managed by the zone's key management team; require that audit logging be enabled and directed to the zone's approved log sink; mandate that automated backups be enabled with retention periods meeting regulatory minimums; and restrict which IAM roles may administer or query the database to a list derived from the zone's approved operator groups. A product team instantiating this module inherits all of those properties without needing to understand the regulatory requirements that motivated them. If the regulation changes—say, a new retention period is mandated—the platform team releases a new module version, product teams are notified through the dependency management tooling, and they update their stacks. The update is a pull request, visible to reviewers, tested by the CI pipeline, and auditable indefinitely.
 
 A sovereign cluster module—providing a Kubernetes or OpenShift cluster suitable for regulated workloads—might stand up the cluster with standard admission controllers that reject non-compliant pod specifications; connect the cluster to the correct identity providers and key services for the zone; configure network policies that enforce east-west segmentation between namespaces of different sensitivity levels; integrate with the zone's log forwarding infrastructure; and enable the audit log, directing it to an immutable log sink outside the cluster's own namespace. As with the database module, product teams get all of this by default. The cluster they receive is not a blank Kubernetes cluster with a note saying "please configure this securely"; it is a cluster that is, by construction, in the correct configuration for its zone.
+
+> **[FIGURE 11.4 — Sovereign module registry: platform team publishing versioned modules consumed by product teams with automated dependency updates]**
 
 The modules become **contracts** between risk, platform and product: codified, versioned, reviewable. Risk teams can audit the modules to confirm they encode the required controls. Platform teams can evolve the modules as standards change without requiring product teams to understand the underlying regulatory driver. Product teams can deploy with confidence that the infrastructure they are using meets the organisation's sovereign posture, because the code they reference is the same code that the risk team has approved.
 
@@ -156,6 +164,8 @@ The same pattern applies to configuration changes. An Orchestrate agent respondi
 
 The **agent-to-Git workflow** can be implemented with varying levels of autonomy calibrated to the risk of the target environment. At the most conservative end, the agent generates a draft change and opens a pull request, but human approval is required for every apply regardless of environment or risk level. This is appropriate for any zone carrying a regulated or sensitive classification, and for any change affecting network topology, identity, or key management. At a less conservative setting, the agent may be permitted to auto-apply changes in non-regulated development environments if all policy checks pass—a setting appropriate for routine capacity adjustments or dependency updates in sandboxed environments. The sovereignty constraints embedded in the module registry and the OPA policy library do the heavy lifting in both cases: because agents reference the same shared modules as human engineers, the sovereignty constraints are enforced by design rather than by agent intelligence. An agent that generates a Terraform change referencing the `eu-regulated-cluster` module cannot place that cluster in a non-EU region, because the module's own variable validations and `precondition` blocks will fail the plan before it is even proposed as a pull request. The agent does not need to understand, explicitly, that "EU regulated means EU regions only"; that knowledge is encoded in the module it is calling, and the module enforces it without delegation.
 
+> **[FIGURE 11.5 — Agent-to-Git workflow: an AI agent proposing a Terraform change as a pull request subject to policy gates and human approval]**
+
 This architecture has a further advantage that is easily overlooked: it makes agent behaviour **auditable in the same system** as human behaviour. The Git history of an infrastructure repository does not need a separate "agent action log"; the agent's pull requests are commits, authored under the agent's service identity, with descriptions written by the agent that explain its reasoning. An auditor—or a post-incident reviewer—can look at the repository history and see, interleaved with human commits, the agent's proposed changes, the policy check results, the human approvals, and the apply records. There is no separate system to query, no log format to translate, and no gap in the audit trail.
 
 This is the world GitOps and policy-as-code practitioners describe: automated actors—human or machine—operating within a closed-loop control system, with Git as the ledger and policy engines as the conscience [9]. For sovereign operations, that ledger and conscience encode not only technical safety but also regulatory and jurisdictional constraints. An agent that tries to move a workload into a non-compliant region will find its pull request failing checks within seconds of being opened. An attempt to open a cross-zone network path that violates policy will be blocked by gates that do not care whether the actor is a shell script, a platform engineer, or a large language model running within an orchestration framework.
@@ -196,7 +206,7 @@ Without IaC and GitOps, sovereign operations remain aspirational, held together 
 
 ***
 
-## Chapter summary and bridge
+## Bridge to Chapter 12 — Configuration and Runbook Automation
 
 Infrastructure as code is not the most glamorous topic in a book about agentic AI and sovereign cloud operations, but it is arguably the most foundational. Without it, every other capability described in this book—event-driven observability, continuous compliance, conversational interfaces, and autonomous agents—operates against a substrate that is only partially known and imperfectly controlled. The sovereign zones that regulators require us to maintain, the data residency boundaries we are obligated to enforce, and the jurisdictional constraints that distinguish one deployment from another: none of these can be reliably upheld if the infrastructure that expresses them lives only in consoles, wikis and the memories of senior engineers who may be unavailable, unreachable, or simply mistaken about what they remember.
 

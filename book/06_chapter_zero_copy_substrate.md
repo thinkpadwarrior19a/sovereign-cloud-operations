@@ -16,6 +16,10 @@ In the context of this book, zero‑copy takes on an additional role. It becomes
 
 The move from copy‑heavy to zero‑copy integration therefore changes what it means to "run" an estate. It doesn't just alter where data sits; it alters how systems behave in production and what kinds of observability and control you need [3]. Kleppmann's foundational treatment of data-intensive systems makes this point precisely: the log—a durable, append-only record of changes—is not merely a storage structure but the authoritative source of truth from which all derived representations should flow [4]. That insight, originally developed in the context of database internals, generalises directly to the enterprise integration problem: when state changes propagate as an ordered stream of events, the estate becomes coherent in a way that periodic batch copying can never achieve.
 
+### Executive Perspective
+
+Zero-copy integration is, at its core, a risk and cost discipline. Every unnecessary copy of a dataset is a liability: it increases storage spend, multiplies the compliance surface that regulators can examine, and creates synchronisation lag that causes downstream systems to act on stale information — a material concern in financial services, insurance and any domain where real-time accuracy drives revenue or regulatory standing. By consolidating access to authoritative sources and replacing fragile ETL pipelines with governed event streams, the organisation reduces the probability of silent data corruption, shortens incident investigation times, and shrinks the evidence burden at audit. For the CIO, the strategic value is operational resilience: a zero-copy substrate means fewer places where things can go wrong, faster root-cause analysis when they do, and a demonstrably smaller attack surface for data sovereignty violations that could attract regulatory penalty or reputational damage.
+
 ***
 
 ## 6.2 Why copy‑heavy estates are operationally fragile
@@ -93,6 +97,8 @@ Two Kafka features have particular operational significance. **Log compaction** 
 
 Adopting CloudEvents as a standard within the enterprise event fabric has immediate operational benefits. Observability tooling can be written once and applied consistently across event sources. Routing rules can reference standardised metadata fields. Audit logs can correlate events from different systems without manual field mapping. IBM Event Streams, IBM's managed Kafka service, supports CloudEvents as a standard envelope format, enabling enterprises to build observability and compliance tooling that operates uniformly across the event fabric [14].
 
+> **[FIGURE 6.3 — Kafka topic architecture with zone-aware partitioning, consumer groups and retention policies]**
+
 **Events as multi-subscriber operational signals.** A particularly powerful property of a well-designed event fabric is that a single event can be consumed simultaneously by multiple subscribers with different concerns. Consider a configuration change event emitted by a platform control plane when an API gateway route is modified. A security auditing subscriber receives the event and writes it to an immutable audit log. An observability correlation subscriber receives the same event and annotates its incident timeline, allowing operators to see that a configuration change coincided with a latency anomaly. A compliance checking subscriber evaluates the change against policy constraints and raises a finding if the new route would expose a regulated endpoint without the appropriate authorisation controls. All three subscribers act on the same event without the originating system needing to know about any of them. The event fabric provides the decoupling; the CloudEvents schema provides the interoperability; the Kafka consumer group model provides the delivery guarantees.
 
 Take an e‑commerce example. Every significant change in the lifecycle of an order emits an event: order placed, payment authorised, inventory reserved, shipment dispatched, delivery confirmed, return requested. These events are consumed by various services to update state, trigger actions and maintain projections. But they can also be consumed by the operations fabric [10].
@@ -158,6 +164,8 @@ In sovereign operations, network paths are also policy instruments. Zero‑copy 
 
 Apache Arrow's columnar in-memory format deserves mention here as a technical enabler of performant zero-copy access patterns [19]. When analytical queries must be served from a system of record without materialising a copy, the efficiency of the in-place read is critical. Arrow's columnar layout enables vectorised computation on data without per-row deserialization overhead, and its inter-process communication (IPC) format allows data to be passed between processes—including across language boundaries—without copying the underlying buffer. Apache Parquet, the columnar storage format that Arrow complements, enables efficient predicate pushdown and column pruning in analytical reads, so that a query accessing a subset of columns from a large dataset need not read the full record width [20]. Together, Arrow and Parquet represent the technical foundation for making zero-copy access to large analytical datasets operationally viable, not merely architecturally desirable.
 
+> **[FIGURE 6.5 — Network sensitivity in zero-copy architectures: latency paths and data gravity effects across sovereign zones]**
+
 IBM DataStage and IBM Data Fabric extend these principles into enterprise data virtualisation, providing query federation across heterogeneous sources—relational databases, object stores, mainframe datasets—through a unified access layer [21]. From a zero-copy perspective, virtualisation is the mechanism by which in-place access is made possible without requiring source systems to adopt new protocols or expose raw query interfaces. The virtualisation layer handles translation, optimisation and access control, presenting a consistent query surface to consumers while leaving the data in situ. Operationally, this means that the number of access patterns that must be monitored and governed is reduced to the virtualisation layer's query log rather than to the individual access logs of each source system.
 
 ***
@@ -173,6 +181,8 @@ In a copy‑heavy estate, the same agent would struggle. It would have to disent
 Zero‑copy also makes it easier to **govern** agents. When data is centralised under strong access control, it is simpler to enforce which agents may access what. Policies like "this agent may use anonymised aggregates but not raw records" are more enforceable when there is one place to apply them, rather than dozens of replicated stores [9].
 
 In this sense, zero‑copy is not just friendly to agents; it is an enabler of **safe** agentic operations.
+
+> **[FIGURE 6.4 — Agent reasoning over a zero-copy substrate: how coherent data topology enables precise, targeted remediation]**
 
 ***
 
@@ -232,7 +242,7 @@ This is not a theoretical architecture. Every component described—the CloudEve
 
 ***
 
-## Chapter summary and bridge
+## Bridge to Chapter 7 — Observability Architecture
 
 This chapter has established zero-copy integration not merely as an architectural preference but as the operational substrate on which sovereignty, observability and agentic assistance depend. The argument is cumulative: copy-heavy estates are fragile because they multiply failure points, expand compliance surface area and obscure data lineage; event-driven architectures, built on standards such as Kafka, CloudEvents and OpenLineage, replace batch propagation with real-time signal flow and replace opaque pipeline graphs with auditable lineage records; and the resulting estate is one in which agents can reason coherently, regulators can be answered precisely, and operators can investigate incidents without first reconstructing the history of a dozen ETL jobs.
 

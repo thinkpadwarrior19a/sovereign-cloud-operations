@@ -153,7 +153,7 @@ This is, ultimately, the argument of this book applied to the future: sovereignt
 
 ***
 
-## Bridge to Chapter 38
+## Bridge to Chapter 38 — The Fully Agentic Enterprise
 
 This chapter has examined the generative AI horizon as it appears from the vantage point of the sovereign operations architect: a landscape of rapidly evolving model capabilities, emerging agentic frameworks, expanding sovereign AI infrastructure and intensifying regulatory attention. The emphasis has been on designing for a future that cannot be precisely predicted but can be prepared for.
 

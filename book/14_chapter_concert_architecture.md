@@ -294,7 +294,7 @@ Organisations must assess the residency requirements for each of these categorie
 
 ***
 
-## Bridge to Chapter 15
+## Bridge to Chapter 15 — IBM Concert Workflows
 
 Concert's architecture provides the operational intelligence layer, but intelligence is only as useful as the workflows that act on it. The recommendation records that Concert generates, the situations it identifies, and the causal attributions it makes are the inputs to a set of operational processes—investigation, remediation, change risk assessment, compliance verification—that must be designed and operated with the same rigour applied to Concert itself.
 

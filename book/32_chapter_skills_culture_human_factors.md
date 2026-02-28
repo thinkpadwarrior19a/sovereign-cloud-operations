@@ -182,7 +182,7 @@ Institutional memory, in the end, is not a technology problem. It is a disciplin
 
 ***
 
-## Bridge to Chapter 33
+## Bridge to Chapter 33 — Maturity Model
 
 Skills, culture and human factors determine whether the technical architecture described in the preceding chapters is operated effectively or merely deployed. But how does an organisation know where it stands? How does it measure progress from ad-hoc, reactive operations towards the mature, sovereign, agentic model this book describes? Chapter 33 introduces a maturity model for sovereign cloud operations—a structured framework for assessing current capability, identifying the most productive next investments, and tracking progress along a defined path from initial adoption to optimised, continuously improving operations.
 

@@ -353,7 +353,7 @@ Several mistakes appeared across multiple case studies, often independently:
 
 ***
 
-## Bridge to Chapter 37
+## Bridge to Chapter 37 — Generative AI on the Horizon
 
 These case studies describe what organisations are achieving today and in the near term with sovereign, agentic operations. But the technology landscape is not standing still. Generative AI capabilities are advancing rapidly, regulatory frameworks are evolving, and new patterns for human-AI collaboration in operations are emerging. Chapter 37 looks beyond current implementations to the horizon: how generative AI, frontier models, and evolving regulatory expectations will shape the next generation of sovereign operations, and what architects and operators should be designing for today to be ready for what comes next.
 

@@ -281,7 +281,7 @@ The adaptation process should be governed by the same infrastructure-as-code and
 
 ***
 
-## Bridge to Chapter 35
+## Bridge to Chapter 35 — Industry Patterns
 
 These blueprints describe structural patterns—topologies, connectivity models, platform layers—without specifying the industry context in which they are deployed. A sovereign zone in a bank is not the same as a sovereign zone in a hospital, even if both follow the same structural blueprint. The next chapter examines how these architectural patterns manifest in specific industries—financial services, public sector, healthcare, energy, and telecommunications—where the interplay of sector-specific regulation, operational culture, and business requirements shapes the way blueprints are instantiated and operated.
 

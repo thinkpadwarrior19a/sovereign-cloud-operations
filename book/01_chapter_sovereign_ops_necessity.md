@@ -184,7 +184,7 @@ What unifies the whole is a single proposition: **in a world of zero‑copy data
 
 ***
 
-## Chapter summary and bridge
+## Bridge to Chapter 2 — Economics of AI-Driven Operations
 
 This chapter has argued that the forces driving organisations towards a new operating model are not primarily technological fashions but structural necessities: regulatory frameworks with legal force, architectural realities that outpace manual operations, and economic pressures that demand efficiency without compromising control. The concept of operational sovereignty—governing who does what, from where, under which rules—provides the framing within which the technical and organisational arguments cohere. Dashboard-centric operations, the dominant practice of the past decade, cannot meet these demands. Neither can architectures built on uncontrolled data replication. And neither can cultures that treat operations as a downstream concern of development.
 

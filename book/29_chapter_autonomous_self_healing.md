@@ -192,7 +192,7 @@ IBM Concert's role in sovereign self-healing is to provide the cross-zone visibi
 
 ***
 
-## Bridge to Chapter 30
+## Bridge to Chapter 30 — Agent-Assisted Incident Management
 
 Autonomous self-healing addresses the operational incidents whose patterns are known, whose remediations are established, and whose boundaries can be defined in policy. But not every incident fits this profile. Novel failures, cascading outages that cross multiple domains, and incidents that require judgement calls about business priorities rather than technical procedures—these demand human involvement, augmented by AI rather than replaced by it. Chapter 30 examines agent-assisted incident management: the architecture and practices for incidents where humans and agents collaborate in real time, with agents providing context assembly, option analysis, and execution support while humans provide the strategic judgement, stakeholder communication, and accountability that no autonomous system can supply.
 

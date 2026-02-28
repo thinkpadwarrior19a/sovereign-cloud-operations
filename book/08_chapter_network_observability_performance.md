@@ -16,6 +16,10 @@ Every cross‑region query, every call to a system of record in another cloud, e
 
 Treating the network as a first‑class risk and control surface means acknowledging that latency, jitter, throughput and loss on key paths are as important as CPU and memory on key services; that routing policies and connectivity patterns are part of the organisation's sovereignty posture, not just technical configuration; and that network observability is essential not only for performance but also for compliance evidence. The NIST guidance on Information Security Continuous Monitoring [3] makes clear that monitoring scope must encompass network connectivity and behaviour, not only endpoint and application signals. That imperative is sharper still in architectures where the network is the medium through which all integration occurs.
 
+### Executive Perspective
+
+In a zero-copy architecture, the network is no longer background plumbing — it is the medium through which every business transaction, every data access and every compliance-critical event flow must travel. When network performance degrades or when traffic inadvertently crosses a jurisdictional boundary, the consequences are immediate: revenue-generating services slow or fail, and sovereignty commitments made to regulators and customers are breached. For the CIO, network observability is therefore inseparable from business continuity and regulatory risk management. Defining explicit network service-level objectives, instrumenting every critical path, and maintaining the ability to prove that data never left its permitted jurisdiction are the operational foundations on which the credibility of a multi-cloud sovereign strategy rests. The alternative — discovering a routing violation during a regulatory examination or a latency problem through customer complaints — carries costs that dwarf the investment in proper network instrumentation.
+
 ***
 
 ## 8.2 What "good" looks like for sovereign network behaviour
@@ -33,6 +37,8 @@ The primary metrics for network SLOs in a zero‑copy sovereign estate are the f
 Zero‑copy architectures amplify the importance of these characteristics. A single user request may involve multiple in‑place reads and writes plus the emission and consumption of events. Any degradation on the paths between components will be visible in response times and error rates. Unlike batch‑oriented systems, there is little buffer: problems are felt in real time [5][22].
 
 The sovereignty dimension adds a requirement that purely performance‑oriented SLOs do not capture: **where** traffic flows matters as much as how well it flows. An SLO that says "p99 latency for EU‑zone to EU‑zone calls must be below 80 ms" is incomplete if it does not also state that traffic must not traverse links outside EU jurisdiction, regardless of whether doing so would improve latency. In practice, this means that the routing plane — BGP policies, traffic engineering rules, cloud provider routing configurations — must be co‑designed with the observability plane so that every deviation from the permitted topology is both prevented by policy and detected and evidenced by telemetry. Paths involving personal or regulated data may be required to stay within specific regions or under specific operators. Even if a path via a foreign backbone would offer lower latency, using it might breach commitments made to data subjects and regulators [2]. Network SLOs in a sovereign estate therefore carry a **jurisdiction predicate**: the latency and loss targets are only meaningful if they are measured on paths that are themselves compliant.
+
+> **[FIGURE 8.3 — Network SLO anatomy: latency percentile targets, loss thresholds and jurisdiction predicates for a sovereign cross-zone path]**
 
 ### 8.2.3 Establishing baselines using Concert historical telemetry
 
@@ -118,6 +124,8 @@ When a dataset lives in a particular region or provider, and when sovereignty or
 
 In multi‑cloud sovereign settings, this means topology cannot be an afterthought. Choosing where to place systems of record, analytical stores and services is as much a network and sovereignty decision as it is a capacity decision. Observability feeds back into these decisions by revealing the real behaviour of data‑adjacent paths, providing the empirical foundation for placement reviews that might otherwise rely on intuition or outdated benchmarks.
 
+> **[FIGURE 8.4 — Data gravity and placement decisions: co-location patterns for latency-sensitive workloads across sovereign zones]**
+
 ***
 
 ## 8.6 Defining and enforcing network SLOs
@@ -188,6 +196,8 @@ In later chapters, when we discuss autonomous and self‑healing patterns, agent
 
 The primary evidentiary function of network observability in a sovereign context is providing demonstrable proof that data flows have respected jurisdictional boundaries. IPFIX flow records [9] are particularly well suited to this role: each record carries source and destination addresses, timestamps, byte and packet counts, and — when enriched with network topology metadata — the geographic and administrative domains traversed by the traffic. When these records are collected continuously, retained under governance controls and made queryable, they form a time‑series record of every network conversation in the estate, from which compliance assertions can be derived.
 
+> **[FIGURE 8.5 — Network telemetry as sovereign evidence: IPFIX flow records enriched with zone metadata feeding automated compliance assertions]**
+
 The key architectural requirement is that flow record collection must be **comprehensive and tamper‑evident**. A flow record corpus with gaps — periods during which collection was interrupted, devices from which export was not configured, or intra‑node traffic not captured — cannot provide the strong assurance that regulators seek. This is why the layered instrumentation approach described in section 8.3 matters: IPFIX captures inter‑node flows at the network infrastructure level; Cilium Hubble [14] captures intra‑node and intra‑cluster flows that never reach the physical network; Istio's service mesh [15] captures application‑layer communication patterns. Together, these layers close the coverage gaps that would leave a flow record corpus incomplete.
 
 ### 8.10.2 Integrating network telemetry into the Governance and Audit Plane
@@ -228,7 +238,7 @@ IBM Instana's network topology discovery [7] provides the semantic enrichment ne
 
 ***
 
-## Chapter summary and bridge
+## Bridge to Chapter 9 — Events, Lineage, and Operational Signals
 
 This chapter has established the network as a first‑class risk, control surface and compliance evidence source in the sovereign zero‑copy enterprise. Beginning with the definition of network SLOs — grounded in statistical latency percentiles, error budgets and jurisdiction predicates — it has developed a layered instrumentation approach that combines IPFIX flow export, eBPF‑based observability through Cilium Hubble, Istio service mesh telemetry and synthetic probing to produce comprehensive, multi‑layer visibility across the estate. The treatment of SLO enforcement has extended from alert design, through Concert's causal correlation capabilities, to the tiered automated response model and its escalation boundaries. The final sections have shown how network telemetry, enriched with topology and data classification metadata and retained under governance controls, becomes sovereign evidence: the technical foundation for demonstrating data residency compliance to auditors and regulators under DORA and NIS2.
 

@@ -206,7 +206,7 @@ These metrics should be assembled into a **sovereign operations dashboard** that
 
 ***
 
-## Bridge to Chapter 32
+## Bridge to Chapter 32 — Skills, Culture, and Human Factors
 
 Restructuring teams, redefining decision rights and measuring new metrics are necessary but not sufficient. An operating model is, in the end, a human system. Its effectiveness depends on the skills, attitudes and cultural norms of the people who inhabit it. Chapter 32 examines the human factors that determine whether a sovereign, agentic operating model succeeds or fails: the skills gap created by agentic automation, the cultural shift from gatekeeper to enabler, the trust calibration required when humans and agents share operational responsibility, and the learning practices that keep the organisation ahead of its own complexity.
 

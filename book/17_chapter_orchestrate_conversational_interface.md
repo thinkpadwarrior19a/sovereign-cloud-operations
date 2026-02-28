@@ -368,7 +368,7 @@ Organisations should treat the tuning of Orchestrate's tool descriptions, prompt
 
 ***
 
-## Bridge to Chapter 18
+## Bridge to Chapter 18 — Multi-Agent Orchestration
 
 This chapter has described Orchestrate as a planner agent, capable of decomposing complex tasks and delegating them to specialised agents through its tool registry. That description anticipates a question that the architecture raises but does not yet answer: what does a mature multi-agent system look like when Orchestrate is one component among several, and how should an organisation design the boundaries between agents, the flows of information between them, and the governance controls that apply to each boundary?
 

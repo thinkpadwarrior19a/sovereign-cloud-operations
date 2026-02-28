@@ -112,6 +112,8 @@ Multi‑cloud architectures are often justified by arguments about resilience an
 
 The net effect is an **operational tax** on sovereignty and multi‑cloud when they are not matched by an appropriate operations architecture. That tax consists of duplicated effort (multiple teams solving similar problems in different places), policy uncertainty (engineers unsure what is allowed), delays (changes waiting for manual approvals or cross‑team coordination), and risk (incidents handled in ways that technically solve the problem but quietly violate commitments). Architects who seek to reduce this tax will find that the strongest lever is not negotiating harder with providers but investing in the cross‑cutting operations plane.
 
+> **[FIGURE 2.2 — Sovereignty and multi-cloud cost amplifiers: how each additional jurisdiction and provider compounds operational complexity]**
+
 ***
 
 ## 2.4 Agentic operations as a structural response
@@ -147,6 +149,8 @@ The Forsgren, Humble and Kim research provides perhaps the strongest empirical f
 The McKinsey Global Institute's State of AI research corroborates this from a business performance perspective, finding that organisations in the top quartile of AI adoption in technology operations outperform their industry peers on both revenue growth and cost efficiency, with the operational effectiveness dimension being the most consistent driver of the gap [5]. Organisations that have automated their most common operational patterns—incident triage, change validation, capacity adjustment, credential rotation—spend proportionally less of their engineering capacity on reactive work, leaving more capacity for the architectural improvement and product development work that compounds business capability over time.
 
 This **automation premium** is not an abstract concept. It manifests as measurable differences in deployment frequency, MTTR, change failure rate and lead time—the four DORA metrics—and those metric differences translate, through the causal mechanisms the research identifies, into differences in commercial performance, employee satisfaction and organisational resilience. Investing in agentic operations is, in this framing, investing in the capability to compete.
+
+> **[FIGURE 2.3 — Agentic operations value chain: from AI-assisted detection through automated remediation to measurable DORA metric improvement]**
 
 ***
 
@@ -197,6 +201,8 @@ Economically, this cross‑cutting approach has several benefits:
 - **Unified risk management**: When resilience, security and sovereignty are managed at the operations plane, the organisation can see concentration risks and failure modes that span providers, not just those within a single cloud.
 
 None of this is free. It requires investment in platforms, integration and skills. But the alternative—operating each cloud separately and relying on humans to bridge the gaps—has its own, often higher, costs. A well‑designed operations plane turns multi‑cloud from a liability into an asset.
+
+> **[FIGURE 2.4 — Cross-cutting operations plane spanning multiple cloud providers and sovereign zones]**
 
 ***
 
@@ -260,6 +266,8 @@ Senior finance leadership will engage most readily with a business case that lea
 
 Supplement this with the DORA metrics baseline: show where the organisation sits relative to industry performance data, and show what the four‑metric improvement trajectory looks like over the programme's three‑year horizon. CFOs are accustomed to risk‑adjusted investment cases; a well‑constructed one that connects operational tooling to regulatory obligation, expected loss reduction, and competitive position will compete effectively for capital against conventional revenue‑growth investments.
 
+> **[FIGURE 2.5 — Three-phase investment and payback trajectory for sovereign operations tooling]**
+
 ***
 
 ## Key Takeaways
@@ -280,7 +288,7 @@ Supplement this with the DORA metrics baseline: show where the organisation sits
 
 ***
 
-## Chapter summary and bridge
+## Bridge to Chapter 3 — Regulatory and Compliance Drivers
 
 This chapter has examined the economics of sovereign, multi‑cloud operations from three angles: the hidden costs that accumulate in manual and fragmented environments, the structural amplification of those costs that sovereignty and multi‑cloud introduce when not matched by a coherent operations architecture, and the economic case for agentic operations as a structural response. The central argument is that the old cost model—focused on capacity unit prices and headcount—is not merely incomplete; it actively obscures the dominant cost drivers. MTTD and MTTR exposure, toil, regulatory fine risk and opportunity cost together dwarf the visible costs that most operations budgets track. The DORA research programme and the IBM Institute for Business Value provide empirical grounding for the scale of these costs and for the improvements that automation and agentic operations can deliver.
 

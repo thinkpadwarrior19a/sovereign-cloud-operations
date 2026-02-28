@@ -173,7 +173,7 @@ Regulation (EU) 2024/1689—the EU Artificial Intelligence Act [6]—entered int
 
 ***
 
-## Chapter summary and bridge
+## Bridge to Chapter 4 — Architecture Reference Model
 
 This chapter has traced the arc from compliance as a periodic project to compliance as a continuous operational property, examining the specific obligations that DORA, NIS2, GDPR, the EU AI Act and supervisory guidance from the EBA, FCA and PRA now impose on organisations operating in regulated and critical sectors. The central argument is that these obligations cannot be satisfied by policies, attestations or point‑in‑time assessments alone. They require architectures that make continuous visibility, controlled automation, sovereign data handling and governed AI the default way the organisation operates—not an additional layer applied in response to audit findings.
 

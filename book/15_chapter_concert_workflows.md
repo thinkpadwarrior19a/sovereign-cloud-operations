@@ -200,7 +200,7 @@ These five metrics do not operate in isolation. A drop in recommendation accepta
 
 ***
 
-## Bridge to Chapter 16
+## Bridge to Chapter 16 — DevOps Insights and Change Risk
 
 Concert's change risk intelligence does not emerge from a vacuum. The historical change failure rates that feed the risk score, the deployment frequency data that contextualises it, and the release patterns that determine when the highest-risk deployments cluster in the calendar — all of this depends on Concert having access to a coherent picture of what is being delivered, by whom, at what pace, and with what outcomes. That picture is the subject of IBM DevOps Insights.
 

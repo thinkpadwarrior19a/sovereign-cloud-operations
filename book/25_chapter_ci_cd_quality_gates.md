@@ -30,6 +30,10 @@ The **verification stage** confirms that the deployed artefact is operating corr
 
 Tekton, the Kubernetes-native pipeline framework that underpins Red Hat OpenShift Pipelines, is the pipeline execution engine most naturally aligned with sovereign cloud operations [2]. Its architecture runs pipeline tasks as Kubernetes pods, which means that pipeline execution inherits the same isolation, scheduling, and policy enforcement mechanisms that govern application workloads. A Tekton pipeline running on a sovereign OpenShift cluster executes within the sovereign boundary by construction: the compute, storage, and network resources consumed by pipeline tasks are all within the cluster's jurisdiction. This architectural property is not available from CI/CD platforms that execute pipelines on shared, multi-tenant infrastructure outside the operator's control.
 
+### Executive Perspective
+
+The CI/CD pipeline is the last line of automated defence before software reaches production, and in a sovereign estate it carries an additional burden: it must guarantee that every artefact deployed into a regulated zone was built, scanned, signed and promoted within that zone's trust boundary. For the CIO, this is a direct translation of supply chain risk into engineering process. The SolarWinds compromise demonstrated that a single weakness in the build chain can propagate to thousands of downstream organisations; sovereign pipeline design ensures that the organisation's own build infrastructure, artefact registries and signing keys are under its jurisdictional control, not delegated to shared multi-tenant platforms with opaque residency guarantees. The business value is both protective and enabling: protective because quality gates and provenance verification catch vulnerabilities and policy violations before they reach production, and enabling because a well-governed pipeline gives the organisation confidence to deploy more frequently, knowing that each release carries machine-verified evidence of its integrity and compliance.
+
 ***
 
 ## 25.2 Build provenance and supply chain security
@@ -186,7 +190,7 @@ This feedback loop—from pipeline telemetry, through analytics, to Concert's ri
 
 ***
 
-## Bridge to Chapter 26
+## Bridge to Chapter 26 — The AI-Augmented Developer Partner
 
 The preceding sections have described how CI/CD pipelines for sovereign cloud estates are designed, governed, and continuously improved. The pipeline is the mechanism by which code becomes running software, and the quality gates within it are the mechanism by which an organisation ensures that only software meeting its standards—functional, security, compliance, and sovereignty—reaches production.
 

@@ -200,7 +200,7 @@ The combination of these two audit trails—the ITSM operational record and the 
 
 ***
 
-## Bridge to Chapter 20
+## Bridge to Chapter 20 — Knowledge-Base-Augmented Operations
 
 This chapter has examined how agentic operations integrates with ITSM disciplines to produce governable, traceable, and regulatory-compliant operational outcomes. The integration patterns described here—Concert situations linked to ServiceNow incidents, change requests, and problem records; agents creating Jira tickets and GitHub pull requests as operational events cross the development boundary; compliance evidence automatically extracted from the interconnected record set—depend on agents that have access to the operational context required to perform these tasks correctly. Agents must know what a given service does, what its topology looks like, what its operational history has been, and what patterns of behaviour have preceded incidents in the past.
 

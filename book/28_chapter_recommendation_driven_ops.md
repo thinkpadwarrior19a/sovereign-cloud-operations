@@ -194,7 +194,7 @@ The audit trail for recommendations is a governance requirement that applies reg
 
 ***
 
-## Bridge to Chapter 29
+## Bridge to Chapter 29 — Autonomous Remediation and Self-Healing
 
 This chapter has examined how AI agents generate, structure, score, route and govern operational recommendations—transforming the operator's role from reactive investigator to informed decision-maker evaluating pre-assembled analytical cases. The recommendations described here still require a human decision: the operator accepts, modifies or rejects each proposal, and the system learns from the outcome.
 

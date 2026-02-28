@@ -176,7 +176,7 @@ A useful instrument for the human review loop is a **knowledge interaction dashb
 
 ***
 
-## Chapter Summary and Bridge to Chapter 21
+## Bridge to Chapter 21 — AI Risk and Control
 
 This chapter has examined the knowledge dimension of agentic operations: why organisations have a structural knowledge problem, how Retrieval-Augmented Generation provides a practical mechanism for delivering accumulated knowledge to agents and operators at the moment of need, what the operational knowledge base should contain and how it is built, how knowledge currency is maintained against a continuously evolving estate, how the IBM watsonx platform realises the knowledge layer within sovereign zone constraints, how the Concert topology model and the vector database serve complementary knowledge modalities, and how knowledge base quality is measured and improved over time.
 

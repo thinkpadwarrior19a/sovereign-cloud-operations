@@ -224,7 +224,7 @@ This improvement process is itself a form of operational learning—the organisa
 
 ***
 
-## Bridge to Chapter 31
+## Bridge to Chapter 31 — Operating Model and Shift-Left Operations
 
 This chapter, and Parts VII through IX more broadly, have examined the technical capabilities that constitute an agentic operations platform: from observability and compliance automation through infrastructure-as-code and configuration management, to the AI-driven capabilities of predictive analytics, autonomous self-healing, and agent-assisted incident management. These capabilities are substantial, and they represent a genuine transformation in what is operationally possible.
 

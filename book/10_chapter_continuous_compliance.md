@@ -16,6 +16,10 @@ Modern practice in regulated, cloud‑native environments has moved beyond that 
 
 In a sovereign, agentic operations architecture, compliance is therefore understood as a **continuous operational property**, not a periodic achievement. The organisation must be able to observe how it is behaving right now, evaluate that behaviour against its policies and obligations, and demonstrate over time that deviations are detected and handled.
 
+### Executive Perspective
+
+Continuous compliance converts what has traditionally been one of the most expensive, disruptive and anxiety-inducing activities in regulated enterprises — the audit cycle — into a background operational property. When compliance evidence is generated automatically and policy adherence is evaluated in real time, the organisation spends less on manual evidence gathering, discovers violations in hours rather than quarters, and presents regulators with a posture that is demonstrably current rather than a snapshot that was already stale when it was produced. For the CIO, the business case is threefold: reduced audit preparation cost, materially lower risk of regulatory findings that carry financial penalties or remediation orders, and the operational confidence to move faster — deploying new services and entering new jurisdictions — because compliance is built into the delivery pipeline rather than bolted on after the fact.
+
 ***
 
 ## 10.2 What continuous compliance means in operations
@@ -166,6 +170,8 @@ Practitioners argue that lineage is particularly important for regulatory compli
 
 Data observability platforms that integrate lineage can automate much of this. When an anomaly is detected in a dataset, lineage can identify upstream sources and downstream consumers, allowing teams to triage impact quickly and notify affected stakeholders. In sovereign operations, lineage can also be used to ensure that data does not cross prohibited boundaries. If lineage reveals that a new pipeline would route data through a non‑compliant region or service, policy‑as‑code can block the change or raise a compliance alert before deployment.
 
+> **[FIGURE 10.3 — Data lineage as compliance instrumentation: tracing regulated data flows through transformation stages and sovereign zone boundaries]**
+
 ***
 
 ## 10.7 Making evidence a by‑product of good operations
@@ -212,6 +218,8 @@ DORA [6] imposes specific retention requirements on ICT-related records. Article
 
 These retention requirements have direct implications for the evidence architecture. Evidence must not only be generated automatically; it must be stored in a way that is tamper‑evident, accessible for the full required retention period, and structured so that it can be retrieved and presented efficiently in response to regulatory requests.
 
+> **[FIGURE 10.4 — Regulatory control mapping: DORA, ISO 27001 and NIST SP 800-53 controls mapped to automated evidence sources and OpenPages findings]**
+
 ### Immutable audit logs: WORM storage, cryptographic chaining, and tamper detection
 
 The reliability of automatically generated audit evidence depends entirely on its integrity. Evidence that could plausibly have been modified after the fact is evidence that a sophisticated auditor cannot fully trust. The architecture must therefore ensure that audit logs and compliance records are stored in a manner that provides strong integrity guarantees.
@@ -225,6 +233,8 @@ Tamper detection in operational practice typically combines these techniques: WO
 ### IBM OpenPages as the aggregation layer
 
 IBM OpenPages [8] aggregates automatically generated evidence from across the compliance architecture into a single, auditable system of record. Technical evidence—policy evaluation results, Gatekeeper admission logs, Sentinel run records, configuration drift alerts, network flow summaries—is ingested from the technical layer through API integrations. Operational evidence—change records from ITSM systems, incident records, exception approvals, training completions—is entered through OpenPages workflows or ingested from connected systems. The result is a compliance evidence store that is comprehensive, structured, and linked to the control framework.
+
+> **[FIGURE 10.5 — Immutable evidence architecture: WORM storage, cryptographic chaining and OpenPages aggregation for tamper-evident audit records]**
 
 OpenPages's reporting capabilities allow the organisation to generate audit evidence packs calibrated to specific regulatory frameworks—DORA, GDPR, ISO/IEC 27001—automatically, pulling together the relevant evidence for each control requirement from the integrated evidence store. This dramatically reduces the time and effort of preparing for a regulatory inspection or an external audit, and it reduces the risk of gaps in the evidence pack because collection was manual and error‑prone. In a mature continuous compliance programme, the generation of an audit evidence pack transitions from a project that takes weeks to a report that takes hours—not because the evidence requirements are lower, but because the evidence was being collected continuously all along.
 
@@ -248,7 +258,7 @@ OpenPages's reporting capabilities allow the organisation to generate audit evid
 
 ***
 
-## Chapter summary and bridge
+## Bridge to Chapter 11 — Infrastructure as Code
 
 This chapter has established continuous compliance monitoring as an operational discipline grounded in architecture, not merely a regulatory obligation to be satisfied periodically. The core argument is that compliance must be designed in—through evidence‑by‑default systems, policy‑as‑code enforcement at every stage of the delivery lifecycle, a comprehensive signal fabric aggregated with topological context, and an evidence architecture capable of satisfying the rigorous retention and integrity requirements of regulations such as DORA and GDPR. IBM Concert provides the cross‑estate compliance posture view; IBM OpenPages provides the governance system of record; OPA, Gatekeeper, Conftest, and Sentinel provide the layered policy enforcement infrastructure; and WORM storage with cryptographic chaining provides the evidence integrity guarantees that make automatically generated audit records genuinely trustworthy.
 

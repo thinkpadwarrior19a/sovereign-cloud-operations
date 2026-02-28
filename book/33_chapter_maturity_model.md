@@ -312,7 +312,7 @@ Several practices help avoid this trap. First, keep the assessment process light
 
 ***
 
-## Bridge to Chapter 34
+## Bridge to Chapter 34 — Reference Blueprints
 
 The maturity model provides a framework for understanding where an organisation stands and how it should progress, but it deliberately avoids prescribing specific architectural patterns. Chapter 34 turns to that question directly, presenting reference blueprints—concrete architectural templates for sovereign, agentic operations at different scales and in different contexts. Where this chapter asked "how mature are we?", the next asks "what should the architecture look like?" The blueprints draw on the maturity model to indicate which capabilities must be in place before a given blueprint can be effectively adopted, connecting assessment to action.
 

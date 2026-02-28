@@ -195,7 +195,7 @@ For now, the central message is this: **in sovereign cloud operations, topology 
 
 ***
 
-## Chapter summary and bridge
+## Bridge to Chapter 6 — The Zero-Copy Integration Substrate
 
 This chapter has established topology as a first‑class design instrument in sovereign cloud operations, introducing the sovereign zone—with its formal definition, its three principal types and its mapping to Kubernetes clusters managed by RHACM—as the fundamental unit of placement and policy. It has shown how the network, far from being background infrastructure, is the integration fabric through which all inter‑zone interactions flow and the control surface through which sovereignty is enforced. Private connectivity options, BGP routing policy, software‑defined networking constructs, service meshes and OPA/Gatekeeper enforcement combine to give that fabric the governed, observable character that regulated enterprises require. The three topology patterns—hub‑and‑spoke, provider‑aligned ring and edge‑anchored mesh—offer practical starting points for organisations at different stages of their multi‑cloud journey, each addressing the DORA concentration risk concern from a different angle.
 

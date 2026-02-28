@@ -328,7 +328,7 @@ The answers to these questions feed directly back into the risk register (updati
 
 ***
 
-## Bridge to Chapter 22
+## Bridge to Chapter 22 — AI Governance Framework
 
 This chapter has established the risk management foundation for operational AI: the frameworks that identify and classify risks, the register that tracks them, the runtime controls that enforce risk boundaries, and the monitoring that keeps the risk posture current. These are necessary components, but they are not sufficient on their own. Risk management tells the organisation what can go wrong and how to prevent it. It does not tell the organisation how to govern the broader AI capability—how to make decisions about which agents to deploy, how to set and evolve autonomy boundaries, how to ensure accountability across the agent ecosystem, and how to demonstrate to regulators, auditors, and stakeholders that the organisation's use of AI in operations is not merely risk-managed but governed.
 

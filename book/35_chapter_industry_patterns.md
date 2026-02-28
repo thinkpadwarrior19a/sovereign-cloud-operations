@@ -250,7 +250,7 @@ The third is that **regulatory frameworks are converging in direction even as th
 
 ***
 
-## Bridge to Chapter 36
+## Bridge to Chapter 36 — Case Studies
 
 This chapter has shown how the reference patterns of this book adapt when they meet the specific constraints of regulated industries. The scenarios are deliberately generalised — no single bank, tax authority, hospital, or telecoms operator will match any of them exactly. Chapter 36 moves from generalised industry patterns to specific case studies: real-world implementations where organisations have applied sovereign operations principles to their estates, confronted the practical challenges of migration and coexistence, and produced measurable outcomes. Where this chapter asks "what should it look like?", the next chapter asks "what did it actually look like, and what was learned?"
 

@@ -209,7 +209,7 @@ The evidence retention policy must account for the longest retention period requ
 
 ***
 
-## Chapter Summary and Bridge to Chapter 23
+## Bridge to Chapter 23 — Explainability and Auditability
 
 This chapter has described the governance framework needed to operationalise AI risk management at enterprise scale in sovereign cloud environments. It has moved from the recognition that risk registers alone are insufficient, through the design of an AI governance operating model with defined bodies and decision rights, to the lifecycle processes that govern models from development through retirement. It has addressed the sovereign-specific challenge of foundation model selection, the enforcement of governance decisions through policy-as-code, the detection and remediation of bias in operational AI, and the evidence management architecture that satisfies multiple overlapping regulatory frameworks.
 

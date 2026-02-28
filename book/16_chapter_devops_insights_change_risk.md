@@ -206,7 +206,7 @@ The benefit for operational governance is substantial. A chief technology office
 
 ***
 
-## Bridge to Chapter 17
+## Bridge to Chapter 17 — watsonx Orchestrate Conversational Interface
 
 The previous sections have established how delivery pipeline telemetry, when integrated with Concert's operational intelligence, creates a continuous quality signal that spans the full arc from code commit to production behaviour. This signal is rich, but it is passive: it describes and assesses, but it does not act.
 
