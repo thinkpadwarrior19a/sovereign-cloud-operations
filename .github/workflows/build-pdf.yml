@@ -29,6 +29,7 @@ jobs:
             texlive-fonts-extra \
             texlive-latex-recommended \
             texlive-latex-extra \
+            lmodern \
             fonts-dejavu
 
       - name: Build PDF
