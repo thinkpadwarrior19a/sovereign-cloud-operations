@@ -134,24 +134,84 @@ local terms = {
   -- =====================================================================
   -- IBM PRODUCTS AND TECHNOLOGIES
   -- =====================================================================
+  -- watsonx family
   { pattern = "IBM Concert",               index = "IBM Concert" },
   { pattern = "watsonx Orchestrate",       index = "watsonx Orchestrate" },
   { pattern = "watsonx%.governance",       index = "watsonx.governance" },
   { pattern = "watsonx Code Assistant",    index = "watsonx Code Assistant" },
   { pattern = "watsonx%.ai",              index = "watsonx.ai" },
   { pattern = "watsonx%.data",            index = "watsonx.data" },
+  { pattern = "watsonx Assistant for Z",   index = "watsonx Assistant for Z" },
+  { pattern = "watsonx Code Assistant for Z", index = "watsonx Code Assistant for Z" },
   { pattern = "Granite",                   index = "Granite models" },
-  { pattern = "IBM Cloud Satellite",       index = "IBM Cloud Satellite" },
-  { pattern = "Cloud Pak",                 index = "IBM Cloud Pak" },
-  { pattern = "Turbonomic",               index = "Turbonomic" },
+
+  -- Observability and AIOps
+  { pattern = "Instana",                   index = "IBM Instana" },
+  { pattern = "Turbonomic",               index = "IBM Turbonomic" },
+  { pattern = "DevOps Insights",           index = "IBM DevOps Insights" },
+  { pattern = "OMEGAMON",                 index = "IBM OMEGAMON" },
+
+  -- Data and integration
   { pattern = "DataStage",                index = "IBM DataStage" },
-  { pattern = "OpenPages",                index = "IBM OpenPages" },
-  { pattern = "IBM Cloud",                 index = "IBM Cloud" },
   { pattern = "Data Fabric",              index = "IBM Data Fabric" },
+  { pattern = "Event Streams",             index = "IBM Event Streams" },
+  { pattern = "Event Automation",          index = "IBM Event Automation" },
+  { pattern = "API Connect",               index = "IBM API Connect" },
+  { pattern = "App Connect",               index = "IBM App Connect" },
+  { pattern = "StreamSets",               index = "IBM StreamSets" },
+  { pattern = "webMethods",               index = "IBM webMethods" },
+  { pattern = "Aspera",                    index = "IBM Aspera" },
+  { pattern = "NS1 Connect",              index = "IBM NS1 Connect" },
+  { pattern = "Db2[^A-Za-z]",            index = "IBM Db2" },
+  { pattern = "Cognos",                    index = "IBM Cognos Analytics" },
+  { pattern = "Cloud Pak for Data",        index = "IBM Cloud Pak for Data" },
+  { pattern = "Cloud Pak for Integration", index = "IBM Cloud Pak for Integration" },
+  { pattern = "Cloud Pak",                 index = "IBM Cloud Pak" },
+
+  -- Security
   { pattern = "Guardium",                 index = "IBM Guardium" },
   { pattern = "QRadar",                   index = "IBM QRadar" },
-  { pattern = "Maximo",                   index = "IBM Maximo" },
+  { pattern = "Randori",                  index = "IBM Randori" },
+  { pattern = "Secrets Manager",           index = "IBM Cloud Secrets Manager" },
+  { pattern = "Key Protect",              index = "IBM Key Protect" },
+  { pattern = "IBM Verify",               index = "IBM Verify" },
+
+  -- Governance, risk, and compliance
+  { pattern = "OpenPages",                index = "IBM OpenPages" },
+
+  -- Sustainability
   { pattern = "Envizi",                   index = "IBM Envizi" },
+
+  -- FinOps and cost management
+  { pattern = "Apptio",                   index = "IBM Apptio" },
+  { pattern = "Kubecost",                 index = "IBM Kubecost" },
+  { pattern = "Cloudability",             index = "IBM Cloudability" },
+
+  -- Asset and industry
+  { pattern = "Maximo",                   index = "IBM Maximo" },
+
+  -- Infrastructure and storage
+  { pattern = "IBM Cloud Satellite",       index = "IBM Cloud Satellite" },
+  { pattern = "IBM Cloud",                 index = "IBM Cloud" },
+  { pattern = "Cloud Kubernetes Service",  index = "IBM Cloud Kubernetes Service" },
+  { pattern = "Cloud Object Storage",      index = "IBM Cloud Object Storage" },
+  { pattern = "Code Engine",              index = "IBM Cloud Code Engine" },
+  { pattern = "FlashSystem",              index = "IBM Storage FlashSystem" },
+  { pattern = "DS8000",                   index = "IBM Storage DS8000" },
+  { pattern = "Storage Defender",          index = "IBM Storage Defender" },
+  { pattern = "Storage Scale",             index = "IBM Storage Scale" },
+  { pattern = "Storage Insights",          index = "IBM Storage Insights" },
+
+  -- Compute and platform
+  { pattern = "LinuxONE",                 index = "IBM LinuxONE" },
+  { pattern = "IBM Power[^A-Za-z]",       index = "IBM Power" },
+  { pattern = "IBM z16",                   index = "IBM z16" },
+  { pattern = "IBM z17",                   index = "IBM z17" },
+  { pattern = "z/OS",                      index = "IBM z/OS" },
+  { pattern = "DataPower",                index = "IBM DataPower Gateway" },
+
+  -- IBM acquisitions (index under IBM and original name)
+  { pattern = "HashiCorp",                index = "HashiCorp (IBM)" },
 
   -- =====================================================================
   -- CLOUD PROVIDERS

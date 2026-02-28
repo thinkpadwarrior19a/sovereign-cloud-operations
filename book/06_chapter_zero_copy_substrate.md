@@ -139,7 +139,7 @@ From a sovereignty standpoint, lineage is how we **prove** that data has not cro
 
 When lineage metadata is available to the operations plane, it enhances incident response. During an incident involving data quality or policy violation, agents and humans can see not just where symptoms appear, but how data reached those points. This supports more precise remediation—fixing or disabling the right transformation, pausing the correct stream—rather than blunt measures.
 
-Zero‑copy architectures tend to encourage the use of platforms that can provide lineage out of the box—API gateways with request logging, event brokers with durable logs, virtualisation layers that track query patterns. When that lineage is integrated into operations tooling, it becomes part of the feedback loop: a way to understand and refine how the estate behaves over time.
+Zero‑copy architectures tend to encourage the use of platforms that can provide lineage out of the box—API gateways with request logging, event brokers with durable logs, virtualisation layers that track query patterns. When that lineage is integrated into operations tooling, it becomes part of the feedback loop: a way to understand and refine how the estate behaves over time. IBM StreamSets [23], as a data integration engine, complements this by providing sovereign-aware data pipelines with declarative routing policies that direct data flows along zone-scoped paths. StreamSets pipelines emit OpenLineage-compatible events at each stage, ensuring that even the residual data movement that a zero-copy architecture still requires — CDC feeds, reference data synchronisation, permitted cross-zone transfers — is fully instrumented and subject to the same lineage governance as the in-place access patterns.
 
 ***
 
@@ -167,6 +167,8 @@ Apache Arrow's columnar in-memory format deserves mention here as a technical en
 > **[FIGURE 6.5 — Network sensitivity in zero-copy architectures: latency paths and data gravity effects across sovereign zones]**
 
 IBM DataStage and IBM Data Fabric extend these principles into enterprise data virtualisation, providing query federation across heterogeneous sources—relational databases, object stores, mainframe datasets—through a unified access layer [21]. From a zero-copy perspective, virtualisation is the mechanism by which in-place access is made possible without requiring source systems to adopt new protocols or expose raw query interfaces. The virtualisation layer handles translation, optimisation and access control, presenting a consistent query surface to consumers while leaving the data in situ. Operationally, this means that the number of access patterns that must be monitored and governed is reduced to the virtualisation layer's query log rather than to the individual access logs of each source system.
+
+IBM watsonx.data [22] brings an open data lakehouse architecture to this virtualisation layer, built on open table formats (Apache Iceberg) and open query engines (Presto, Spark) that federate analytical queries across data sources residing in different sovereign zones without requiring the data to be copied into a central store. For zero-copy sovereignty, watsonx.data's fit-for-purpose engine approach is particularly relevant: queries are routed to the engine best suited to the data source and workload type, while zone-level access policies ensure that a federated query cannot materialise results containing regulated data outside the zone in which that data resides. The lakehouse's metadata layer maintains a unified catalogue of datasets across zones, giving Concert's topology model visibility into analytical data dependencies that would otherwise be invisible to the operational plane.
 
 ***
 
@@ -295,3 +297,7 @@ Chapter 7 builds directly on this foundation. With a zero-copy substrate in plac
 [20] Apache Software Foundation, "Apache Parquet: Columnar Storage Format," Apache Parquet Documentation, 2024. [Online]. Available: https://parquet.apache.org/docs/
 
 [21] IBM, "IBM Data Fabric and IBM DataStage Documentation," IBM, 2024. [Online]. Available: https://www.ibm.com/products/datastage
+
+[22] IBM Corporation, "IBM watsonx.data: Open Data Lakehouse for AI and Analytics," IBM Documentation, Armonk, NY, USA, 2024. [Online]. Available: https://www.ibm.com/products/watsonx-data
+
+[23] IBM Corporation, "IBM StreamSets: Data Integration and Pipeline Management," IBM Documentation, Armonk, NY, USA, 2024. [Online]. Available: https://www.ibm.com/products/streamsets

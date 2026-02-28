@@ -92,6 +92,8 @@ Synthetic probes are particularly valuable for three situations. First, they pro
 
 In a sovereign estate, synthetic probes should be placed at the boundaries of each sovereign zone and configured to run at regular intervals — typically every 30–60 seconds — measuring round‑trip latency, packet loss and maximum achievable throughput on each critical inter‑zone path. The probing infrastructure should itself be confined within sovereign boundaries: a synthetic prober that runs from a non‑sovereign management host and whose results are stored outside the zone introduces both a residency risk and a measurement artefact.
 
+At the DNS layer, IBM NS1 Connect [27] provides intelligent traffic steering that complements the path-level observability described above. NS1 Connect's filter chain architecture evaluates real-time telemetry — latency measurements, endpoint health checks and geographic metadata — at DNS resolution time, directing each client request to the optimal endpoint based on policies that can encode sovereign zone affinity alongside performance criteria. For a sovereign estate, this means that DNS routing policies can enforce jurisdictional constraints as a first-hop decision: a request originating within a European sovereign zone is resolved to an endpoint within that zone by policy, regardless of whether a lower-latency endpoint exists elsewhere. NS1 Connect's traffic steering decisions also feed observability data back into the network telemetry fabric, providing a DNS-level view of traffic distribution that complements the flow-level and mesh-level views described above.
+
 ### 8.3.5 Packet capture in regulated environments
 
 Full packet capture — recording the complete content of network traffic — provides the deepest possible visibility into network behaviour but carries significant risks in regulated environments. Captured packets may contain personal data, authentication credentials, session tokens or commercially sensitive payload content, any of which may be subject to data protection, professional secrecy or sector‑specific confidentiality obligations.
@@ -303,3 +305,5 @@ Chapter 9 builds on this foundation by examining events, lineage and operational
 [25] Transportation Security Administration, "Security Directive Pipeline-2021-02 Series: Cybersecurity Mitigation Actions, Contingency Planning and Testing," U.S. Department of Homeland Security, Washington, DC, 2023.
 
 [26] European Union Aviation Safety Agency, "Implementing Regulation (EU) 2023/203 — Information Security (Part-IS)," EASA, Cologne, Germany, 2023. [Online]. Available: https://www.easa.europa.eu/en/document-library/easy-access-rules/easy-access-rules-information-security
+
+[27] IBM Corporation, "IBM NS1 Connect: Intelligent DNS and Traffic Steering," IBM Documentation, Armonk, NY, USA, 2024. [Online]. Available: https://www.ibm.com/products/ns1-connect
