@@ -58,3 +58,25 @@
 % --- Orphan / widow control ---
 \widowpenalty=10000
 \clubpenalty=10000
+
+% --- Index ---
+\usepackage{imakeidx}
+\makeindex[intoc, title=Index, columns=2]
+
+% --- Custom title page ---
+\renewcommand{\maketitle}{%
+  \begin{titlepage}
+    \centering
+    \vspace*{60pt}
+    {\fontsize{36}{42}\selectfont\bfseries Sovereign Cloud\\[6pt] Operations\par}
+    \vspace{24pt}
+    {\Large\itshape Agentic AI, Observability, and Automation\\[4pt]
+     for the Fully Sovereign, Multi-Cloud Enterprise\par}
+    \vfill
+    {\LARGE Alan Hamilton\par}
+    \vspace{60pt}
+    {\small \textcopyright\ \the\year\ Alan Hamilton. All rights reserved.\par}
+    \vspace{30pt}
+  \end{titlepage}
+  \cleardoublepage
+}
