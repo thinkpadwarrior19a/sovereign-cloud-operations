@@ -670,41 +670,28 @@ local terms = {
   { pattern = "metadata management",       index = "metadata management" },
 }
 
--- Track which terms have been indexed in the current chapter
-local indexed_in_chapter = {}
-
--- Reset tracking on each new chapter heading
-function Header(el)
-  if el.level == 1 then
-    indexed_in_chapter = {}
-  end
-  return nil
-end
-
--- Process text nodes: look for terms and insert \index{} on first occurrence per chapter
-function Str(el)
-  -- We need to process at the Inline list level, not individual Str nodes
-  return nil
-end
+-- Index every occurrence of each term. Each Inlines call (one per
+-- paragraph, list item, heading, table cell, etc.) emits \index{}
+-- for every matched term. LaTeX's makeindex automatically collapses
+-- duplicate page numbers, so multiple hits on the same page produce
+-- a single page reference in the final index.
 
 function Inlines(inlines)
-  -- Build the full text for matching
   local full_text = pandoc.utils.stringify(pandoc.Inlines(inlines))
 
   local new_inlines = pandoc.List()
   local pending_indices = {}
+  local seen = {}  -- deduplicate within a single Inlines call
 
-  -- Check which terms appear in this inline sequence
   for _, term in ipairs(terms) do
-    if not indexed_in_chapter[term.index] then
+    if not seen[term.index] then
       if full_text:find(term.pattern) then
-        indexed_in_chapter[term.index] = true
+        seen[term.index] = true
         table.insert(pending_indices, term.index)
       end
     end
   end
 
-  -- If we found terms to index, prepend the \index commands
   if #pending_indices > 0 then
     for _, idx in ipairs(pending_indices) do
       new_inlines:insert(pandoc.RawInline('latex', '\\index{' .. idx .. '}'))
@@ -717,6 +704,5 @@ function Inlines(inlines)
 end
 
 return {
-  { Header = Header },
   { Inlines = Inlines },
 }
