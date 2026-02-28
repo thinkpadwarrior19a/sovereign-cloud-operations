@@ -4,7 +4,7 @@
 
 ## Summary
 
-This chapter establishes identity, secrets and access management as the control fabric on which every other assurance in the sovereign operations architecture depends. It traces the shift from network-perimeter security to zero trust principles, showing how federated identity stacks, sovereign zone constraints on trust relationships, and privileged access management with just-in-time credentials replace the assumptions that multi-cloud estates have rendered obsolete. Architects will find practical guidance on HashiCorp Vault for federated secrets management with dynamic credential issuance, SPIFFE/SPIRE for vendor-neutral workload identity, certificate lifecycle automation with cert-manager and Vault PKI, and the encoding of identity policy as infrastructure as code enforced by Open Policy Agent. The chapter also addresses the specific identity requirements of non-human actors, including AI agents and automation pipelines, and the access governance processes needed to satisfy DORA, ISO/IEC 27001 and GDPR audit obligations.
+This chapter establishes identity, secrets and access management as the control fabric on which every other assurance in the sovereign operations architecture depends. It traces the shift from network-perimeter security to zero trust principles, showing how federated identity stacks, sovereign zone constraints on trust relationships, and privileged access management with just-in-time credentials replace the assumptions that multi-cloud estates have rendered obsolete. Architects will find practical guidance on HashiCorp Vault for federated secrets management with dynamic credential issuance, SPIFFE/SPIRE for vendor-neutral workload identity, certificate lifecycle automation with cert-manager and Vault PKI, and the encoding of identity policy as infrastructure as code enforced by Open Policy Agent. The chapter also addresses the specific identity requirements of non-human actors, including AI agents and automation pipelines, and the access governance processes needed to satisfy DORA, ISO/IEC 27001 and GDPR audit obligations. A dedicated section on post-quantum cryptography and cryptographic agility examines the quantum threat to long-lived sovereign data, the NIST post-quantum standards (ML-KEM, ML-DSA, SLH-DSA), the architectural discipline of making cryptographic algorithms swappable without system redesign, and the role of confidential computing (Intel SGX, AMD SEV-SNP, IBM Hyper Protect) and homomorphic encryption in protecting data in use within sovereign zones.
 
 ***
 
@@ -140,6 +140,44 @@ The connection back to Chapter 11's treatment of IaC is not merely structural. T
 
 ***
 
+## 13.9 Post-quantum cryptography and cryptographic agility
+
+The cryptographic primitives that underpin every control described in this chapter — TLS certificates, JWT signatures, Vault seal keys, SPIFFE SVIDs, HSM-protected encryption keys — share a common vulnerability. RSA and elliptic curve cryptography (ECC), the two families of asymmetric algorithms on which virtually all current key exchange and digital signature operations depend, are vulnerable to Shor's algorithm running on a sufficiently capable quantum computer. The timeline for such a machine is debated, but the consensus among cryptographers has narrowed: both the US National Security Agency and the UK National Cyber Security Centre have issued guidance advising organisations to begin planning their transitions to quantum-resistant algorithms now [24].
+
+The urgency stems from the "harvest now, decrypt later" attack vector, which is already operational: adversaries with long time horizons are collecting encrypted network traffic and data stores today, expecting to decrypt the material when quantum computing capability matures. For sovereign operations handling classified data, financial records with decades-long retention requirements, or health records, this is a present architectural concern, not a future one. Data encrypted today with RSA-2048 or ECDH and stored by an adversary will be readable the moment a cryptographically relevant quantum computer becomes available. The protection window of the encryption must exceed the sensitivity window of the data, and for long-lived regulated data that arithmetic is already unfavourable.
+
+### NIST post-quantum standards
+
+The National Institute of Standards and Technology concluded its Post-Quantum Cryptography standardisation process in August 2024, publishing three initial standards [25]. FIPS 203 specifies ML-KEM (Module-Lattice-Based Key-Encapsulation Mechanism), formerly known as CRYSTALS-Kyber, as the primary standard for key encapsulation — the operation by which two parties establish a shared secret over an untrusted channel. FIPS 204 specifies ML-DSA (Module-Lattice-Based Digital Signature Algorithm), formerly CRYSTALS-Dilithium, as the primary standard for digital signatures. FIPS 205 specifies SLH-DSA (Stateless Hash-Based Digital Signature Algorithm), based on SPHINCS+, as a hash-based signature scheme that provides a conservative alternative resting on different mathematical foundations from the lattice-based schemes. IBM Research played a significant role in the development of the lattice-based algorithms: several members of the CRYSTALS team are IBM researchers, and the underlying lattice problems — Module Learning With Errors for ML-KEM and Module Short Integer Solution for ML-DSA — were refined through IBM's cryptography research programme [26]. This is not incidental; it reflects IBM's strategic commitment to post-quantum security across its product portfolio.
+
+### Cryptographic agility as an architectural principle
+
+The transition from classical to post-quantum algorithms is not a one-time migration; it is the latest instance of a recurring pattern. DES gave way to 3DES and then AES; MD5 and SHA-1 gave way to SHA-2 and SHA-3. Each transition was more painful than necessary because algorithms were hard-coded into applications, protocols and hardware, requiring re-engineering rather than reconfiguration.
+
+Cryptographic agility is the architectural discipline of ensuring that the next transition does not require re-architecting systems. In practice, this means abstracting cryptographic operations behind well-defined interfaces so that algorithm choice is a configuration parameter, not a code change. Application code calls a "sign" or "encrypt" function; the underlying algorithm is selected by policy. Key management systems maintain a cryptographic inventory: a registry of which algorithms are in use, where, by which systems, protecting which data classifications. That inventory is the prerequisite for any systematic migration, because you cannot transition what you cannot enumerate.
+
+The migration path from RSA and ECC to PQC will, for most organisations, pass through a hybrid phase. Hybrid key exchange, already implemented in TLS libraries including OpenSSL 3.x, combines a classical exchange (ECDH) with a post-quantum exchange (ML-KEM) so that the resulting shared secret is secure against both classical and quantum attacks. If the post-quantum algorithm proves flawed, the classical algorithm provides a fallback; if a quantum computer breaks the classical algorithm, the post-quantum component provides protection. Sovereign architectures should adopt hybrid key exchange for all new deployments while planning the retrofit of existing services.
+
+> **[FIGURE 13.3 — Post-quantum cryptographic migration path showing hybrid classical-PQC key exchange during transition, with cryptographic inventory feeding policy-driven algorithm selection across sovereign zones]**
+
+### Confidential computing and data-in-use protection
+
+Classical encryption protects data at rest and in transit, but data must be decrypted before it can be processed. In a cloud environment, this exposes data in memory to anyone with sufficient host-level privilege — including the cloud provider's own operators. For sovereign operations, this is a structural gap: data sovereignty during processing depends on the trustworthiness of the operator.
+
+Confidential computing addresses this gap through hardware-based trusted execution environments (TEEs) that protect data in use. Intel Software Guard Extensions (SGX) [27] create hardware-enforced enclaves in which code and data are encrypted in memory, inaccessible to any software outside the enclave including the operating system and hypervisor. AMD Secure Encrypted Virtualisation with Secure Nested Paging (SEV-SNP) [28] provides confidential virtual machines whose memory is encrypted with a key managed by the AMD security processor. IBM takes a distinctive approach with Hyper Protect Virtual Servers, combining hardware isolation on IBM Z and LinuxONE processors with a hardened, attestable runtime environment [29]. IBM Hyper Protect Crypto Services extend this to key management, providing a cloud-hosted HSM built on FIPS 140-2 Level 4 certified hardware with the critical property that even IBM's own cloud operators cannot access the key material — a property IBM terms "Keep Your Own Key" (KYOK). For sovereign operations, this means that the most sensitive workloads can run in a public or hybrid cloud without the provider having any technical ability to access the data, even under compulsion.
+
+### Homomorphic encryption
+
+A more radical approach is homomorphic encryption (HE), which allows computation on encrypted data without decryption. IBM has been a leading contributor through HElib, an open-source library implementing the Brakerski-Gentry-Vaikuntanathan (BGV) and Cheon-Kim-Kim-Song (CKKS) schemes [30]. The limitations remain significant — HE operations are orders of magnitude slower than plaintext equivalents, and only certain computation classes map efficiently onto HE schemes. However, for sovereign use cases such as cross-zone analytics where regulated data must never leave its zone in plaintext, privacy-preserving computations on health or financial data, and federated machine learning on sensitive datasets, HE offers a path to deriving value from data that regulation would otherwise make inaccessible.
+
+### Implications for sovereign zone architecture
+
+The convergence of these technologies has direct consequences for sovereign zone architecture. Key management infrastructure must be quantum-ready: HSMs deployed in sovereign zones must support PQC algorithms, and key lifecycle policies must accommodate the larger key sizes of lattice-based schemes. Certificate lifecycle management, as described in section 13.6, must accommodate algorithm transitions: internal PKI must issue certificates with PQC signature algorithms, and the certificate inventory must track which algorithms protect which services. Sovereign zones with the longest data retention requirements — financial records under MiFID II, health records under national regulations, classified material under government security frameworks — should prioritise PQC adoption first, because the data they protect today must remain confidential for the longest period into the quantum future.
+
+Cryptographic agility must be a first-class architectural requirement. Every new system deployed in a sovereign zone should abstract its cryptographic operations behind interfaces that allow algorithm substitution without service redesign. The cryptographic inventory should sit alongside the infrastructure inventory in the configuration management database, and policy-as-code checks should enforce that no new deployment introduces hard-coded algorithm dependencies. Confidential computing should be the default for the most sensitive data classifications, with TEE-based processing mandated by sovereign zone policy for workloads handling data whose compromise would have the gravest consequences.
+
+***
+
 ## Key Takeaways
 
 - Identity has replaced the network perimeter as the primary control boundary in multi-cloud operations. Zero trust architecture principles, as codified in NIST SP 800-207 and the CISA Zero Trust Maturity Model, require that every actor — human and machine — presents a verified identity before access is granted, regardless of network location.
@@ -155,6 +193,10 @@ The connection back to Chapter 11's treatment of IaC is not merely structural. T
 - Certificate lifecycle management must be automated end to end. cert-manager for Kubernetes environments, Vault PKI for internal mTLS, and IBM Certificate Manager for IBM Cloud workloads eliminate manual certificate tracking and the operational risk of certificate expiry. Internal PKI is required for the cryptographic trust infrastructure of regulated services in sovereign zones.
 
 - Identity policy must be encoded as infrastructure: IAM roles, Vault policies, federation configurations and cert-manager issuers managed in Git, reviewed through pull requests, and enforced by Open Policy Agent at CI time. GitOps for identity subjects access policy changes to the same review and audit discipline as application and infrastructure changes.
+
+- Post-quantum cryptography is an immediate architectural concern, not a future one. The "harvest now, decrypt later" threat means that data encrypted today with classical algorithms is already at risk for adversaries with long time horizons. Sovereign zones must adopt the NIST post-quantum standards (ML-KEM, ML-DSA, SLH-DSA), implement cryptographic agility so that algorithms can be swapped without system redesign, and maintain a cryptographic inventory that tracks algorithm usage across the estate. Hybrid classical-PQC key exchange should be the default for new deployments during the transition period.
+
+- Confidential computing closes the data-in-use gap that classical encryption leaves open. Hardware-based trusted execution environments — Intel SGX, AMD SEV-SNP, IBM Hyper Protect — ensure that even the cloud provider's own operators cannot access data during processing, a property essential for the most sensitive sovereign workloads. Homomorphic encryption offers a longer-term path to cross-zone analytics on data that must never leave its sovereign zone in plaintext.
 
 ***
 
@@ -215,3 +257,17 @@ Chapter 14 turns to IBM Concert, the platform that sits at the centre of this bo
 [22] European Parliament and Council of the European Union, "Regulation (EU) 2024/1183 amending Regulation (EU) No 910/2014 as regards establishing the European Digital Identity Framework (eIDAS 2.0)," *Official Journal of the European Union*, vol. L, Apr. 2024. [Online]. Available: https://eur-lex.europa.eu/eli/reg/2024/1183
 
 [23] PCI Security Standards Council, "Payment Card Industry Data Security Standard (PCI DSS), Version 4.0," PCI SSC, Wakefield, MA, USA, Mar. 2022. [Online]. Available: https://www.pcisecuritystandards.org/document_library/
+
+[24] National Security Agency, "Announcing the Commercial National Security Algorithm Suite 2.0," NSA Cybersecurity Advisory, Washington, DC, Sep. 2022. [Online]. Available: https://media.defense.gov/2022/Sep/07/2003071834/-1/-1/0/CSA_CNSA_2.0_ALGORITHMS_.PDF
+
+[25] National Institute of Standards and Technology, "Post-Quantum Cryptography: FIPS 203 (ML-KEM), FIPS 204 (ML-DSA), FIPS 205 (SLH-DSA)," U.S. Department of Commerce, Gaithersburg, MD, Aug. 2024. [Online]. Available: https://csrc.nist.gov/projects/post-quantum-cryptography
+
+[26] R. Avanzi, J. Bos, L. Ducas, E. Kiltz, T. Lepoint, V. Lyubashevsky, J. M. Schanck, P. Schwabe, G. Seiler, and D. Stehlé, "CRYSTALS-Kyber: Algorithm Specifications and Supporting Documentation," NIST PQC Round 3 Submission, 2021. [Online]. Available: https://pq-crystals.org/kyber/
+
+[27] Intel Corporation, "Intel Software Guard Extensions (Intel SGX) Developer Guide," Intel, Santa Clara, CA. [Online]. Available: https://www.intel.com/content/www/us/en/developer/tools/software-guard-extensions/overview.html
+
+[28] Advanced Micro Devices, "AMD SEV-SNP: Strengthening VM Isolation with Integrity Protection and More," AMD White Paper, Santa Clara, CA, Jan. 2020. [Online]. Available: https://www.amd.com/en/developer/sev.html
+
+[29] IBM, "IBM Hyper Protect Virtual Servers and Hyper Protect Crypto Services," IBM Corporation. [Online]. Available: https://www.ibm.com/products/hyper-protect-virtual-servers
+
+[30] S. Halevi and V. Shoup, "HElib — An Implementation of Homomorphic Encryption," IBM Research. [Online]. Available: https://github.com/homenc/HElib
