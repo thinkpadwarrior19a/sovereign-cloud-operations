@@ -1,4 +1,4 @@
-Chapter 6 — Zero‑Copy Integration as Operational Substrate
+# Chapter 6 — Zero‑Copy Integration as Operational Substrate
 
 ***
 

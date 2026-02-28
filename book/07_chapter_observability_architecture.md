@@ -1,4 +1,4 @@
-Chapter 7 — Sovereign‑Aware Observability Architecture
+# Chapter 7 — Sovereign‑Aware Observability Architecture
 
 ***
 

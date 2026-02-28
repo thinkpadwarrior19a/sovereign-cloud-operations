@@ -1,7 +1,3 @@
-Here is a full narrative draft of Chapter 5, with numbered references at the end.
-
-***
-
 # Chapter 5 — Multi‑Cloud Topology, Network, and Sovereign Zones
 
 ***

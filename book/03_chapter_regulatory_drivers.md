@@ -1,7 +1,3 @@
-Below is a fuller treatment of Chapter 3 in the same narrative style, expanding each section and adding more connective tissue and examples. You can paste this over your existing `01_chapter_...` file for Chapter 3 (or merge as needed).
-
-***
-
 # Chapter 3 — Regulatory Drivers and Operational Governance
 
 ***

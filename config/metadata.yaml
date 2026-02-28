@@ -5,7 +5,7 @@ author: "Alan Hamilton"
 date: \today
 toc: true
 toc-depth: 2
-numbersections: true
+numbersections: false
 documentclass: book
 papersize: a4
 fontsize: 11pt

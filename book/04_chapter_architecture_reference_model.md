@@ -1,7 +1,3 @@
-Below is a complete draft of Chapter 4 in the narrative style you’ve used so far, with numbered footnote‑style references at the end.
-
-***
-
 # Chapter 4 — An Architectural Reference Model for Sovereign Cloud Operations
 
 ***
