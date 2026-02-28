@@ -4,9 +4,9 @@
 
 ## 10.1 From point‑in‑time audits to continuous assurance
 
-For years, many organisations treated compliance as a sequence of projects and check‑ups. A regulation would arrive, a programme would be launched, controls and documents would be produced, and auditors would review a snapshot of evidence. Between those moments, operations were assumed to be “close enough” if no major incident occurred.
+For years, many organisations treated compliance as a sequence of projects and check‑ups. A regulation would arrive, a programme would be launched, controls and documents would be produced, and auditors would review a snapshot of evidence. Between those moments, operations were assumed to be "close enough" if no major incident occurred.
 
-Modern practice in regulated, cloud‑native environments has moved beyond that model. Continuous compliance automation is increasingly seen as a DevOps concern: policies are embedded into pipelines, and compliance checks run alongside tests and security scans, rather than being applied only at release time. Guidance on continuous software compliance stresses that every stage of development and deployment must meet relevant standards, not just the final production state. [jupiterone](https://www.jupiterone.com/glossary-topics/devops-continuous-compliance-automation)
+Modern practice in regulated, cloud‑native environments has moved beyond that model. The NIST Cybersecurity Framework 2.0 [1] codifies this shift explicitly: its "Govern" function positions continuous monitoring and improvement as properties of the operating organisation, not merely achievements of a compliance project. Similarly, ISO/IEC 27001:2022 [2] frames information security as a management system—implying ongoing measurement, review, and improvement—rather than as a collection of point‑in‑time controls to be certified and forgotten. Continuous compliance automation is increasingly understood as a DevSecOps concern: policies are embedded into pipelines, and compliance checks run alongside tests and security scans, rather than being applied only at release time.
 
 In a sovereign, agentic operations architecture, compliance is therefore understood as a **continuous operational property**, not a periodic achievement. The organisation must be able to observe how it is behaving right now, evaluate that behaviour against its policies and obligations, and demonstrate over time that deviations are detected and handled.
 
@@ -14,83 +14,139 @@ In a sovereign, agentic operations architecture, compliance is therefore underst
 
 ## 10.2 What continuous compliance means in operations
 
-“Continuous compliance” is often invoked but rarely defined precisely. In operational terms, it means that at almost any time you can answer, with evidence:
+"Continuous compliance" is often invoked but rarely defined precisely. For senior technical architects, a working definition must be operational: it means that at almost any point in time you can answer, with evidence, three questions. First, whether current configurations, deployments and data flows are consistent with your policies and regulatory requirements. Second, how quickly you detect and respond when reality diverges from those policies. Third, how you can prove that this feedback loop exists and has been working consistently over a period of months or years.
 
-- Whether current configurations, deployments and data flows are consistent with your policies and regulatory requirements.  
-- How quickly you detect and respond when reality diverges from those policies.  
-- How you can prove that this feedback loop exists and has been working over a period of months or years. [devops](https://devops.com/continuous-compliance-for-cloud-native-ci-cd-pipelines/)
+Those three questions already reveal the inadequacy of the periodic audit model. A point‑in‑time audit can, at best, answer the first question for a single moment. It says nothing reliable about the second or third. In dynamic cloud estates—where infrastructure is provisioned and de‑provisioned by code, workloads migrate across zones, and access credentials rotate automatically—the gap between the moment of audit and the state of the system can be measured in hours, not months. NIST SP 800‑53 Rev. 5 [3] acknowledges this directly: its CA‑7 control, "Continuous Monitoring," requires organisations to develop a strategy that assesses controls on an ongoing basis, rather than relying solely on periodic assessments. The frequency and automation of monitoring are themselves compliance requirements, not optional enhancements.
 
-Continuous compliance does not mean that regulators are watching your systems in real time. It means that **you** are capable of watching your own environment in real time, or near real time, through:
+### The compliance‑as‑code paradigm
 
-- Executable policies that systems can evaluate.  
-- Telemetry that reflects control states and deviations.  
-- Automated and human workflows that respond to those deviations.  
-- Audit trails that show what happened and why.
+The phrase "compliance as code" expresses a straightforward insight: if your policies and controls can be expressed in machine‑readable form and evaluated automatically, then compliance assessment becomes a computational activity that can run continuously, at the speed of your deployment pipelines, rather than a human activity that runs once a year. The policy‑as‑code tools discussed in section 10.4 are the implementation layer for this idea, but the conceptual shift matters independently of the tools. It repositions the policy document from a normative artefact—something that describes what should happen—to a specification artefact—something that the system can evaluate and enforce. The CIS Benchmarks [4], for example, are increasingly distributed not only as PDF guidance but as machine‑readable profiles compatible with tools like InSpec and OpenSCAP, precisely so that benchmark assessment can be automated and embedded into operations rather than being a scheduled manual exercise.
 
-This perspective aligns with DevSecOps thinking, which reframes compliance from a gate at the end of a process to a set of practices woven throughout the software lifecycle. [cloudbees](https://www.cloudbees.com/blog/devsecops-continuous-compliance)
+### Continuous compliance and DevSecOps
+
+Continuous compliance intersects with DevSecOps at a fundamental architectural level. DevSecOps, as a movement, rejects the model in which security and compliance are gates applied at the end of the software delivery lifecycle. Instead, it embeds security controls into every stage: from developer workstations and integrated development environment (IDE) extensions, through pull request review, pipeline execution, pre‑production testing, and runtime monitoring [5]. Compliance, in this framing, is not a separate discipline that happens after security; it is a dimension of security that applies to regulatory obligations in the same way that other security controls apply to technical threats.
+
+In practice, this means that a developer submitting a Terraform module that violates a data residency policy should receive the same kind of fast, specific feedback that a developer submitting code with a known vulnerability currently receives from a static analysis tool. The compliance violation must be surfaced at the point of change, not three months later when an auditor reviews a snapshot. DORA [6], for financial entities, makes this operational: its requirement that ICT risk management frameworks be continuously reviewed and updated implies that the tools detecting risk must run continuously, not periodically. ISO/IEC 27001:2022 [2], in its Annex A control A.8.8 on management of technical vulnerabilities, similarly expects that the identification of vulnerabilities and the application of mitigations be an ongoing process, not a scheduled campaign.
+
+### Evidence‑by‑default: designing for automatic audit evidence
+
+Perhaps the most architecturally significant implication of continuous compliance is the principle of evidence‑by‑default. Rather than designing systems to perform their functions and then adding compliance instrumentation as an afterthought, the architect should ask: what evidence would an auditor need to demonstrate that this control exists, operates, and is effective, and how can the normal operation of this system produce that evidence automatically?
+
+This is a design question, not an operational one. It must be answered at system design time, when choices about logging verbosity, event structures, audit trail schemas, and data retention periods are still open. A system designed with evidence‑by‑default will, as a natural consequence of its operation, produce structured records showing that authentication was enforced, that data flows respected zone boundaries, that change management was followed, and that deviations were detected and resolved. A system designed without this in mind will produce evidence only when someone manually collects it—a process that is slow, error‑prone, and unlikely to produce the coverage an auditor needs.
+
+### The role of the Governance and Audit Plane
+
+The Governance and Audit Plane, described as the fourth plane of the reference architecture in Chapter 4, is the architectural home of continuous compliance. It is the plane in which policies are expressed, evaluated, and enforced; in which compliance signals are aggregated and assessed; and in which evidence is captured, retained, and made available for review. IBM Concert [7] contributes to this plane through its resilience posture and dependency mapping capabilities, which provide the cross‑estate view that continuous compliance monitoring requires. IBM OpenPages [8] functions as the governance, risk, and compliance management layer—the system of record for policies, controls, risks, and audit findings—that sits above the technical monitoring infrastructure and provides the structured, auditable record that regulators and internal assurance functions expect to see.
 
 ***
 
 ## 10.3 The compliance signal fabric
 
-To monitor compliance continuously, you need a **signal fabric**: a network of telemetry and events that represents the state of controls across your estate.
+To monitor compliance continuously, you need a **signal fabric**: a network of telemetry and events that represents the state of controls across your estate. The signal fabric is not a single tool or a single data stream; it is the aggregate of all sources that can tell you whether your controls are in the state they should be. Understanding what kinds of signals are needed, and where they come from, is a prerequisite for designing effective continuous compliance monitoring.
 
-Some signals come from **infrastructure and cloud platforms**:
+### Configuration signals: detecting drift from declared state
 
-- Inventory and configuration data showing which regions, instance types and services are in use.  
-- IAM logs showing who created, modified or deleted resources, and from where.  
-- Network telemetry indicating which paths are used for traffic involving regulated data.
+The most fundamental compliance signal is configuration state. For any given resource—a virtual machine, a network security group, a storage bucket, a Kubernetes cluster, a database instance—there is a declared state (what policy says the configuration should be) and an actual state (what the resource's configuration actually is at a given moment). The gap between the two is drift, and drift is one of the most common root causes of compliance failures in cloud environments.
 
-Some come from **applications and data systems**:
+Configuration signals come from cloud provider APIs, infrastructure management tools such as Terraform state files, and configuration management systems. When queried or polled, these sources reveal the current settings for resources across the estate. The Centre for Internet Security Benchmarks [4] define precise configuration baselines for a wide range of cloud platforms, operating systems, databases, and middleware—in each case specifying the exact settings that constitute a hardened, compliant baseline. A continuous compliance monitoring system compares current configuration against these baselines and raises an alert when any resource drifts outside the acceptable envelope.
 
-- Data classification and catalogues indicating where particular data classes live.  
-- Data observability alerts detecting anomalies in freshness, volume or schema. [secoda](https://www.secoda.co/blog/data-lineage-vs-data-observability)
-- Application audit logs capturing sensitive business actions.
+In a sovereign multi‑cloud estate, configuration signals must be collected with zone awareness. The configuration of a resource in a European sovereign zone must be evaluated against the policies applicable to that zone—which may differ from the policies applicable to a zone in another jurisdiction. IBM Concert [7] is designed to ingest configuration signals from multiple cloud environments and aggregate them into a unified compliance posture view, while preserving the zone‑level context needed to evaluate zone‑specific obligations.
 
-Others come from **security and AI governance**:
+### Access signals: IAM policy changes, privilege escalations, and authentication failures
 
-- Alerts from security controls and monitoring systems.  
-- Model and agent telemetry showing usage, overrides, and policy check results.
+Access signals cover everything that relates to who is permitted to do what and whether that permission has been used, misused, or changed. They are among the most compliance‑critical signals in regulated environments, because most regulatory frameworks include explicit requirements around access control, least privilege, and the review of privileged access. NIST SP 800‑53 Rev. 5 [3] dedicates an entire control family—AC, Access Control—to these requirements, with controls covering account management (AC‑2), least privilege (AC‑6), separation of duties (AC‑5), and unsuccessful login attempts (AC‑7).
 
-Continuous compliance automation guidance emphasises that these signals should be aggregated and normalised so that compliance status can be evaluated automatically, rather than relying on manual log review or spreadsheet inventories. [nimbusstack](https://nimbusstack.com/implementing-continuous-compliance-in-devops-pipelines/)
+Practically, access signals include: changes to IAM policies, roles, and group memberships; elevations of privilege (for example, a user being temporarily added to an administrative role); authentication events, including failures and anomalous patterns such as authentication from unexpected geographic locations or at unusual times; and the creation, rotation, and deletion of credentials including API keys, service account tokens, and certificates. In a sovereign operations architecture, access signals must also capture cross‑zone access: cases where an identity in one zone authenticates to a resource in another zone, which may require additional scrutiny and evidence under the applicable regulatory framework.
 
-In a sovereign context, the signal fabric must be **zone‑aware**. Signals from a sovereign zone may need to stay within that zone; central views may be limited to aggregates or derived indicators to avoid violating data residency or confidentiality constraints. [asterdocs](https://asterdocs.com/blog/streamline-compliance-audits-data-lineage-guide/)
+### Network signals: traffic crossing prohibited zone boundaries
+
+Network signals reveal the actual paths that data takes through the estate. In a sovereign multi‑cloud environment, the most compliance‑critical network signals are those that reveal traffic crossing zone boundaries—in particular, traffic that carries regulated data across jurisdictional lines where such crossing is restricted or prohibited. GDPR [9] Article 44 establishes that transfers of personal data to third countries require a legal basis and appropriate safeguards; network‑level signals are the means by which operational teams can verify that data is not being transferred in violation of these requirements.
+
+Network signals come from cloud provider flow logs (VPC Flow Logs in AWS, NSG flow logs in Azure, VPC flow logs in GCP), network observability tools such as those discussed in Chapter 8, and east‑west traffic monitoring in service meshes. They reveal which endpoints communicate, across which network paths, and at what volumes. Combined with data classification metadata, network signals can identify traffic involving regulated data classes and flag cases where that traffic crosses boundaries that policy does not permit.
+
+### Change signals: deployments and configuration updates as compliance events
+
+Every deployment, every configuration change, and every infrastructure modification is a potential compliance event. Change signals capture these events in a way that connects them to the compliance control framework. A new workload being deployed to a cluster in a sovereign zone is an event that requires verification: Is the image from an approved registry? Does the workload's network policy permit only the connections that the application requires? Has the deployment been approved through the required change management process?
+
+In GitOps models, Git commit history and pull request records provide a rich source of change signals: they record what changed, who proposed it, who approved it, when it was applied, and what the previous state was. CI/CD pipeline records add information about which tests and compliance checks were run and what their results were. Together, these signals constitute a chain of evidence for each change, supporting both operational investigation and regulatory audit.
+
+### How Concert aggregates signals into a compliance posture dashboard
+
+IBM Concert [7] aggregates these four signal types—configuration, access, network, and change—into a continuously updated compliance posture view. Rather than presenting raw signals in isolation, Concert correlates them against the dependency topology of the estate, so that a configuration drift event on a particular database instance can be immediately understood in the context of which business services depend on that instance and which regulatory obligations apply to the data it holds. This contextualisation is essential for prioritisation: not all compliance signals are equally significant, and a system that treats every signal as equally urgent will generate alert fatigue that undermines the value of continuous monitoring.
+
+Concert's compliance posture dashboard surfaces the aggregate compliance state across the estate, highlighting areas of elevated risk, tracking the history of compliance signals over time, and feeding into IBM OpenPages [8] as the system of record for compliance findings and remediation actions.
+
+> **[FIGURE 10.1 — The compliance signal fabric: configuration, access, network and change signals flowing to the Governance Plane]**
+>
+> A flow diagram showing four signal sources — cloud configuration APIs, IAM event streams, network flow logs, and CI/CD change records — converging through the OpenTelemetry Collector and Concert ingestion layer into the Governance and Audit Plane, where IBM Concert aggregates them into a compliance posture view and IBM OpenPages records control findings and remediation status.
 
 ***
 
 ## 10.4 Policy‑as‑code as the foundation
 
-The bridge between abstract obligations and actionable control is **policy‑as‑code**. Without it, compliance remains mostly a matter of documents and good intentions.
+The bridge between abstract obligations and actionable control is **policy‑as‑code**. Without it, compliance remains mostly a matter of documents and good intentions. Policy‑as‑code is the practice of expressing rules—about configuration, security, deployments, data usage—in machine‑readable form, versioned alongside the systems they govern. Instead of a document saying "production workloads must not run in region X," a policy engine sees a rule that rejects or flags any resource created in region X with a production tag [10].
 
-Policy‑as‑code is the practice of expressing rules—about configuration, security, deployments, data usage—in machine‑readable form, versioned alongside the systems they govern. Instead of a document saying “production workloads must not run in region X,” a policy engine sees a rule that rejects or flags any resource created in region X with a production tag. [puppet](https://www.puppet.com/resources/accelerating-continuous-compliance)
+The policy‑as‑code ecosystem has matured significantly. Several tools have established themselves as foundational infrastructure for continuous compliance in cloud‑native environments, each addressing a different layer of the enforcement stack.
 
-Practitioners highlight several benefits of policy‑as‑code for continuous compliance:
+### OPA and Rego: the policy language and evaluation model
 
-- **Automation**: Policies can be enforced automatically at scale, without relying on human reviewers to catch every violation. [trendmicro](https://www.trendmicro.com/en_gb/research/23/c/policy-as-code-vs-compliance-as-code.html)
-- **Shift‑left**: Policies can be applied early in pipelines, preventing non‑compliant changes from ever reaching production. [devops](https://devops.com/continuous-compliance-for-cloud-native-ci-cd-pipelines/)
-- **Versioning and auditability**: Changes to policies are tracked, making it easier to see when new rules were introduced or updated. [puppet](https://www.puppet.com/resources/accelerating-continuous-compliance)
+The Open Policy Agent (OPA) [10], a graduated project of the Cloud Native Computing Foundation (CNCF), has emerged as the de facto standard for policy‑as‑code in cloud‑native environments. OPA is a general‑purpose policy engine: it takes data—describing the state of a resource, an API request, or a proposed change—and evaluates it against policies written in Rego, OPA's purpose‑built declarative policy language. The evaluation model is straightforward: Rego policies define a set of rules; OPA evaluates the input data against those rules and produces a decision, typically a boolean allow or deny, along with a structured set of reasons. The decision can be consumed by any system that queries the OPA API—a Kubernetes admission controller, a Terraform runner, an API gateway, or a bespoke authorisation service.
 
-In practice, infrastructure policies are embedded into Terraform modules, Kubernetes manifests and GitOps repositories; deployment pipelines and admission controllers evaluate these rules automatically. Operational policies become guardrails in orchestration and agent workflows: before an action is executed, code checks whether it is permitted. AI policies are implemented in model registries, gateways and governance services that validate requests against rules governing data access and model usage.
+Rego is a logic‑based language designed specifically for expressing access control and configuration rules. Its evaluation model is top‑down and backchaining: given a query ("is this request allowed?"), OPA searches backwards through the rules to find all the ways in which the query could be satisfied. This makes Rego well suited to expressing complex, multi‑condition compliance rules—"a workload may be deployed in zone A only if it carries the data classification label 'non‑personal', or if the deployment has been explicitly approved by a named authoriser"—in a way that is both machine‑evaluable and human‑readable. OPA's documentation [10] provides extensive guidance on writing testable Rego policies, and its support for policy unit testing is a material advantage: policies can be tested like application code, with test cases that verify that the policy produces the correct decision for a range of inputs.
 
-A policy‑as‑code approach, particularly when coupled with continuous monitoring, is often described as turning compliance from a manual, reactive activity into a proactive, model‑driven one. [hoop](https://hoop.dev/blog/continuous-compliance-monitoring-policy-as-code-real-time-automated-risk-prevention/)
+### Kubernetes admission control via OPA Gatekeeper
+
+OPA Gatekeeper [10] is the integration point between OPA and Kubernetes, implementing the Kubernetes admission control webhook interface. When a resource is submitted to the Kubernetes API server—a Pod, a Deployment, a ConfigMap, a NetworkPolicy—Gatekeeper intercepts the request and evaluates it against the configured OPA policies before it is admitted to the cluster. If the resource violates a policy, Gatekeeper rejects the admission request and returns a clear error message explaining which rule was violated and why. If the resource is compliant, admission proceeds normally.
+
+Gatekeeper introduces two Kubernetes‑native abstractions. The ConstraintTemplate defines the schema of a policy rule—what data it examines and what decision it produces. The Constraint is an instance of a ConstraintTemplate applied to a specific scope—a namespace, a cluster, or a set of resources—with specific parameter values. This separation allows organisations to build a library of reusable policy templates—"images must come from approved registries," "pods must have resource limits," "workloads must carry a data‑classification label"—and then instantiate them with jurisdiction‑specific parameters in each sovereign zone. The Constraint objects and ConstraintTemplates are themselves Kubernetes resources, stored in Git alongside the workloads they govern, and subject to the same GitOps review and approval processes.
+
+In a sovereign operations context, Gatekeeper enforces the runtime dimension of sovereign zone policy: no matter what a developer declares in their workload specification, Gatekeeper can ensure that what is actually admitted to a zone cluster is consistent with the obligations that apply to that zone. NIST SP 800‑53 Rev. 5 [3] control CM‑7 ("Least Functionality") and SI‑3 ("Malicious Code Protection") both benefit directly from admission control that prevents non‑compliant workloads from ever running.
+
+### Conftest: validating Terraform plans, Kubernetes manifests, and Dockerfiles
+
+While Gatekeeper enforces policies at admission time—after a change has reached the cluster—Conftest [10] moves enforcement earlier in the pipeline, to the point at which infrastructure configurations and application manifests are being authored and reviewed. Conftest is a command‑line tool that evaluates structured configuration files—Terraform HCL plans, Kubernetes YAML manifests, Dockerfiles, Helm chart values—against OPA policies. It can be invoked as a step in a CI/CD pipeline, as a Git pre‑commit hook, or as part of a pull request review automation.
+
+The practical value of Conftest is shift‑left enforcement: a developer running `conftest test` against their Terraform plan before opening a pull request receives immediate feedback if their plan would create a resource in a prohibited region, expose a storage bucket publicly, or omit required tags for cost allocation and data classification. This is compliance feedback at the moment it is most actionable—before the change has been reviewed, merged, or applied—rather than at the moment it is most expensive to fix, which is after deployment.
+
+Conftest integrates naturally with the same Rego policy library used by Gatekeeper, allowing organisations to write policies once and evaluate them at multiple points in the software delivery lifecycle: at PR time via Conftest, at cluster admission via Gatekeeper, and at runtime via OPA policy queries from operational systems.
+
+### IBM OpenPages: risk and compliance management integration
+
+IBM OpenPages [8] provides the governance, risk, and compliance management layer that sits above the technical policy enforcement infrastructure. Where OPA, Gatekeeper, and Conftest are concerned with enforcing policies at the point of change, OpenPages is concerned with managing the full lifecycle of compliance obligations: recording the regulatory requirements that apply to the organisation, mapping those requirements to technical controls, tracking the status of those controls over time, recording audit findings, and managing remediation workflows.
+
+In a continuous compliance architecture, OpenPages functions as the system of record into which policy evaluation results, compliance signal summaries, and audit evidence are fed from the technical layer. Concert [7] sends compliance posture updates to OpenPages; Conftest and Gatekeeper violations are surfaced as control findings; and human review and remediation activities are tracked and evidenced within the OpenPages workflow. This integration means that the organisation's compliance management process is not a separate activity conducted in isolation from the technical systems that enforce policy—it is continuously informed by, and traceable back to, the technical evidence produced by those systems.
+
+### HashiCorp Sentinel: policy‑as‑code in the Terraform ecosystem
+
+For organisations using HashiCorp Terraform as their primary infrastructure provisioning tool, HashiCorp Sentinel [11] provides a complementary policy enforcement mechanism that operates within the Terraform Cloud and Terraform Enterprise workflow. Sentinel policies are evaluated at the plan stage of the Terraform lifecycle—after `terraform plan` has produced its proposed changes but before `terraform apply` executes them. This positioning is significant: it allows Sentinel to inspect the full set of proposed infrastructure changes and block any that violate policy, without interrupting the development workflow at the authoring stage.
+
+Sentinel supports three enforcement levels: advisory, soft‑mandatory, and hard‑mandatory. Advisory policies produce warnings but do not block; soft‑mandatory policies block unless an authorised user overrides them, with the override being recorded; hard‑mandatory policies block unconditionally and cannot be overridden in the UI. This three‑level model maps naturally to the risk appetite model of most regulated organisations: some policy violations are noteworthy but acceptable in specific contexts (advisory); others require explicit authorisation to proceed (soft‑mandatory); and others represent absolute prohibitions—such as deploying into a jurisdictionally prohibited region—that admit no override (hard‑mandatory).
+
+### Shift‑left compliance: catching violations at PR review time
+
+The aggregation of OPA/Conftest, Gatekeeper, and Sentinel creates a layered enforcement model whose defining characteristic is that the earliest point of enforcement is the most actionable. When a developer opens a pull request, automated checks can run Conftest against every Terraform file and Kubernetes manifest in the change, post the results as pull request comments, and block merging if hard‑mandatory policies are violated. When the pull request is merged and the CI/CD pipeline runs, Sentinel can evaluate the Terraform plan against the same policies. When the resulting change reaches a Kubernetes cluster, Gatekeeper enforces the policies at admission. At each stage, feedback is specific, actionable, and attributable to a named change in version control.
+
+This layered approach reflects a principle that NIST SP 800‑53 Rev. 5 [3] encodes in its concept of defence in depth: no single control is assumed to be perfect, so controls are layered so that a failure at one layer is caught by the next. Applied to compliance, this means that a policy violation that slips past Conftest at PR time is still caught by Sentinel at plan time, and a misconfiguration that somehow passes both is rejected by Gatekeeper at admission time. The probability of a policy‑violating change reaching production undetected is, in a well‑configured layered system, very low.
+
+> **[FIGURE 10.2 — Policy‑as‑code enforcement points: from PR review through deployment to runtime admission control]**
+>
+> A pipeline diagram showing five enforcement stages — developer IDE linting, Conftest at pull request review, HashiCorp Sentinel at Terraform plan, OPA Gatekeeper at Kubernetes admission, and runtime OPA sidecar policy evaluation — with each stage connected by arrows representing the flow of a change from authoring to production, and rejection arrows showing where non‑compliant changes are stopped.
 
 ***
 
 ## 10.5 Embedding checks in pipelines and change flows
 
-Continuous compliance becomes tangible when checks are embedded **where change actually happens**: in CI/CD pipelines, Git workflows, infrastructure reconciliation loops and operational runbooks.
+Continuous compliance becomes tangible when checks are embedded **where change actually happens**: in CI/CD pipelines, Git workflows, infrastructure reconciliation loops and operational runbooks. The logical extension of the policy‑as‑code foundation described in section 10.4 is that every point at which a change is proposed, reviewed, merged, planned, or applied becomes a compliance enforcement point. This is not merely an automation efficiency; it is an architectural commitment to treating compliance as an intrinsic property of the delivery system, not an extrinsic check bolted on at the end.
 
-Guidance on continuous compliance for cloud‑native pipelines is consistent on this point:
+Guidance on continuous compliance for cloud‑native pipelines is consistent on this point. Pipelines should include automated checks for security and compliance, such as scanning infrastructure as code for misconfigurations, validating Kubernetes manifests against policies, and ensuring dependencies meet standards [12]. Failed checks should block or at least flag builds, with clear feedback to developers and operators about what needs to change. Exceptions should be explicit and auditable, with short lifetimes and clear ownership [5]. The CNCF Cloud Native Security Whitepaper [12] is emphatic that security and compliance controls must be applied at every phase of the supply chain: from the source code and build environment through the distribution mechanism to the runtime environment itself. In regulated organisations, this principle translates directly into a regulatory obligation: DORA [6] Article 6 requires that the ICT risk management framework be embedded into the organisation's overall risk management approach and reviewed after every major change to the ICT environment. A pipeline that automatically re‑evaluates compliance posture on every change is the operational implementation of that requirement.
 
-- Pipelines should include automated checks for security and compliance, such as scanning IaC for misconfigurations, validating Kubernetes manifests against policies, and ensuring dependencies meet standards. [nimbusstack](https://nimbusstack.com/implementing-continuous-compliance-in-devops-pipelines/)
-- Failed checks should block or at least flag builds, with clear feedback to developers and operators about what needs to change. [devops](https://devops.com/continuous-compliance-for-cloud-native-ci-cd-pipelines/)
-- Exceptions should be explicit and auditable, with short lifetimes and clear ownership. [cloudbees](https://www.cloudbees.com/blog/devsecops-continuous-compliance)
+In GitOps models, reconciliation loops compare desired and actual states; when drift occurs, the system can either converge back to the declared state or raise an alert. If the declared state itself violates policy, admission gates can reject it before it is applied. ISO/IEC 27001:2022 [2] Annex A control A.8.9 ("Configuration management") reflects exactly this expectation: configurations of hardware, software, services, and networks must be established, documented, implemented, monitored, and reviewed. The GitOps model satisfies this requirement not by adding a monitoring layer on top of operations but by making continuous comparison between declared and actual state part of the operating mechanism itself. ArgoCD, Flux, and Red Hat OpenShift GitOps all provide this capability; the sovereign‑aware complement is ensuring that reconciliation scopes are bounded to sovereign zone boundaries, so that a GitOps pipeline for a European sovereign zone cannot, by misconfiguration, apply changes to clusters in a different jurisdiction.
 
-In GitOps models, reconciliation loops compare desired and actual states; when drift occurs, the system can either converge back to the declared state or raise an alert. If the declared state itself violates policy, admission gates can reject it before it is applied.
+The handling of exceptions deserves particular attention. No compliance architecture can eliminate exceptions: novel situations arise, legacy systems resist full automation, and justified business decisions sometimes require accepting a policy violation temporarily. The question is not whether exceptions will occur but how they will be managed. A mature pipeline‑embedded compliance architecture treats exceptions as first‑class workflow objects: each exception carries an identifier, an authoriser, an expiry date, a scope (which policy, which resource, which environment), and a mitigation description. Exceptions are stored in version control alongside the policies they override, making them visible to reviewers, auditable by assessors, and automatically expirable by the pipeline. This "exception as code" approach is the complement to policy as code: it acknowledges the reality of operational complexity while preserving the auditability that continuous compliance requires. NIST SP 800‑53 Rev. 5 [3] control CA‑6 ("Plan of Action and Milestones") establishes exactly this expectation at the organisational level: documented, tracked, and reviewed plans for remediating control weaknesses.
 
-For agentic operations, this embedding translates into **policy‑aware workflows**. An agent that proposes a remediation—such as scaling a service, opening a firewall rule, or migrating a workload—must consult policy services before acting. If the action would breach a rule, the agent can either adjust its plan, ask for human approval or stop. Systems that combine policy‑as‑code with runtime automation describe this as real‑time, automated risk prevention: policies are evaluated at decision time, not only at code review. [sentinelone](https://www.sentinelone.com/cybersecurity-101/cloud-security/policy-as-code/)
+For agentic operations, embedding compliance in pipelines and change flows translates into **policy‑aware workflows**. An agent that proposes a remediation—such as scaling a service, opening a firewall rule, or migrating a workload—must consult policy services before acting. If the action would breach a rule, the agent can either adjust its plan, ask for human approval, or stop. Systems that combine policy‑as‑code with runtime automation provide real‑time, automated risk prevention: policies are evaluated at decision time, not only at code review [10]. This is particularly important in a sovereign operations context where an agent acting autonomously in response to an incident could, without policy guardrails, take an action that violates data residency or access control requirements in the course of attempting to restore service. The policy consultation step is not a performance tax; it is the mechanism that makes bounded autonomy safe enough to extend to real operational decisions.
 
-The aim is to make the compliant path the **default** path. Normal engineering and operations workflows should naturally apply the right checks; only in exceptional cases should people need to step outside of those flows, in ways that are themselves recorded.
+The aim is to make the compliant path the **default** path. Normal engineering and operations workflows should naturally apply the right checks; only in exceptional cases should people need to step outside of those flows, in ways that are themselves recorded. Regulators, when examining an organisation's continuous compliance posture, are increasingly asking not only "what are your policies?" but "how are those policies enforced in practice, and what would it take for a non‑compliant action to go undetected?" A well‑designed pipeline‑embedded compliance architecture provides a compelling answer: non‑compliant changes are blocked at multiple independent enforcement points, exceptions are documented and time‑bounded, and every decision—including the decision to allow an exception—is recorded with attribution and rationale.
 
 ***
 
@@ -98,35 +154,25 @@ The aim is to make the compliant path the **default** path. Normal engineering a
 
 Continuous compliance is not only about infrastructure and code; it is also about **data**. Where data flows, how it is transformed and who depends on it are central questions for many regulations.
 
-Data lineage and data observability are increasingly recognised as essential tools here. Lineage maps show how data moves through pipelines, transformations and systems. Observability detects anomalies in data health—unexpected volume changes, missing data, schema drift. [atlan](https://atlan.com/data-lineage-and-data-observability/)
+Data lineage and data observability are increasingly recognised as essential tools here. Lineage maps show how data moves through pipelines, transformations and systems. Observability detects anomalies in data health—unexpected volume changes, missing data, schema drift [13]. GDPR [9] Article 30 requires controllers and processors to maintain records of processing activities, including a description of the categories of personal data processed and the recipients to whom data has been or will be disclosed. Data lineage is the technical mechanism that makes Article 30 compliance tractable in a dynamic, multi‑pipeline data environment: rather than manually cataloguing data flows, lineage systems discover and record them automatically.
 
-Practitioners argue that lineage is particularly important for regulatory compliance because it:
+Practitioners argue that lineage is particularly important for regulatory compliance because it reveals all places where regulated data is stored and processed; supports impact analysis when changes are proposed; and provides evidence for how data used in reports or AI models was produced [14]. DORA [6] Article 8 requires financial entities to identify and document all ICT assets and information assets and their dependencies; data lineage is the means by which the data dimension of that inventory is kept current.
 
-- Reveals all places where regulated data is stored and processed.  
-- Supports impact analysis when changes are proposed.  
-- Provides evidence for how data used in reports or AI models was produced. [collibra](https://www.collibra.com/blog/five-reasons-why-data-lineage-is-essential-for-regulatory-compliance)
-
-Data observability platforms that integrate lineage can automate much of this. When an anomaly is detected in a dataset, lineage can identify upstream sources and downstream consumers, allowing teams to triage impact quickly and notify affected stakeholders. Bix‑Tech, for example, describes using pipeline auditing and lineage to “trace every record” and prove compliance in the face of issues. AsterDocs highlights how lineage simplifies compliance audits by enabling targeted evidence collection for specific flows and systems. [bix-tech](https://bix-tech.com/data-pipeline-auditing-and-lineage-how-to-trace-every-record-prove-compliance-and-fix-issues-fast/)
-
-In sovereign operations, lineage can also be used to ensure that data does not cross prohibited boundaries. If lineage reveals that a new pipeline would route data through a non‑compliant region or service, policy‑as‑code can block the change or raise a compliance alert before deployment.
+Data observability platforms that integrate lineage can automate much of this. When an anomaly is detected in a dataset, lineage can identify upstream sources and downstream consumers, allowing teams to triage impact quickly and notify affected stakeholders. In sovereign operations, lineage can also be used to ensure that data does not cross prohibited boundaries. If lineage reveals that a new pipeline would route data through a non‑compliant region or service, policy‑as‑code can block the change or raise a compliance alert before deployment.
 
 ***
 
 ## 10.7 Making evidence a by‑product of good operations
 
-A central promise of continuous compliance automation is that **evidence generation becomes a by‑product of normal operations**, rather than an ad‑hoc scramble before audits. [chef](https://www.chef.io/whitepapers/buyers-guide-for-continuous-compliance-solutions-in-devops)
+A central promise of continuous compliance automation is that **evidence generation becomes a by‑product of normal operations**, rather than an ad‑hoc scramble before audits [15].
 
 When policies are code, check results and policy evaluations can be logged automatically. When pipelines enforce rules, build histories show which changes passed or failed which controls. When agents and automation consult policy before acting, those requests and responses form part of the audit trail. When lineage and data observability track flows and anomalies, they can produce reports showing how incidents were detected and resolved.
 
-Several vendors and practitioners explicitly frame this as turning every deployment and operational action into “an instant audit” for the relevant controls. Rather than manually assembling lists of changes, access logs and configuration snapshots, organisations can pull structured evidence from systems that already record what they do. [jupiterone](https://www.jupiterone.com/glossary-topics/devops-continuous-compliance-automation)
+Several vendors and practitioners explicitly frame this as turning every deployment and operational action into an audit record for the relevant controls. Rather than manually assembling lists of changes, access logs and configuration snapshots, organisations can pull structured evidence from systems that already record what they do [16].
 
-For this to work, evidence must be:
+For this to work, evidence must be structured—captured in forms that can be queried and aggregated, not only as free‑form text. It must be retained—stored for appropriate periods, balancing regulatory retention requirements with privacy and cost. And it must be scoped—filtered for relevance when responding to specific audit requests, so that reviewers see what matters without being overwhelmed.
 
-- **Structured**: captured in forms that can be queried and aggregated, not only as free‑form text.  
-- **Retained**: stored for appropriate periods, balancing regulatory retention requirements with privacy and cost.  
-- **Scoped**: filtered for relevance when responding to specific audit requests, so that reviewers see what matters without being overwhelmed.
-
-When done well, this approach reduces both the operational burden of audits and the risk of missing important facts. It also supports internal learning: by reviewing compliance evidence over time, organisations can see patterns in policy violations, weak controls or areas where guidance is unclear. [chef](https://www.chef.io/whitepapers/buyers-guide-for-continuous-compliance-solutions-in-devops)
+When done well, this approach reduces both the operational burden of audits and the risk of missing important facts. It also supports internal learning: by reviewing compliance evidence over time, organisations can see patterns in policy violations, weak controls or areas where guidance is unclear [15].
 
 ***
 
@@ -134,13 +180,106 @@ When done well, this approach reduces both the operational burden of audits and 
 
 At first glance, continuous compliance may sound like an additional burden on already stressed operations teams. In practice, when integrated well, it becomes part of **operational hygiene**—the set of practices that keep systems not only running, but running in the way the organisation intended.
 
-The architectural patterns in this book are designed to support that:
-
-- Zero‑copy integration and event‑driven design reduce uncontrolled data copies, making residency and lineage easier to manage.  
-- Sovereign‑aware observability surfaces where data and traffic actually go, not just where they were meant to go.  
-- Policy‑as‑code and agentic operations make it feasible to check and enforce rules at the speed of change.  
-- Data observability and lineage provide the context needed to tie technical incidents to regulatory impact.
+The architectural patterns in this book are designed to support that. Zero‑copy integration and event‑driven design reduce uncontrolled data copies, making residency and lineage easier to manage. Sovereign‑aware observability surfaces where data and traffic actually go, not just where they were meant to go. Policy‑as‑code and agentic operations make it feasible to check and enforce rules at the speed of change. Data observability and lineage provide the context needed to tie technical incidents to regulatory impact.
 
 In that sense, continuous compliance monitoring and audit are not a separate goal layered onto operations. They are a **natural consequence of operating well‑designed systems with well‑designed control planes**. When you can see your estate clearly, change it safely, and reason about its behaviour, many of the hardest compliance questions become easier.
 
-Later chapters will return to this theme in concrete blueprints and industry scenarios, showing how continuous compliance plays out in specific sectors. The underlying idea will remain the same: in sovereign cloud operations, compliance is not just something you prove once a year; it is something your systems **demonstrate, every day, by how they behave**.
+The NIST Cybersecurity Framework 2.0 [1] expresses this through its "Improve" function: organisations should use lessons learned from detections, responses, and recoveries to improve their cybersecurity posture continuously. Continuous compliance, in this framing, is not a separate track of work; it is the feedback loop that makes operational improvement measurable and demonstrable.
+
+***
+
+## 10.9 Generating audit evidence automatically
+
+### What auditors need
+
+An auditor examining a regulated organisation's compliance posture is looking for three things: evidence that a control exists, evidence that the control operates as intended, and evidence that the control is effective—that is, that it actually prevents or detects the risk it is designed to address. These three evidence types are sometimes called, in the audit profession, design adequacy, operating effectiveness, and impact evidence respectively.
+
+Evidence of control existence is the least demanding to generate automatically. If a policy is expressed in code and stored in version control, the version history is evidence that the policy exists and has been maintained. If Gatekeeper is deployed in a cluster with a given set of ConstraintTemplates, that deployment configuration is evidence that admission control exists. NIST SP 800‑53 Rev. 5 [3] formalises this in its CA‑2 ("Control Assessments") control family: assessors examine whether controls have been implemented, not merely described.
+
+Evidence of operating effectiveness is more demanding. It requires records showing that the control was actually applied to actual decisions over a defined period. For a policy‑as‑code framework, this means logs of policy evaluations: records showing that on a given date and time, a given change request was evaluated against a given policy, and that the evaluation produced a specific decision. Gatekeeper admission logs, Sentinel policy run results, OPA decision logs, and Conftest CI/CD pipeline results all contribute to this evidence layer. For access controls, IAM audit logs showing the authentication and authorisation decisions made over the audit period serve the same purpose.
+
+Evidence of control effectiveness is the most analytically demanding. It requires showing not merely that the control ran, but that it prevented or detected violations. For a compliance monitoring system, this means records of violations detected, the speed of detection, the remediation actions taken, and the outcomes. IBM OpenPages [8] is the natural aggregation layer for this evidence: its integration with the technical monitoring layer means that detected violations, remediation workflows, and closure evidence are all recorded in a single, auditable system that can produce reports calibrated to the structure of specific regulatory frameworks.
+
+### DORA's evidence retention requirements
+
+DORA [6] imposes specific retention requirements on ICT-related records. Article 12 requires that financial entities maintain appropriate backup policies and recovery procedures, with backup records retained for periods aligned to the criticality of the systems concerned. Article 17 requires records of ICT-related incidents to be maintained for the period specified by the competent authority, which under the implementing technical standards is at least five years for major incidents. More broadly, DORA's requirements for a complete register of contractual arrangements (Article 28) and for documentation of the ICT risk management framework (Article 6) imply that the evidence underpinning those documents must be retained for the duration of regulatory scrutiny—which, given supervisor inspection powers, effectively means the full operational life of the arrangements documented.
+
+These retention requirements have direct implications for the evidence architecture. Evidence must not only be generated automatically; it must be stored in a way that is tamper‑evident, accessible for the full required retention period, and structured so that it can be retrieved and presented efficiently in response to regulatory requests.
+
+### Immutable audit logs: WORM storage, cryptographic chaining, and tamper detection
+
+The reliability of automatically generated audit evidence depends entirely on its integrity. Evidence that could plausibly have been modified after the fact is evidence that a sophisticated auditor cannot fully trust. The architecture must therefore ensure that audit logs and compliance records are stored in a manner that provides strong integrity guarantees.
+
+Three complementary techniques address this requirement. Write‑Once Read‑Many (WORM) storage, provided by object storage services such as AWS S3 Object Lock, Azure Blob Storage Immutability Policies, and IBM Cloud Object Storage Immutable Buckets, prevents modification or deletion of stored objects for a configured retention period. Records written to WORM storage cannot be altered by any operational process; they can be read, but not changed or removed before their retention period expires. This provides a physical-layer integrity guarantee that does not depend on access controls alone.
+
+Cryptographic chaining—the technique used in transparency logs such as the Certificate Transparency log and tools like Sigstore—provides a tamper‑detection guarantee that is independent of the storage medium. Each log entry includes a cryptographic hash that incorporates the content of the entry and the hash of the preceding entry. Any modification to a stored entry invalidates not only its own hash but the hashes of all subsequent entries, making tampering computationally detectable. Applied to audit logs, cryptographic chaining means that a reviewer can verify the integrity of the entire log history by checking the chain, without needing to trust the storage infrastructure absolutely.
+
+Tamper detection in operational practice typically combines these techniques: WORM storage prevents modification at rest, cryptographic chaining provides independent verification, and periodic integrity verification processes—automated log verification jobs that check the cryptographic chain and alarm on any discrepancy—provide ongoing assurance that the evidence store has not been compromised. ISO/IEC 27001:2022 [2] Annex A control A.8.15 ("Logging") explicitly requires that logging facilities and log information be protected against tampering and unauthorised access; WORM plus cryptographic chaining is the technical implementation of that requirement for high‑assurance compliance evidence.
+
+### IBM OpenPages as the aggregation layer
+
+IBM OpenPages [8] aggregates automatically generated evidence from across the compliance architecture into a single, auditable system of record. Technical evidence—policy evaluation results, Gatekeeper admission logs, Sentinel run records, configuration drift alerts, network flow summaries—is ingested from the technical layer through API integrations. Operational evidence—change records from ITSM systems, incident records, exception approvals, training completions—is entered through OpenPages workflows or ingested from connected systems. The result is a compliance evidence store that is comprehensive, structured, and linked to the control framework.
+
+OpenPages's reporting capabilities allow the organisation to generate audit evidence packs calibrated to specific regulatory frameworks—DORA, GDPR, ISO/IEC 27001—automatically, pulling together the relevant evidence for each control requirement from the integrated evidence store. This dramatically reduces the time and effort of preparing for a regulatory inspection or an external audit, and it reduces the risk of gaps in the evidence pack because collection was manual and error‑prone. In a mature continuous compliance programme, the generation of an audit evidence pack transitions from a project that takes weeks to a report that takes hours—not because the evidence requirements are lower, but because the evidence was being collected continuously all along.
+
+***
+
+## Key Takeaways
+
+- Continuous compliance is not a product or a project; it is an operational property that must be designed into the architecture from the outset, expressed through the principle of evidence‑by‑default and supported by the Governance and Audit Plane.
+
+- The compliance‑as‑code paradigm, exemplified by tools such as OPA/Rego, OPA Gatekeeper, Conftest, and HashiCorp Sentinel, makes compliance assessment a computational activity that can run continuously at the speed of the delivery pipeline, rather than a human activity that runs periodically.
+
+- The compliance signal fabric—configuration, access, network, and change signals—must be aggregated with estate topology context for meaningful prioritisation; IBM Concert provides this aggregation, and IBM OpenPages provides the system of record for findings and remediation.
+
+- Shift‑left enforcement—catching violations at pull request review time via Conftest, at plan time via Sentinel, and at admission time via Gatekeeper—is a practical implementation of the defence‑in‑depth principle applied to compliance, dramatically reducing the probability that a policy violation reaches production undetected.
+
+- Data lineage and data observability are compliance instrumentation, not merely operational convenience: they provide the automatically generated evidence of data flow controls that GDPR Article 30 record‑keeping requirements and DORA ICT asset inventory obligations demand.
+
+- Audit evidence for the three dimensions of control assurance—existence, operating effectiveness, and impact—can and should be generated automatically by normal operational activity; WORM storage, cryptographic chaining, and IBM OpenPages aggregation provide the integrity and accessibility guarantees that regulatory retention requirements impose.
+
+- Continuous compliance, when properly integrated, reduces rather than increases operational burden: it eliminates the periodic scramble for audit evidence, surfaces control weaknesses before regulators do, and creates a feedback loop that supports continuous operational improvement aligned with the NIST Cybersecurity Framework 2.0 "Improve" function.
+
+***
+
+## Chapter summary and bridge
+
+This chapter has established continuous compliance monitoring as an operational discipline grounded in architecture, not merely a regulatory obligation to be satisfied periodically. The core argument is that compliance must be designed in—through evidence‑by‑default systems, policy‑as‑code enforcement at every stage of the delivery lifecycle, a comprehensive signal fabric aggregated with topological context, and an evidence architecture capable of satisfying the rigorous retention and integrity requirements of regulations such as DORA and GDPR. IBM Concert provides the cross‑estate compliance posture view; IBM OpenPages provides the governance system of record; OPA, Gatekeeper, Conftest, and Sentinel provide the layered policy enforcement infrastructure; and WORM storage with cryptographic chaining provides the evidence integrity guarantees that make automatically generated audit records genuinely trustworthy.
+
+Chapter 11 turns from the governance of change to the mechanism of change itself: infrastructure as code. If the compliance architecture described here is to function—if declared configurations are to be the authoritative expression of sovereign zone intent, if drift from declared state is to be detectable, if change signals are to carry the provenance and authorisation context that compliance monitoring requires—then the infrastructure must be managed as code. Infrastructure as code is not merely an operational convenience; it is the precondition that makes the continuous compliance model described in this chapter possible at scale. Chapter 11 develops the patterns, tools, and sovereign‑zone‑specific considerations that translate declarative intent into a fully governed, auditable, and continuously compliant estate.
+
+***
+
+## References
+
+[1] National Institute of Standards and Technology, "The NIST Cybersecurity Framework (CSF) 2.0," NIST, Gaithersburg, MD, USA, Feb. 2024. [Online]. Available: https://doi.org/10.6028/NIST.CSWP.29
+
+[2] International Organization for Standardization and International Electrotechnical Commission, "ISO/IEC 27001:2022 — Information security, cybersecurity and privacy protection — Information security management systems — Requirements," ISO/IEC, Geneva, Switzerland, Oct. 2022.
+
+[3] National Institute of Standards and Technology, "NIST Special Publication 800‑53 Revision 5: Security and Privacy Controls for Information Systems and Organizations," NIST, Gaithersburg, MD, USA, Sep. 2020 (updated Dec. 2020). [Online]. Available: https://doi.org/10.6028/NIST.SP.800-53r5
+
+[4] Center for Internet Security, "CIS Benchmarks — Configuration Guidelines for Securing Systems," CIS, East Greenbush, NY, USA, 2024. [Online]. Available: https://www.cisecurity.org/cis-benchmarks
+
+[5] Red Hat, "DevSecOps: Integrating Security into DevOps," Red Hat, Inc., Raleigh, NC, USA, 2023. [Online]. Available: https://www.redhat.com/en/topics/devops/what-is-devsecops
+
+[6] European Parliament and Council of the European Union, "Regulation (EU) 2022/2554 of the European Parliament and of the Council of 14 December 2022 on digital operational resilience for the financial sector and amending Regulations (EC) No 1060/2009, (EU) No 648/2012, (EU) No 600/2014, (EU) No 909/2014 and (EU) 2016/1011 (Digital Operational Resilience Act — DORA)," *Official Journal of the European Union*, vol. L 333, pp. 1–79, Dec. 2022.
+
+[7] IBM Corporation, "IBM Concert: AI‑driven resilience and operations management," IBM Documentation, Armonk, NY, USA, 2024. [Online]. Available: https://www.ibm.com/products/concert
+
+[8] IBM Corporation, "IBM OpenPages with Watson: Governance, Risk and Compliance Management Platform," IBM Documentation, Armonk, NY, USA, 2024. [Online]. Available: https://www.ibm.com/products/openpages-with-watson
+
+[9] European Parliament and Council of the European Union, "Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data, and repealing Directive 95/46/EC (General Data Protection Regulation)," *Official Journal of the European Union*, vol. L 119, pp. 1–88, Apr. 2016.
+
+[10] Open Policy Agent (OPA) Project, "Open Policy Agent Documentation," Cloud Native Computing Foundation (CNCF), 2024. [Online]. Available: https://www.openpolicyagent.org/docs/latest
+
+[11] HashiCorp, "Sentinel: HashiCorp's Policy as Code Framework," HashiCorp Documentation, San Francisco, CA, USA, 2024. [Online]. Available: https://docs.hashicorp.com/sentinel
+
+[12] Cloud Native Computing Foundation, "Cloud Native Security Whitepaper v2," CNCF TAG Security, 2022. [Online]. Available: https://github.com/cncf/tag-security/blob/main/security-whitepaper/v2/cloud-native-security-whitepaper.md
+
+[13] Monte Carlo Data, "The Data Observability Handbook," Monte Carlo Data, Inc., San Francisco, CA, USA, 2023. [Online]. Available: https://www.montecarlodata.com/resources/the-data-observability-handbook
+
+[14] Collibra, "Five Reasons Why Data Lineage is Essential for Regulatory Compliance," Collibra NV, Brussels, Belgium, 2023. [Online]. Available: https://www.collibra.com/blog/five-reasons-why-data-lineage-is-essential-for-regulatory-compliance
+
+[15] Chef Software (Progress), "Buyer's Guide for Continuous Compliance Solutions in DevOps," Progress Software Corporation, Waltham, MA, USA, 2023. [Online]. Available: https://www.chef.io/whitepapers/buyers-guide-for-continuous-compliance-solutions-in-devops
+
+[16] JupiterOne, "DevOps Continuous Compliance Automation," JupiterOne, Inc., Morrisville, NC, USA, 2024. [Online]. Available: https://www.jupiterone.com/glossary-topics/devops-continuous-compliance-automation
