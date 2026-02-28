@@ -36,7 +36,7 @@ These four metrics resist gaming because they are outcome metrics rather than ac
 
 A fifth metric has emerged from more recent DORA work and is increasingly treated as a complement to the original four: **reliability**, measured as SLO attainment percentage [2]. This metric makes explicit what the original four implied: that operational outcomes, not just delivery throughput, are the ultimate measure of a software system's fitness. SLO attainment percentage links the delivery pipeline directly to the service-level objectives that govern operational health, and it is through this linkage that DevOps Insights and Concert can exchange the most operationally meaningful signals.
 
-> **[FIGURE 16.1 — The five DORA key metrics arranged as a cycle: Deployment Frequency and Lead Time for Changes feeding into Change Failure Rate and MTTR, with Reliability (SLO attainment) as the integrating outcome metric]**
+![Figure 16.1 — The five DORA key metrics arranged as a cycle: Deployment Frequency and Lead Time for Changes feeding into Change Failure Rate and MTTR, with Reliability (SLO attainment) as the integrating outcome metric](images/figure-16-1.png)
 
 ***
 
@@ -60,7 +60,7 @@ A **policy** is the DevOps Insights entity that governs whether a build or deplo
 
 The **REST API** is the integration surface through which Concert queries DevOps Insights [3]. It exposes endpoints for retrieving build history, deployment history, DORA metric calculations and quality gate evaluations for a given toolchain, application and environment combination. Concert uses these endpoints during its periodic assessment cycle to enrich its model of each application's risk profile with delivery performance data.
 
-> **[FIGURE 16.2 — DevOps Insights data model: Toolchain integrations feeding Builds, Test Results and Deployment Records; Quality Indicators and Policies evaluated at Quality Gates; REST API exposed to Concert]**
+![Figure 16.2 — DevOps Insights data model: Toolchain integrations feeding Builds, Test Results and Deployment Records; Quality Indicators and Policies evaluated at Quality Gates; REST API exposed to Concert](images/figure-16-2.png)
 
 ***
 
@@ -76,7 +76,7 @@ The relationship between DevOps Insights quality gates and Open Policy Agent (OP
 
 In a sovereign pipeline, both are active simultaneously. A deployment must satisfy DevOps Insights quality gates—evidence of delivery quality—before it is attempted; it must satisfy OPA policy evaluation—structural and runtime compliance—before it is admitted into the sovereign zone. Neither can substitute for the other. A build that passes all quality gates but deploys a container image to a region outside its permitted sovereign zone will be blocked by OPA. A container image that targets the correct sovereign zone but carries known critical vulnerabilities will be blocked at the quality gate [4].
 
-> **[FIGURE 16.3 — Sovereign pipeline stages: source commit, build, unit test, security scan, quality gate (DevOps Insights), environment provisioning, OPA admission control, deployment record]**
+![Figure 16.3 — Sovereign pipeline stages: source commit, build, unit test, security scan, quality gate (DevOps Insights), environment provisioning, OPA admission control, deployment record](images/figure-16-3.png)
 
 ***
 
@@ -92,7 +92,7 @@ Concert uses this change risk score to augment its own assessment of operational
 
 The integration is bi-directional in the sense that Concert's operational findings can also influence what DevOps Insights recommends. When Concert identifies a pattern of incidents correlated with deployments of a particular component, it can push that information back into the DevOps Insights risk model, causing subsequent deployments of that component to receive elevated risk scores even if quality gate criteria are nominally satisfied. This feedback loop—production incidents informing delivery risk assessments, delivery risk assessments informing operational monitoring posture—is what distinguishes a genuinely integrated DevOps system from a collection of loosely coupled tools.
 
-> **[FIGURE 16.4 — Concert–DevOps Insights integration: DevOps Insights REST API exposing build, deployment and DORA data to Concert; Concert operational findings feeding back into DevOps Insights risk model; unified risk view in Concert interface]**
+![Figure 16.4 — Concert–DevOps Insights integration: DevOps Insights REST API exposing build, deployment and DORA data to Concert; Concert operational findings feeding back into DevOps Insights risk model; unified risk view in Concert interface](images/figure-16-4.png)
 
 ### Risk score calculation and thresholds
 
@@ -128,7 +128,7 @@ The four DORA metrics describe software delivery performance in terms that are d
 
 The NIST Secure Software Development Framework (SSDF), codified in NIST SP 800-218 [4], provides a reference structure for these practices. The SSDF organises software development security practices into four groups: Prepare the Organisation, Protect the Software, Produce Well-Secured Software, and Respond to Vulnerabilities. DevOps Insights quality gate configurations can be mapped to SSDF practices, enabling organisations to demonstrate evidence-based compliance with the SSDF through the artefact record maintained in DevOps Insights rather than through manual documentation.
 
-> **[FIGURE 16.5 — Sovereign quality dimensions layered onto DORA: SBOM completeness, dependency vulnerability status, licence compliance and sovereignty constraint compliance as additional quality gate criteria]**
+![Figure 16.5 — Sovereign quality dimensions layered onto DORA: SBOM completeness, dependency vulnerability status, licence compliance and sovereignty constraint compliance as additional quality gate criteria](images/figure-16-5.png)
 
 Custom quality indicators are the mechanism through which these sovereign dimensions are introduced into DevOps Insights without modifying the core data model. A quality indicator is a structured JSON document posted to the DevOps Insights REST API by any pipeline step that can produce a relevant result. A custom step in a Tekton pipeline, for example, might run a sovereignty constraint check against the deployment target metadata and post the result as a quality indicator named `sovereignty-compliance`. A quality gate rule can then evaluate that indicator, blocking promotion if the check has not been performed or if it has returned a non-passing result.
 
@@ -150,7 +150,7 @@ This correlation is most powerful when DevOps Insights and Concert share a commo
 
 **The quarterly DevOps performance review** provides a structured cadence for synthesising DORA metric trends into organisational decisions. Unlike a project status review, which typically measures progress against plan, a DevOps performance review measures the health of the delivery system itself: is deployment frequency increasing or decreasing? Is lead time shortening? Is change failure rate within target? Is MTTR trending up or down? For sovereign cloud estates, the review should also include sovereign quality dimensions: SBOM completeness rates, licence compliance findings, sovereignty constraint check results, and any quality gate overrides that occurred since the previous review.
 
-> **[FIGURE 16.6 — Quarterly DevOps performance review structure: DORA metric trends, sovereign quality indicator trends, quality gate override register, incident-deployment correlation summary]**
+![Figure 16.6 — Quarterly DevOps performance review structure: DORA metric trends, sovereign quality indicator trends, quality gate override register, incident-deployment correlation summary](images/figure-16-6.png)
 
 The rhythm of the quarterly review creates accountability for delivery quality at an organisational level, not merely at the level of individual teams. Teams that are under pressure to deliver new features quickly will sometimes make local decisions—accepting a quality gate override, deferring a security finding, reducing test coverage on an unfamiliar module—that are individually defensible but collectively degrade the health of the delivery system. The quarterly review, drawing on DevOps Insights data, makes these local decisions visible in aggregate and enables leadership to ask whether the trade-offs being made at team level are consistent with the organisation's risk appetite.
 
@@ -180,7 +180,7 @@ In practice, the federation mechanism operates through a scheduled export from e
 
 The benefit for operational governance is substantial. A chief technology officer or head of platform engineering can review a single Concert dashboard that shows DORA metric trends across every sovereign zone in the estate, identifying zones where deployment frequency is declining, change failure rates are rising or quality gate override rates are increasing—without ever accessing the underlying data that produced those metrics. Regulatory auditors can be shown that the federation mechanism transmits only aggregate statistics and that no raw build, test or deployment data leaves its sovereign zone of origin.
 
-> **[FIGURE 16.7 — Toolchain federation architecture: multiple sovereign zone DevOps Insights instances calculating local DORA metrics and sovereign quality indicators; federated metrics plane aggregating summaries; Concert central instance consuming federated view for estate-wide risk assessment]**
+![Figure 16.7 — Toolchain federation architecture: multiple sovereign zone DevOps Insights instances calculating local DORA metrics and sovereign quality indicators; federated metrics plane aggregating summaries; Concert central instance consuming federated view for estate-wide risk assessment](images/figure-16-7.png)
 
 ***
 

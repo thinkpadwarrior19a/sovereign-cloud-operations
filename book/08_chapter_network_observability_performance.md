@@ -38,7 +38,7 @@ Zero‑copy architectures amplify the importance of these characteristics. A sin
 
 The sovereignty dimension adds a requirement that purely performance‑oriented SLOs do not capture: **where** traffic flows matters as much as how well it flows. An SLO that says "p99 latency for EU‑zone to EU‑zone calls must be below 80 ms" is incomplete if it does not also state that traffic must not traverse links outside EU jurisdiction, regardless of whether doing so would improve latency. In practice, this means that the routing plane — BGP policies, traffic engineering rules, cloud provider routing configurations — must be co‑designed with the observability plane so that every deviation from the permitted topology is both prevented by policy and detected and evidenced by telemetry. Paths involving personal or regulated data may be required to stay within specific regions or under specific operators. Even if a path via a foreign backbone would offer lower latency, using it might breach commitments made to data subjects and regulators [2]. Network SLOs in a sovereign estate therefore carry a **jurisdiction predicate**: the latency and loss targets are only meaningful if they are measured on paths that are themselves compliant.
 
-> **[FIGURE 8.3 — Network SLO anatomy: latency percentile targets, loss thresholds and jurisdiction predicates for a sovereign cross-zone path]**
+![Figure 8.3 — Network SLO anatomy: latency percentile targets, loss thresholds and jurisdiction predicates for a sovereign cross-zone path](images/figure-8-3.png)
 
 ### 8.2.3 Establishing baselines using Concert historical telemetry
 
@@ -100,7 +100,7 @@ Full packet capture — recording the complete content of network traffic — pr
 
 In practice, full packet capture in a sovereign estate should be restricted to specific, time‑bounded, operator‑authorised investigations of network anomalies that cannot be resolved through flow data, eBPF observations or service mesh telemetry. Where packet capture is used, it should be confined to a dedicated capture environment with strict access controls; captured files should be retained only for the minimum duration necessary for the investigation and then cryptographically wiped; and capture sessions should be logged in the governance and audit plane with full details of who authorised the capture, what was captured and when it was destroyed. Technically, many regulated organisations restrict packet capture to header‑only modes — capturing IP and TCP/UDP headers but not payload — which preserves the ability to diagnose connectivity and routing issues while avoiding personal data capture. This approach is consistent with the data minimisation principle of GDPR Article 5(1)(c) [16] and is an important safeguard when network telemetry is also being retained as compliance evidence.
 
-> **[FIGURE 8.1 — Network observability instrumentation layers: flows, eBPF, service mesh, and synthetic probes]**
+![Figure 8.1 — Network observability instrumentation layers: flows, eBPF, service mesh, and synthetic probes](images/figure-8-1.png)
 >
 > A layered architecture diagram showing four instrumentation planes stacked from infrastructure to application: the bottom layer shows IPFIX/NetFlow flow export from physical and virtual network infrastructure; above it an eBPF/Cilium Hubble layer capturing kernel‑level and intra‑node flows with L7 visibility; above that an Istio/Envoy service mesh layer reporting per‑service‑pair L7 metrics and distributed traces; and at the top a synthetic probing layer generating controlled inter‑zone test traffic. Arrows indicate how each layer's telemetry flows to a central observability backend for correlation.
 
@@ -130,7 +130,7 @@ When a dataset lives in a particular region or provider, and when sovereignty or
 
 In multi‑cloud sovereign settings, this means topology cannot be an afterthought. Choosing where to place systems of record, analytical stores and services is as much a network and sovereignty decision as it is a capacity decision. Observability feeds back into these decisions by revealing the real behaviour of data‑adjacent paths, providing the empirical foundation for placement reviews that might otherwise rely on intuition or outdated benchmarks.
 
-> **[FIGURE 8.4 — Data gravity and placement decisions: co-location patterns for latency-sensitive workloads across sovereign zones]**
+![Figure 8.4 — Data gravity and placement decisions: co-location patterns for latency-sensitive workloads across sovereign zones](images/figure-8-4.png)
 
 ***
 
@@ -190,7 +190,7 @@ Network observability and performance management, therefore, are not specialised
 
 In later chapters, when we discuss autonomous and self‑healing patterns, agentic incident management and blueprints, we will assume that the network is **observable, governable and part of the control plane by design**, not by exception.
 
-> **[FIGURE 8.2 — Network SLO burn-rate alerting and automated remediation flow]**
+![Figure 8.2 — Network SLO burn-rate alerting and automated remediation flow](images/figure-8-2.png)
 >
 > A flow diagram showing the sequence from SLO measurement through multi‑burn‑rate alert evaluation to tiered automated response: beginning with Hubble, Istio and IPFIX telemetry feeding an SLO measurement engine; branching into high‑, medium‑ and low‑burn‑rate alert paths; converging on a Concert correlation step that joins network signals with application signals; then branching into three automated response tiers — traffic rerouting, circuit breaking and capacity scaling — with an escalation path to human operators for actions exceeding the bounded autonomy envelope.
 
@@ -202,7 +202,7 @@ In later chapters, when we discuss autonomous and self‑healing patterns, agent
 
 The primary evidentiary function of network observability in a sovereign context is providing demonstrable proof that data flows have respected jurisdictional boundaries. IPFIX flow records [9] are particularly well suited to this role: each record carries source and destination addresses, timestamps, byte and packet counts, and — when enriched with network topology metadata — the geographic and administrative domains traversed by the traffic. When these records are collected continuously, retained under governance controls and made queryable, they form a time‑series record of every network conversation in the estate, from which compliance assertions can be derived.
 
-> **[FIGURE 8.5 — Network telemetry as sovereign evidence: IPFIX flow records enriched with zone metadata feeding automated compliance assertions]**
+![Figure 8.5 — Network telemetry as sovereign evidence: IPFIX flow records enriched with zone metadata feeding automated compliance assertions](images/figure-8-5.png)
 
 The key architectural requirement is that flow record collection must be **comprehensive and tamper‑evident**. A flow record corpus with gaps — periods during which collection was interrupted, devices from which export was not configured, or intra‑node traffic not captured — cannot provide the strong assurance that regulators seek. This is why the layered instrumentation approach described in section 8.3 matters: IPFIX captures inter‑node flows at the network infrastructure level; Cilium Hubble [14] captures intra‑node and intra‑cluster flows that never reach the physical network; Istio's service mesh [15] captures application‑layer communication patterns. Together, these layers close the coverage gaps that would leave a flow record corpus incomplete.
 

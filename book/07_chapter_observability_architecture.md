@@ -63,7 +63,7 @@ The mechanism by which these signals are captured, transmitted and correlated ha
 
 The OpenTelemetry data model is built on three foundational concepts. A **resource** is a set of attributes describing the entity that produces telemetry—the service name, service version, cloud provider, region, Kubernetes cluster and pod, or any other environmental attribute. Resources provide the context that makes individual signals interpretable. A **scope** (also called an instrumentation scope) identifies the library or component that produced a given signal, allowing consumers to filter or route data by its origin. A **signal** is the actual telemetry data—a metric data point, a log record, or a trace span—accompanied by its resource and scope context [8].
 
-> **[FIGURE 7.3 — The five observability signals: metrics, logs, traces, events and topology with their correlation relationships]**
+![Figure 7.3 — The five observability signals: metrics, logs, traces, events and topology with their correlation relationships](images/figure-7-3.png)
 
 Signals are transmitted using the OpenTelemetry Protocol (OTLP), a gRPC‑ and HTTP‑based protocol designed for efficient, reliable transmission of telemetry from instrumented applications to collection endpoints. OTLP's design deliberately avoids vendor lock‑in: any OTLP‑compliant collector can receive data from any OTLP‑compliant SDK, enabling organisations to change their observability backend without re‑instrumenting their applications [8].
 
@@ -115,7 +115,7 @@ The architectural resolution lies in **separating the retention of operational e
 
 The observability architecture must therefore include explicit retention and deletion policies, applied per data type and per sovereign zone, and enforced by the storage tier rather than left to manual process. The combination of automated scrubbing, pseudonymisation and retention enforcement means that the organisation can hold the evidence DORA requires without accumulating personal data liabilities that GDPR prohibits.
 
-> **[FIGURE 7.4 — DORA-GDPR retention tension: tiered data classification with scrubbing, pseudonymisation and retention policies by sensitivity level]**
+![Figure 7.4 — DORA-GDPR retention tension: tiered data classification with scrubbing, pseudonymisation and retention policies by sensitivity level](images/figure-7-4.png)
 
 The resolution of this tension also requires an explicit **data classification layer** within the observability architecture itself. Not all telemetry is equally sensitive. Infrastructure metrics—CPU utilisation, memory pressure, disk I/O—are unlikely to contain personal data and may be retained for longer periods under more permissive access controls. Application traces that include request parameters or user session identifiers are more sensitive and warrant shorter retention windows, stricter access controls and the pseudonymisation techniques described above. Log records that include payload fragments from financial transactions may be subject to the most stringent controls of all, requiring storage in a dedicated, access‑controlled store separate from general operational logs. Defining and maintaining this classification—and automating its enforcement through storage tier configuration, not manual discipline—is a prerequisite for operating in a multi‑jurisdiction environment where the applicable rules differ by data type, zone and regulatory regime.
 
@@ -157,7 +157,7 @@ Alert generation in this architecture follows the same zone‑local principle as
 
 The alert payload sent to a centralised ITSM platform contains the alert metadata—severity, affected service, sovereign zone, timestamp, alert identifier—but not the raw telemetry that triggered it. If an engineer handling the incident in a central service desk needs to examine the underlying telemetry, they must access the zone‑local observability backend (subject to appropriate access controls) rather than finding the raw data embedded in the alert. This architectural separation ensures that the incident management workflow does not inadvertently create a channel for raw telemetry to flow to parties who would not otherwise have access to it.
 
-> **[FIGURE 7.1 — Sovereignty-aware observability plane: zone-local collection with federated aggregation]**
+![Figure 7.1 — Sovereignty-aware observability plane: zone-local collection with federated aggregation](images/figure-7-1.png)
 >
 > The figure illustrates three sovereign zones each containing an OpenTelemetry Collector tier and an Instana/Prometheus aggregation tier, connected to a central federation layer via a query-only interface that returns only aggregated metrics and topology, with raw telemetry remaining zone-local and alert metadata (not raw signals) flowing to a central ITSM platform.
 
@@ -187,7 +187,7 @@ Secure connectivity patterns, such as routing Instana traffic over AWS PrivateLi
 
 In a sovereign context, network‑aware observability must also differentiate between **internal** and **cross‑boundary** paths. Engineers and agents need to see, for a given transaction, which parts stayed within a sovereign zone and which crossed to other zones or providers. That information underpins both incident response and compliance evidence.
 
-> **[FIGURE 7.5 — Network-aware observability: attributing latency across service-to-service paths spanning sovereign zone boundaries]**
+![Figure 7.5 — Network-aware observability: attributing latency across service-to-service paths spanning sovereign zone boundaries](images/figure-7-5.png)
 
 Network‑aware observability also supports the detection of anomalous data flows—a category of compliance risk that is distinct from application errors. If a service that should only communicate within a sovereign zone is observed establishing connections to endpoints outside that zone, the topology model will record that path, and alerting rules can be configured to flag it immediately. This capability effectively makes the observability plane a continuously operating sovereignty assurance mechanism, not just an operational tool. It transforms what would otherwise be a periodic audit activity—checking that network policies match the declared architecture—into a continuous, automated control.
 
@@ -225,7 +225,7 @@ Detecting drift requires monitoring the *distribution* of model outputs over tim
 
 The **sovereign AI record** concept addresses the need to maintain a durable, tamper‑evident log of AI agent actions and the model decisions that produced them, scoped to a sovereign zone. Rather than relying on the general observability store (which may have retention policies governed by operational rather than governance requirements), the sovereign AI record is a purpose‑built audit log—hosted within the IBM Sovereign Core boundary to ensure zone‑local retention and tamper‑evident storage [17]—that captures, for each agent action: the task identifier, the agent identity, the model version, the policy version, the reasoning trace (at the appropriate level of abstraction), the action taken, the approval status (automated or human), and the outcome. This record is retained for the full period required by applicable regulations and is protected against deletion or modification by the same controls that protect other compliance evidence. The sovereign AI record is developed fully in Chapter 23, where its relationship to AI explainability, audit and regulatory reporting is examined in detail.
 
-> **[FIGURE 7.2 — Observing AI agents: the metrics, traces and logs that make agent behaviour transparent]**
+![Figure 7.2 — Observing AI agents: the metrics, traces and logs that make agent behaviour transparent](images/figure-7-2.png)
 >
 > The figure shows an AI agent workflow in which each task triggers a root trace span; tool calls (Terraform, Ansible, ITSM API, LLM inference) appear as child spans with their own logs and metrics; agent health metrics (completion rate, escalation rate, override rate) are collected into the zone-local Prometheus instance; and a durable sovereign AI record receives structured action summaries for long-term audit retention.
 

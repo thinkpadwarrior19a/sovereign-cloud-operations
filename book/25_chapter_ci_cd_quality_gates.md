@@ -26,7 +26,7 @@ The **staging and deployment stages** place the artefact into progressively more
 
 The **verification stage** confirms that the deployed artefact is operating correctly in its target environment. Smoke tests, synthetic transaction monitors, canary analysis, and SLO evaluation against short-window baselines all contribute to post-deployment verification. The verification results are fed back to DevOps Insights as deployment records, closing the loop that enables Concert to calculate change risk scores as described in Chapter 16 [1].
 
-> **[FIGURE 25.1 — End-to-end sovereign CI/CD pipeline: source, build, test, scan, gate, stage, deploy, verify, with sovereignty constraints annotated at each stage and feedback loops to DevOps Insights and Concert]**
+![Figure 25.1 — End-to-end sovereign CI/CD pipeline: source, build, test, scan, gate, stage, deploy, verify, with sovereignty constraints annotated at each stage and feedback loops to DevOps Insights and Concert](images/figure-25-1.png)
 
 Tekton, the Kubernetes-native pipeline framework that underpins Red Hat OpenShift Pipelines, is the pipeline execution engine most naturally aligned with sovereign cloud operations [2]. Its architecture runs pipeline tasks as Kubernetes pods, which means that pipeline execution inherits the same isolation, scheduling, and policy enforcement mechanisms that govern application workloads. A Tekton pipeline running on a sovereign OpenShift cluster executes within the sovereign boundary by construction: the compute, storage, and network resources consumed by pipeline tasks are all within the cluster's jurisdiction. This architectural property is not available from CI/CD platforms that execute pipelines on shared, multi-tenant infrastructure outside the operator's control.
 
@@ -60,7 +60,7 @@ In a sovereign pipeline, cosign is used to sign container images at the build st
 
 Container image signing with cosign integrates naturally with OpenShift's image signature verification capabilities and with the broader policy-as-code ecosystem described in Chapters 10 and 11. The combination of SLSA provenance, in-toto attestations, and Sigstore signing creates a chain of evidence that traces an artefact from source commit to production deployment, with cryptographic verification at each link. For regulated sovereign zones, this chain of evidence is both a technical control and a regulatory asset: it provides the documented, verifiable record of software provenance that supervisory authorities increasingly expect.
 
-> **[FIGURE 25.2 — Supply chain security stack: SLSA levels mapped to pipeline stages, with in-toto attestations, cosign signatures, and Rekor transparency log providing the verification infrastructure]**
+![Figure 25.2 — Supply chain security stack: SLSA levels mapped to pipeline stages, with in-toto attestations, cosign signatures, and Rekor transparency log providing the verification infrastructure](images/figure-25-2.png)
 
 ***
 
@@ -86,7 +86,7 @@ The **sovereignty gate** is specific to sovereign pipelines and has no equivalen
 
 Override governance requires four elements. First, an override must be requested by a named individual with explicit authority to request overrides, not by the pipeline automation itself. Second, the override must be approved by a second individual with override approval authority—separation of duties prevents a single actor from both requesting and approving. Third, the override must be recorded in the quality evidence trail with the identity of the requester, the identity of the approver, the justification, and the specific gate criteria that were bypassed. Fourth, the override must trigger a time-bounded remediation obligation: the bypassed criteria must be satisfied within a defined period (typically 72 hours for critical fixes), and the pipeline must track and enforce this obligation. DevOps Insights records override events as quality indicators, making them visible to Concert's change risk scoring and to audit review [1].
 
-> **[FIGURE 25.3 — Multi-stage quality gate architecture: unit test, integration test, security scan, compliance, and sovereignty gates positioned at promotion boundaries, with override governance workflow]**
+![Figure 25.3 — Multi-stage quality gate architecture: unit test, integration test, security scan, compliance, and sovereignty gates positioned at promotion boundaries, with override governance workflow](images/figure-25-3.png)
 
 ***
 
@@ -110,7 +110,7 @@ The integration of scan results with DevOps Insights is what elevates scanning f
 
 **Emerging regulatory mandates for pipeline evidence.** Two regulatory developments are reshaping what quality gates must enforce and what evidence pipelines must produce (see Chapter 3 for the broader regulatory context). The EU Cyber Resilience Act (CRA), which entered into force in 2024 with phased compliance deadlines extending to 2027, requires manufacturers of products with digital elements to maintain a software bill of materials, implement coordinated vulnerability disclosure processes, and provide security updates throughout the product's support lifetime [13]. These obligations map directly onto the CI/CD pipeline: SBOM generation at build time (via CycloneDX or SPDX), SCA scanning against known vulnerability databases, and a governed disclosure workflow integrated with the vulnerability management lifecycle described above become not merely best practice but legal requirements for in-scope products. For organisations operating in pharmaceutical and life sciences, the US FDA's 21 CFR Part 11 imposes system validation requirements on software used in regulated processes, including electronic records and electronic signatures [14]. A CI/CD pipeline delivering software into a GxP-regulated environment must produce validation evidence — test execution records, environment configuration snapshots, approval chains — that satisfies Part 11's expectations for auditability, traceability and tamper-evidence. Quality gates in these pipelines must therefore include validation documentation checks alongside the security and compliance gates described above.
 
-> **[FIGURE 25.4 — Security scanning composition: SAST, DAST, SCA, container scanning, and IaC scanning producing findings that are aggregated in DevOps Insights, evaluated at quality gates, and consumed by Concert for change risk scoring]**
+![Figure 25.4 — Security scanning composition: SAST, DAST, SCA, container scanning, and IaC scanning producing findings that are aggregated in DevOps Insights, evaluated at quality gates, and consumed by Concert for change risk scoring](images/figure-25-4.png)
 
 ***
 
@@ -130,7 +130,7 @@ The sections above describe how a pipeline's outputs—artefacts, test results, 
 
 The cumulative effect of these constraints is that the pipeline becomes a sovereign system in its own right—not merely a tool that produces sovereign outputs, but an infrastructure component that is itself subject to sovereignty governance. This is an important conceptual shift. Organisations that treat the pipeline as exempt from sovereignty constraints—because it is "just tooling" or because "the code is not sensitive"—create a gap in their sovereignty posture that is difficult to defend under regulatory scrutiny. The pipeline has access to source code, credentials, artefacts, and deployment targets; if any of those are sovereign assets, the pipeline that handles them is a sovereign processing environment.
 
-> **[FIGURE 25.5 — Sovereign pipeline infrastructure: build nodes, artefact registries, pipeline execution environments, and secrets management all within the sovereign boundary, with cross-zone promotion controls at zone boundaries]**
+![Figure 25.5 — Sovereign pipeline infrastructure: build nodes, artefact registries, pipeline execution environments, and secrets management all within the sovereign boundary, with cross-zone promotion controls at zone boundaries](images/figure-25-5.png)
 
 ***
 
@@ -150,7 +150,7 @@ At a minimum, pipeline agents must operate under the following constraints. They
 
 These guardrails are expressed as policy-as-code and enforced by the platform, not by the agent's own self-restraint. The agent's service account permissions, Kubernetes RBAC bindings, and API token scopes are all configured to reflect the permitted authority boundary. An agent that attempts an action outside its authority is blocked by the platform before the action is executed, producing an audit record of the attempt. This is the same pattern of bounded autonomy described in Chapter 15 for Concert's agentic workflows, applied to the CI/CD domain.
 
-> **[FIGURE 25.6 — Agent-enhanced pipeline intelligence: agents observing pipeline events, analysing failures, predicting outcomes, and optimising test selection, with guardrail boundaries enforced by platform policy]**
+![Figure 25.6 — Agent-enhanced pipeline intelligence: agents observing pipeline events, analysing failures, predicting outcomes, and optimising test selection, with guardrail boundaries enforced by platform policy](images/figure-25-6.png)
 
 ***
 
@@ -170,7 +170,7 @@ A CI/CD pipeline is itself a system—a distributed, event-driven system with it
 
 This feedback loop—from pipeline telemetry, through analytics, to Concert's risk model, and back to engineering decisions about pipeline investment—is what transforms pipeline operations from a reactive, break-fix activity into a continuously improving practice. The DORA research consistently finds that investment in delivery infrastructure—faster builds, more reliable tests, better pipeline tooling—is correlated with improvements in all four DORA metrics [12]. Pipeline observability provides the evidence base for those investments, and Concert provides the framework for prioritising them against competing demands.
 
-> **[FIGURE 25.7 — Pipeline observability architecture: OpenTelemetry-instrumented Tekton pipelines emitting traces and metrics, build time analytics and flaky test detection producing health indicators, pipeline entities in Concert's model with risk scores and dependency relationships]**
+![Figure 25.7 — Pipeline observability architecture: OpenTelemetry-instrumented Tekton pipelines emitting traces and metrics, build time analytics and flaky test detection producing health indicators, pipeline entities in Concert's model with risk scores and dependency relationships](images/figure-25-7.png)
 
 ***
 

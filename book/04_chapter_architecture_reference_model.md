@@ -46,7 +46,7 @@ These planes are not stacks in the sense of strict layers; they are perspectives
 
 Thinking in planes does not solve the problem by itself. It does, however, provide a way to ensure that each concern is given its due and that the technologies chosen for each are coherent.
 
-> **[FIGURE 4.1 — The four-planes sovereign operations reference model]**
+![Figure 4.1 — The four-planes sovereign operations reference model](images/figure-4-1.png)
 >
 > A conceptual diagram showing the four planes—Observability, Automation & Orchestration, Agentic Intelligence, and Governance & Audit—as overlapping horizontal bands with bidirectional arrows indicating the signal and control flows between them, positioned above a multi-cloud infrastructure substrate.
 
@@ -240,7 +240,7 @@ In the **Governance & Audit Plane**, IBM Sovereign Core [2] represents the archi
 
 This mapping is not meant to be exhaustive. Many other IBM and non‑IBM components will appear in later chapters. The important point is that each technology should have a clear "home" in the conceptual model, even if it touches multiple planes. That clarity helps prevent both gaps and overlaps.
 
-> **[FIGURE 4.2 — IBM technology mapping across the four planes]**
+![Figure 4.2 — IBM technology mapping across the four planes](images/figure-4-2.png)
 >
 > A table or layered diagram showing each IBM product (Instana, OpenTelemetry Collector, Ansible Automation Platform, Satellite, OpenShift GitOps, Concert, Turbonomic, Orchestrate, Sovereign Core, watsonx.governance, OpenPages) positioned within its primary plane, with secondary plane touches indicated by lighter shading.
 
