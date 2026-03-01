@@ -31,6 +31,24 @@ pandoc \
   --output="${RELEASES_DIR}/executive-abridged-${BUILD_DATE}.epub"
 echo "  Built: ${RELEASES_DIR}/executive-abridged-${BUILD_DATE}.epub"
 
+# --- Executive Abridged Edition (PDF) ---
+echo "Building: Executive Abridged Edition (PDF)..."
+pandoc \
+  --metadata title="Sovereign Cloud Operations: Executive Abridged Edition" \
+  --metadata subtitle="Agentic AI, Observability, and Automation for the Fully Sovereign, Multi-Cloud Enterprise" \
+  --metadata author="Alan Hamilton" \
+  --metadata rights="© 2026 Alan Hamilton. All rights reserved." \
+  --metadata lang=en-GB \
+  --variable mainfont="TeX Gyre Heros" \
+  --variable monofont="DejaVu Sans Mono" \
+  "${ARTEFACTS_DIR}/executive-abridged.md" \
+  --pdf-engine=xelatex \
+  --include-in-header="${REPO_ROOT}/config/latex-preamble.tex" \
+  --toc \
+  --toc-depth=2 \
+  --output="${RELEASES_DIR}/executive-abridged-${BUILD_DATE}.pdf"
+echo "  Built: ${RELEASES_DIR}/executive-abridged-${BUILD_DATE}.pdf"
+
 # --- IBM Sales Play Guide ---
 echo "Building: IBM Sales Play Guide..."
 pandoc \
@@ -56,6 +74,8 @@ pandoc \
   --metadata author="Alan Hamilton" \
   --metadata rights="© 2026 Alan Hamilton. IBM Internal Use Only." \
   --metadata lang=en-GB \
+  --variable mainfont="TeX Gyre Heros" \
+  --variable monofont="DejaVu Sans Mono" \
   "${ARTEFACTS_DIR}/sales-play-guide.md" \
   --pdf-engine=xelatex \
   --include-in-header="${REPO_ROOT}/config/latex-preamble.tex" \
@@ -75,4 +95,4 @@ echo "  Built: ${RELEASES_DIR}/internal-presentation-${BUILD_DATE}.pptx"
 echo ""
 echo "=== All artefacts built ==="
 echo ""
-ls -lh "${RELEASES_DIR}"/executive-abridged-*.epub "${RELEASES_DIR}"/sales-play-guide-*.{epub,pdf} "${RELEASES_DIR}"/internal-presentation-*.pptx 2>/dev/null
+ls -lh "${RELEASES_DIR}"/executive-abridged-*.{epub,pdf} "${RELEASES_DIR}"/sales-play-guide-*.{epub,pdf} "${RELEASES_DIR}"/internal-presentation-*.pptx 2>/dev/null
