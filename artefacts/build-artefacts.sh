@@ -48,6 +48,22 @@ pandoc \
   --output="${RELEASES_DIR}/sales-play-guide-${BUILD_DATE}.epub"
 echo "  Built: ${RELEASES_DIR}/sales-play-guide-${BUILD_DATE}.epub"
 
+# --- IBM Sales Play Guide (PDF) ---
+echo "Building: IBM Sales Play Guide (PDF)..."
+pandoc \
+  --metadata title="Sovereign Cloud Operations: IBM Sales Play Guide" \
+  --metadata subtitle="Positioning, Qualification, and Execution for IBM Sellers" \
+  --metadata author="Alan Hamilton" \
+  --metadata rights="© 2026 Alan Hamilton. IBM Internal Use Only." \
+  --metadata lang=en-GB \
+  "${ARTEFACTS_DIR}/sales-play-guide.md" \
+  --pdf-engine=xelatex \
+  --include-in-header="${REPO_ROOT}/config/latex-preamble.tex" \
+  --toc \
+  --toc-depth=2 \
+  --output="${RELEASES_DIR}/sales-play-guide-${BUILD_DATE}.pdf"
+echo "  Built: ${RELEASES_DIR}/sales-play-guide-${BUILD_DATE}.pdf"
+
 # --- Internal Presentation (PowerPoint) ---
 echo "Building: Internal Summary Presentation (PowerPoint)..."
 pandoc \
@@ -59,4 +75,4 @@ echo "  Built: ${RELEASES_DIR}/internal-presentation-${BUILD_DATE}.pptx"
 echo ""
 echo "=== All artefacts built ==="
 echo ""
-ls -lh "${RELEASES_DIR}"/executive-abridged-*.epub "${RELEASES_DIR}"/sales-play-guide-*.epub "${RELEASES_DIR}"/internal-presentation-*.pptx 2>/dev/null
+ls -lh "${RELEASES_DIR}"/executive-abridged-*.epub "${RELEASES_DIR}"/sales-play-guide-*.{epub,pdf} "${RELEASES_DIR}"/internal-presentation-*.pptx 2>/dev/null
