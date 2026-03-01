@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="$lang$">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="$author$">
+  <meta name="description" content="$subtitle$">
+  <title>$if(title-prefix)$$title-prefix$ — $endif$$title$</title>
+$for(css)$
+  <link rel="stylesheet" href="$css$">
+$endfor$
+</head>
+<body>
+  <header id="site-header">
+    <div class="header-inner">
+      <a href="/" class="site-title">Sovereign Cloud Operations</a>
+      <nav>
+        <a href="/">Home</a>
+        <a href="#TOC">Contents</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+$if(toc)$
+    <nav id="TOC" role="doc-toc">
+      <h2>Contents</h2>
+      $table-of-contents$
+    </nav>
+$endif$
+
+    <article>
+$body$
+    </article>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Alan Hamilton. Licensed under
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.</p>
+  </footer>
+</body>
+</html>

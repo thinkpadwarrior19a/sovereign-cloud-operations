@@ -1,0 +1,234 @@
+/* Sovereign Cloud Operations — HTML site stylesheet */
+
+:root {
+    --colour-bg: #ffffff;
+    --colour-text: #1a1a1a;
+    --colour-heading: #0f3057;
+    --colour-accent: #0353a4;
+    --colour-muted: #5a5a5a;
+    --colour-border: #d0d7de;
+    --colour-code-bg: #f6f8fa;
+    --colour-header-bg: #0f3057;
+    --colour-header-text: #ffffff;
+    --max-width: 52rem;
+    --font-body: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --font-mono: "Cascadia Code", "Fira Code", "DejaVu Sans Mono", monospace;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--colour-text);
+    background: var(--colour-bg);
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+#site-header {
+    background: var(--colour-header-bg);
+    color: var(--colour-header-text);
+    padding: 0.75rem 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+.header-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.site-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--colour-header-text);
+    text-decoration: none;
+}
+
+#site-header nav a {
+    color: var(--colour-header-text);
+    text-decoration: none;
+    margin-left: 1.5rem;
+    font-size: 0.9rem;
+    opacity: 0.85;
+}
+
+#site-header nav a:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+/* Main content */
+main {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+}
+
+/* Table of contents */
+#TOC {
+    background: var(--colour-code-bg);
+    border: 1px solid var(--colour-border);
+    border-radius: 6px;
+    padding: 1.5rem 2rem;
+    margin-bottom: 3rem;
+}
+
+#TOC h2 {
+    margin-top: 0;
+    font-size: 1.3rem;
+    color: var(--colour-heading);
+}
+
+#TOC ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+#TOC ul ul {
+    padding-left: 1.5rem;
+}
+
+#TOC li {
+    margin: 0.3rem 0;
+}
+
+#TOC a {
+    color: var(--colour-accent);
+    text-decoration: none;
+}
+
+#TOC a:hover {
+    text-decoration: underline;
+}
+
+/* Headings */
+h1 {
+    font-size: 2rem;
+    color: var(--colour-heading);
+    border-bottom: 2px solid var(--colour-accent);
+    padding-bottom: 0.4rem;
+    margin-top: 3rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+    color: var(--colour-heading);
+    margin-top: 2.5rem;
+}
+
+h3 {
+    font-size: 1.2rem;
+    color: var(--colour-heading);
+    margin-top: 2rem;
+}
+
+h4, h5, h6 {
+    color: var(--colour-heading);
+}
+
+/* Links */
+a {
+    color: var(--colour-accent);
+}
+
+/* Code */
+code {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    background: var(--colour-code-bg);
+    padding: 0.15em 0.35em;
+    border-radius: 3px;
+}
+
+pre {
+    background: var(--colour-code-bg);
+    border: 1px solid var(--colour-border);
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    overflow-x: auto;
+    line-height: 1.5;
+}
+
+pre code {
+    background: none;
+    padding: 0;
+}
+
+/* Blockquotes (used for figure placeholders and callouts) */
+blockquote {
+    border-left: 4px solid var(--colour-accent);
+    margin: 1.5rem 0;
+    padding: 0.75rem 1.25rem;
+    background: var(--colour-code-bg);
+    color: var(--colour-muted);
+}
+
+blockquote p {
+    margin: 0.5rem 0;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+}
+
+th, td {
+    border: 1px solid var(--colour-border);
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+}
+
+th {
+    background: var(--colour-code-bg);
+    font-weight: 600;
+}
+
+/* Images */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+/* Footer */
+footer {
+    max-width: var(--max-width);
+    margin: 4rem auto 2rem;
+    padding: 1.5rem;
+    border-top: 1px solid var(--colour-border);
+    text-align: centre;
+    color: var(--colour-muted);
+    font-size: 0.9rem;
+}
+
+/* Print styles */
+@media print {
+    #site-header, #TOC { display: none; }
+    main { max-width: none; padding: 0; }
+    h1 { page-break-before: always; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    main { padding: 1rem; }
+    h1 { font-size: 1.6rem; }
+    h2 { font-size: 1.3rem; }
+    #TOC { padding: 1rem; }
+}
