@@ -27,7 +27,7 @@ pandoc \
   --standalone \
   --toc \
   --toc-depth=2 \
-  --number-sections=false \
+  --metadata numbersections:false \
   --css=style.css \
   --template="${REPO_ROOT}/config/html-template.html" \
   --resource-path="${REPO_ROOT}" \
