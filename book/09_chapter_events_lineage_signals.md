@@ -46,7 +46,7 @@ Schema evolution is not merely a development concern; at scale, it becomes a gov
 
 In practice, organisations implement this through a **schema governance workflow** that sits alongside the CI/CD pipeline. When a developer proposes a schema change, the change is submitted to the registry's compatibility checker and, in parallel, to a policy-as-code engine (such as Open Policy Agent) that evaluates the sovereignty implications. The OPA policy receives the proposed schema diff, the data classification tags of any new or modified fields, and the list of consumer zones for the affected topic, and returns an allow or deny decision with an explanatory message. Only changes that pass both the structural compatibility check and the sovereignty policy check are promoted to the registry. This two-gate model ensures that schema evolution respects both technical and regulatory constraints without requiring manual review for every change.
 
-![Figure 9.1 — Schema registry architecture with sovereignty policy gate: schema change flow from developer commit through compatibility check, OPA sovereignty evaluation, and registry promotion](images/figure-9-1.png)
+![Figure 9.1 — Schema registry architecture with sovereignty policy gate](images/figure-9-1.png)
 
 A further operational challenge is the management of **dead-letter queues** (DLQs) and **poison messages**. Messages that fail processing — whether due to schema violations, missing entity references, or consumer logic exceptions — are typically moved to a DLQ where they can accumulate silently. Operations teams must monitor DLQ depth and age as first-class signals: a growing DLQ indicates a systematic processing failure, and the age of the oldest message reveals whether remediation is occurring. In Kafka, a consumer that has stopped committing offsets will show as high lag but zero DLQ depth, because messages are simply not being acknowledged rather than being moved. Understanding this distinction requires both lag monitoring and consumer error-rate instrumentation [4].
 
@@ -80,9 +80,7 @@ The practical implementation of semantic event monitoring requires that operatio
 
 The governance of the event catalogue also has a regulatory dimension. DORA specifies that financial entities must identify and document their critical ICT services and supporting assets [3]. Events flowing through critical ICT processes are logically part of that inventory; documenting them in a machine-readable catalogue linked to Concert's topology graph creates a continuously maintained evidence base rather than stale spreadsheets updated before each audit cycle.
 
-![Figure 9.2 — The event fabric: CloudEvents flowing from business systems through the operational nervous system to Concert and downstream consumers](images/figure-9-2.png)
->
-> A flow diagram showing business systems (order management, payment, inventory) emitting CloudEvents-conformant events into a zoned event backbone; the backbone enriching events with topology metadata from Concert; and enriched events flowing to operational consumers (SLO monitors, incident managers, compliance monitors) and data consumers (analytics, ML pipelines), with zone-boundary routing rules enforced at the backbone egress points.
+![Figure 9.2 — The event fabric](images/figure-9-2.png)
 
 ***
 
@@ -118,9 +116,7 @@ The GDPR imposes specific obligations around records of processing activities, r
 
 Modern lineage platforms combine metadata from databases, ETL tools, query logs and streaming systems to build an always-up-to-date map of flows. Automated lineage mapping enables pre-deployment impact analysis as a standard gate in CI/CD pipelines, and when integrated with data observability platforms it helps distinguish critical incidents from local glitches by revealing whether a problem affects a high-impact downstream asset. Regulators increasingly expect organisations to know, and be able to show, where regulated data flows and how it is transformed [3] [9]. For operations, lineage diagrams are not static documentation; they are **interactive tools** for understanding and managing the blast radius of changes and incidents.
 
-![Figure 9.3 — Operational lineage graph: tracing data flow from source to downstream consumers for impact analysis](images/figure-9-3.png)
->
-> A directed acyclic graph showing source datasets (databases, Kafka topics, external feeds) at the left, flowing through transformation nodes (Spark jobs, dbt models, Airflow DAGs) annotated with execution status (success, failure, running) and zone labels, to downstream consumers (reports, ML models, APIs, dashboards) at the right; Concert's query path highlighted as it traverses upstream edges from an anomalous downstream node to identify the root-cause pipeline.
+![Figure 9.3 — Operational lineage graph](images/figure-9-3.png)
 
 ### 9.5.1 Lineage query patterns for operations
 
@@ -132,7 +128,7 @@ The operational value of a lineage graph is realised through queries. Three quer
 
 **Regulatory data-flow proof** — "Show me every path by which personal data classified as EU-resident reaches this analytics environment" — is the query that regulators and auditors increasingly expect organisations to be able to answer on demand. This query traverses the lineage graph forward from source datasets tagged with a specific data classification (using Atlas's classification propagation model) and filters for paths that cross zone boundaries or terminate in environments outside the permitted jurisdictions. The result is a machine-generated evidence artefact that documents the actual data flows, as observed from system behaviour, rather than a manually maintained data flow diagram that may have drifted from reality. When OpenLineage RunEvents include sovereign zone facets and Atlas classifications propagate along lineage edges, this query becomes a standard graph traversal rather than a forensic reconstruction exercise [2] [11].
 
-![Figure 9.4 — Lineage query patterns: upstream root-cause traversal, downstream blast-radius assessment, and regulatory data-flow proof, each illustrated as a directed graph traversal with zone annotations](images/figure-9-4.png)
+![Figure 9.4 — Lineage query patterns](images/figure-9-4.png)
 
 ***
 
@@ -176,7 +172,7 @@ Three concrete scenarios illustrate how event routing works within and across so
 
 **Scenario three: policy-blocked cross-zone routing.** A European energy utility operates a sovereign zone in Germany subject to critical infrastructure regulations (KRITIS). A newly deployed analytics pipeline in the utility's US-hosted cloud attempts to subscribe to a Kafka topic carrying smart-meter telemetry tagged with `sovereignzone: DE-KRITIS` and `dataclass: critical-infrastructure`. The event fabric's policy engine evaluates the subscription against the zone's egress policy, which prohibits forwarding critical-infrastructure data outside the EU. The subscription is denied; the policy engine emits a sovereignty violation event to Concert, which creates an incident ticket, notifies the platform security team, and logs the attempted violation as a compliance finding.
 
-![Figure 9.5 — Sovereign event routing topology: intra-zone PII filtering, cross-zone redaction gateway, and policy-blocked egress, shown as a network diagram with zone boundaries, routing decision points, and policy enforcement nodes](images/figure-9-5.png)
+![Figure 9.5 — Sovereign event routing topology](images/figure-9-5.png)
 
 The combination of CloudEvents sovereignty extensions, OpenLineage zone facets, and Atlas propagated classifications creates a layered, self-documenting sovereignty record: the event fabric records what flowed where in near real time; the lineage graph records how data was transformed and through which zones it passed; and the Atlas metadata graph records the classifications and ownership assignments that governed those flows at the time they occurred. Together, they provide the evidentiary foundation for demonstrating sovereign control to regulators, auditors and board-level risk committees.
 

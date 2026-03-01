@@ -24,9 +24,7 @@ These problems are not new observations. The DevOps movement, beginning in the l
 
 This chapter describes the operating model changes required when an organisation adopts the technical capabilities described in Parts VII through IX of this book. It addresses team structures, decision rights, automation economics, on-call practices and measurement frameworks, always through the lens of an estate where sovereignty constraints and agentic automation are architectural realities rather than aspirations. The chapter does not propose a single universal model—no such thing exists—but it does identify the structural patterns that recur in organisations that successfully operate sovereign, agentic estates, and the anti-patterns that cause others to struggle.
 
-![Figure 31.1 — The operating model gap: traditional functional silos versus the cross-cutting demands of sovereign agentic operations](images/figure-31-1.png)
->
-> A diagram showing the traditional siloed structure (development, operations, security, compliance, infrastructure as separate columns) on the left, with sovereignty obligations, observability, automation and agent governance shown as horizontal bands that cut across all columns. On the right, the same horizontal bands are served by an integrated operating model with shared ownership, illustrating the structural mismatch that this chapter addresses.
+![Figure 31.1 — The operating model gap](images/figure-31-1.png)
 
 ***
 
@@ -52,9 +50,7 @@ Concretely, shift-left operations encompasses several practices that, taken toge
 
 The Platform Engineering movement provides the organisational substrate that makes these practices scalable. Individual stream-aligned teams cannot each independently build CI/CD pipelines with policy evaluation, observability instrumentation frameworks, infrastructure-as-code templates and chaos engineering tooling. The cognitive load would be paralysing. Instead, a platform engineering team provides these capabilities as self-service products—golden paths that embed operational best practices, sovereignty constraints and organisational standards into reusable templates and toolchains that stream-aligned teams consume [5]. The platform does not dictate; it enables. Teams retain autonomy over their service design and deployment decisions, but those decisions are made within a framework that makes the right thing easy and the wrong thing difficult.
 
-![Figure 31.2 — Shift-left operations: operational concerns embedded across the development lifecycle](images/figure-31-2.png)
->
-> A horizontal timeline showing the phases of the development lifecycle (design, develop, build, test, deploy, operate). Traditional operational concerns (monitoring, incident response, capacity management) are clustered at the right end. Shift-left operations arrows show each concern moving leftward: SLOs to design, instrumentation to develop, policy-as-code to build, resilience testing to test, runbook authorship spanning develop through deploy.
+![Figure 31.2 — Shift-left operations](images/figure-31-2.png)
 
 ***
 
@@ -82,9 +78,7 @@ These new roles do not replace existing ones wholesale. They interact with and e
 
 The organisational structure that accommodates these roles is not a hierarchy but a network. Skelton and Pais's team interaction modes—collaboration, X-as-a-Service, and facilitating—describe how these teams work together [2]. The platform team provides capabilities as a service to stream-aligned teams. Policy engineers collaborate closely with compliance analysts and security engineers. Sovereign zone owners facilitate coordination across the teams operating within their zone. Agent supervisors interact with every team whose services are subject to agentic automation. The interaction patterns are deliberately fluid; rigid reporting structures that force all communication through management chains are actively harmful in environments where cross-functional coordination is the norm.
 
-![Figure 31.3 — Sovereign operations team topology: roles, interaction modes and zone boundaries](images/figure-31-3.png)
->
-> A team topology diagram showing stream-aligned service teams at the centre, surrounded by the platform team (providing X-as-a-Service), the enabling teams (policy engineers, agent supervisors facilitating), and sovereign zone owners spanning across teams within their zone boundary. Interaction modes (collaboration, X-as-a-Service, facilitating) are indicated by line styles connecting the teams.
+![Figure 31.3 — Sovereign operations team topology](images/figure-31-3.png)
 
 ***
 
@@ -105,8 +99,6 @@ The RACI model (Responsible, Accountable, Consulted, Informed) provides a useful
 Escalation paths in a sovereign estate must be sovereignty-aware. An incident affecting a service in the EU regulated zone escalates to the EU zone owner and to compliance analysts familiar with DORA and GDPR obligations, not to a generic global escalation chain. An agent action that is blocked by a policy evaluation failure escalates to the policy engineer who authored the relevant rule, not to a general operations queue. The escalation framework encodes jurisdictional knowledge: who understands the regulatory context of each zone, who has the authority to approve exceptions, and who must be notified when specific classes of event occur. This jurisdictional routing is itself implemented as policy-as-code, using the same guardrail framework that governs agent autonomy, so that escalation paths are enforced consistently rather than relying on human memory of organisational charts.
 
 ![Figure 31.4 — Three-tier decision framework for sovereign agentic operations](images/figure-31-4.png)
->
-> A diagram showing three horizontal tiers. Tier 1 (fully automated) at the bottom, with agent icons executing actions within guardrail boundaries. Tier 2 (human-approved) in the middle, with agent icons proposing recommendations and human icons approving. Tier 3 (committee-reviewed) at the top, with governance body icons reviewing proposals from sovereign zone owners, agent supervisors and policy engineers. Arrows show escalation paths between tiers, with sovereignty-aware routing labels on each arrow.
 
 ***
 
@@ -182,9 +174,7 @@ The following metric categories have proven valuable in organisations operating 
 
 These metrics should be assembled into a **sovereign operations dashboard** that is reviewed regularly—weekly by operations leadership, monthly by the broader governance body—with trends, anomalies and improvement actions tracked explicitly. The dashboard is itself an operational artefact: it demonstrates to regulators and auditors that the organisation measures its operational effectiveness continuously, not merely in response to incidents or audit findings.
 
-![Figure 31.5 — Sovereign operations measurement framework: metric categories and their relationships](images/figure-31-5.png)
->
-> A dashboard-style diagram showing the seven metric categories (team cognitive load, toil percentage, automation coverage, sovereignty compliance rate, agent utilisation, deployment frequency, continuous improvement cadence) arranged in a balanced scorecard layout, with arrows indicating the causal relationships between them: reduced toil leads to lower cognitive load; higher automation coverage contributes to improved sovereignty compliance; agent effectiveness contributes to deployment frequency.
+![Figure 31.5 — Sovereign operations measurement framework](images/figure-31-5.png)
 
 ***
 

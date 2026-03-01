@@ -78,9 +78,7 @@ From an economic perspective, zero‑copy reduces the "integration tax" of stora
 
 This book assumes that the reader either has embarked on a zero‑copy journey or recognises its architectural necessity. The focus here is not on re‑arguing that case, but on answering the next question: once you have—or intend to have—a zero‑copy, multi‑cloud architecture, how do you operate it sovereignly, reliably and at scale?
 
-![Figure 1.1 — The operational gap: complexity and regulation outpacing traditional operating models](images/figure-1-1.png)
->
-> As the number of services, providers and sovereign constraints grows linearly, the cognitive and governance burden placed on dashboard-centric, manual operations grows super-linearly, creating an expanding gap that only an intelligent control plane can close.
+![Figure 1.1 — The operational gap](images/figure-1-1.png)
 
 ***
 

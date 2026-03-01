@@ -20,7 +20,7 @@ The case for AI-assisted development in sovereign environments is therefore not 
 
 What sovereign operations teams need, then, is a code assistant architecture that satisfies three requirements simultaneously: deployment flexibility sufficient to keep code context within the sovereign boundary, customisation mechanisms that ground suggestions in organisational standards rather than public-internet patterns, and a governance framework that maintains human accountability for every line of generated code. IBM watsonx Code Assistant, built on the Granite code models, is one implementation of this architecture — and the one this chapter uses as its reference platform [3]. The remainder of this chapter examines the architectural decisions involved in deploying such an assistant, the sovereignty-specific capabilities it enables, and the governance framework required to use it responsibly.
 
-![Figure 26.1 — Developer cognitive load in sovereign multi-cloud estates: the proportion of engineering effort consumed by compliance navigation, context switching between zone requirements, and boilerplate generation, compared with feature development and operational improvement](images/figure-26-1.png)
+![Figure 26.1 — Developer cognitive load in sovereign multi-cloud estates](images/figure-26-1.png)
 
 ***
 
@@ -50,7 +50,7 @@ The placement of the inference endpoint is the single most consequential archite
 
 **Hybrid deployment** routes requests to different endpoints based on the classification of the code under development. The IDE plugin configuration maps workspace or project attributes — typically derived from the repository's metadata or the sovereign zone tag in the project's configuration — to an inference endpoint URL. An engineer working on regulated zone infrastructure code routes through the on-premises endpoint; the same engineer working on an internal tooling project routes through SaaS. This topology reflects the operational reality of most large enterprises, where development work spans multiple classification levels. The architect must design the routing logic carefully: misclassification of a workspace could route restricted code to a SaaS endpoint, creating a data residency violation. The routing configuration should be managed centrally through a policy distribution mechanism — not left to individual developer configuration — and audited periodically to verify that workspace-to-endpoint mappings remain correct as projects are created, reclassified, or decommissioned.
 
-![Figure 26.2 — Sovereign code assistant deployment topologies: data-flow paths for SaaS, on-premises, and hybrid routing, annotating where code context crosses trust boundaries and where prompt/completion data is retained or discarded](images/figure-26-2.png)
+![Figure 26.2 — Sovereign code assistant deployment topologies](images/figure-26-2.png)
 
 The following decision framework summarises the topology selection criteria. The architect should evaluate the organisation's position on each axis and select the topology — or combination of topologies — that satisfies all applicable constraints.
 
@@ -103,7 +103,7 @@ Beyond individual resource configurations, the assistant can encode broader regu
 
 This approach is complementary to, not a replacement for, the policy-as-code gates described in Chapter 25. The assistant applies constraints at generation time; the pipeline gates enforce them at deployment time. The two mechanisms operate at different points in the development lifecycle and serve different purposes. The assistant reduces the frequency of constraint violations that reach the pipeline; the pipeline gates ensure that any violations that do reach them are caught before deployment. Together, they implement a defence-in-depth model for sovereignty compliance that is stronger than either mechanism alone.
 
-![Figure 26.3 — Defence-in-depth for sovereignty compliance: AI-assisted generation applying constraints at authoring time, pre-commit hooks applying them at commit time, CI/CD quality gates at pipeline time, and admission controllers at deployment time](images/figure-26-3.png)
+![Figure 26.3 — Defence-in-depth for sovereignty compliance](images/figure-26-3.png)
 
 ### 26.3.3 Multi-cloud awareness
 
@@ -165,7 +165,7 @@ The assistant's review capabilities complement, rather than replace, the pipelin
 
 The integration between the two is bidirectional. When a pipeline gate rejects a change for a policy violation, the rejection reason can be fed back to the assistant as context, improving the accuracy of its future suggestions and reviews. If the OPA gate consistently rejects configurations that reference a particular deprecated encryption algorithm, the assistant should learn — through its context or through enterprise customisation — to stop suggesting that algorithm. This feedback loop between pipeline enforcement and AI-assisted generation creates a self-improving system where the most common violations are progressively eliminated at the point of authoring rather than at the point of deployment [5].
 
-![Figure 26.4 — Feedback loop between CI/CD quality gate rejections and watsonx Code Assistant context: pipeline violations are captured as patterns, fed back into the assistant's retrieval-augmented context, and surfaced as warnings during subsequent code generation and review](images/figure-26-4.png)
+![Figure 26.4 — Feedback loop between CI/CD quality gate rejections and watsonx Code Assistant context](images/figure-26-4.png)
 
 ### 26.5.3 Security vulnerability detection
 
@@ -257,7 +257,7 @@ The security scanning architecture for AI-generated code should include the foll
 
 **Post-deployment monitoring.** For infrastructure-as-code that has been deployed, runtime security monitoring — cloud security posture management (CSPM) tools, Kubernetes admission controllers, and the continuous compliance mechanisms described in Chapter 10 — provides ongoing validation that the deployed configuration matches the security intent. This layer catches configuration drift that may result from AI-generated code that was correct at generation time but has been rendered non-compliant by subsequent policy changes.
 
-![Figure 26.5 — Security scanning layers for AI-generated code: IDE-time checks, pre-commit hooks, CI/CD pipeline scans, and post-deployment monitoring, with feedback loops that update the assistant's context to prevent recurrence of flagged patterns](images/figure-26-5.png)
+![Figure 26.5 — Security scanning layers for AI-generated code](images/figure-26-5.png)
 
 ### 26.7.4 Approval workflows and zone-based generation policies
 
@@ -285,7 +285,7 @@ This principle has practical implications for how AI-assisted development is int
 
 The EU AI Act reinforces this principle by establishing that organisations deploying AI systems remain responsible for the outputs of those systems, regardless of the degree of automation involved [10]. In practice, this means that an organisation cannot defend a compliance failure by arguing that the AI generated incorrect code. The approval boundary — the point at which a human reviewer accepts responsibility for a change — must be clearly defined, consistently enforced, and auditably recorded.
 
-![Figure 26.6 — Governance chain for AI-generated code in sovereign operations: from IDE suggestion through developer acceptance, tiered review based on zone classification, pipeline quality gates, and deployment approval, with provenance metadata carried at each stage and zone-based generation policies enforced at the IDE level](images/figure-26-6.png)
+![Figure 26.6 — Governance chain for AI-generated code in sovereign operations](images/figure-26-6.png)
 
 ***
 

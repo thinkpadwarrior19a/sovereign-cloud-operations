@@ -34,7 +34,7 @@ The lifecycle begins with **detection**: something is wrong, and the monitoring 
 
 **Post-incident review** is the final stage, conducted after service is restored. The PIR reconstructs the timeline, identifies the root cause, evaluates the effectiveness of the response, and produces action items to prevent recurrence. In principle, the PIR is how the organisation learns from incidents. In practice, PIRs are often delayed, abbreviated, or skipped entirely because the team is exhausted and already dealing with the next crisis. When they are conducted, the quality depends on the memories of participants—memories that are unreliable, particularly for events that occurred under stress and fatigue.
 
-![Figure 30.1 — The major incident lifecycle in practice: a timeline showing detection (alert storm), triage (contextual assessment), escalation (marshalling responders), investigation (parallel diagnostic streams), remediation (authorised action), communication (multi-audience updates), and post-incident review; cognitive and coordination challenges annotated at each stage; typical elapsed time markers for a P1 incident without agent assistance (detection to resolution: 2–6 hours).](images/figure-30-1.png)
+![Figure 30.1 — The major incident lifecycle in practice](images/figure-30-1.png)
 
 Each of these stages presents specific challenges where agent assistance can reduce time, improve quality, or both. The remainder of this chapter examines each in turn.
 
@@ -60,7 +60,7 @@ The **historical pattern match** queries the operational knowledge base (describ
 
 The **recommended severity classification** proposes a priority level based on the assessed business impact, using the organisation's priority matrix: the combination of a tier-one service, customer-facing impact, and active transaction volume suggests P1 classification, with full war room mobilisation.
 
-![Figure 30.2 — Agent-generated situation report structure: showing the five sections (situation summary, blast radius, recent changes, historical patterns, severity recommendation) assembled from Concert topology, ServiceNow change records, Instana telemetry, operational knowledge base, and CMDB service classification. Elapsed time from alert to delivered report: under three minutes.](images/figure-30-2.png)
+![Figure 30.2 — Agent-generated situation report structure](images/figure-30-2.png)
 
 The value of this structured report is not merely speed, though speed matters enormously when a P1 incident is unfolding. The value is also completeness and consistency. A human engineer performing the same triage might check the change log but forget to query the knowledge base for historical patterns. A different engineer might check the knowledge base but overlook the recent deployment. The agent checks all sources, every time, producing a report whose completeness does not depend on who happens to be on call.
 
@@ -94,7 +94,7 @@ The output of the RCA process is not a single assertion but a ranked set of hypo
 
 *Hypothesis 3 (Low confidence, 0.20):* Network micro-partitioning between the application tier and the database tier is causing intermittent connection failures. No direct evidence supports this hypothesis; it is included because it has been a root cause of similar symptoms in two previous incidents (PIR-2024-0847, PIR-2025-0112).
 
-![Figure 30.3 — Agent-assisted root cause analysis pipeline: temporal alignment (multi-source event timeline), causal graph overlay (topology plus anomaly data), cross-signal correlation (metrics, logs, traces, changes), hypothesis synthesis (ranked by confidence with supporting evidence). Multiple executor agents working in parallel feed findings to a planner agent that produces the ranked hypothesis set.](images/figure-30-3.png)
+![Figure 30.3 — Agent-assisted root cause analysis pipeline](images/figure-30-3.png)
 
 This structured, multi-hypothesis presentation serves the incident commander in two ways. First, it directs investigation towards the most probable cause without foreclosing alternative explanations—a discipline that experienced incident commanders value highly but that is difficult to maintain under pressure. Second, it provides the evidential basis for remediation decisions: if the highest-confidence hypothesis identifies a deployment regression, the remediation path (rollback) is clear, and the evidence supporting that decision is documented in the incident record before the rollback is executed.
 
@@ -120,7 +120,7 @@ For regulatory notifications specifically, the agent tracks compliance timelines
 
 **Shift handover management** is critical for incidents that span multiple working periods. When the incident commander or a key investigator hands over to a colleague at the end of a shift, the quality of the handover determines whether the incoming team can continue effectively or must spend the first hour reconstructing context. The coordination agent generates a structured handover briefing that includes the current status, the working hypotheses with their evidence, the actions in progress, the actions completed and their findings, the outstanding decisions, and the communication commitments (when the next stakeholder update is due, whether a regulatory notification is pending). This briefing is both posted to the war room channel and written to the incident record, ensuring that the handover is documented as well as communicated.
 
-![Figure 30.4 — War room coordination agent functions: action item tracking (extracted from discussion, assigned, status-tracked), progress summarisation (multi-level, multi-audience), stakeholder communication (drafts for internal, customer, regulatory audiences with human approval gate for external), and shift handover (structured briefing generation). All outputs written to the ServiceNow incident record as the authoritative record.](images/figure-30-4.png)
+![Figure 30.4 — War room coordination agent functions](images/figure-30-4.png)
 
 The integration with collaboration platforms—Slack, Microsoft Teams, PagerDuty—is architecturally significant. The war room agent operates within the collaboration platform as a visible participant: it posts summaries, surfaces action items, and responds to queries directed at it. Engineers can ask the agent for specific information ("what was the error rate on payments-api at 02:45?") and receive an answer drawn from the observability data without leaving the war room channel to query a separate dashboard. This conversational interface, powered by watsonx Orchestrate's natural language capabilities, reduces the context-switching overhead that fragments attention during incident response.
 
@@ -144,7 +144,7 @@ The zero-copy integration pattern, introduced in earlier chapters, applies direc
 
 The cross-zone coordination agent must also manage the regulatory implications of the incident itself. If an incident in Zone A causes data to be processed incorrectly, the data protection implications are governed by the regulatory framework applicable to Zone A. If the same incident causes a service disruption that affects customers in Zone B's jurisdiction, the notification obligations are governed by Zone B's framework. The coordination agent tracks these parallel regulatory obligations and ensures that zone-appropriate notification processes are triggered independently in each affected zone.
 
-![Figure 30.5 — Cross-zone incident coordination: two sovereign zones (Zone A and Zone B) each containing zone-local executor agents with zone-scoped credentials; a cross-zone planner agent at the coordination layer receiving abstracted findings and directing zone-local investigation; sovereign zone boundaries shown as hard boundaries for raw data, with only abstracted situational information and metadata crossing; parallel regulatory notification tracks for each zone's applicable framework.](images/figure-30-5.png)
+![Figure 30.5 — Cross-zone incident coordination](images/figure-30-5.png)
 
 IBM Concert's multi-zone topology model supports this architecture by maintaining a federated view of the service topology that respects zone boundaries. Concert can represent the dependency relationship between a Zone A service and a Zone B service without requiring either zone's detailed telemetry to be visible to the other. The cross-zone dependency is expressed at the service level—"payments-api in Zone A depends on settlement-service in Zone B"—and the health status of each service is represented as an abstracted score rather than as raw metric data. This federated topology model is the informational substrate on which cross-zone incident coordination operates.
 
@@ -172,7 +172,7 @@ The PIR agent also evaluates whether existing knowledge base content should be u
 
 This feedback from PIR to the agent training and runbook corpus is architecturally important. The agents that perform triage, RCA, and war room coordination in future incidents draw on the knowledge base for historical pattern matching and remediation guidance. Every PIR that updates the knowledge base improves the quality of the information those agents will surface during subsequent incidents. The learning is not merely organisational—captured in documents that humans may or may not read—but operational, embedded in the retrieval corpus that agents query automatically during every incident response.
 
-![Figure 30.6 — Agent-assisted post-incident review workflow: automated timeline reconstruction (from incident record, monitoring data, change records, collaboration logs), root cause documentation (from RCA hypothesis set), PIR discussion facilitation (capturing human interpretive judgements), action item extraction (linked to task management), knowledge base update (PIR ingestion, runbook flagging, monitoring gap identification). The output feeds back into the operational knowledge base for future incident retrieval.](images/figure-30-6.png)
+![Figure 30.6 — Agent-assisted post-incident review workflow](images/figure-30-6.png)
 
 This feedback loop—from incident through PIR through knowledge base update through future incident retrieval—is the mechanism through which agent-assisted incident management becomes continuously self-improving. Each incident that is properly reviewed and documented makes the agents more effective at triaging, investigating, and supporting the resolution of future incidents. The compounding effect is significant: organisations that sustain this feedback loop for twelve to eighteen months report measurable improvements not only in resolution speed but in the quality and consistency of their incident response process [8].
 
@@ -198,7 +198,7 @@ For complex P1 and P2 incidents, organisations with mature agent-assisted incide
 
 The relationship between these metrics is not always straightforward. An improvement in MTTR might coincide with a decline in RCA quality if the pressure to resolve quickly leads agents to present premature hypotheses that engineers accept without sufficient scrutiny. A decline in repeat incident rate might reflect genuine improvement in root cause identification, or it might reflect a reduction in the total number of incidents due to unrelated infrastructure improvements. The metrics must be interpreted in context, and they must be reviewed as a set rather than as individual numbers.
 
-![Figure 30.7 — Incident management metrics dashboard: MTTD, MTTA, and MTTR trends over time (segmented by incident complexity), repeat incident rate, PIR action item completion rate, and human satisfaction scores. Pre-agent-assistance baseline compared with post-deployment performance, showing improvement trajectories for each metric.](images/figure-30-7.png)
+![Figure 30.7 — Incident management metrics dashboard](images/figure-30-7.png)
 
 Continuous improvement in agent-assisted incident management is driven by the feedback loop between these metrics and the agent configuration. When MTTR for a specific incident category is not improving, the investigation should examine whether the agents are retrieving relevant historical patterns, whether the RCA methodology is appropriate for that failure mode, and whether the war room coordination is effectively directing human effort. When human satisfaction is low for a specific agent function, the function should be examined for calibration issues: is the agent providing too much or too little detail, is it surfacing relevant or irrelevant context, is it respecting the human decision-making role or appearing to override it?
 

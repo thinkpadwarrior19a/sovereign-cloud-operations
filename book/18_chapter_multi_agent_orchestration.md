@@ -46,7 +46,7 @@ Before examining how multiple agents are arranged into topologies and how they c
 
 In Concert's operational model, these roles are not implemented as five separate products but as distinct, composable behaviours within a coherent workflow framework. Concert itself, with its topology and resilience intelligence, provides the world model that planner agents consult. The Orchestrate agent platform provides the execution and communication substrate through which executor, reviewer and synthesiser agents are instantiated and coordinated. Guardrail functions are distributed across both platforms and through the watsonx.governance integration, which supplies the policy definitions that reviewer and guardrail agents evaluate at runtime.
 
-![Figure 18.1 — Agent role taxonomy in a sovereign operations pipeline: showing a planner agent receiving an objective from a human operator; fanning out to multiple executor agents within a single sovereign zone; a reviewer agent intercepting each proposed action; a guardrail agent monitoring the entire pipeline; and a synthesiser agent aggregating executor outputs for human review. Zone boundaries shown as hard lines that no data crosses without explicit approval.](images/figure-18-1.png)
+![Figure 18.1 — Agent role taxonomy in a sovereign operations pipeline](images/figure-18-1.png)
 
 ***
 
@@ -214,7 +214,7 @@ For sovereign operations, the OPA policy library must encode zone-boundary rules
 
 The integration of watsonx.governance with the orchestration layer is what makes these guardrails operational at enterprise scale. Watsonx.governance maintains the inventory of approved agents, their authorised roles and capability bounds, the version-controlled policy sets that OPA evaluates, and the audit log of all policy evaluations and their outcomes. It provides the governance lifecycle management—policy authoring, review, approval and publication—that ensures guardrail rules remain current as the organisation's regulatory context evolves. The operational guardrails (OPA, rate limiters, circuit breakers, credential expiry) enforce the rules in real time; watsonx.governance provides the authoritative source of what those rules should be.
 
-![Figure 18.2 — Guardrails architecture for a multi-agent sovereign operations pipeline: showing an executor agent's proposed action flowing through OPA policy evaluation (zone boundary rules, blast radius check, change category check); a reviewer agent approval gate; a zone-aware credential validation step at the target tool; the watsonx.governance policy library as the authoritative source for OPA; the rate limiter and circuit breaker acting on the tool call channel; and the human-in-the-loop checkpoint intercepting actions in the "always-require-human-approval" categories. The audit log captures every evaluation outcome.](images/figure-18-2.png)
+![Figure 18.2 — Guardrails architecture for a multi-agent sovereign operations pipeline](images/figure-18-2.png)
 
 ***
 

@@ -252,8 +252,6 @@ The remaining parts of this book use these criteria as a lens. When we discuss t
 In this sense, regulation is not just a constraint; it is a source of clarity. It forces organisations to articulate what they are trying to achieve operationally and to build architectures that make those goals demonstrably true. Sovereign cloud operations, as described in this book, are one attempt to rise to that challenge.
 
 ![Figure 3.1 — Regulatory obligations mapped to operational design criteria](images/figure-3-1.png)
->
-> A matrix mapping each major regulatory instrument (DORA, NIS2, GDPR Art. 32, EU AI Act, EBA/FCA/PRA guidance, HIPAA, EU MDR, CRA, IEC 62443, TSA/EASA directives, CSRD/ISSB/SEC climate rules, EECC/UK TSA, FedRAMP/EUCS, eIDAS 2.0, EU Data Act, PCI DSS, SOX, PSD2, MiCA) to the operational design criteria it drives, with shading indicating whether the criterion affects observability, automation, agentic intelligence, governance architecture, supply chain security, or sustainability reporting.
 
 ***
 

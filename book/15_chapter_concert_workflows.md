@@ -28,7 +28,7 @@ The third is **automated** action, in which a pre-approved playbook or automatio
 
 What determines which response mode applies is **action risk classification**. Concert assigns each recommendation to a risk tier based on factors including the blast radius of the proposed action (how many dependent services or users would be affected if it went wrong), the reversibility of the change (whether state can be trivially restored), the historical failure rate for this class of action, the current health of the components involved, and whether the action falls within a pre-approved change category. The classification is not static; an action that is normally automated may be promoted to agent-assisted or human-initiated if Concert detects elevated system stress, a recent related incident, or an approaching maintenance window. This dynamic escalation is one of the ways Concert operationalises risk awareness rather than treating risk as a one-time configuration decision [1].
 
-![Figure 15.1 — The three Concert response modes: human-initiated, agent-assisted (Orchestrate elaboration), and automated, with risk classification thresholds shown as decision boundaries](images/figure-15-1.png)
+![Figure 15.1 — The three Concert response modes](images/figure-15-1.png)
 
 The practical implication for operations teams is that Concert's workflow design is inseparable from the organisation's risk appetite. Defining response modes requires a deliberate conversation between operations, security, and risk stakeholders about which categories of action are safe to accelerate and which must retain a human in the loop. That conversation, and its outcomes documented as policy, is as much a part of Concert deployment as the technical configuration itself.
 
@@ -46,7 +46,7 @@ The third pattern is **capacity and cost optimisation**. Concert maintains a con
 
 The fourth pattern is **proactive risk identification**. This is Concert's most analytically demanding workflow: scanning the estate for conditions that have not yet caused an incident but that historical data, topology analysis, and model-based reasoning suggest are likely to do so. A certificate approaching expiry that has not yet triggered an alert but will breach SLO thresholds within the planning horizon. A gradual memory leak whose current rate, if maintained, will exhaust available headroom before the next scheduled maintenance window. A dependency on a deprecated API version that is scheduled for removal in an upstream service update. Concert surfaces these findings with evidence and urgency scores, and routes them as scheduled recommendations into the team's workflow rather than as reactive incidents. The distinction is meaningful: organisations that act on proactive recommendations are, by definition, managing risk rather than managing failures [3][5].
 
-![Figure 15.2 — The four canonical AIOps workflow patterns in Concert, showing data inputs, analysis steps, output artefacts, and decision points for each](images/figure-15-2.png)
+![Figure 15.2 — The four canonical AIOps workflow patterns in Concert](images/figure-15-2.png)
 
 These four patterns are not mutually exclusive and they share infrastructure. The same ingestion pipeline, topology model, and recommendation engine underlies all four. The differentiation is in what analytical question is being asked and what action pathway is triggered by the answer.
 
@@ -66,7 +66,7 @@ The **situation timeline** is a chronologically ordered record of every signific
 
 **Human interaction** with situations occurs through the Concert UI and via the Concert API. Through the UI, operators can acknowledge a situation (recording that it has been seen and accepted for action), assign it to a named individual or team, annotate it with findings or hypotheses, escalate its severity, link it to a parent situation if it is determined to be a component of a larger incident, and mark it as resolved when the underlying fault has been addressed. Each of these interactions is time-stamped and attributed to the authenticated user who performed it. The Concert API exposes the same operations programmatically, enabling integration with external tools and with agentic systems that operate on behalf of human teams. Resolution closes the active phase of the situation; closure, which may follow resolution after a configurable settling period during which Concert monitors for recurrence, marks the situation as complete and archives its timeline for retrospective analysis and model training [1].
 
-![Figure 15.3 — Situation lifecycle state diagram: Created, Enriching, Acknowledged, Assigned, Resolving, Resolved, Closed, with transition triggers and the actors (human or automated) associated with each](images/figure-15-3.png)
+![Figure 15.3 — Situation lifecycle state diagram](images/figure-15-3.png)
 
 ***
 
@@ -84,7 +84,7 @@ The third factor is *current component health*: the Concert health score of the 
 
 The fourth factor is *time-of-day and calendar context*: whether the change falls within a period of elevated traffic, a regulatory quiet window, a known maintenance window, or an organisational risk-sensitivity period such as a financial quarter-end or a major product launch. Concert ingests calendar data — from ITSM change management, from operational runbooks, and from explicit configuration — and uses it to adjust risk scores. A change that carries a moderate risk score at 03:00 on a Tuesday may carry a significantly higher score at 09:00 on the Monday before a major release [7].
 
-![Figure 15.4 — Change risk score composition: four input factors (blast radius, historical failure rate, component health, calendar context) combining into a composite score, with threshold bands for Proceed, Conditional, and Defer recommendations](images/figure-15-4.png)
+![Figure 15.4 — Change risk score composition](images/figure-15-4.png)
 
 **CI/CD pipeline integration** brings change risk scoring into the delivery workflow before a human reviewer or a change advisory board sees the change request. Concert exposes a change risk API that can be called from pipeline stages in Jenkins, Tekton, GitHub Actions, or any CI/CD system that supports webhook or API integration [1][8]. The pipeline passes change metadata — the component being changed, the type of change, the target zone, the proposed deployment time — and receives back a risk score and a recommended disposition: proceed, proceed with conditions (such as additional monitoring, a short deployment window, or a manual approval step), or defer. Organisations can configure the pipeline to enforce these dispositions as hard gates, or to surface them as advisory information for the human approver.
 
@@ -112,7 +112,7 @@ The same bidirectionality applies to change requests. Concert's change risk asse
 
 **Audit trail for regulatory traceability** is a non-negotiable requirement in regulated environments. Concert's ITSM integration ensures that every operational action — whether human-initiated or automated — is reflected in the ITSM system of record with a complete evidence trail: what was detected, what was recommended, what was approved, by whom, when, and what was executed. This trail is maintained in a form that can be exported to regulatory reporting formats and is protected from retrospective modification. For organisations subject to frameworks such as DORA, FCA SYSC, or ISO 27001, this integrated audit trail significantly reduces the manual effort required to demonstrate operational governance compliance [10][11].
 
-![Figure 15.5 — Concert-ITSM bidirectional synchronisation: situations creating incidents, change risk scores populating change records, ITSM state changes reflecting back in Concert, and the unified audit trail spanning both systems](images/figure-15-5.png)
+![Figure 15.5 — Concert-ITSM bidirectional synchronisation](images/figure-15-5.png)
 
 ***
 
@@ -132,7 +132,7 @@ This approach has several advantages in a regulated environment. The change is e
 
 Every automation execution — whether triggered by Concert directly via AAP or via a GitOps merge — is tied to an **authorisation event** that is logged to the Governance Plane. The authorisation event captures the identity of the approver (human operator or, for pre-approved categories, the automated policy that authorised the action), the Concert recommendation that motivated the action, the risk score at the time of authorisation, and the playbook or change commit that was executed. This log is the operational equivalent of a signed authority record: it enables retrospective audit of who authorised what, under what circumstances, and with what supporting evidence. In a regulatory examination, these records provide the evidence base for demonstrating that automated operations were subject to appropriate governance, not merely assumed to be so [10][11].
 
-![Figure 15.6 — Automation integration paths: Concert recommendation to AAP playbook execution (left) and Concert recommendation to GitOps pull request to reconciliation pipeline (right), with approval gates and Governance Plane logging shown at each path](images/figure-15-6.png)
+![Figure 15.6 — Automation integration paths](images/figure-15-6.png)
 
 ***
 
@@ -152,7 +152,7 @@ The **recommendation panel** displays Concert's current recommendations, grouped
 
 The **workflow status** panel provides visibility into active automation: Ansible job executions, GitOps pull requests awaiting merge, pending approval gates, and recently completed actions with their outcomes. This panel is the operational equivalent of a pipeline dashboard and is essential for operators who need to understand not just what Concert has recommended but what is currently happening in the automation layer as a consequence of previous decisions.
 
-![Figure 15.7 — Concert workspace layout: topology view (left), signal feed (centre-left), situation list (centre-right), recommendation panel (right), and workflow status (bottom), with annotations showing how each component connects to the others](images/figure-15-7.png)
+![Figure 15.7 — Concert workspace layout](images/figure-15-7.png)
 
 **Zone, jurisdiction, and service-tier filtering** is available across all workspace components. In a sovereign cloud estate that spans multiple regulatory zones, this filtering is operationally essential: an operator responsible for the EU zone must be able to focus on the situations, signals, and recommendations relevant to that zone without being overwhelmed by signals from other zones, while a global operations manager needs a cross-zone view for escalation and trend analysis. Filtering is applied consistently across the workspace — selecting a zone in the topology view applies the same zone filter to the signal feed, situation list, and recommendation panel — so that the operator maintains a coherent picture across components.
 
@@ -176,7 +176,7 @@ Five metrics provide the core measurement framework.
 
 **Operator escalation rate** measures how often automated or agent-assisted actions are escalated by human operators to a different response mode — typically from automated to human-initiated — after Concert has recommended or initiated them. A high escalation rate suggests that the automated response mode is being applied to action categories that operators do not yet trust to execute without review, which may indicate that the risk classification thresholds are set too aggressively, that the playbooks require refinement, or that operators need additional information to build confidence in automated execution. Escalation rate is not intrinsically bad — human oversight is a feature, not a failure — but trends in escalation rate are informative about the evolution of operator trust and system maturity [5][11].
 
-![Figure 15.8 — Concert operational impact dashboard: recommendation acceptance rate (trend), mean time to resolution by severity tier, change failure rate trend, false positive rate by signal source, and operator escalation rate by action category](images/figure-15-8.png)
+![Figure 15.8 — Concert operational impact dashboard](images/figure-15-8.png)
 
 These five metrics do not operate in isolation. A drop in recommendation acceptance rate alongside a rise in false positive rate points to a data quality or model calibration problem. A reduction in mean time to resolution alongside a stable false positive rate is evidence of genuine performance improvement. A rising operator escalation rate in newly automated action categories, declining over several weeks as operators gain confidence, is a normal and healthy pattern in a maturing Concert deployment. Reading the metrics together, in context, is the skill that distinguishes operational excellence from operational measurement theatre.
 

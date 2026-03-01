@@ -22,7 +22,7 @@ NIS2, the revised Directive on Security of Network and Information Systems, exte
 
 Beyond the specific regulatory instruments, there is a broader governance principle at stake. The accountability gap — the space between "a decision was made" and "here is who made it, why, and on what basis" — is the central risk of agentic operations at scale. Every chapter in this book that describes agents taking operational actions, from incident remediation in Chapter 19 to change execution in Chapter 11 to security response in Chapter 13, implicitly depends on the assumption that those actions can be explained and audited. This chapter makes that assumption explicit and provides the architectural patterns for satisfying it.
 
-![Figure 23.1 — The accountability gap: a comparison of human-led and agent-led operational decisions, showing the points at which accountability, evidence, and explanation must be captured in each model, and the regulatory instruments (EU AI Act, DORA, NIS2, ISO 27001) that create obligations at each point](images/figure-23-1.png)
+![Figure 23.1 — The accountability gap](images/figure-23-1.png)
 
 ***
 
@@ -64,7 +64,7 @@ The architectural pattern for decision provenance centres on the **Structured De
 
 **Outcome and follow-up** records what actually happened when the decision was executed: whether the action succeeded, what the post-action state of the affected systems was, whether any unexpected side-effects were observed, and what follow-up actions were triggered. This element enables retrospective evaluation: did the agent's decision produce the expected result? If not, what can be learned?
 
-![Figure 23.2 — Anatomy of a Structured Decision Record: a schema diagram showing the seven mandatory elements (decision context, input inventory, reasoning trace, alternatives considered, policy constraints evaluated, approval chain, outcome and follow-up) with their relationships to external systems (Concert topology, ServiceNow records, OPA policy engine, knowledge base, immutable log store)](images/figure-23-2.png)
+![Figure 23.2 — Anatomy of a Structured Decision Record](images/figure-23-2.png)
 
 The SDR schema should be versioned and governed as an organisational standard, with the same rigour applied to policy-as-code artefacts. Changes to the schema — adding mandatory fields, modifying the structure of the alternatives record, extending the policy evaluation format — should be managed through the same change enablement process described in Chapter 19, because a change to the SDR schema affects the evidentiary basis of every future agent decision.
 
@@ -96,7 +96,7 @@ The tool-call sequence also provides the basis for **reproducibility testing**: 
 
 **Verbosity control.** Not every agent decision warrants the same level of trace detail. A routine service health check that confirms normal operation does not need the same trace depth as a P1 incident remediation that involves a database failover. The architecture should support configurable verbosity levels — minimal, standard, and detailed — with the level determined by the decision's risk classification. Decisions affecting tier-one regulated services, decisions involving actions outside pre-approved standard change models, and decisions taken during active incidents should default to detailed tracing. Routine monitoring decisions can use minimal tracing. The verbosity level itself should be recorded in the SDR, so that an auditor reviewing a minimal trace knows that the reduction in detail was a deliberate policy choice rather than a system failure.
 
-![Figure 23.3 — Reasoning trace capture pipeline: showing the flow from agent reasoning (LLM chain-of-thought, tool calls, retrieval results) through structured extraction, dual storage (raw trace to object store, structured index to search infrastructure), and linkage to the Structured Decision Record in the immutable log store](images/figure-23-3.png)
+![Figure 23.3 — Reasoning trace capture pipeline](images/figure-23-3.png)
 
 ***
 
@@ -118,7 +118,7 @@ The event sourcing approach also enables **temporal reconstruction**: given a wo
 
 The integration with ITSM records described in Chapter 19 is critical here. The ServiceNow incident record, change record, or problem record serves as the human-readable summary of the multi-agent workflow, while the event-sourced audit trail in the immutable log store provides the detailed, machine-navigable provenance. The two are linked by the workflow correlation identifier, which is written into the ServiceNow record as a custom field. An auditor reviewing the ServiceNow record can navigate to the detailed audit trail; an investigator examining the audit trail can navigate to the ITSM record that provides the business context.
 
-![Figure 23.4 — Multi-agent audit trail architecture: showing three agents (planner, executor, reviewer) collaborating on an incident remediation workflow, with correlation identifiers propagating through each interaction, immutable events emitted to the event store, SDRs generated at decision points, and the ITSM record (ServiceNow) linked to the workflow correlation identifier for unified navigation](images/figure-23-4.png)
+![Figure 23.4 — Multi-agent audit trail architecture](images/figure-23-4.png)
 
 ***
 
@@ -162,7 +162,7 @@ The practical implication is that the decision provenance infrastructure must be
 
 **Retention and disposal** interact with security in a specific way: decision provenance records that are no longer needed for regulatory or operational purposes should be disposed of, not retained indefinitely. Indefinite retention increases the attack surface — a breach that exposes five years of reasoning traces is more damaging than one that exposes twelve months — and may conflict with data minimisation obligations under GDPR [10]. The retention policy should specify maximum retention periods for each category of decision provenance record, with automated disposal at the end of the retention period and a documented process for extending retention when regulatory or legal holds require it.
 
-![Figure 23.5 — Tiered access model for decision provenance: showing three access tiers (operational, compliance, executive/regulatory) with the progressive redaction of security-sensitive detail at each tier, sovereign zone boundaries enforcing log isolation, and encryption boundaries at rest and in transit](images/figure-23-5.png)
+![Figure 23.5 — Tiered access model for decision provenance](images/figure-23-5.png)
 
 ***
 

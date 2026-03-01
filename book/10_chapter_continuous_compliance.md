@@ -88,9 +88,7 @@ IBM Concert [7] aggregates these four signal types—configuration, access, netw
 
 Concert's compliance posture dashboard surfaces the aggregate compliance state across the estate, highlighting areas of elevated risk, tracking the history of compliance signals over time, and feeding into IBM OpenPages [8] as the system of record for compliance findings and remediation actions.
 
-![Figure 10.1 — The compliance signal fabric: configuration, access, network and change signals flowing to the Governance Plane](images/figure-10-1.png)
->
-> A flow diagram showing four signal sources — cloud configuration APIs, IAM event streams, network flow logs, and CI/CD change records — converging through the OpenTelemetry Collector and Concert ingestion layer into the Governance and Audit Plane, where IBM Concert aggregates them into a compliance posture view and IBM OpenPages records control findings and remediation status.
+![Figure 10.1 — The compliance signal fabric](images/figure-10-1.png)
 
 ### The compliance signal fabric across regulatory frameworks
 
@@ -144,9 +142,7 @@ The aggregation of OPA/Conftest, Gatekeeper, and Sentinel creates a layered enfo
 
 This layered approach reflects a principle that NIST SP 800‑53 Rev. 5 [3] encodes in its concept of defence in depth: no single control is assumed to be perfect, so controls are layered so that a failure at one layer is caught by the next. Applied to compliance, this means that a policy violation that slips past Conftest at PR time is still caught by Sentinel at plan time, and a misconfiguration that somehow passes both is rejected by Gatekeeper at admission time. The probability of a policy‑violating change reaching production undetected is, in a well‑configured layered system, very low.
 
-![Figure 10.2 — Policy‑as‑code enforcement points: from PR review through deployment to runtime admission control](images/figure-10-2.png)
->
-> A pipeline diagram showing five enforcement stages — developer IDE linting, Conftest at pull request review, HashiCorp Sentinel at Terraform plan, OPA Gatekeeper at Kubernetes admission, and runtime OPA sidecar policy evaluation — with each stage connected by arrows representing the flow of a change from authoring to production, and rejection arrows showing where non‑compliant changes are stopped.
+![Figure 10.2 — Policy‑as‑code enforcement points](images/figure-10-2.png)
 
 ***
 
@@ -178,7 +174,7 @@ Practitioners argue that lineage is particularly important for regulatory compli
 
 Data observability platforms that integrate lineage can automate much of this. When an anomaly is detected in a dataset, lineage can identify upstream sources and downstream consumers, allowing teams to triage impact quickly and notify affected stakeholders. In sovereign operations, lineage can also be used to ensure that data does not cross prohibited boundaries. If lineage reveals that a new pipeline would route data through a non‑compliant region or service, policy‑as‑code can block the change or raise a compliance alert before deployment.
 
-![Figure 10.3 — Data lineage as compliance instrumentation: tracing regulated data flows through transformation stages and sovereign zone boundaries](images/figure-10-3.png)
+![Figure 10.3 — Data lineage as compliance instrumentation](images/figure-10-3.png)
 
 ***
 
@@ -226,7 +222,7 @@ DORA [6] imposes specific retention requirements on ICT-related records. Article
 
 These retention requirements have direct implications for the evidence architecture. Evidence must not only be generated automatically; it must be stored in a way that is tamper‑evident, accessible for the full required retention period, and structured so that it can be retrieved and presented efficiently in response to regulatory requests.
 
-![Figure 10.4 — Regulatory control mapping: DORA, ISO 27001 and NIST SP 800-53 controls mapped to automated evidence sources and OpenPages findings](images/figure-10-4.png)
+![Figure 10.4 — Regulatory control mapping](images/figure-10-4.png)
 
 ### Immutable audit logs: WORM storage, cryptographic chaining, and tamper detection
 
@@ -256,7 +252,7 @@ IBM Cloud Object Storage with immutable bucket policies [22] provides the WORM s
 
 IBM OpenPages [8] aggregates automatically generated evidence from across the compliance architecture into a single, auditable system of record. Technical evidence—policy evaluation results, Gatekeeper admission logs, Sentinel run records, configuration drift alerts, network flow summaries—is ingested from the technical layer through API integrations. Operational evidence—change records from ITSM systems, incident records, exception approvals, training completions—is entered through OpenPages workflows or ingested from connected systems. The result is a compliance evidence store that is comprehensive, structured, and linked to the control framework.
 
-![Figure 10.5 — Immutable evidence architecture: WORM storage, cryptographic chaining and OpenPages aggregation for tamper-evident audit records](images/figure-10-5.png)
+![Figure 10.5 — Immutable evidence architecture](images/figure-10-5.png)
 
 OpenPages's reporting capabilities allow the organisation to generate audit evidence packs calibrated to specific regulatory frameworks—DORA, GDPR, ISO/IEC 27001—automatically, pulling together the relevant evidence for each control requirement from the integrated evidence store. This dramatically reduces the time and effort of preparing for a regulatory inspection or an external audit, and it reduces the risk of gaps in the evidence pack because collection was manual and error‑prone. In a mature continuous compliance programme, the generation of an audit evidence pack transitions from a project that takes weeks to a report that takes hours—not because the evidence requirements are lower, but because the evidence was being collected continuously all along.
 

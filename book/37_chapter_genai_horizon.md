@@ -22,7 +22,7 @@ Second, the cost of inference and the hardware required to run capable models ar
 
 Third, regulatory attention to AI is intensifying, not receding, and the organisations that will navigate this attention most successfully are those that have already built the operational foundations—observability, traceability, policy-as-code, bounded autonomy—described throughout this book. The regulators are not going to ask "do you use AI?" and accept a yes or no. They are going to ask how, where, under what governance, with what oversight, and with what evidence. The technical substrate for answering those questions is the same substrate that supports good operations in general.
 
-![Figure 37.1 — The gap between research frontier and enterprise readiness: a timeline showing key model releases, enterprise deployment milestones, and regulatory events from 2022 to 2026](images/figure-37-1.png)
+![Figure 37.1 — The gap between research frontier and enterprise readiness](images/figure-37-1.png)
 
 ***
 
@@ -40,7 +40,7 @@ The sovereign implication is significant. If the only capable models were those 
 
 The trajectory, then, is toward a landscape in which organisations have genuine choice: proprietary models accessed via API for tasks where data sensitivity permits, open-weight models deployed within sovereign zones for tasks where it does not, and specialised fine-tuned models for high-value operational domains. The architectural challenge is to build an inference layer that can route requests to the appropriate model based on data classification, latency requirements and cost constraints—a pattern that IBM watsonx.ai's model serving infrastructure is designed to support [4].
 
-![Figure 37.2 — The model deployment spectrum: from cloud-hosted proprietary models to sovereign-zone-deployed open-weight and fine-tuned models, with routing based on data classification and task requirements](images/figure-37-2.png)
+![Figure 37.2 — The model deployment spectrum](images/figure-37-2.png)
 
 ***
 
@@ -60,7 +60,7 @@ The progression from generative AI as a conversational tool to generative AI as 
 
 The honest assessment is that production environments in 2026 are primarily in the assistant and early tool-using agent phases, with planning agents emerging in controlled domains. The progression to autonomous operators will be gradual, domain-specific and heavily dependent on the maturity of the guardrail infrastructure. Organisations that have invested in the foundations described in this book—rich observability, topology-aware operations, runbooks-as-code, policy-as-code, bounded agent frameworks—are better positioned to move along this progression safely, because each step builds on those foundations rather than requiring them to be invented ad hoc. The operational substrate is the rate-limiting factor, not the model capability.
 
-![Figure 37.3 — The agentic progression: assistant, tool-using agent, planning agent, autonomous operator, with increasing guardrail requirements at each phase](images/figure-37-3.png)
+![Figure 37.3 — The agentic progression](images/figure-37-3.png)
 
 ***
 
@@ -80,7 +80,7 @@ For organisations that cannot justify dedicated GPU clusters, shared sovereign A
 
 The broader trajectory is toward sovereign AI infrastructure becoming a standard component of the sovereign zone, just as sovereign identity management and sovereign key management are today. Governments and industry consortia in the EU, the Gulf states and parts of Asia are already investing in shared sovereign AI compute facilities designed to provide foundation model capabilities within jurisdictional boundaries [7]. For the enterprise architect, the planning implication is clear: sovereign AI infrastructure should be part of the zone design, not an afterthought bolted on when the first AI use case demands it.
 
-![Figure 37.4 — Sovereign AI infrastructure stack: accelerator hardware, inference serving, model registry, training pipelines and governance, all within the sovereign zone boundary](images/figure-37-4.png)
+![Figure 37.4 — Sovereign AI infrastructure stack](images/figure-37-4.png)
 
 ***
 
@@ -160,7 +160,7 @@ The response is a convergence of several defensive technologies into an integrat
 
 The shift is from "backup and restore" as a periodic, manual process to "continuous cyber-resilience" as an always-on architectural property. Integrity validation runs continuously, not on an annual test schedule. Isolation between production and recovery environments is enforced by architecture, not by procedure. Recovery is orchestrated by agents that can execute validated runbooks in minutes, not by on-call engineers interpreting documentation under pressure at three in the morning. IBM Storage Defender exemplifies this pattern, providing cyber-resilience capabilities — including immutable snapshots, safeguarded copies, anomaly detection on storage telemetry and integration with the broader security operations toolchain — that can be deployed within a sovereign zone and governed by the same policy-as-code framework applied to the rest of the estate [16].
 
-![Figure 37.5 — Continuous cyber-resilience architecture: immutable storage, safeguarded copies, confidential computing and agent-orchestrated clean-room recovery within the sovereign zone boundary](images/figure-37-5.png)
+![Figure 37.5 — Continuous cyber-resilience architecture](images/figure-37-5.png)
 
 **IBM Quantum and the dual role.** It is worth noting the structural position that IBM occupies in this landscape. Through its IBM Quantum programme and the open-source Qiskit framework, IBM operates one of the world's largest fleets of quantum processors and is actively advancing the hardware and software stack that will, in time, produce cryptographically relevant machines [17]. Simultaneously, through its sovereign cloud, storage and security portfolio, IBM provides the infrastructure and tooling that organisations use to defend against the very threat that quantum computing creates. This dual role is not a contradiction; it is an acknowledgement that the quantum transition is inevitable and that responsible advancement requires building both the capability and the countermeasures in parallel. For the sovereign operations architect, the practical implication is that the vendor ecosystem already encompasses both sides of the quantum equation, and architectural planning should incorporate PQC readiness into the same roadmap as AI infrastructure, regulatory compliance and operational sovereignty.
 

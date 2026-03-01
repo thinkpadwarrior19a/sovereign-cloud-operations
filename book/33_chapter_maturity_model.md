@@ -194,7 +194,7 @@ The organisation must begin measuring operational outcomes quantitatively: not j
 
 Integration means connecting systems that were previously separate. The observability plane must integrate with the change management system, so that deployments and configuration changes are automatically correlated with operational outcomes. The compliance system must integrate with the observability plane, so that evidence is generated continuously rather than assembled retrospectively. Agent governance must integrate with the broader governance framework, so that agent actions are subject to the same scrutiny and accountability as human actions.
 
-![Figure 33.3 — Feedback loops at Level 4: operational data flows between the observability plane, change intelligence, compliance reporting and agent governance, creating a continuous improvement cycle](images/figure-33-3.png)
+![Figure 33.3 — Feedback loops at Level 4](images/figure-33-3.png)
 
 ### 33.5.4 Level 4 to Level 5 — Optimisation and autonomy
 

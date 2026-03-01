@@ -22,6 +22,7 @@ pandoc \
   "${CHAPTERS[@]}" \
   --pdf-engine=xelatex \
   --include-in-header="${REPO_ROOT}/config/latex-preamble.tex" \
+  --include-before-body="${REPO_ROOT}/config/after-toc.tex" \
   --lua-filter="${REPO_ROOT}/config/index-filter.lua" \
   --highlight-style=tango \
   --toc \
