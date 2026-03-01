@@ -1,0 +1,43 @@
+# Auto-detect text files and normalise line endings
+* text=auto
+
+# Force LF for all text source files (critical for bash scripts and LaTeX)
+*.md        text eol=lf
+*.yaml      text eol=lf
+*.yml       text eol=lf
+*.tex       text eol=lf
+*.lua       text eol=lf
+*.py        text eol=lf
+*.sh        text eol=lf
+*.css       text eol=lf
+*.html      text eol=lf
+*.json      text eol=lf
+*.gitignore text eol=lf
+
+# Shell scripts must keep LF and be marked executable
+*.sh text eol=lf diff=bash
+
+# Windows-native files can use CRLF
+*.ps1       text eol=crlf
+*.bat       text eol=crlf
+*.cmd       text eol=crlf
+
+# Binary files — no line-ending conversion, no diff
+*.png       binary
+*.jpg       binary
+*.jpeg      binary
+*.gif       binary
+*.svg       binary
+*.pdf       binary
+*.epub      binary
+*.pptx      binary
+*.docx      binary
+*.xlsx      binary
+*.woff      binary
+*.woff2     binary
+*.ttf       binary
+*.otf       binary
+*.zip       binary
+
+# Linguist overrides for GitHub stats (treat as documentation, not code)
+book/*.md   linguist-documentation
