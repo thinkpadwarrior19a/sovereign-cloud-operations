@@ -20,7 +20,6 @@ The response to these pressures cannot be more dashboards, more analysts, or mor
 
 The book is organised into twelve parts. Part I makes the strategic case for change. Parts II through IV establish the architectural reference model, observability architecture, and automation foundations. Parts V through IX cover IBM Concert, multi-agent orchestration, AI governance, agentic DevOps, and autonomous operations. Parts X and XI address the human operating model, maturity assessment, blueprints, and case studies. Part XII closes with the horizon — the fully agentic enterprise. This abridged edition distils the essential argument, architecture, and practical guidance from each part, providing a complete strategic overview in approximately one-tenth the length of the full text.
 
-> **[FIGURE 0.1 — The operational gap: architecture capability versus operational capacity over time]**
 
 ## Chapter 1 — The Limits of Yesterday's Operations
 
@@ -52,7 +51,6 @@ The chapter introduces five value metrics that connect operational investment to
 
 The business case for agentic operations is not primarily about headcount reduction. It is about the reallocation of expensive human expertise from low-value, repetitive work — correlation, evidence assembly, routine remediation — to high-value work that only humans can do: architectural design, boundary-setting, governance, and judgement in novel situations. The economic return is measured not in fewer engineers but in more capable engineering, faster recovery, lower fine exposure, and reduced attrition.
 
-> **[FIGURE 2.1 — The hidden cost iceberg: visible infrastructure costs versus hidden operational costs]**
 
 ## Chapter 3 — Regulatory Landscape and Design Criteria
 
@@ -84,7 +82,6 @@ The **Governance and Audit Plane** provides the accountability infrastructure th
 
 The model addresses the meta-lock-in concern directly. Each plane's components are substitutable because the interfaces between planes are defined by open standards — OpenTelemetry for observability, Kubernetes and Terraform for automation, OPA for policy, OpenAPI for integration. The architecture's value lies in the decomposition and the interface contracts, not in any single vendor's implementation. A dedicated section in the full text addresses the "who watches the watchmen" question — whether the cross-cloud control plane itself becomes a single point of compromise — and describes the distributed trust architecture, zone-scoped credentials, just-in-time privilege elevation, and zone-local enforcement mechanisms that bound the blast radius of any control plane breach.
 
-> **[FIGURE 4.1 — The four-planes reference model for sovereign cloud operations]**
 
 ## Chapter 5 — Multi-Cloud Topology and Sovereign Zones
 
@@ -122,7 +119,6 @@ OpenTelemetry provides the standardisation layer. The OpenTelemetry SDK, protoco
 
 The chapter also addresses observability of AI components. Model invocations, agent decisions, confidence scores, and token consumption are first-class telemetry signals that feed both operational diagnosis and the sovereign AI record required by the EU AI Act. When an agent recommends a remediation, the observability plane captures what model was invoked, what context was provided, what confidence score was returned, and how long the inference took — information essential for both operational troubleshooting and regulatory compliance with Article 12 record-keeping requirements.
 
-> **[FIGURE 7.1 — Federated observability architecture with sovereign zone boundaries]**
 
 ## Chapters 8–9 — Network Observability, Events, and Lineage
 
@@ -144,7 +140,6 @@ The compliance automation delivers three measurable benefits. First, *evidence l
 
 Agentic compliance workflows extend this further. When drift is detected — a service deployed in a sovereign zone with an external dependency that violates zone policy, for example — a compliance agent automatically raises a remediation ticket, cites the specific policy clause, proposes remediation paths (move the service to the development zone where the dependency is permitted, or submit the dependency for sovereign compliance review), and, within defined autonomy boundaries, executes the approved remediation. The human role shifts from discovering violations and assembling evidence to reviewing agent assessments and exercising judgement about remediation priorities.
 
-> **[FIGURE 10.1 — Continuous compliance signal fabric with policy-as-code evaluation]**
 
 ---
 
@@ -194,7 +189,6 @@ Each entity carries typed metadata: its sovereign zone membership, its data clas
 
 Concert's sovereign zone awareness is architecturally fundamental. Concert maintains zone boundaries as first-class entities in its graph and enforces them in recommendation logic. A recommendation to fail over a database to a different region will not be generated if the target region falls outside the service's sovereign zone. In federated deployments — where each sovereign zone has its own Concert instance with a lightweight coordination layer — zone-local recommendations are generated locally with full access to local telemetry, while cross-zone recommendations are generated at the coordination layer using only the filtered aggregates that zone policy permits to be exported.
 
-> **[FIGURE 14.1 — Concert's entity graph, correlation engine, and recommendation pipeline]**
 
 ## Chapter 15 — Concert's AIOps Workflows and Change Risk Intelligence
 
@@ -228,7 +222,6 @@ Communication between agents uses durable message queues rather than synchronous
 
 The chapter catalogues five principal failure modes and their mitigations. **Cascading hallucination** — one agent's erroneous output becoming another's input — is mitigated by independent validation gates between stages. **Scope creep** — an agent exceeding its defined competency — is mitigated by explicit scope boundaries enforced through OPA policies. **Coordination deadlock** — agents waiting for each other in a cycle — is mitigated by timeout policies and detection. **Conflicting actions** — two agents independently proposing incompatible remediations — is mitigated by a conflict resolution stage that evaluates proposals against the topology model. **Audit gaps** — unlogged agent-to-agent interactions — are mitigated by mandatory logging of every message, decision, and action in the sovereign AI record.
 
-> **[FIGURE 18.1 — Multi-agent orchestration topologies: supervisor, mesh, and hierarchical]**
 
 ## Chapter 19 — Agentic Patterns and ITSM Integration
 
@@ -324,7 +317,6 @@ The **autonomous action boundary** governs which actions agents may take without
 
 Safety mechanisms are layered as defence in depth: rate limiting (maximum actions per time window), blast-radius containment (bounded scope per action), automatic rollback (health monitoring with reversal if metrics deteriorate), dead man's switch (agents must continuously affirm operational status; silence triggers escalation), and escalation cascades (situations exceeding competency reach a human with appropriate authority within defined time bounds). The chapter also addresses cyber-resilient recovery patterns: IBM Safeguarded Copy for immutable, zone-local snapshots; cyber vault architectures for isolated, hardened backup environments; and clean room recovery for restoring workloads into validated infrastructure — integrated with agentic orchestration and aligned to DORA Article 12 backup and recovery requirements.
 
-> **[FIGURE 29.1 — The autonomous action boundary: reversibility, blast radius, and regulatory sensitivity]**
 
 ## Chapter 30 — Agent-Assisted Incident Management
 
@@ -384,7 +376,6 @@ Five transformation anti-patterns are identified: the **big-bang rewrite** (repl
 
 Progress is sustained through quarterly maturity reviews, leading indicators (percentage of new infrastructure via IaC, mean time to root cause, policy violation count, agent recommendation acceptance rate), and explicit connection to business outcomes (reduced MTTR translates to revenue preserved, automated evidence translates to reduced audit cost, improved change failure rate translates to engineering time freed for value-creating work). The model serves operations, not the other way around.
 
-> **[FIGURE 33.1 — Sovereign Operations Maturity Model: five levels across eight dimensions]**
 
 ---
 
@@ -418,7 +409,6 @@ Five composite case studies, drawn from patterns observed across real organisati
 
 Cross-cutting lessons: observability must precede automation; zero-copy integration is a sovereignty enabler; policy-as-code requires iterative refinement under real operating conditions; organisational and cultural change is at least as demanding as the technical migration.
 
-> **[FIGURE 36.1 — Cross-case outcome metrics comparison]**
 
 ---
 
@@ -450,7 +440,6 @@ Against these risks, the **sovereignty dividend** accrues to organisations that 
 
 The closing reflection returns to the book's design principle: *build systems that make it easier for good engineers to do the right thing under pressure*. The fully agentic enterprise is not a destination but a sustainable practice — tending an evolving estate with care, rigour, and enough slack that people can think. Whether the tools carry IBM's name or another's, the patterns endure: sovereign zones enforcing boundaries, zero-copy integration reducing governance surface, policy-as-code making compliance continuous, observability understanding topology, agents recommending and acting within governed boundaries, governance producing evidence, and humans who design, supervise, improve, and remain — always — the accountable parties.
 
-> **[FIGURE 38.1 — The fully agentic enterprise: four planes converged into daily operational reality]**
 
 ---
 
