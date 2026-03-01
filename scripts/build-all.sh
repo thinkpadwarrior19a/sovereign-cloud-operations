@@ -17,9 +17,21 @@ for build in pdf epub html; do
     echo
 done
 
+echo "=== Building artefacts ==="
+if bash "${REPO_ROOT}/artefacts/build-artefacts.sh"; then
+    echo "=== artefacts complete ==="
+else
+    echo "=== artefacts FAILED ==="
+    FAILED=1
+fi
+echo
+
 if [ "${FAILED}" -eq 1 ]; then
     echo "Some builds failed — check output above."
     exit 1
 fi
 
 echo "All builds complete."
+echo ""
+echo "Releases:"
+ls -lh "${REPO_ROOT}/releases/" 2>/dev/null

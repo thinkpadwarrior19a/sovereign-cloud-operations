@@ -6,9 +6,10 @@ set -euo pipefail
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 ARTEFACTS_DIR="${REPO_ROOT}/artefacts"
 CSS="${ARTEFACTS_DIR}/artefact.css"
-BUILD_DIR="${REPO_ROOT}/.build/artefacts"
+RELEASES_DIR="${REPO_ROOT}/releases"
+BUILD_DATE="$(date +%Y-%m-%d)"
 
-mkdir -p "${BUILD_DIR}"
+mkdir -p "${RELEASES_DIR}"
 
 echo "=== Building Sovereign Cloud Operations Artefacts ==="
 echo ""
@@ -27,8 +28,8 @@ pandoc \
   --css="${CSS}" \
   --toc \
   --toc-depth=2 \
-  --output="${BUILD_DIR}/executive-abridged.epub"
-echo "  Built: ${BUILD_DIR}/executive-abridged.epub"
+  --output="${RELEASES_DIR}/executive-abridged-${BUILD_DATE}.epub"
+echo "  Built: ${RELEASES_DIR}/executive-abridged-${BUILD_DATE}.epub"
 
 # --- IBM Sales Play Guide ---
 echo "Building: IBM Sales Play Guide..."
@@ -44,18 +45,18 @@ pandoc \
   --css="${CSS}" \
   --toc \
   --toc-depth=2 \
-  --output="${BUILD_DIR}/sales-play-guide.epub"
-echo "  Built: ${BUILD_DIR}/sales-play-guide.epub"
+  --output="${RELEASES_DIR}/sales-play-guide-${BUILD_DATE}.epub"
+echo "  Built: ${RELEASES_DIR}/sales-play-guide-${BUILD_DATE}.epub"
 
 # --- Internal Presentation (PowerPoint) ---
 echo "Building: Internal Summary Presentation (PowerPoint)..."
 pandoc \
   "${ARTEFACTS_DIR}/internal-presentation.md" \
   --to=pptx \
-  --output="${BUILD_DIR}/internal-presentation.pptx"
-echo "  Built: ${BUILD_DIR}/internal-presentation.pptx"
+  --output="${RELEASES_DIR}/internal-presentation-${BUILD_DATE}.pptx"
+echo "  Built: ${RELEASES_DIR}/internal-presentation-${BUILD_DATE}.pptx"
 
 echo ""
 echo "=== All artefacts built ==="
 echo ""
-ls -lh "${BUILD_DIR}"/*.epub "${BUILD_DIR}"/*.pptx
+ls -lh "${RELEASES_DIR}"/executive-abridged-*.epub "${RELEASES_DIR}"/sales-play-guide-*.epub "${RELEASES_DIR}"/internal-presentation-*.pptx 2>/dev/null

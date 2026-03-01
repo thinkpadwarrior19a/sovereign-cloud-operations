@@ -1,4 +1,4 @@
-name: Build PDF
+name: Build All Assets
 
 on:
   push:
@@ -6,7 +6,8 @@ on:
     paths:
       - "book/**"
       - "config/**"
-      - "scripts/build-pdf.sh"
+      - "artefacts/**"
+      - "scripts/**"
       - ".github/workflows/build-pdf.yml"
   workflow_dispatch:
 
@@ -36,13 +37,13 @@ jobs:
             fonts-texgyre
           sudo fc-cache -f
 
-      - name: Build PDF
-        run: bash scripts/build-pdf.sh
+      - name: Build all assets
+        run: bash scripts/build-all.sh
 
-      - name: Upload PDF artifact
+      - name: Upload all releases
         uses: actions/upload-artifact@v4
         with:
-          name: sovereign-cloud-operations-pdf
-          path: releases/sovereign-cloud-operations.pdf
+          name: sovereign-cloud-operations-releases
+          path: releases/
           retention-days: 90
           if-no-files-found: error

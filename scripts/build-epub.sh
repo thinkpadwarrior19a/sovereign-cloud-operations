@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 # build-epub.sh — Build the Sovereign Cloud Operations ePub
-# Usage: bash scripts/build-epub.sh [output-file]
+# Usage: bash scripts/build-epub.sh
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 RELEASES_DIR="${REPO_ROOT}/releases"
-OUT="${1:-sovereign-cloud-operations.epub}"
+BUILD_DATE="$(date +%Y-%m-%d)"
+OUT="sovereign-cloud-operations-${BUILD_DATE}.epub"
 
 # Collect chapters in sorted order
 mapfile -t CHAPTERS < <(ls "${REPO_ROOT}/book/"*.md | sort)

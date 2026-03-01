@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 # build-pdf.sh — Build the Sovereign Cloud Operations PDF
-# Usage: bash scripts/build-pdf.sh [output-file]
+# Usage: bash scripts/build-pdf.sh
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 RELEASES_DIR="${REPO_ROOT}/releases"
-OUT="${1:-sovereign-cloud-operations.pdf}"
+BUILD_DATE="$(date +%Y-%m-%d)"
+OUT="sovereign-cloud-operations-${BUILD_DATE}.pdf"
 TEX_DIR="${REPO_ROOT}/.build"
 TEX_FILE="${TEX_DIR}/book.tex"
 
@@ -15,7 +16,7 @@ mapfile -t CHAPTERS < <(ls "${REPO_ROOT}/book/"*.md | sort)
 echo "Building PDF from ${#CHAPTERS[@]} chapters..."
 
 # Create build directory
-mkdir -p "${TEX_DIR}"
+mkdir -p "${TEX_DIR}" "${RELEASES_DIR}"
 
 # Step 1: Pandoc generates .tex with the Lua index filter
 pandoc \
@@ -38,7 +39,6 @@ latexmk \
   "${TEX_FILE}"
 
 # Copy the final PDF to the releases directory
-mkdir -p "${RELEASES_DIR}"
 cp "${TEX_DIR}/book.pdf" "${RELEASES_DIR}/${OUT}"
 
 echo "Built: ${RELEASES_DIR}/${OUT}"
