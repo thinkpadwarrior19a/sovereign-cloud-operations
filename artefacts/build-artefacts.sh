@@ -43,6 +43,7 @@ pandoc \
   --variable monofont="DejaVu Sans Mono" \
   "${ARTEFACTS_DIR}/executive-abridged.md" \
   --pdf-engine=xelatex \
+  --top-level-division=chapter \
   --include-in-header="${REPO_ROOT}/config/latex-preamble.tex" \
   --toc \
   --toc-depth=2 \
@@ -78,6 +79,7 @@ pandoc \
   --variable monofont="DejaVu Sans Mono" \
   "${ARTEFACTS_DIR}/sales-play-guide.md" \
   --pdf-engine=xelatex \
+  --top-level-division=chapter \
   --include-in-header="${REPO_ROOT}/config/latex-preamble.tex" \
   --toc \
   --toc-depth=2 \
