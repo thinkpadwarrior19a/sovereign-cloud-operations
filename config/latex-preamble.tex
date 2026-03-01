@@ -59,14 +59,17 @@
 \usepackage{caption}
 \captionsetup{labelformat=empty}
 
-% --- Chapter title style ---
+% --- Chapter and section title style (no hyphenation) ---
 \usepackage{titlesec}
 \titleformat{\chapter}[display]
-  {\normalfont\huge\bfseries}
+  {\normalfont\huge\bfseries\raggedright}
   {\chaptertitlename\ \thechapter}
   {20pt}
-  {\Huge}
+  {\Huge\raggedright}
 \titlespacing*{\chapter}{0pt}{40pt}{20pt}
+\titleformat{\section}{\normalfont\Large\bfseries\raggedright}{}{0em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries\raggedright}{}{0em}{}
+\titleformat{\subsubsection}{\normalfont\normalsize\bfseries\raggedright}{}{0em}{}
 
 % --- Orphan / widow control ---
 \widowpenalty=10000
