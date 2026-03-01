@@ -43,6 +43,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: sovereign-cloud-operations-pdf
-          path: sovereign-cloud-operations.pdf
+          path: releases/sovereign-cloud-operations.pdf
           retention-days: 90
           if-no-files-found: error

@@ -4,6 +4,7 @@
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+RELEASES_DIR="${REPO_ROOT}/releases"
 OUT="${1:-sovereign-cloud-operations.pdf}"
 TEX_DIR="${REPO_ROOT}/.build"
 TEX_FILE="${TEX_DIR}/book.tex"
@@ -36,7 +37,8 @@ latexmk \
   -output-directory="${TEX_DIR}" \
   "${TEX_FILE}"
 
-# Copy the final PDF to the repo root
-cp "${TEX_DIR}/book.pdf" "${REPO_ROOT}/${OUT}"
+# Copy the final PDF to the releases directory
+mkdir -p "${RELEASES_DIR}"
+cp "${TEX_DIR}/book.pdf" "${RELEASES_DIR}/${OUT}"
 
-echo "Built: ${REPO_ROOT}/${OUT}"
+echo "Built: ${RELEASES_DIR}/${OUT}"

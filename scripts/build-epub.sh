@@ -4,12 +4,15 @@
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+RELEASES_DIR="${REPO_ROOT}/releases"
 OUT="${1:-sovereign-cloud-operations.epub}"
 
 # Collect chapters in sorted order
 mapfile -t CHAPTERS < <(ls "${REPO_ROOT}/book/"*.md | sort)
 
 echo "Building ePub from ${#CHAPTERS[@]} chapters..."
+
+mkdir -p "${RELEASES_DIR}"
 
 pandoc \
   "${REPO_ROOT}/config/epub-metadata.yaml" \
@@ -20,6 +23,6 @@ pandoc \
   --toc \
   --toc-depth=2 \
   --resource-path="${REPO_ROOT}" \
-  --output="${REPO_ROOT}/${OUT}"
+  --output="${RELEASES_DIR}/${OUT}"
 
-echo "Built: ${REPO_ROOT}/${OUT}"
+echo "Built: ${RELEASES_DIR}/${OUT}"
