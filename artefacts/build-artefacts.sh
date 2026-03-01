@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# build-artefacts.sh — Build ePub versions of derivative artefacts
+# build-artefacts.sh — Build derivative artefacts (ePub and PowerPoint)
 # Usage: bash artefacts/build-artefacts.sh
 set -euo pipefail
 
@@ -47,7 +47,15 @@ pandoc \
   --output="${BUILD_DIR}/sales-play-guide.epub"
 echo "  Built: ${BUILD_DIR}/sales-play-guide.epub"
 
+# --- Internal Presentation (PowerPoint) ---
+echo "Building: Internal Summary Presentation (PowerPoint)..."
+pandoc \
+  "${ARTEFACTS_DIR}/internal-presentation.md" \
+  --to=pptx \
+  --output="${BUILD_DIR}/internal-presentation.pptx"
+echo "  Built: ${BUILD_DIR}/internal-presentation.pptx"
+
 echo ""
 echo "=== All artefacts built ==="
 echo ""
-ls -lh "${BUILD_DIR}"/*.epub
+ls -lh "${BUILD_DIR}"/*.epub "${BUILD_DIR}"/*.pptx
