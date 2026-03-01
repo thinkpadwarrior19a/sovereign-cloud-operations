@@ -32,7 +32,9 @@ jobs:
             texlive-latex-extra \
             lmodern \
             fonts-dejavu \
-            fonts-dejavu-extra
+            fonts-dejavu-extra \
+            fonts-texgyre
+          sudo fc-cache -f
 
       - name: Build PDF
         run: bash scripts/build-pdf.sh
