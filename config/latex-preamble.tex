@@ -9,7 +9,7 @@
   bottom=25mm,
   inner=30mm,
   outer=20mm,
-  headheight=14pt
+  headheight=24pt
 ]{geometry}
 
 % --- Headers and footers ---
@@ -28,6 +28,17 @@
   \fancyfoot[C]{\thepage}%
   \renewcommand{\headrulewidth}{0pt}%
 }
+
+% --- Line-breaking tolerance ---
+\tolerance=3000
+\emergencystretch=3em
+\hbadness=4000
+\vbadness=4000
+\hfuzz=5pt
+\vfuzz=5pt
+
+% --- URL line-breaking (xurl extends url with aggressive break points) ---
+\usepackage{xurl}
 
 % --- Code blocks ---
 \usepackage{fvextra}
