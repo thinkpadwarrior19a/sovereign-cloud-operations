@@ -218,6 +218,72 @@ footer {
     font-size: 0.9rem;
 }
 
+/* Index / landing page */
+.book-hero {
+    text-align: center;
+    padding: 3rem 1rem 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--colour-accent);
+}
+
+.book-hero h1 {
+    font-size: 2.4rem;
+    border-bottom: none;
+    margin-top: 0;
+    padding-bottom: 0;
+}
+
+.book-hero .subtitle {
+    font-size: 1.15rem;
+    color: var(--colour-muted);
+    max-width: 36rem;
+    margin: 0.5rem auto 0.75rem;
+}
+
+.book-hero .author {
+    font-size: 1rem;
+    color: var(--colour-muted);
+}
+
+.chapter-list {
+    margin-bottom: 3rem;
+}
+
+.chapter-list h2 {
+    font-size: 1.4rem;
+    color: var(--colour-heading);
+    margin-bottom: 1rem;
+}
+
+.chapter-list ol {
+    list-style: none;
+    padding: 0;
+    counter-reset: chapter-counter -1;
+}
+
+.chapter-list li {
+    counter-increment: chapter-counter;
+    margin: 0;
+}
+
+.chapter-list li a {
+    display: block;
+    padding: 0.7rem 1rem;
+    text-decoration: none;
+    color: var(--colour-text);
+    border-bottom: 1px solid var(--colour-border);
+    transition: background 0.15s;
+}
+
+.chapter-list li a:hover {
+    background: var(--colour-code-bg);
+    color: var(--colour-accent);
+}
+
+.chapter-list li:first-child a {
+    border-top: 1px solid var(--colour-border);
+}
+
 /* Print styles */
 @media print {
     #site-header, #TOC { display: none; }
