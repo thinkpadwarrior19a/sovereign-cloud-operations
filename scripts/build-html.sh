@@ -76,9 +76,9 @@ cat > "${OUT_DIR}/index.html" <<HTMLEOF
 <body>
   <header id="site-header">
     <div class="header-inner">
-      <a href="/" class="site-title">Sovereign Cloud Operations</a>
+      <a href="./" class="site-title">Sovereign Cloud Operations</a>
       <nav>
-        <a href="/">Home</a>
+        <a href="./">Home</a>
       </nav>
     </div>
   </header>
