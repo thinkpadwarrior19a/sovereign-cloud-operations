@@ -14,9 +14,9 @@ echo "Building HTML site from ${#CHAPTERS[@]} chapters..."
 # Create output directory
 mkdir -p "${OUT_DIR}"
 
-# Copy figures if they exist
-if [ -d "${REPO_ROOT}/figures" ]; then
-    cp -r "${REPO_ROOT}/figures" "${OUT_DIR}/figures"
+# Copy images if they exist
+if [ -d "${REPO_ROOT}/images" ]; then
+    cp -r "${REPO_ROOT}/images" "${OUT_DIR}/images"
 fi
 
 # Build single-page HTML (main reading experience)

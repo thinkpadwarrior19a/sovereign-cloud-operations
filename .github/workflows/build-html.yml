@@ -1,16 +1,15 @@
 name: Build & Deploy HTML Site
 
 on:
-  # Manual trigger only during internal-distribution phase.
-  # Uncomment the push trigger when ready to go public.
-  #
-  # push:
-  #   branches: [main]
-  #   paths:
-  #     - "book/**"
-  #     - "config/**"
-  #     - "scripts/build-html.sh"
-  #     - ".github/workflows/build-html.yml"
+  push:
+    branches: [main]
+    paths:
+      - "book/**"
+      - "images/**"
+      - "config/**"
+      - "landing/**"
+      - "scripts/build-html.sh"
+      - ".github/workflows/build-html.yml"
   workflow_dispatch:
 
 permissions:
