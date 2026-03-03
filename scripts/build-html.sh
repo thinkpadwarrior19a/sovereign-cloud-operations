@@ -29,6 +29,7 @@ for chapter in "${CHAPTERS[@]}"; do
     sed 's|(images/|(../images/|g' "${chapter}" > "${OUT_DIR}/chapters/_tmp_${basename}.md"
     pandoc \
       "${OUT_DIR}/chapters/_tmp_${basename}.md" \
+      --from=markdown+autolink_bare_uris \
       --to=html5 \
       --standalone \
       --css=../style.css \
