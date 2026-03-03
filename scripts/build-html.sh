@@ -6,8 +6,8 @@ set -euo pipefail
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 OUT_DIR="${1:-${REPO_ROOT}/_site}"
 
-# Collect chapters in sorted order
-mapfile -t CHAPTERS < <(ls "${REPO_ROOT}/book/"*.md | sort)
+# Collect chapters in sorted order (skip backmatter which is LaTeX-only)
+mapfile -t CHAPTERS < <(ls "${REPO_ROOT}/book/"*.md | grep -v '99_backmatter' | sort)
 
 echo "Building HTML site from ${#CHAPTERS[@]} chapters..."
 
@@ -52,7 +52,7 @@ INDEX_BODY+="<nav class=\"chapter-list\"><h2>Contents</h2><ol>"
 for chapter in "${CHAPTERS[@]}"; do
     basename=$(basename "${chapter}" .md)
     # Extract the first H1 heading as the chapter title
-    title=$(grep -m1 '^# ' "${chapter}" | sed 's/^# //')
+    title=$(grep -m1 '^# ' "${chapter}" | sed 's/^# //' || true)
     if [ -z "${title}" ]; then
         title="${basename}"
     fi
