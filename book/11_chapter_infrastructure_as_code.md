@@ -228,10 +228,10 @@ The next chapter turns from the skeleton to the muscles. If IaC defines the stru
 
 [5] N. Forsgren, J. Humble, and G. Kim, *Accelerate: The Science of Lean Software and DevOps: Building and Scaling High Performing Technology Organizations*. Portland, OR: IT Revolution Press, 2018.
 
-[6] B. Beyer, C. Jones, J. Petoff, and N. R. Murphy, Eds., *Site Reliability Engineering: How Google Runs Production Systems*. Sebastopol, CA: O'Reilly Media, 2016.
+[6] B. Beyer, C. Jones, J. Petoff, and N. R. Murphy, Eds., *Site Reliability Engineering: How Google Runs Production Systems*. Sebastopol, CA: O'Reilly Media, 2016. [Online]. Available: https://sre.google/sre-book/table-of-contents/
 
 [7] Cloud Native Computing Foundation, *Open Policy Agent Documentation*, 2024. [Online]. Available: https://www.openpolicyagent.org/docs/latest/
 
-[8] European Parliament and Council of the European Union, "Regulation (EU) 2022/2554 of the European Parliament and of the Council on digital operational resilience for the financial sector (DORA)," *Official Journal of the European Union*, vol. L 333, pp. 1–79, December 2022.
+[8] European Parliament and Council of the European Union, "Regulation (EU) 2022/2554 of the European Parliament and of the Council on digital operational resilience for the financial sector (DORA)," *Official Journal of the European Union*, vol. L 333, pp. 1–79, December 2022. [Online]. Available: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32022R2554
 
 [9] CNCF GitOps Working Group, "GitOps Principles v1.0," Cloud Native Computing Foundation, 2021. [Online]. Available: https://opengitops.dev/

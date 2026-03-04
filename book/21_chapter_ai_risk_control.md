@@ -150,7 +150,7 @@ The subtlety of this violation is that it occurs within the AI pipeline, not at 
 
 ### Risk 5: Training data poisoning and knowledge base corruption
 
-The operational knowledge base described in Chapter 20 is a critical input to agent reasoning. If the knowledge base is corrupted—through deliberate poisoning or through the inadvertent indexing of incorrect documents—agent recommendations will be systematically biased or wrong. Unlike model hallucination, which produces errors that are random and detectable through statistical monitoring, knowledge base corruption produces errors that are consistent and may appear authoritative because they are grounded in (corrupted) source documents.
+The operational knowledge base described in [Chapter 20](20_chapter_kb_augmented_operations.html) is a critical input to agent reasoning. If the knowledge base is corrupted—through deliberate poisoning or through the inadvertent indexing of incorrect documents—agent recommendations will be systematically biased or wrong. Unlike model hallucination, which produces errors that are random and detectable through statistical monitoring, knowledge base corruption produces errors that are consistent and may appear authoritative because they are grounded in (corrupted) source documents.
 
 Poisoning vectors include compromised runbook repositories, manipulated post-incident review records, and the indexing of draft or superseded documents that contain incorrect procedures.
 
@@ -214,7 +214,7 @@ The risk register identifies risks and prescribes controls. Runtime risk control
 
 ### Guardrail agents
 
-The guardrail agent pattern, introduced in the multi-agent orchestration discussion of Chapter 18, is the primary mechanism for enforcing policy constraints on agent actions at runtime. A guardrail agent is a specialised agent—or, in simpler implementations, a policy evaluation function—that intercepts every proposed action from an executor agent and evaluates it against the current policy set before allowing execution to proceed.
+The guardrail agent pattern, introduced in the multi-agent orchestration discussion of [Chapter 18](18_chapter_multi_agent_orchestration.html), is the primary mechanism for enforcing policy constraints on agent actions at runtime. A guardrail agent is a specialised agent—or, in simpler implementations, a policy evaluation function—that intercepts every proposed action from an executor agent and evaluates it against the current policy set before allowing execution to proceed.
 
 The guardrail evaluation is not a simple permission check. It is a contextual assessment that considers the proposed action, the current state of the affected entities (as reported by Concert's topology model), the sovereign zone constraints applicable to the target environment, the agent's defined authority boundary, and any active change freeze windows or incident-related restrictions. The guardrail agent queries the policy engine—typically Open Policy Agent (OPA) with policies expressed in Rego and maintained as policy-as-code in version control—and returns one of three verdicts: permit, deny, or escalate (require human approval) [8].
 
@@ -270,7 +270,7 @@ The most fundamental metric for an operational AI agent is whether its decisions
 
 A structured decision review process samples agent decisions at a defined frequency—weekly for high-risk agents, monthly for lower-risk agents—and presents them to experienced operators for blind evaluation. The evaluators assess each decision on three dimensions: correctness (was the recommendation factually accurate and operationally appropriate?), completeness (did the recommendation address the full scope of the situation, or did it miss important considerations?), and safety (if executed, would the recommendation have caused unintended harm?). The results are tracked as time series metrics and reviewed in the AI governance forum.
 
-The decision review process also serves as a feedback mechanism for the knowledge base. Decisions that were incorrect because the agent retrieved outdated or irrelevant knowledge identify specific knowledge base entries that need updating. Decisions that were incomplete because the agent lacked knowledge about a particular service or procedure identify gaps in the knowledge base that should be addressed. This connection between decision review and knowledge maintenance ensures that the quality improvement cycle described in Chapter 20, Section 20.7 is driven by empirical evidence from agent performance, not by ad hoc editorial judgement.
+The decision review process also serves as a feedback mechanism for the knowledge base. Decisions that were incorrect because the agent retrieved outdated or irrelevant knowledge identify specific knowledge base entries that need updating. Decisions that were incomplete because the agent lacked knowledge about a particular service or procedure identify gaps in the knowledge base that should be addressed. This connection between decision review and knowledge maintenance ensures that the quality improvement cycle described in [Chapter 20](20_chapter_kb_augmented_operations.html), Section 20.7 is driven by empirical evidence from agent performance, not by ad hoc editorial judgement.
 
 ### Drift detection
 
@@ -332,13 +332,13 @@ The answers to these questions feed directly back into the risk register (updati
 
 This chapter has established the risk management foundation for operational AI: the frameworks that identify and classify risks, the register that tracks them, the runtime controls that enforce risk boundaries, and the monitoring that keeps the risk posture current. These are necessary components, but they are not sufficient on their own. Risk management tells the organisation what can go wrong and how to prevent it. It does not tell the organisation how to govern the broader AI capability—how to make decisions about which agents to deploy, how to set and evolve autonomy boundaries, how to ensure accountability across the agent ecosystem, and how to demonstrate to regulators, auditors, and stakeholders that the organisation's use of AI in operations is not merely risk-managed but governed.
 
-Chapter 22 addresses this broader governance challenge. It presents a comprehensive AI governance framework for sovereign operations that encompasses not only risk management but also accountability structures, transparency requirements, ethical guidelines, lifecycle governance from development through retirement, and the organisational mechanisms—governance boards, review processes, escalation paths—that make AI governance operational rather than aspirational. Where this chapter has asked "what could go wrong and how do we prevent it?", Chapter 22 asks "how do we ensure that our use of AI in operations is consistently responsible, accountable, and aligned with our organisational values and regulatory obligations?"
+[Chapter 22](22_chapter_ai_governance_framework.html) addresses this broader governance challenge. It presents a comprehensive AI governance framework for sovereign operations that encompasses not only risk management but also accountability structures, transparency requirements, ethical guidelines, lifecycle governance from development through retirement, and the organisational mechanisms—governance boards, review processes, escalation paths—that make AI governance operational rather than aspirational. Where this chapter has asked "what could go wrong and how do we prevent it?", [Chapter 22](22_chapter_ai_governance_framework.html) asks "how do we ensure that our use of AI in operations is consistently responsible, accountable, and aligned with our organisational values and regulatory obligations?"
 
 ***
 
 ## References
 
-[1] S. Lin, J. Hilton, and O. Evans, "TruthfulQA: Measuring how models mimic human falsehoods," in *Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics*, vol. 1, Dublin, Ireland, May 2022, pp. 3214–3252.
+[1] S. Lin, J. Hilton, and O. Evans, "TruthfulQA: Measuring how models mimic human falsehoods," in *Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics*, vol. 1, Dublin, Ireland, May 2022, pp. 3214–3252. [Online]. Available: https://doi.org/10.18653/v1/2022.acl-long.229
 
 [2] European Data Protection Board, "Guidelines 05/2020 on consent under Regulation 2016/679," EDPB, Brussels, Belgium, May 2020. [Online]. Available: https://edpb.europa.eu/our-work-tools/our-documents/guidelines/guidelines-052020-consent-under-regulation-2016679_en
 
@@ -348,13 +348,13 @@ Chapter 22 addresses this broader governance challenge. It presents a comprehens
 
 [5] IBM, *IBM watsonx.governance: AI Governance and Compliance*, IBM Documentation, IBM Corp., Armonk, NY, USA, 2024. [Online]. Available: https://www.ibm.com/docs/en/watsonx/govai
 
-[6] A. Manakul, A. Liusie, and M. J. F. Gales, "SelfCheckGPT: Zero-resource black-box hallucination detection for generative large language models," in *Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing*, Singapore, Dec. 2023, pp. 9004–9017.
+[6] A. Manakul, A. Liusie, and M. J. F. Gales, "SelfCheckGPT: Zero-resource black-box hallucination detection for generative large language models," in *Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing*, Singapore, Dec. 2023, pp. 9004–9017. [Online]. Available: https://doi.org/10.18653/v1/2023.emnlp-main.557
 
 [7] European Parliament and Council of the European Union, "Regulation (EU) 2024/1689 laying down harmonised rules on artificial intelligence (Artificial Intelligence Act)," *Official Journal of the European Union*, L series, Aug. 2024. [Online]. Available: https://eur-lex.europa.eu/eli/reg/2024/1689
 
 [8] Open Policy Agent, "OPA: Policy-based control for cloud native environments," Cloud Native Computing Foundation, 2024. [Online]. Available: https://www.openpolicyagent.org/docs/latest/
 
-[9] J. Gama, I. Zliobaite, A. Bifet, M. Pechenizkiy, and A. Bouchachia, "A survey on concept drift adaptation," *ACM Computing Surveys*, vol. 46, no. 4, pp. 1–37, Apr. 2014.
+[9] J. Gama, I. Zliobaite, A. Bifet, M. Pechenizkiy, and A. Bouchachia, "A survey on concept drift adaptation," *ACM Computing Surveys*, vol. 46, no. 4, pp. 1–37, Apr. 2014. [Online]. Available: https://doi.org/10.1145/2523813
 
 [10] ISO/IEC, "ISO/IEC 42001:2023 — Information technology — Artificial intelligence — Management system," International Organization for Standardization, Geneva, Switzerland, 2023. [Online]. Available: https://www.iso.org/standard/81230.html
 

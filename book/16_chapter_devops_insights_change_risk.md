@@ -156,7 +156,7 @@ The rhythm of the quarterly review creates accountability for delivery quality a
 
 ### Agentic consumption of DevOps Insights data
 
-The operational learning described above has traditionally relied on human engineers—incident commanders reviewing deployment timelines, platform architects analysing trend dashboards, delivery managers compiling quarterly review presentations. The emergence of agentic operations, in which AI agents participate in operational workflows as described in Chapters 14 and 15, introduces a new class of consumer for DevOps Insights data: autonomous agents that query, correlate and act upon delivery performance signals without waiting for a human to formulate the right question.
+The operational learning described above has traditionally relied on human engineers—incident commanders reviewing deployment timelines, platform architects analysing trend dashboards, delivery managers compiling quarterly review presentations. The emergence of agentic operations, in which AI agents participate in operational workflows as described in [Chapter 14](14_chapter_concert_architecture.html) and [Chapter 15](15_chapter_concert_workflows.html), introduces a new class of consumer for DevOps Insights data: autonomous agents that query, correlate and act upon delivery performance signals without waiting for a human to formulate the right question.
 
 An agent operating within Concert's agentic framework can subscribe to the DevOps Insights event stream and receive notification of every deployment, quality gate evaluation and DORA metric recalculation as it occurs. When such an agent detects that a deployment has landed in a sovereign production environment with an elevated change risk score, it can immediately initiate a set of preparatory actions: verifying that rollback automation is armed for the affected service, confirming that the on-call engineer has been notified, and opening a monitoring session with tightened SLO evaluation thresholds. None of these actions requires a human to notice the elevated score and decide what to do about it; the agent applies a pre-approved runbook encoded as policy.
 
@@ -174,7 +174,7 @@ Large sovereign cloud estates rarely operate a single, centralised CI/CD toolcha
 
 **Toolchain federation** addresses this challenge through a pattern of metric aggregation that keeps raw data local while making derived indicators available centrally. Each sovereign zone's DevOps Insights instance calculates DORA metrics, quality gate pass rates and change risk scores locally, using only the data resident within that zone. These calculated metrics—which are statistical summaries rather than raw records—are then published to a federated metrics plane that Concert's central instance can query. The federated metrics plane receives no build logs, no test result details, no source code references and no deployment artefact identifiers; it receives only the aggregate indicators that Concert needs to construct an estate-wide quality picture.
 
-This zero-copy integration pattern is architecturally analogous to the federated observability patterns described in Chapter 8 for network and infrastructure telemetry. The principle is the same: operational sovereignty demands that raw operational data remain within the sovereign boundary, but organisational effectiveness demands that leadership have visibility across sovereign boundaries. The resolution is to distinguish between data and insight, keeping the former local and federating the latter.
+This zero-copy integration pattern is architecturally analogous to the federated observability patterns described in [Chapter 8](08_chapter_network_observability_performance.html) for network and infrastructure telemetry. The principle is the same: operational sovereignty demands that raw operational data remain within the sovereign boundary, but organisational effectiveness demands that leadership have visibility across sovereign boundaries. The resolution is to distinguish between data and insight, keeping the former local and federating the latter.
 
 In practice, the federation mechanism operates through a scheduled export from each DevOps Insights instance. At a configurable interval—hourly for high-velocity estates, daily for those with lower deployment frequency—each instance calculates the current values of its DORA metrics, the quality gate pass/fail ratios, the distribution of change risk scores, and the sovereign quality indicator summaries (SBOM completeness rates, vulnerability finding counts by severity, licence compliance status). These values are serialised as a structured JSON document and transmitted to the federated metrics plane over a mutually authenticated, encrypted channel. The federated plane stores these summaries with provenance metadata—which zone produced them, at what time, covering what evaluation window—and exposes them through an API that Concert's central assessment engine consumes.
 
@@ -214,19 +214,19 @@ The next step in building a sovereign cloud operations capability is to connect 
 
 Where DevOps Insights and Concert together produce a continuously updated map of delivery quality and operational risk, watsonx Orchestrate provides the orchestration layer that translates items on that map into coordinated action: dispatching work to the right teams and tools, managing the sequencing of remediation steps across organisational boundaries, and maintaining an auditable record of what was decided, by whom, and on what basis. For sovereign cloud estates, where the chain of accountability for every operational decision must be traceable through to regulatory evidence, this orchestration layer is not a convenience but an architectural necessity.
 
-Chapter 17 examines watsonx Orchestrate's architecture, its integration with Concert and DevOps Insights, and the patterns by which it enables sovereign cloud operations teams to move from insight to action without sacrificing the governance discipline that their regulatory context demands.
+[Chapter 17](17_chapter_orchestrate_conversational_interface.html) examines watsonx Orchestrate's architecture, its integration with Concert and DevOps Insights, and the patterns by which it enables sovereign cloud operations teams to move from insight to action without sacrificing the governance discipline that their regulatory context demands.
 
 ***
 
 ## References
 
-[1] N. Forsgren, J. Humble and G. Kim, *Accelerate: The Science of Lean Software and DevOps*. Portland, OR: IT Revolution Press, 2018.
+[1] N. Forsgren, J. Humble and G. Kim, *Accelerate: The Science of Lean Software and DevOps*. Portland, OR: IT Revolution Press, 2018. [Online]. Available: https://itrevolution.com/product/accelerate/
 
 [2] DORA, "State of DevOps Report 2023," Google LLC, 2023. [Online]. Available: https://dora.dev/research/2023/dora-report/
 
 [3] IBM Corporation, "IBM DevOps Insights documentation," IBM Cloud Docs, 2024. [Online]. Available: https://cloud.ibm.com/docs/ContinuousDelivery?topic=ContinuousDelivery-di_working
 
-[4] M. Dodson, A. Delaitre, K. Scarfone, B. Souppaya and C. Turner, "Secure Software Development Framework (SSDF) Version 1.1: Recommendations for Mitigating the Risk of Software Vulnerabilities," National Institute of Standards and Technology, Gaithersburg, MD, NIST SP 800-218, Feb. 2022.
+[4] M. Dodson, A. Delaitre, K. Scarfone, B. Souppaya and C. Turner, "Secure Software Development Framework (SSDF) Version 1.1: Recommendations for Mitigating the Risk of Software Vulnerabilities," National Institute of Standards and Technology, Gaithersburg, MD, NIST SP 800-218, Feb. 2022. [Online]. Available: https://doi.org/10.6028/NIST.SP.800-218
 
 [5] CycloneDX Project, "CycloneDX Specification," OWASP Foundation, 2023. [Online]. Available: https://cyclonedx.org/specification/overview/
 

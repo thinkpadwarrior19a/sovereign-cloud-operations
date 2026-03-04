@@ -56,7 +56,7 @@ The **blast radius assessment** identifies the scope of impact: which services a
 
 The **recent change correlation** lists any changes applied to the affected components or their dependencies within the review window, with a relevance score based on temporal proximity and topological relationship. A deployment to the payments-api service completed at 02:30 UTC—seventeen minutes before the onset of symptoms—is flagged as a high-relevance correlation.
 
-The **historical pattern match** queries the operational knowledge base (described in Chapter 20) for previous incidents with similar signatures. If the organisation experienced a comparable connection pool exhaustion event six months ago, and the post-incident review from that event identified a specific root cause and remediation, the agent surfaces that reference with the key findings.
+The **historical pattern match** queries the operational knowledge base (described in [Chapter 20](20_chapter_kb_augmented_operations.html)) for previous incidents with similar signatures. If the organisation experienced a comparable connection pool exhaustion event six months ago, and the post-incident review from that event identified a specific root cause and remediation, the agent surfaces that reference with the key findings.
 
 The **recommended severity classification** proposes a priority level based on the assessed business impact, using the organisation's priority matrix: the combination of a tier-one service, customer-facing impact, and active transaction volume suggests P1 classification, with full war room mobilisation.
 
@@ -84,7 +84,7 @@ The distinction between primary and secondary symptoms is critical and often dif
 
 **Cross-signal correlation** is the third analytical layer. A root cause hypothesis is strengthened when multiple independent signal types converge on the same explanation. If the temporal analysis identifies a deployment as a candidate cause, and the causal graph analysis identifies the deployed service as the topological origin of the failure propagation, and the log analysis reveals error messages in that service that reference a code path introduced in the deployment, the convergence of these three independent signals substantially increases confidence in the deployment as the root cause. Conversely, if the temporal analysis points to a deployment but the causal graph analysis identifies a different topological origin, the agent flags this divergence as grounds for further investigation rather than premature conclusion.
 
-The agent performs these analyses in parallel, using the multi-agent architecture described in Chapter 18. Executor agents are dispatched to examine specific signal streams: one agent analyses the database metrics, another examines the network path latency, a third reviews the application logs for the candidate root cause service, and a fourth queries the change management system for the full deployment manifest of the recent change. Each executor agent reports its findings to the planner agent, which synthesises them into a structured hypothesis.
+The agent performs these analyses in parallel, using the multi-agent architecture described in [Chapter 18](18_chapter_multi_agent_orchestration.html). Executor agents are dispatched to examine specific signal streams: one agent analyses the database metrics, another examines the network path latency, a third reviews the application logs for the candidate root cause service, and a fourth queries the change management system for the full deployment manifest of the recent change. Each executor agent reports its findings to the planner agent, which synthesises them into a structured hypothesis.
 
 The output of the RCA process is not a single assertion but a ranked set of hypotheses, each with an associated confidence level and the evidence that supports it. A typical output might present three hypotheses:
 
@@ -166,7 +166,7 @@ This automated timeline eliminates the most time-consuming aspect of traditional
 
 **Action item extraction** identifies the preventive and corrective actions that emerge from the PIR discussion. During the review meeting, participants propose actions: "We need to add a pre-deployment check for connection pool configuration," "The runbook for database connection issues needs to be updated," "We should add a synthetic monitor that specifically tests the connection pool under load." The PIR agent captures these as structured action items with proposed owners, links them to the incident record, and—critically—creates the corresponding tickets in the task management system so that they are tracked to completion rather than recorded in a PIR document that is filed and forgotten.
 
-**Knowledge base updates** close the learning loop. The completed PIR document, once reviewed and approved by the incident team, is automatically ingested into the operational knowledge base described in Chapter 20. The ingestion pipeline indexes the PIR with appropriate metadata: the services involved, the root cause category, the sovereign zone, the date, and the severity. Future incidents with similar characteristics will retrieve this PIR through the RAG-based knowledge retrieval process, making the organisation's learning from this incident available at the point of need during subsequent events.
+**Knowledge base updates** close the learning loop. The completed PIR document, once reviewed and approved by the incident team, is automatically ingested into the operational knowledge base described in [Chapter 20](20_chapter_kb_augmented_operations.html). The ingestion pipeline indexes the PIR with appropriate metadata: the services involved, the root cause category, the sovereign zone, the date, and the severity. Future incidents with similar characteristics will retrieve this PIR through the RAG-based knowledge retrieval process, making the organisation's learning from this incident available at the point of need during subsequent events.
 
 The PIR agent also evaluates whether existing knowledge base content should be updated in light of the incident. If the incident revealed that an existing runbook was incomplete or incorrect—a remediation step that the runbook recommended but that proved ineffective, for example—the agent flags the specific runbook section for review and creates a maintenance task for the knowledge base team. If the incident revealed a gap in monitoring coverage—a failure mode that was not detected by existing alerts—the agent creates a monitoring enhancement request with the specific metric, threshold, and service reference needed to close the gap.
 
@@ -230,19 +230,19 @@ This chapter, and Parts VII through IX more broadly, have examined the technical
 
 But capabilities alone do not produce outcomes. A sophisticated agentic operations platform deployed into an organisation whose operating model, team structures, skill profiles, and governance processes were designed for a manual operations era will underperform its potential—not because the technology is inadequate, but because the organisational context does not support the ways of working that the technology enables. The shift-left operations model, in which operational concerns are addressed earlier in the development lifecycle and operational expertise is distributed more broadly across the organisation, is not merely a nice-to-have complement to the technical platform. It is the organisational transformation without which the technical platform cannot deliver its full value.
 
-Chapter 31 examines this organisational dimension: the operating model changes, the skill development, the governance evolution, and the cultural shifts that translate technical capability into sustained operational improvement. The transition from Part IX to Part X is, in this sense, the transition from what the platform can do to how the organisation must change to realise its potential.
+[Chapter 31](31_chapter_operating_model_shift_left.html) examines this organisational dimension: the operating model changes, the skill development, the governance evolution, and the cultural shifts that translate technical capability into sustained operational improvement. The transition from Part IX to Part X is, in this sense, the transition from what the platform can do to how the organisation must change to realise its potential.
 
 ***
 
 ## References
 
-[1] European Parliament and Council, "Regulation (EU) 2022/2554 on digital operational resilience for the financial sector (DORA)," *Official Journal of the European Union*, vol. L 333, pp. 1–79, Dec. 2022.
+[1] European Parliament and Council, "Regulation (EU) 2022/2554 on digital operational resilience for the financial sector (DORA)," *Official Journal of the European Union*, vol. L 333, pp. 1–79, Dec. 2022. [Online]. Available: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32022R2554
 
-[2] European Parliament and Council, "Directive (EU) 2022/2555 on measures for a high common level of cybersecurity across the Union (NIS2)," *Official Journal of the European Union*, vol. L 333, pp. 80–152, Dec. 2022.
+[2] European Parliament and Council, "Directive (EU) 2022/2555 on measures for a high common level of cybersecurity across the Union (NIS2)," *Official Journal of the European Union*, vol. L 333, pp. 80–152, Dec. 2022. [Online]. Available: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32022L2555
 
-[3] International Organization for Standardization, "ISO/IEC 27001:2022 — Information security, cybersecurity and privacy protection — Information security management systems — Requirements," ISO/IEC, Geneva, 2022.
+[3] International Organization for Standardization, "ISO/IEC 27001:2022 — Information security, cybersecurity and privacy protection — Information security management systems — Requirements," ISO/IEC, Geneva, 2022. [Online]. Available: https://www.iso.org/standard/27001
 
-[4] S. Dekker, *The Field Guide to Understanding 'Human Error'*, 3rd ed. Boca Raton, FL: CRC Press, 2014.
+[4] S. Dekker, *The Field Guide to Understanding 'Human Error'*, 3rd ed. Boca Raton, FL: CRC Press, 2014. [Online]. Available: https://doi.org/10.1201/9781317031833
 
 [5] IBM, "IBM Concert: AI-powered IT estate management," IBM Documentation, 2024. [Online]. Available: https://www.ibm.com/docs/en/concert
 
@@ -250,10 +250,10 @@ Chapter 31 examines this organisational dimension: the operating model changes, 
 
 [7] ServiceNow, "IT Service Management," ServiceNow Documentation, 2024. [Online]. Available: https://docs.servicenow.com/bundle/itservice-management
 
-[8] N. R. Murphy, B. Beyer, C. Jones, and J. Petoff, *Site Reliability Engineering: How Google Runs Production Systems*. Sebastopol, CA: O'Reilly Media, 2016.
+[8] N. R. Murphy, B. Beyer, C. Jones, and J. Petoff, *Site Reliability Engineering: How Google Runs Production Systems*. Sebastopol, CA: O'Reilly Media, 2016. [Online]. Available: https://sre.google/sre-book/table-of-contents/
 
 [9] PagerDuty, "Incident response and on-call management," PagerDuty Documentation, 2024. [Online]. Available: https://www.pagerduty.com/docs/
 
-[10] AXELOS, *ITIL Foundation: ITIL 4 Edition*. London: TSO (The Stationery Office), 2019.
+[10] AXELOS, *ITIL Foundation: ITIL 4 Edition*. London: TSO (The Stationery Office), 2019. [Online]. Available: https://www.axelos.com/certifications/itil-service-management/itil-4-foundation
 
-[11] G. Kim, J. Humble, P. Debois, J. Willis, and N. Forsgren, *The DevOps Handbook*, 2nd ed. Portland, OR: IT Revolution Press, 2021.
+[11] G. Kim, J. Humble, P. Debois, J. Willis, and N. Forsgren, *The DevOps Handbook*, 2nd ed. Portland, OR: IT Revolution Press, 2021. [Online]. Available: https://itrevolution.com/product/the-devops-handbook-second-edition/

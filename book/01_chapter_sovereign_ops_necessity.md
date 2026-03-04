@@ -152,7 +152,7 @@ This book is not a product catalogue. It does not attempt to document every opti
 
 The structure is deliberately layered.
 
-Part I, which this chapter begins, makes the case for change. It describes why sovereign cloud operations are necessary in light of economic, regulatory and architectural realities. Chapter 2 examines the economics; Chapter 3 explores the regulatory drivers and the operational governance they imply.
+Part I, which this chapter begins, makes the case for change. It describes why sovereign cloud operations are necessary in light of economic, regulatory and architectural realities. [Chapter 2](02_chapter_economics_ai_ops.html) examines the economics; [Chapter 3](03_chapter_regulatory_drivers.html) explores the regulatory drivers and the operational governance they imply.
 
 Part II introduces the **architectural reference model**: the planes—observability, automation & orchestration, agentic intelligence, governance & audit—that together constitute a sovereign operations control plane, and how they relate to the zero‑copy integration architecture you may already know.
 
@@ -186,7 +186,7 @@ What unifies the whole is a single proposition: **in a world of zero‑copy data
 
 This chapter has argued that the forces driving organisations towards a new operating model are not primarily technological fashions but structural necessities: regulatory frameworks with legal force, architectural realities that outpace manual operations, and economic pressures that demand efficiency without compromising control. The concept of operational sovereignty—governing who does what, from where, under which rules—provides the framing within which the technical and organisational arguments cohere. Dashboard-centric operations, the dominant practice of the past decade, cannot meet these demands. Neither can architectures built on uncontrolled data replication. And neither can cultures that treat operations as a downstream concern of development.
 
-Chapter 2 will ground these arguments in economics, examining the measurable costs of the current model—integration tax, incident cost, compliance overhead, talent drain—and the financial case for investing in the sovereign operations control plane described here. Chapter 3 will map the regulatory landscape in greater detail, examining how DORA, the EU AI Act, the Network and Information Security Directive and sector-specific requirements interact to produce the governance obligations that operational sovereignty must satisfy. Together, those two chapters complete the case for change before the book turns, in Part II, to the architecture and practice of building the control plane itself.
+[Chapter 2](02_chapter_economics_ai_ops.html) will ground these arguments in economics, examining the measurable costs of the current model—integration tax, incident cost, compliance overhead, talent drain—and the financial case for investing in the sovereign operations control plane described here. [Chapter 3](03_chapter_regulatory_drivers.html) will map the regulatory landscape in greater detail, examining how DORA, the EU AI Act, the Network and Information Security Directive and sector-specific requirements interact to produce the governance obligations that operational sovereignty must satisfy. Together, those two chapters complete the case for change before the book turns, in Part II, to the architecture and practice of building the control plane itself.
 
 ***
 
@@ -194,7 +194,7 @@ Chapter 2 will ground these arguments in economics, examining the measurable cos
 
 [1] European Union Agency for Cybersecurity (ENISA), *Cloud Security for the EU: Security Framework for Cloud Services*, ENISA, Heraklion, Greece, 2021. [Online]. Available: https://www.enisa.europa.eu/publications/cloud-security-for-the-eu
 
-[2] European Parliament and Council of the European Union, *Regulation (EU) 2022/2554 of the European Parliament and of the Council on digital operational resilience for the financial sector (DORA)*, Official Journal of the European Union, L 333, pp. 1–79, Dec. 2022.
+[2] European Parliament and Council of the European Union, *Regulation (EU) 2022/2554 of the European Parliament and of the Council on digital operational resilience for the financial sector (DORA)*, Official Journal of the European Union, L 333, pp. 1–79, Dec. 2022. [Online]. Available: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32022R2554
 
 [3] European Banking Authority, *Guidelines on ICT and Security Risk Management*, EBA/GL/2019/04, EBA, Paris, France, Nov. 2019. [Online]. Available: https://www.eba.europa.eu/regulation-and-policy/internal-governance/guidelines-on-ict-and-security-risk-management
 
@@ -202,11 +202,11 @@ Chapter 2 will ground these arguments in economics, examining the measurable cos
 
 [5] Gartner, *Market Guide for AIOps Platforms*, Gartner Research, Stamford, CT, USA, 2023.
 
-[6] N. Forsgren, J. Humble, and G. Kim, *Accelerate: The Science of Lean Software and DevOps*, IT Revolution Press, Portland, OR, USA, 2018.
+[6] N. Forsgren, J. Humble, and G. Kim, *Accelerate: The Science of Lean Software and DevOps*, IT Revolution Press, Portland, OR, USA, 2018. [Online]. Available: https://itrevolution.com/product/accelerate/
 
-[7] B. Beyer, C. Jones, J. Petoff, and N. R. Murphy, Eds., *Site Reliability Engineering: How Google Runs Production Systems*, O'Reilly Media, Sebastopol, CA, USA, 2016.
+[7] B. Beyer, C. Jones, J. Petoff, and N. R. Murphy, Eds., *Site Reliability Engineering: How Google Runs Production Systems*, O'Reilly Media, Sebastopol, CA, USA, 2016. [Online]. Available: https://sre.google/sre-book/table-of-contents/
 
-[8] M. Kleppmann, *Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems*, O'Reilly Media, Sebastopol, CA, USA, 2017.
+[8] M. Kleppmann, *Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems*, O'Reilly Media, Sebastopol, CA, USA, 2017. [Online]. Available: https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/
 
 [9] IBM Research, *AI for IT Operations: Foundations and Applications*, IBM Research Report RZ3998, IBM, Armonk, NY, USA, 2020.
 
@@ -222,4 +222,4 @@ Chapter 2 will ground these arguments in economics, examining the measurable cos
 
 [15] IBM, *IBM watsonx Code Assistant for Z and Hybrid Cloud (Bob): Documentation*, IBM Corp., Armonk, NY, USA, 2024. [Online]. Available: https://www.ibm.com/docs/en/watsonx-code-assistant
 
-[16] R. Westrum, "A typology of organisational cultures," *Quality and Safety in Health Care*, vol. 13, suppl. 2, pp. ii22–ii27, Dec. 2004.
+[16] R. Westrum, "A typology of organisational cultures," *Quality and Safety in Health Care*, vol. 13, suppl. 2, pp. ii22–ii27, Dec. 2004. [Online]. Available: https://doi.org/10.1136/qshc.2003.009522

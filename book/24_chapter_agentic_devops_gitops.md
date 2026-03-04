@@ -68,7 +68,7 @@ Most sovereign estates operate multiple clusters per zone—production and stagi
 
 A common and effective pattern is the "app of apps" or "fleet" pattern, where a top-level Git repository defines the set of applications and their target clusters, and each application's configuration is drawn from a separate repository or path. In Argo CD, this is expressed as an Application that points to a directory containing further Application manifests, one per target cluster. In Flux, the equivalent is a Kustomization that references a directory of further Kustomizations. The key discipline is that the mapping from application to cluster to zone is explicit in the repository structure, not implicit in controller configuration. An auditor—or an agent—can read the repository and determine which applications are deployed to which clusters in which zones without inspecting the controller's runtime state.
 
-Zone boundaries must be respected not just in targeting but in dependency resolution. A Helm chart that declares a dependency on a chart hosted in a registry outside the sovereign zone introduces a supply-chain dependency that crosses the zone boundary. The sovereign pattern is to mirror all required Helm charts and container images into registries within the zone, and to configure the GitOps controller to pull exclusively from those local registries. This is discussed further in the context of supply-chain security in Chapter 25.
+Zone boundaries must be respected not just in targeting but in dependency resolution. A Helm chart that declares a dependency on a chart hosted in a registry outside the sovereign zone introduces a supply-chain dependency that crosses the zone boundary. The sovereign pattern is to mirror all required Helm charts and container images into registries within the zone, and to configure the GitOps controller to pull exclusively from those local registries. This is discussed further in the context of supply-chain security in [Chapter 25](25_chapter_ci_cd_quality_gates.html).
 
 ### 24.3.3 Secrets in GitOps flows
 
@@ -144,7 +144,7 @@ Certain policy requirements are unique to sovereign estates and do not appear in
 
 **Operator authority constraints.** A policy that restricts certain high-impact operations—namespace deletion, ClusterRole modification, admission webhook changes—to service accounts associated with specific roles, preventing even authenticated users from performing operations outside their zone-level authority.
 
-These policies, expressed in Rego or Kyverno's YAML-based policy language, become machine-readable expressions of the sovereignty requirements that Chapter 10 discusses at the architectural level. Their enforcement through the GitOps pipeline means that sovereignty is not a property that must be manually verified at audit time but a continuously enforced invariant of the delivery process.
+These policies, expressed in Rego or Kyverno's YAML-based policy language, become machine-readable expressions of the sovereignty requirements that [Chapter 10](10_chapter_continuous_compliance.html) discusses at the architectural level. Their enforcement through the GitOps pipeline means that sovereignty is not a property that must be manually verified at audit time but a continuously enforced invariant of the delivery process.
 
 ***
 
@@ -236,7 +236,7 @@ These guardrails ensure that the feedback loop accelerates convergence on good c
 
 ## Bridge to Chapter 25 — CI/CD and Quality Gates
 
-The GitOps pipeline described in this chapter assumes that the artefacts it deploys—container images, Helm charts, policy bundles—are trustworthy. Chapter 25 examines how that trust is established and maintained through CI/CD quality gates, supply-chain security, and the continuous verification of artefact provenance and integrity across sovereign zones.
+The GitOps pipeline described in this chapter assumes that the artefacts it deploys—container images, Helm charts, policy bundles—are trustworthy. [Chapter 25](25_chapter_ci_cd_quality_gates.html) examines how that trust is established and maintained through CI/CD quality gates, supply-chain security, and the continuous verification of artefact provenance and integrity across sovereign zones.
 
 ***
 

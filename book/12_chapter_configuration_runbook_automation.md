@@ -156,7 +156,7 @@ In a sovereign, agentic estate, these habits are not optional hygiene; they are 
 
 This chapter has established that runbooks are not administrative documents but executable operational contracts: structured procedures that encode expert knowledge in a form followable by any competent engineer, and increasingly by agents, under the pressure of real incidents. The anatomy of a production-quality runbook—trigger conditions, pre-conditions, step-by-step procedure, decision points with sovereign zone branches, rollback steps, escalation path, and owner—provides the template. The automation maturity ladder—from fully manual through tool-assisted and partially automated to bounded autonomous execution—provides the progression model. Ansible and IBM Ansible Automation Platform provide the bridge between human-readable specification and machine-executable implementation, with the audit trail and credential isolation that regulated environments require. The agent apprentice model extends this further: agents that observe, propose, execute with approval, and eventually operate autonomously within carefully defined bounds, learning from human decisions and escalating gracefully when conditions exceed their scope.
 
-These capabilities are only as trustworthy as the identity and access controls underpinning them. An Ansible playbook executing in a sovereign zone must authenticate with appropriate credentials, scoped to precisely the resources it is permitted to modify. An Orchestrate agent proposing remediation actions must carry an identity whose authorisations have been deliberately defined and regularly reviewed. A Concert recommendation engine whose learning signals are based on human expert decisions must be able to demonstrate that those decisions were made by authorised, authenticated individuals. Chapter 13 takes up this foundation: the secrets, identity and access architecture that makes every automated and agentic action in a sovereign multi-cloud estate attributable, auditable, and appropriately constrained.
+These capabilities are only as trustworthy as the identity and access controls underpinning them. An Ansible playbook executing in a sovereign zone must authenticate with appropriate credentials, scoped to precisely the resources it is permitted to modify. An Orchestrate agent proposing remediation actions must carry an identity whose authorisations have been deliberately defined and regularly reviewed. A Concert recommendation engine whose learning signals are based on human expert decisions must be able to demonstrate that those decisions were made by authorised, authenticated individuals. [Chapter 13](13_chapter_secrets_identity_access.html) takes up this foundation: the secrets, identity and access architecture that makes every automated and agentic action in a sovereign multi-cloud estate attributable, auditable, and appropriately constrained.
 
 ***
 
@@ -174,9 +174,9 @@ These capabilities are only as trustworthy as the identity and access controls u
 
 ## References
 
-[1] B. Beyer, N. R. Murphy, D. K. Rensin, K. Kawahara, and S. Thorne, Eds., *The Site Reliability Workbook: Practical Ways to Implement SRE*. Sebastopol, CA: O'Reilly Media, 2018.
+[1] B. Beyer, N. R. Murphy, D. K. Rensin, K. Kawahara, and S. Thorne, Eds., *The Site Reliability Workbook: Practical Ways to Implement SRE*. Sebastopol, CA: O'Reilly Media, 2018. [Online]. Available: https://sre.google/workbook/table-of-contents/
 
-[2] B. Beyer, C. Jones, J. Petoff, and N. R. Murphy, Eds., *Site Reliability Engineering: How Google Runs Production Systems*. Sebastopol, CA: O'Reilly Media, 2016.
+[2] B. Beyer, C. Jones, J. Petoff, and N. R. Murphy, Eds., *Site Reliability Engineering: How Google Runs Production Systems*. Sebastopol, CA: O'Reilly Media, 2016. [Online]. Available: https://sre.google/sre-book/table-of-contents/
 
 [3] J. Humble and D. Farley, *Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation*. Upper Saddle River, NJ: Addison-Wesley, 2010.
 

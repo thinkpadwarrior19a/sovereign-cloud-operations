@@ -304,7 +304,7 @@ Five organisations, five industries, five regulatory environments, and five dist
 
 Every case study began with observability, and in every case, the improvement in visibility was the foundation on which everything else was built. EFH could not implement zero-copy integration without first understanding its existing data flows. Healthnet could not deploy bed management agents without first instrumenting the clinical systems that generated the events those agents consumed. CAG could not build federated observability without first deploying zone-local instrumentation. GovServe could not achieve transparent agentic operations without first having the telemetry to make agent reasoning chains verifiable. NatGrid could not improve convergence zone reliability without first being able to see what was flowing through it.
 
-This pattern is consistent with the architectural principle established in Chapters 7 and 8: observability is not a feature of an operations programme; it is the precondition for one. Organisations that attempted to deploy agents or automation before achieving adequate observability universally reported frustration, as the agents had insufficient context to generate useful recommendations [1].
+This pattern is consistent with the architectural principle established in [Chapter 7](07_chapter_observability_architecture.html) and [Chapter 8](08_chapter_network_observability_performance.html): observability is not a feature of an operations programme; it is the precondition for one. Organisations that attempted to deploy agents or automation before achieving adequate observability universally reported frustration, as the agents had insufficient context to generate useful recommendations [1].
 
 ### 36.7.2 Sovereignty as a design constraint, not a burden
 
@@ -314,7 +314,7 @@ This is not to suggest that sovereignty constraints are costless; they add compl
 
 ### 36.7.3 Progressive autonomy is not optional
 
-No organisation in these case studies began with autonomous agents. All followed some variant of the progressive autonomy model described in Chapter 33: observe, recommend, execute with approval, execute autonomously within guardrails. The progression was driven not by a predetermined timeline but by accumulated evidence: each phase produced data about agent accuracy, reliability, and safety that informed the decision to proceed to the next phase.
+No organisation in these case studies began with autonomous agents. All followed some variant of the progressive autonomy model described in [Chapter 33](33_chapter_maturity_model.html): observe, recommend, execute with approval, execute autonomously within guardrails. The progression was driven not by a predetermined timeline but by accumulated evidence: each phase produced data about agent accuracy, reliability, and safety that informed the decision to proceed to the next phase.
 
 CAG's experience is particularly instructive. The three-month trial in which proposed agent actions were logged but not executed, and retrospectively compared against human decisions, provided a 91 per cent agreement rate that gave the organisation confidence to proceed. This "shadow mode" deployment pattern appeared, in some form, in every case study. It reflects a fundamental truth about agentic operations in regulated environments: trust is not a technical property; it is a social one, and it must be earned through demonstrated performance in conditions that approximate production without carrying production risk [7].
 
@@ -355,7 +355,7 @@ Several mistakes appeared across multiple case studies, often independently:
 
 ## Bridge to Chapter 37 — Generative AI on the Horizon
 
-These case studies describe what organisations are achieving today and in the near term with sovereign, agentic operations. But the technology landscape is not standing still. Generative AI capabilities are advancing rapidly, regulatory frameworks are evolving, and new patterns for human-AI collaboration in operations are emerging. Chapter 37 looks beyond current implementations to the horizon: how generative AI, frontier models, and evolving regulatory expectations will shape the next generation of sovereign operations, and what architects and operators should be designing for today to be ready for what comes next.
+These case studies describe what organisations are achieving today and in the near term with sovereign, agentic operations. But the technology landscape is not standing still. Generative AI capabilities are advancing rapidly, regulatory frameworks are evolving, and new patterns for human-AI collaboration in operations are emerging. [Chapter 37](37_chapter_genai_horizon.html) looks beyond current implementations to the horizon: how generative AI, frontier models, and evolving regulatory expectations will shape the next generation of sovereign operations, and what architects and operators should be designing for today to be ready for what comes next.
 
 ***
 
@@ -373,10 +373,10 @@ These case studies describe what organisations are achieving today and in the ne
 
 [6] IBM, "IBM Instana Observability," IBM Documentation, 2025. [Online]. Available: https://www.ibm.com/docs/en/instana-observability
 
-[7] European Commission, "Ethics Guidelines for Trustworthy AI," High-Level Expert Group on Artificial Intelligence, Brussels, 2019.
+[7] European Commission, "Ethics Guidelines for Trustworthy AI," High-Level Expert Group on Artificial Intelligence, Brussels, 2019. [Online]. Available: https://digital-strategy.ec.europa.eu/en/library/ethics-guidelines-trustworthy-ai
 
-[8] European Parliament and Council, "Regulation (EU) 2024/1689 Laying Down Harmonised Rules on Artificial Intelligence (AI Act)," *Official Journal of the European Union*, L 2024/1689, Jul. 2024.
+[8] European Parliament and Council, "Regulation (EU) 2024/1689 Laying Down Harmonised Rules on Artificial Intelligence (AI Act)," *Official Journal of the European Union*, L 2024/1689, Jul. 2024. [Online]. Available: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32024R1689
 
 [9] IBM, "IBM watsonx Orchestrate," IBM Documentation, 2025. [Online]. Available: https://www.ibm.com/docs/en/watsonx-orchestrate
 
-[10] European Parliament and Council, "Directive (EU) 2022/2555 on Measures for a High Common Level of Cybersecurity across the Union (NIS2)," *Official Journal of the European Union*, L 333, pp. 80-152, Dec. 2022.
+[10] European Parliament and Council, "Directive (EU) 2022/2555 on Measures for a High Common Level of Cybersecurity across the Union (NIS2)," *Official Journal of the European Union*, L 333, pp. 80-152, Dec. 2022. [Online]. Available: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32022L2555

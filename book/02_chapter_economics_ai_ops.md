@@ -294,7 +294,7 @@ This chapter has examined the economics of sovereign, multi‑cloud operations f
 
 Framing the investment case around risk reduction and regulatory obligation—rather than efficiency alone—is both more honest and more effective with the audiences that control capital allocation. DORA and NIS2 have converted operational maturity into a financial obligation with quantifiable maximum penalties. That conversion makes the business case for sovereign operations tooling structurally different from a conventional IT efficiency investment, and it should be presented as such.
 
-Chapter 3 turns from economic arguments to the regulatory environment in detail. It examines how DORA, NIS2, GDPR, the EU AI Act and the guidance of national supervisors translate into concrete design requirements for the operations architecture—moving from the financial logic of investment to the legal and technical logic of obligation.
+[Chapter 3](03_chapter_regulatory_drivers.html) turns from economic arguments to the regulatory environment in detail. It examines how DORA, NIS2, GDPR, the EU AI Act and the guidance of national supervisors translate into concrete design requirements for the operations architecture—moving from the financial logic of investment to the legal and technical logic of obligation.
 
 ***
 
@@ -306,15 +306,15 @@ Chapter 3 turns from economic arguments to the regulatory environment in detail.
 
 [3] Gartner, Inc., "Market Guide for AIOps Platforms," Gartner Research, Stamford, CT, USA, 2023.
 
-[4] B. Beyer, C. Jones, J. Petoff, and N. R. Murphy, Eds., *Site Reliability Engineering: How Google Runs Production Systems*. Sebastopol, CA, USA: O'Reilly Media, 2016.
+[4] B. Beyer, C. Jones, J. Petoff, and N. R. Murphy, Eds., *Site Reliability Engineering: How Google Runs Production Systems*. Sebastopol, CA, USA: O'Reilly Media, 2016. [Online]. Available: https://sre.google/sre-book/table-of-contents/
 
 [5] McKinsey Global Institute, "The State of AI in 2023: Generative AI's Breakout Year," McKinsey & Company, New York, NY, USA, Aug. 2023. [Online]. Available: https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-in-2023-generative-ais-breakout-year
 
-[6] European Parliament and Council of the European Union, "Regulation (EU) 2022/2554 of the European Parliament and of the Council of 14 December 2022 on digital operational resilience for the financial sector (DORA)," *Official Journal of the European Union*, vol. L 333, pp. 1–79, Dec. 2022.
+[6] European Parliament and Council of the European Union, "Regulation (EU) 2022/2554 of the European Parliament and of the Council of 14 December 2022 on digital operational resilience for the financial sector (DORA)," *Official Journal of the European Union*, vol. L 333, pp. 1–79, Dec. 2022. [Online]. Available: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32022R2554
 
-[7] European Parliament and Council of the European Union, "Directive (EU) 2022/2555 of the European Parliament and of the Council of 14 December 2022 on measures for a high common level of cybersecurity across the Union (NIS2 Directive)," *Official Journal of the European Union*, vol. L 333, pp. 80–152, Dec. 2022.
+[7] European Parliament and Council of the European Union, "Directive (EU) 2022/2555 of the European Parliament and of the Council of 14 December 2022 on measures for a high common level of cybersecurity across the Union (NIS2 Directive)," *Official Journal of the European Union*, vol. L 333, pp. 80–152, Dec. 2022. [Online]. Available: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32022L2555
 
-[8] N. Forsgren, J. Humble, and G. Kim, *Accelerate: The Science of Lean Software and DevOps: Building and Scaling High Performing Technology Organizations*. Portland, OR, USA: IT Revolution Press, 2018.
+[8] N. Forsgren, J. Humble, and G. Kim, *Accelerate: The Science of Lean Software and DevOps: Building and Scaling High Performing Technology Organizations*. Portland, OR, USA: IT Revolution Press, 2018. [Online]. Available: https://itrevolution.com/product/accelerate/
 
 [9] Flexera, "State of the Cloud Report 2024," Flexera Software LLC, Itasca, IL, USA, 2024. [Online]. Available: https://www.flexera.com/blog/cloud/cloud-computing-trends-flexera-2024-state-of-the-cloud-report
 

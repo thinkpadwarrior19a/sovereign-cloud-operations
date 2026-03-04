@@ -207,7 +207,7 @@ Culturally, operators should think in terms of **flows over time**, not just sta
 
 This chapter has established that events and lineage are not peripheral concerns in sovereign cloud operations — they are foundational. Events, when standardised through CloudEvents and enriched with topology context, become semantic operational signals that make the behaviour of distributed systems legible to both engineering and risk audiences. Schema governance, enforced through a two-gate model of structural compatibility and sovereignty policy checks, prevents schema evolution from introducing regulatory violations. Lineage, when captured through OpenLineage and persisted in Atlas-compatible metadata graphs, becomes a real-time operational tool for three core query patterns: upstream root-cause traversal, downstream blast-radius assessment and regulatory data-flow proof. Sovereign routing — from intra-zone PII filtering through cross-zone redaction gateways to policy-blocked egress — ensures that the event fabric itself enforces jurisdictional constraints. Consumer group lag, schema registry health and partition replication state complete the operational picture for the Kafka-based event fabrics that underpin most large-scale EDAs. Concert integrates these signals through dual-path ingestion and lineage graph overlay, enabling automated incident investigation that spans business events, data quality and jurisdictional compliance in a single coherent view.
 
-The logical next step is to ask how this rich signal fabric supports the continuous, automated assessment of compliance posture. Chapter 10 addresses that question directly. It examines how policy-as-code frameworks consume events, lineage records and observability signals to produce a continuously evaluated compliance state — one that can be interrogated in near real time rather than reconstructed retrospectively at audit time. It also explores how Concert's governance workflows close the loop between detection and evidence, ensuring that every deviation from policy is not only detected but recorded, attributed and resolved in a manner that satisfies the evidential standards of DORA, GDPR and the broader sovereign regulatory landscape.
+The logical next step is to ask how this rich signal fabric supports the continuous, automated assessment of compliance posture. [Chapter 10](10_chapter_continuous_compliance.html) addresses that question directly. It examines how policy-as-code frameworks consume events, lineage records and observability signals to produce a continuously evaluated compliance state — one that can be interrogated in near real time rather than reconstructed retrospectively at audit time. It also explores how Concert's governance workflows close the loop between detection and evidence, ensuring that every deviation from policy is not only detected but recorded, attributed and resolved in a manner that satisfies the evidential standards of DORA, GDPR and the broader sovereign regulatory landscape.
 
 ***
 
@@ -217,7 +217,7 @@ The logical next step is to ask how this rich signal fabric supports the continu
 
 [2] OpenLineage Project, "OpenLineage Specification," Linux Foundation, 2021. [Online]. Available: https://openlineage.io/spec
 
-[3] European Parliament and Council of the European Union, "Regulation (EU) 2022/2554 of the European Parliament and of the Council of 14 December 2022 on digital operational resilience for the financial sector (DORA)," *Official Journal of the European Union*, vol. L 333, pp. 1–79, Dec. 2022.
+[3] European Parliament and Council of the European Union, "Regulation (EU) 2022/2554 of the European Parliament and of the Council of 14 December 2022 on digital operational resilience for the financial sector (DORA)," *Official Journal of the European Union*, vol. L 333, pp. 1–79, Dec. 2022. [Online]. Available: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32022R2554
 
 [4] Apache Software Foundation, "Apache Kafka Documentation," Apache Software Foundation, 2024. [Online]. Available: https://kafka.apache.org/documentation/
 
@@ -229,7 +229,7 @@ The logical next step is to ask how this rich signal fabric supports the continu
 
 [8] New Relic, "Why Observability Matters for Event-Driven Architecture," New Relic Blog, 2023. [Online]. Available: https://newrelic.com/blog/infrastructure-monitoring/why-observability-matters-for-event-driven-architecture
 
-[9] European Parliament and Council of the European Union, "Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data (GDPR)," *Official Journal of the European Union*, vol. L 119, pp. 1–88, May 2016.
+[9] European Parliament and Council of the European Union, "Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data (GDPR)," *Official Journal of the European Union*, vol. L 119, pp. 1–88, May 2016. [Online]. Available: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32016R0679
 
 [10] Monte Carlo Data, "AI Data Lineage," Monte Carlo Data Blog, 2024. [Online]. Available: https://www.montecarlodata.com/blog-ai-data-lineage/
 

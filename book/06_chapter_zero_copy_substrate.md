@@ -156,7 +156,7 @@ On the positive side, it makes performance problems more **visible**. Latency is
 
 On the negative side, it increases **sensitivity**. Brief network disturbances can ripple through user journeys. Subtle increases in jitter or packet loss along critical paths can degrade perceived responsiveness before anyone raises an alarm. If topology is not designed with appropriate locality—co‑locating chatty services and data—network costs and latencies can become a constant headache.
 
-This is why Chapter 5 emphasises latency budgets and data gravity. Zero‑copy does not mean "ignore proximity"; it means "stop hiding proximity problems behind copies and address them directly." It also explains why network observability is a core part of the operations architecture. Tools that can trace requests across services and show network contributions to latency become essential. Resilience and placement decisions must incorporate network‑aware information rather than only CPU and memory.
+This is why [Chapter 5](05_chapter_multi_cloud_topology_network.html) emphasises latency budgets and data gravity. Zero‑copy does not mean "ignore proximity"; it means "stop hiding proximity problems behind copies and address them directly." It also explains why network observability is a core part of the operations architecture. Tools that can trace requests across services and show network contributions to latency become essential. Resilience and placement decisions must incorporate network‑aware information rather than only CPU and memory.
 
 In sovereign operations, network paths are also policy instruments. Zero‑copy architectures make it easier to reason about where data is accessed; the network design must ensure that those access paths respect jurisdictional boundaries. An elegant zero‑copy design that routinely sends sensitive queries across non‑compliant links is not sovereign in practice [3].
 
@@ -284,7 +284,7 @@ This chapter has established zero-copy integration not merely as an architectura
 
 The worked example in Section 6.9 illustrates that these are not aspirational patterns: every component is available today, and the discipline required is primarily organisational rather than technical.
 
-Chapter 7 builds directly on this foundation. With a zero-copy substrate in place—where state changes propagate as events, data is accessed in situ, and lineage is recorded systematically—the observability architecture can be designed to operate at a different level of fidelity and intelligence. Instead of treating observability as an afterthought applied to opaque pipelines, Chapter 7 describes how to instrument a zero-copy estate so that the observability plane itself becomes sovereignty-aware: understanding not only what is happening, but where, under whose authority, and whether that behaviour is consistent with the organisation's regulatory commitments. The design principles for a sovereignty-aware observability architecture are the subject of that chapter.
+[Chapter 7](07_chapter_observability_architecture.html) builds directly on this foundation. With a zero-copy substrate in place—where state changes propagate as events, data is accessed in situ, and lineage is recorded systematically—the observability architecture can be designed to operate at a different level of fidelity and intelligence. Instead of treating observability as an afterthought applied to opaque pipelines, [Chapter 7](07_chapter_observability_architecture.html) describes how to instrument a zero-copy estate so that the observability plane itself becomes sovereignty-aware: understanding not only what is happening, but where, under whose authority, and whether that behaviour is consistent with the organisation's regulatory commitments. The design principles for a sovereignty-aware observability architecture are the subject of that chapter.
 
 ***
 
@@ -296,11 +296,11 @@ Chapter 7 builds directly on this foundation. With a zero-copy substrate in plac
 
 [3] Cognixia, "What Is Zero-Copy Integration for Enterprise APIs?" Cognixia Blog, 2023. [Online]. Available: https://www.cognixia.com/blog/what-is-zero-copy-integration-for-enterprise-apis/
 
-[4] M. Kleppmann, *Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems*. Sebastopol, CA: O'Reilly Media, 2017.
+[4] M. Kleppmann, *Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems*. Sebastopol, CA: O'Reilly Media, 2017. [Online]. Available: https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/
 
 [5] TechRepublic, "Zero-Copy Integration: David vs. Goliath," TechRepublic, 2023. [Online]. Available: https://www.techrepublic.com/article/zero-copy-integration-david-goliath/
 
-[6] UK General Data Protection Regulation (UK GDPR), Article 5 (Data Minimisation Principle), Article 15 (Right of Access), Article 46 (International Transfers). Retained under the European Union (Withdrawal) Act 2018, as amended by the Data Protection, Privacy and Electronic Communications (Amendments etc) (EU Exit) Regulations 2019.
+[6] UK General Data Protection Regulation (UK GDPR), Article 5 (Data Minimisation Principle), Article 15 (Right of Access), Article 46 (International Transfers). Retained under the European Union (Withdrawal) Act 2018, as amended by the Data Protection, Privacy and Electronic Communications (Amendments etc) (EU Exit) Regulations 2019. [Online]. Available: https://www.legislation.gov.uk/eur/2016/679
 
 [7] UK Information Commissioner's Office (ICO), "Guide to the UK GDPR: Principle (c) – Data Minimisation," ICO, 2023. [Online]. Available: https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/data-protection-principles/a-guide-to-the-data-protection-principles/the-principles/data-minimisation/
 
@@ -320,7 +320,7 @@ Chapter 7 builds directly on this foundation. With a zero-copy substrate in plac
 
 [15] Linux Foundation, "OpenLineage Specification," OpenLineage Project, 2024. [Online]. Available: https://openlineage.io/
 
-[16] National Institute of Standards and Technology (NIST), *De-Identifying Government Datasets*, NIST Special Publication 800-188, Gaithersburg, MD: NIST, 2016.
+[16] National Institute of Standards and Technology (NIST), *De-Identifying Government Datasets*, NIST Special Publication 800-188, Gaithersburg, MD: NIST, 2016. [Online]. Available: https://doi.org/10.6028/NIST.SP.800-188
 
 [17] IBM, "IBM Concert: AI-Powered Application Resilience Management," IBM Product Documentation, 2024. [Online]. Available: https://www.ibm.com/docs/en/concert
 
@@ -338,6 +338,6 @@ Chapter 7 builds directly on this foundation. With a zero-copy substrate in plac
 
 [24] D. McCrory, "Data Gravity — In the Clouds," *Data Gravity Blog*, 2010. [Online]. Available: https://datagravity.org/2010/12/18/data-gravity-in-the-clouds/
 
-[25] A. Lakshman and P. Malik, "Cassandra: A Decentralized Structured Storage System," *ACM SIGOPS Operating Systems Review*, vol. 44, no. 2, pp. 35–40, 2010. (Cited for the general principle that distributed query performance degrades as data volume and network distance increase, motivating compute-to-data placement strategies.)
+[25] A. Lakshman and P. Malik, "Cassandra: A Decentralized Structured Storage System," *ACM SIGOPS Operating Systems Review*, vol. 44, no. 2, pp. 35–40, 2010. [Online]. Available: https://doi.org/10.1145/1773912.1773922 (Cited for the general principle that distributed query performance degrades as data volume and network distance increase, motivating compute-to-data placement strategies.)
 
 [26] DAMA International, *DAMA-DMBOK: Data Management Body of Knowledge*, 2nd ed. Basking Ridge, NJ: Technics Publications, 2017. (Chapter 8: Data Integration and Interoperability; Chapter 13: Data Quality; guidance on governed replication and data movement policies.)

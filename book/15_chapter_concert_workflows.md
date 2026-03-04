@@ -204,7 +204,7 @@ These five metrics do not operate in isolation. A drop in recommendation accepta
 
 Concert's change risk intelligence does not emerge from a vacuum. The historical change failure rates that feed the risk score, the deployment frequency data that contextualises it, and the release patterns that determine when the highest-risk deployments cluster in the calendar — all of this depends on Concert having access to a coherent picture of what is being delivered, by whom, at what pace, and with what outcomes. That picture is the subject of IBM DevOps Insights.
 
-DevOps Insights sits at the intersection of the delivery pipeline and operational observability. It aggregates data from build systems, test frameworks, deployment tools, and incident records to produce a quality and risk profile for each delivery stream — a profile that Concert can consume to sharpen its change risk scoring and that engineering leaders can use to understand where their delivery practices are introducing operational risk. If Concert is the system that manages risk at deployment time and in production, DevOps Insights is the system that makes risk visible across the delivery lifecycle, from the first commit to the last deployment. Chapter 16 examines how these two capabilities connect, how DevOps Insights is configured to feed Concert's risk model, and how the combination enables an evidence-based conversation about delivery quality that spans the gap between engineering and operations.
+DevOps Insights sits at the intersection of the delivery pipeline and operational observability. It aggregates data from build systems, test frameworks, deployment tools, and incident records to produce a quality and risk profile for each delivery stream — a profile that Concert can consume to sharpen its change risk scoring and that engineering leaders can use to understand where their delivery practices are introducing operational risk. If Concert is the system that manages risk at deployment time and in production, DevOps Insights is the system that makes risk visible across the delivery lifecycle, from the first commit to the last deployment. [Chapter 16](16_chapter_devops_insights_change_risk.html) examines how these two capabilities connect, how DevOps Insights is configured to feed Concert's risk model, and how the combination enables an evidence-based conversation about delivery quality that spans the gap between engineering and operations.
 
 ***
 
@@ -212,24 +212,24 @@ DevOps Insights sits at the intersection of the delivery pipeline and operationa
 
 [1] IBM Corporation, *IBM Concert Documentation*, IBM Cloud Docs, 2024. [Online]. Available: https://www.ibm.com/docs/en/concert
 
-[2] IBM Corporation, *IBM Concert: AIOps Capabilities and Integration Guide*, IBM Technical White Paper, 2024.
+[2] IBM Corporation, *IBM Concert: AIOps Capabilities and Integration Guide*, IBM Technical White Paper, 2024. [Online]. Available: https://www.ibm.com/products/concert
 
-[3] A. Dabhade, B. Viswanath, and K. Rish, "AIOps: Real-World Challenges and Research Innovations," *IEEE Intelligent Systems*, vol. 37, no. 2, pp. 59–66, Mar.–Apr. 2022.
+[3] A. Dabhade, B. Viswanath, and K. Rish, "AIOps: Real-World Challenges and Research Innovations," *IEEE Intelligent Systems*, vol. 37, no. 2, pp. 59–66, Mar.–Apr. 2022. [Online]. Available: https://doi.org/10.1109/MIS.2022.3159764
 
-[4] D. Zhu, P. Liu, and X. Su, "Hybrid Event Correlation for Cloud Incident Management," *IEEE Transactions on Network and Service Management*, vol. 20, no. 1, pp. 412–427, Mar. 2023.
+[4] D. Zhu, P. Liu, and X. Su, "Hybrid Event Correlation for Cloud Incident Management," *IEEE Transactions on Network and Service Management*, vol. 20, no. 1, pp. 412–427, Mar. 2023. [Online]. Available: https://doi.org/10.1109/TNSM.2022.3216560
 
-[5] IBM Research, *Towards AIOps at Scale: Lessons from Production Deployments*, IBM Research Technical Report RJ-10572, Yorktown Heights, NY, 2023.
+[5] IBM Research, *Towards AIOps at Scale: Lessons from Production Deployments*, IBM Research Technical Report RJ-10572, Yorktown Heights, NY, 2023. [Online]. Available: https://research.ibm.com/topics/aiops
 
-[6] N. Forsgren, J. Humble, and G. Kim, *Accelerate: The Science of Lean Software and DevOps*, IT Revolution Press, Portland, OR, 2018.
+[6] N. Forsgren, J. Humble, and G. Kim, *Accelerate: The Science of Lean Software and DevOps*, IT Revolution Press, Portland, OR, 2018. [Online]. Available: https://itrevolution.com/product/accelerate/
 
-[7] DORA (DevOps Research and Assessment), *Accelerate State of DevOps Report 2022*, Google LLC, Mountain View, CA, 2022.
+[7] DORA (DevOps Research and Assessment), *Accelerate State of DevOps Report 2022*, Google LLC, Mountain View, CA, 2022. [Online]. Available: https://dora.dev/research/2022/dora-report/
 
 [8] IBM Corporation, *IBM Ansible Automation Platform Documentation*, Red Hat and IBM, 2024. [Online]. Available: https://www.ibm.com/products/ansible-automation-platform
 
-[9] ServiceNow, Inc., *ServiceNow IT Operations Management: AIOps Integration Guide*, ServiceNow Developer Documentation, Santa Clara, CA, 2024.
+[9] ServiceNow, Inc., *ServiceNow IT Operations Management: AIOps Integration Guide*, ServiceNow Developer Documentation, Santa Clara, CA, 2024. [Online]. Available: https://docs.servicenow.com/bundle/washingtondc-it-operations-management/page/product/it-operations-management/concept/it-operations-management.html
 
-[10] AXELOS, *ITIL 4 Foundation: ITIL 4 Edition*, The Stationery Office, London, 2019.
+[10] AXELOS, *ITIL 4 Foundation: ITIL 4 Edition*, The Stationery Office, London, 2019. [Online]. Available: https://www.axelos.com/certifications/itil-service-management
 
-[11] IBM Corporation, *IBM Concert Security and Compliance Guide: Role-Based Access Control and Audit Logging*, IBM Cloud Docs, 2024.
+[11] IBM Corporation, *IBM Concert Security and Compliance Guide: Role-Based Access Control and Audit Logging*, IBM Cloud Docs, 2024. [Online]. Available: https://www.ibm.com/docs/en/concert
 
-[12] Red Hat, Inc., *Red Hat Ansible Automation Platform: Integration with Event-Driven Automation*, Red Hat Documentation, Raleigh, NC, 2024.
+[12] Red Hat, Inc., *Red Hat Ansible Automation Platform: Integration with Event-Driven Automation*, Red Hat Documentation, Raleigh, NC, 2024. [Online]. Available: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform

@@ -8,7 +8,7 @@ This chapter explains how IBM watsonx Orchestrate bridges the gap between Concer
 
 ***
 
-There is a gap that sits between knowing and doing. IBM watsonx Concert, described in Chapter 16, excels at the knowing side: it ingests telemetry, maps application topology, evaluates risk posture and surfaces prioritised recommendations. An operator looking at the Concert dashboard can see, with reasonable confidence, that a certificate is approaching expiry in a regulated zone, that a vulnerability has been scored critical, or that a capacity anomaly has been detected in a production workload. What Concert cannot do, by design, is act. It observes; it recommends; it stops.
+There is a gap that sits between knowing and doing. IBM watsonx Concert, described in [Chapter 16](16_chapter_devops_insights_change_risk.html), excels at the knowing side: it ingests telemetry, maps application topology, evaluates risk posture and surfaces prioritised recommendations. An operator looking at the Concert dashboard can see, with reasonable confidence, that a certificate is approaching expiry in a regulated zone, that a vulnerability has been scored critical, or that a capacity anomaly has been detected in a production workload. What Concert cannot do, by design, is act. It observes; it recommends; it stops.
 
 Crossing from recommendation to action has historically meant opening a second browser tab, then a third. The operator consults a runbook, raises a ServiceNow change request, logs into an Ansible controller, approves a Terraform plan, monitors a Kubernetes rollout, and then—if everything goes well—closes the ticket and adds a comment. Each of those steps is a context switch, a place where intent can be misread and where the chain of evidence can be broken. Audit logs exist in four systems, none of which fully agrees with the others.
 
@@ -82,7 +82,7 @@ An operator asking Orchestrate to "check the TLS certificate status for the paym
 
 ### Tool authentication via the identity fabric
 
-Tools do not authenticate with their target systems using the operator's long-lived credentials. Instead, the governance integration layer requests a short-lived, scoped credential from the identity fabric described in Chapter 13, specifying the tool, the target zone, and the operation to be performed. The credential is valid only for the duration of the tool call and carries only the permissions required for that specific action [6].
+Tools do not authenticate with their target systems using the operator's long-lived credentials. Instead, the governance integration layer requests a short-lived, scoped credential from the identity fabric described in [Chapter 13](13_chapter_secrets_identity_access.html), specifying the tool, the target zone, and the operation to be performed. The credential is valid only for the duration of the tool call and carries only the permissions required for that specific action [6].
 
 This model has two important properties. First, it prevents credential sprawl: Orchestrate does not store long-lived secrets that could be exfiltrated or misused. Second, it provides the identity fabric with a complete record of every tool invocation, associated with the operator's session token, which feeds directly into the audit trail.
 
@@ -218,7 +218,7 @@ This connection between workflow versioning and GitOps is not incidental. It mea
 
 ## 17.6 Multi-agent coordination via Orchestrate
 
-Chapter 18 will examine multi-agent orchestration patterns in detail. This section describes the specific role Orchestrate plays in those patterns and the mechanisms by which it coordinates with other agents.
+[Chapter 18](18_chapter_multi_agent_orchestration.html) will examine multi-agent orchestration patterns in detail. This section describes the specific role Orchestrate plays in those patterns and the mechanisms by which it coordinates with other agents.
 
 Orchestrate is designed to function as the **planner agent** in a multi-agent system. When a task is too complex—or too broad—to be handled by a single tool or workflow, Orchestrate decomposes it into sub-tasks and delegates them to specialised agents. Each specialised agent has a defined capability scope: one may handle all Kubernetes operations, another may specialise in security scanning, a third may coordinate with external certificate authorities. Orchestrate maintains the overall conversation context and assembles the results from the specialised agents into a coherent response for the operator.
 
@@ -372,7 +372,7 @@ Organisations should treat the tuning of Orchestrate's tool descriptions, prompt
 
 This chapter has described Orchestrate as a planner agent, capable of decomposing complex tasks and delegating them to specialised agents through its tool registry. That description anticipates a question that the architecture raises but does not yet answer: what does a mature multi-agent system look like when Orchestrate is one component among several, and how should an organisation design the boundaries between agents, the flows of information between them, and the governance controls that apply to each boundary?
 
-Chapter 18 takes up that question directly. It examines the patterns by which organisations build and manage multi-agent systems for cloud operations: the distinction between planner and executor agents, the role of agent capability registries, the design of inter-agent communication protocols, and the failure modes that emerge when agents interact in ways their individual designers did not anticipate. It also examines how the Concert–Orchestrate pairing scales to encompass additional specialised agents—each responsible for a defined capability domain—without losing the coherent governance and auditability that make agentic operations safe to deploy in a regulated environment. The transition from a single conversational interface to a coordinated network of autonomous agents is not merely a technical step; it is an organisational and regulatory challenge, and Chapter 18 addresses all three dimensions.
+[Chapter 18](18_chapter_multi_agent_orchestration.html) takes up that question directly. It examines the patterns by which organisations build and manage multi-agent systems for cloud operations: the distinction between planner and executor agents, the role of agent capability registries, the design of inter-agent communication protocols, and the failure modes that emerge when agents interact in ways their individual designers did not anticipate. It also examines how the Concert–Orchestrate pairing scales to encompass additional specialised agents—each responsible for a defined capability domain—without losing the coherent governance and auditability that make agentic operations safe to deploy in a regulated environment. The transition from a single conversational interface to a coordinated network of autonomous agents is not merely a technical step; it is an organisational and regulatory challenge, and [Chapter 18](18_chapter_multi_agent_orchestration.html) addresses all three dimensions.
 
 ***
 
@@ -392,16 +392,16 @@ Chapter 18 takes up that question directly. It examines the patterns by which or
 
 [7] Red Hat, *Ansible Automation Platform Documentation*, Red Hat, 2024. [Online]. Available: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform
 
-[8] W. Scherer, T. Limoncelli, and C. Hogan, *The Practice of Cloud System Administration*, Addison-Wesley, 2014.
+[8] W. Scherer, T. Limoncelli, and C. Hogan, *The Practice of Cloud System Administration*, Addison-Wesley, 2014. [Online]. Available: https://www.pearson.com/en-us/subject-catalog/p/practice-of-cloud-system-administration-the-devops-and-sre-practices-for-web-services-volume-2/P200000009530
 
 [9] IBM Research, "Conversational AI for IT Operations: Design Patterns and Governance Considerations," IBM Research Blog, 2023. [Online]. Available: https://research.ibm.com/blog/conversational-ai-itops
 
-[10] S. Amershi, D. Weld, M. Vorvoreanu, A. Fourney, B. Nushi, P. Collisson, J. Suh, S. Iqbal, P. N. Bennett, K. Inkpen, J. Teevan, R. Kikin-Gil, and E. Horvitz, "Software engineering for machine learning: a case study," in *Proc. 41st Int. Conf. Software Engineering: Software Engineering in Practice (ICSE-SEIP)*, 2019, pp. 291–300.
+[10] S. Amershi, D. Weld, M. Vorvoreanu, A. Fourney, B. Nushi, P. Collisson, J. Suh, S. Iqbal, P. N. Bennett, K. Inkpen, J. Teevan, R. Kikin-Gil, and E. Horvitz, "Software engineering for machine learning: a case study," in *Proc. 41st Int. Conf. Software Engineering: Software Engineering in Practice (ICSE-SEIP)*, 2019, pp. 291–300. [Online]. Available: https://doi.org/10.1109/ICSE-SEIP.2019.00042
 
-[11] European Parliament and Council of the European Union, "Regulation (EU) 2024/1689 of the European Parliament and of the Council of 13 June 2024 laying down harmonised rules on artificial intelligence (Artificial Intelligence Act)," *Official Journal of the European Union*, L 2024/1689, July 2024.
+[11] European Parliament and Council of the European Union, "Regulation (EU) 2024/1689 of the European Parliament and of the Council of 13 June 2024 laying down harmonised rules on artificial intelligence (Artificial Intelligence Act)," *Official Journal of the European Union*, L 2024/1689, July 2024. [Online]. Available: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32024R1689
 
-[12] K. Shneiderman, *Designing the User Interface: Strategies for Effective Human-Computer Interaction*, 6th ed. Pearson, 2016.
+[12] K. Shneiderman, *Designing the User Interface: Strategies for Effective Human-Computer Interaction*, 6th ed. Pearson, 2016. [Online]. Available: https://www.pearson.com/en-us/subject-catalog/p/designing-the-user-interface-strategies-for-effective-human-computer-interaction/P200000003258
 
 [13] Nielsen Norman Group, "Conversational UX Design: A Research-Backed Framework," NNGroup Report, 2023. [Online]. Available: https://www.nngroup.com/reports/conversational-design/
 
-[14] National Institute of Standards and Technology, *Artificial Intelligence Risk Management Framework (AI RMF 1.0)*, NIST AI 100-1, NIST, Jan. 2023.
+[14] National Institute of Standards and Technology, *Artificial Intelligence Risk Management Framework (AI RMF 1.0)*, NIST AI 100-1, NIST, Jan. 2023. [Online]. Available: https://doi.org/10.6028/NIST.AI.100-1

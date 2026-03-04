@@ -102,7 +102,7 @@ The Sovereign Operations Maturity Model assesses maturity across eight dimension
 
 **Sovereignty enforcement.** This dimension evaluates how effectively the organisation enforces its sovereignty commitments through technical controls. Level 1 has sovereignty defined only in policy documents. Level 2 has basic enforcement through cloud provider region restrictions. Level 3 has comprehensive policy-as-code with continuous evaluation. Level 4 has auditable sovereignty enforcement with drift detection and remediation. Level 5 has sovereignty as an inherent platform property that applies automatically to new services [6].
 
-An important caveat applies across all dimensions but is most visible in sovereignty enforcement and governance maturity: what constitutes a given level must be calibrated to the regulatory frameworks applicable to the organisation. A financial services firm operating under DORA faces prescriptive requirements for ICT risk management, incident reporting timelines and third-party oversight that set a high bar for Level 3 and above. A healthcare organisation operating under HIPAA and the EU Medical Device Regulation confronts a different set of obligations — centred on patient data protection, clinical safety and post-market surveillance — that redefine what "comprehensive policy-as-code" means in practice. A manufacturer subject to the Cyber Resilience Act and IEC 62443 must demonstrate security-level enforcement across industrial zones and conduits, a concern that has no analogue in a pure financial services context. Maturity assessments that ignore these sector-specific requirements will produce scores that look favourable on paper but provide false assurance when regulators or auditors apply the lens of the applicable framework (see Chapter 3 for the full regulatory landscape).
+An important caveat applies across all dimensions but is most visible in sovereignty enforcement and governance maturity: what constitutes a given level must be calibrated to the regulatory frameworks applicable to the organisation. A financial services firm operating under DORA faces prescriptive requirements for ICT risk management, incident reporting timelines and third-party oversight that set a high bar for Level 3 and above. A healthcare organisation operating under HIPAA and the EU Medical Device Regulation confronts a different set of obligations — centred on patient data protection, clinical safety and post-market surveillance — that redefine what "comprehensive policy-as-code" means in practice. A manufacturer subject to the Cyber Resilience Act and IEC 62443 must demonstrate security-level enforcement across industrial zones and conduits, a concern that has no analogue in a pure financial services context. Maturity assessments that ignore these sector-specific requirements will produce scores that look favourable on paper but provide false assurance when regulators or auditors apply the lens of the applicable framework (see [Chapter 3](03_chapter_regulatory_drivers.html) for the full regulatory landscape).
 
 **Agent adoption.** This dimension measures the extent to which agentic systems are used in operations and the maturity of their governance. Level 1 has no operational agents or ungoverned experimentation. Level 2 has read-only agents for information gathering. Level 3 has advisory agents with explicit guardrails. Level 4 has agents performing bounded operational actions under policy governance. Level 5 has autonomous agents managing well-defined operational domains with human oversight for exceptions.
 
@@ -316,28 +316,28 @@ Several practices help avoid this trap. First, keep the assessment process light
 
 ## Bridge to Chapter 34 — Reference Blueprints
 
-The maturity model provides a framework for understanding where an organisation stands and how it should progress, but it deliberately avoids prescribing specific architectural patterns. Chapter 34 turns to that question directly, presenting reference blueprints—concrete architectural templates for sovereign, agentic operations at different scales and in different contexts. Where this chapter asked "how mature are we?", the next asks "what should the architecture look like?" The blueprints draw on the maturity model to indicate which capabilities must be in place before a given blueprint can be effectively adopted, connecting assessment to action.
+The maturity model provides a framework for understanding where an organisation stands and how it should progress, but it deliberately avoids prescribing specific architectural patterns. [Chapter 34](34_chapter_reference_blueprints.html) turns to that question directly, presenting reference blueprints—concrete architectural templates for sovereign, agentic operations at different scales and in different contexts. Where this chapter asked "how mature are we?", the next asks "what should the architecture look like?" The blueprints draw on the maturity model to indicate which capabilities must be in place before a given blueprint can be effectively adopted, connecting assessment to action.
 
 ***
 
 ## References
 
-[1] H. Kerzner, *Project Management: A Systems Approach to Planning, Scheduling, and Controlling*, 13th ed. Hoboken, NJ: Wiley, 2022.
+[1] H. Kerzner, *Project Management: A Systems Approach to Planning, Scheduling, and Controlling*, 13th ed. Hoboken, NJ: Wiley, 2022. [Online]. Available: https://www.wiley.com/en-us/Project+Management:+A+Systems+Approach+to+Planning,+Scheduling,+and+Controlling,+13th+Edition-p-9781119805373
 
 [2] CMMI Institute, "CMMI V2.0 Model at a Glance," ISACA, 2018. [Online]. Available: https://cmmiinstitute.com/cmmi
 
-[3] N. Forsgren, J. Humble, and G. Kim, *Accelerate: The Science of Lean Software and DevOps*, Portland, OR: IT Revolution Press, 2018.
+[3] N. Forsgren, J. Humble, and G. Kim, *Accelerate: The Science of Lean Software and DevOps*, Portland, OR: IT Revolution Press, 2018. [Online]. Available: https://itrevolution.com/product/accelerate/
 
 [4] Cloud Native Computing Foundation, "Cloud Native Maturity Model," CNCF TAG App Delivery, 2023. [Online]. Available: https://maturitymodel.cncf.io/
 
-[5] A. Hidalgo, *Implementing Service Level Objectives*, Sebastopol, CA: O'Reilly Media, 2020.
+[5] A. Hidalgo, *Implementing Service Level Objectives*, Sebastopol, CA: O'Reilly Media, 2020. [Online]. Available: https://www.oreilly.com/library/view/implementing-service-level/9781492076803/
 
 [6] European Union Agency for Cybersecurity (ENISA), "Cloud Computing Risk Assessment," ENISA, 2009. [Online]. Available: https://www.enisa.europa.eu/publications/cloud-computing-risk-assessment
 
 [7] Open Policy Agent, "Policy Language (Rego)," The Linux Foundation, 2024. [Online]. Available: https://www.openpolicyagent.org/docs/latest/policy-language/
 
-[8] M. Lippi, M. Mamei, S. Mariani, and F. Zambonelli, "An Argumentation-Based Perspective over the Social IoT," *IEEE Internet of Things Journal*, vol. 5, no. 4, pp. 2537–2547, 2018.
+[8] M. Lippi, M. Mamei, S. Mariani, and F. Zambonelli, "An Argumentation-Based Perspective over the Social IoT," *IEEE Internet of Things Journal*, vol. 5, no. 4, pp. 2537–2547, 2018. [Online]. Available: https://doi.org/10.1109/JIOT.2017.2775047
 
-[9] R. Westrum, "A Typology of Organisational Cultures," *BMJ Quality & Safety*, vol. 13, suppl. 2, pp. ii22–ii27, 2004.
+[9] R. Westrum, "A Typology of Organisational Cultures," *BMJ Quality & Safety*, vol. 13, suppl. 2, pp. ii22–ii27, 2004. [Online]. Available: https://doi.org/10.1136/qshc.2003.009522
 
 [10] OpenTelemetry Authors, "OpenTelemetry Specification," Cloud Native Computing Foundation, 2024. [Online]. Available: https://opentelemetry.io/docs/specs/otel/
