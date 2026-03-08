@@ -27,12 +27,14 @@ echo "[1/3] Building DOCX..."
 pandoc \
   "${CHAPTERS_NO_BACKMATTER[@]}" \
   --metadata-file="${REPO_ROOT}/config/metadata-docx.yaml" \
+  --metadata title="Sovereign Cloud Operations" \
+  --metadata subtitle="Agentic AI, Observability, and Automation for the Fully Sovereign, Multi-Cloud Enterprise" \
   --reference-doc="${REPO_ROOT}/config/reference.docx" \
   --lua-filter="${REPO_ROOT}/config/docx-enhancements.lua" \
   --from=markdown+autolink_bare_uris \
   --to=docx \
   --standalone \
-  --resource-path="${REPO_ROOT}" \
+  --resource-path="${REPO_ROOT}/book:${REPO_ROOT}" \
   --toc --toc-depth=2 \
   --output="${OUT_DIR}/Sovereign-Cloud-Operations.docx"
 echo "  -> ${OUT_DIR}/Sovereign-Cloud-Operations.docx"
@@ -44,14 +46,16 @@ echo "[2/3] Building ePub..."
 pandoc \
   "${CHAPTERS_NO_BACKMATTER[@]}" \
   --metadata-file="${REPO_ROOT}/config/metadata-epub.yaml" \
+  --metadata title="Sovereign Cloud Operations" \
+  --metadata subtitle="Agentic AI, Observability, and Automation for the Fully Sovereign, Multi-Cloud Enterprise" \
   --lua-filter="${REPO_ROOT}/config/epub-enhancements.lua" \
   --css="${REPO_ROOT}/config/epub-style.css" \
   --from=markdown+autolink_bare_uris \
   --to=epub3 \
   --standalone \
-  --resource-path="${REPO_ROOT}" \
+  --resource-path="${REPO_ROOT}/book:${REPO_ROOT}" \
   --toc --toc-depth=2 \
-  --epub-chapter-level=1 \
+  --split-level=1 \
   --output="${OUT_DIR}/Sovereign-Cloud-Operations.epub"
 echo "  -> ${OUT_DIR}/Sovereign-Cloud-Operations.epub"
 
@@ -62,12 +66,15 @@ echo "[3/3] Building PDF (this may take a few minutes)..."
 pandoc \
   "${ALL_CHAPTERS[@]}" \
   --metadata-file="${REPO_ROOT}/config/metadata-pdf.yaml" \
+  --metadata title="Sovereign Cloud Operations" \
+  --metadata subtitle="Agentic AI, Observability, and Automation for the Fully Sovereign, Multi-Cloud Enterprise" \
   --lua-filter="${REPO_ROOT}/config/index-filter.lua" \
+  --include-in-header="${REPO_ROOT}/config/pdf-preamble.tex" \
   --from=markdown+autolink_bare_uris \
   --to=latex \
   --standalone \
   --pdf-engine=xelatex \
-  --resource-path="${REPO_ROOT}" \
+  --resource-path="${REPO_ROOT}/book:${REPO_ROOT}" \
   --output="${OUT_DIR}/Sovereign-Cloud-Operations.pdf"
 echo "  -> ${OUT_DIR}/Sovereign-Cloud-Operations.pdf"
 

@@ -1,0 +1,21 @@
+\providecommand{\pandocbounded}[1]{#1}
+\makeatletter
+\define@key{Gin}{KEEPASPECTRATIO}[true]{\setkeys{Gin}{keepaspectratio=#1}}
+\define@key{Gin}{alt}{\message{Alt text: #1}}
+\define@key{Gin}{ALT}{\message{Alt text: #1}}
+\makeatother
+\usepackage{imakeidx}
+\makeindex[intoc, columnseprule]
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE]{\leftmark}
+\fancyhead[LO]{\rightmark}
+\renewcommand{\headrulewidth}{0.4pt}
+\usepackage{caption}
+\captionsetup{font=sf}
+\usepackage{titlesec}
+\titleformat{\chapter}[display]{\normalfont\sffamily\huge\bfseries}{Chapter \thechapter}{20pt}{\Huge}
+\titleformat{\section}{\normalfont\sffamily\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\sffamily\large\bfseries}{\thesubsection}{1em}{}
