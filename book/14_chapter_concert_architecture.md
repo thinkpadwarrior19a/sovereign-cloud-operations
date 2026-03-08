@@ -18,7 +18,7 @@ The distinction from traditional AIOps tools is important enough to state direct
 
 What Concert is not also deserves clarity. It is not an observability platform; Instana plays that role, providing the instrumented, topology-enriched signal collection from which Concert draws much of its input. It is not a workflow execution engine; watsonx Orchestrate executes the recommendations that Concert generates. It is not a configuration management database in the traditional sense, though it builds and maintains an entity model that subsumes CMDB information. Concert's value is in the reasoning layer: the continuous correlation of signals against a live topology model to produce actionable, prioritised intelligence. Everything that happens before Concert—instrumentation, collection, storage—feeds into it. Everything that happens after—workflow execution, remediation, audit—builds on its recommendations.
 
-![Figure 14.1 — Concert's position in the sovereign operations architecture](images/figure-14-1.png)
+![Concert's position in the sovereign operations architecture](images/figure-14-1.png)
 
 ***
 
@@ -54,7 +54,7 @@ Periodic reconciliation provides a correctness guarantee that event-driven updat
 
 Drift detection complements reconciliation by identifying conditions where the entity model records a state that the discovery source no longer confirms. Drift may indicate a legitimate change that preceded the next reconciliation, or it may indicate a problem: a service that should be present is not responding to the API, a sovereign zone label has been removed from a cluster without a corresponding change record. Concert surfaces detected drift as a signal in its own right, associable with entities and includable in situation correlation [1].
 
-![Figure 14.2 — Concert topology discovery](images/figure-14-2.png)
+![Concert topology discovery](images/figure-14-2.png)
 
 ### 14.2.4 The dependency graph for impact analysis
 
@@ -100,7 +100,7 @@ Concert approaches causal inference by combining graph-based reasoning with patt
 
 Pattern matching supplements graph-based reasoning with historical knowledge. Concert maintains a library of incident patterns derived from historical situations and their resolutions. When a current situation matches a historical pattern with sufficient confidence—the same entity types, the same signal types, the same temporal structure—the historical causal attribution is applied as a prior in the current analysis. This pattern library is built incrementally from operator feedback: every time an operator accepts or overrides Concert's causal attribution, the outcome is recorded and used to refine future pattern matching.
 
-![Figure 14.3 — Concert signal correlation](images/figure-14-3.png)
+![Concert signal correlation](images/figure-14-3.png)
 
 ***
 
@@ -142,7 +142,7 @@ This feedback mechanism requires careful design to avoid introducing bias. If op
 
 Kleppmann's analysis of event-driven data systems [8] provides relevant theoretical grounding for this kind of feedback architecture: the key insight is that the feedback event log must be treated as an immutable record from which the pattern library's current state is derived, not as a set of direct mutations to the library. This allows the pattern library to be replayed, audited, and corrected if errors are discovered in the feedback processing logic.
 
-![Figure 14.4 — Concert recommendation lifecycle](images/figure-14-4.png)
+![Concert recommendation lifecycle](images/figure-14-4.png)
 
 ***
 
@@ -196,7 +196,7 @@ The **SaaS deployment** hosts the Concert backend—including the graph database
 
 The **on-premises deployment** installs the Concert backend within the customer's own infrastructure, typically on an OpenShift cluster within a sovereign zone. In this model, the graph database, correlation engine, recommendation engine, and API layer all run within the customer's environment, and no topology or signal data leaves the sovereign boundary. This deployment model is appropriate for organisations with strict data residency requirements that extend to operational metadata—regulated financial institutions and defence-sector organisations are typical examples—and for sovereign cloud programmes where regulators have explicitly addressed the residency of operational management data [1]. The governance and audit trail that Concert maintains, discussed in section 14.7, remains entirely within the sovereign boundary in this configuration.
 
-![Figure 14.5 — Concert multi-cloud integration architecture](images/figure-14-5.png)
+![Concert multi-cloud integration architecture](images/figure-14-5.png)
 
 ***
 
@@ -260,7 +260,7 @@ The Concert data residency model distinguishes three categories of data with dif
 
 Organisations must assess the residency requirements for each of these categories in the context of the regulatory frameworks applicable to their sovereign zones. The on-premises Concert deployment model, described in section 14.6.3, satisfies the most stringent residency requirements by ensuring that all three categories remain within the customer's infrastructure. The SaaS model satisfies residency requirements where operational metadata is permitted to reside in a trusted cloud provider's managed service. In either case, Concert's zone-partitioned data model ensures that the residency question can be answered at the zone level, not merely at the level of the entire Concert deployment.
 
-![Figure 14.6 — Federated Concert deployment for strict data residency](images/figure-14-6.png)
+![Federated Concert deployment for strict data residency](images/figure-14-6.png)
 
 ***
 

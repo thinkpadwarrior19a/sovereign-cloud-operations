@@ -46,7 +46,7 @@ These planes are not stacks in the sense of strict layers; they are perspectives
 
 Thinking in planes does not solve the problem by itself. It does, however, provide a way to ensure that each concern is given its due and that the technologies chosen for each are coherent.
 
-![Figure 4.1 — The four-planes sovereign operations reference model](images/figure-4-1.png)
+![The four-planes sovereign operations reference model](images/figure-4-1.png)
 
 ***
 
@@ -238,7 +238,7 @@ In the **Governance & Audit Plane**, IBM Sovereign Core [2] represents the archi
 
 This mapping is not meant to be exhaustive. Many other IBM and non‑IBM components will appear in later chapters. The important point is that each technology should have a clear "home" in the conceptual model, even if it touches multiple planes. That clarity helps prevent both gaps and overlaps.
 
-![Figure 4.2 — IBM technology mapping across the four planes](images/figure-4-2.png)
+![IBM technology mapping across the four planes](images/figure-4-2.png)
 
 ***
 

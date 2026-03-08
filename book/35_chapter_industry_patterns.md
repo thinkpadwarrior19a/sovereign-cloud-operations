@@ -18,7 +18,7 @@ This chapter applies the blueprints of [Chapter 34](34_chapter_reference_bluepri
 
 Readers should treat this chapter as a companion to [Chapter 34](34_chapter_reference_blueprints.html). Where [Chapter 34](34_chapter_reference_blueprints.html) answers "what does the architecture look like?", this chapter answers "what does it feel like to operate it in a specific industry, and what sector-specific traps should the architect anticipate?"
 
-![Figure 35.1 — Industry contexts mapped to the reference blueprint](images/figure-35-1.png)
+![Industry contexts mapped to the reference blueprint](images/figure-35-1.png)
 
 ***
 
@@ -58,7 +58,7 @@ A doer agent is authorised, within this zone's policy framework, to implement th
 
 Throughout the incident, every agent action is logged: what was observed, what was proposed, what was approved, what was executed, and what the measured outcome was. Post-incident, these traces feed directly into the regulatory reporting obligations described in the next section, into resilience scoring within Concert's posture dashboard, and into the continuous refinement of runbooks and agent policies.
 
-![Figure 35.2 — Agentic incident response flow for payment degradation in a sovereign zone](images/figure-35-2.png)
+![Agentic incident response flow for payment degradation in a sovereign zone](images/figure-35-2.png)
 
 ***
 
@@ -90,7 +90,7 @@ This has several consequences. The organisation must conduct due diligence on th
 
 For architects, the implication is that the agentic operations architecture must be designed with model provider substitutability in mind. The abstraction layers described in [Chapter 22](22_chapter_ai_governance_framework.html) — which separate the agent's decision logic from the underlying model invocation — serve not only as good engineering practice but as a regulatory compliance mechanism. An organisation that has hard-coded a dependency on a single model provider's API, with no abstraction or substitution capability, may find itself unable to satisfy the exit strategy and concentration risk requirements of DORA.
 
-![Figure 35.3 — DORA obligations mapped to the agentic governance framework](images/figure-35-3.png)
+![DORA obligations mapped to the agentic governance framework](images/figure-35-3.png)
 
 ***
 
@@ -128,7 +128,7 @@ Externally, citizen-facing agents — guided assistants embedded in the authorit
 
 The governance framework for public-sector agents must also account for the political dimension. A commercial bank's chatbot that gives an unhelpful answer loses a customer; a tax authority's chatbot that gives incorrect guidance on a tax obligation can create legal liability for the citizen and political liability for the government. The guardrail framework must therefore be calibrated not only for technical accuracy but for the specific harms that public-sector errors can cause.
 
-![Figure 35.4 — Public-sector sovereign operations](images/figure-35-4.png)
+![Public-sector sovereign operations](images/figure-35-4.png)
 
 ***
 
@@ -166,7 +166,7 @@ Clinical-adjacent agents operate under far stricter supervision. A clinical deci
 
 The guardrail framework for clinical agents must enforce several non-negotiable boundaries. The agent must operate only on data within the clinical zone, unless exceptionally strong guarantees — including patient consent where required — permit access to data from external sources. The agent must be subject to clinical validation processes equivalent to those applied to any other clinical decision support tool, including the medical device regulatory frameworks that may apply in certain jurisdictions [7]. The agent must be continuously monitored for performance degradation, bias, and drift. And the agent must be immediately overrideable by the clinician, with every decision and override logged for clinical audit.
 
-![Figure 35.5 — Healthcare sovereign operations](images/figure-35-5.png)
+![Healthcare sovereign operations](images/figure-35-5.png)
 
 ***
 
@@ -200,7 +200,7 @@ The operator must manage these boundaries with particular care. Signalling proto
 
 Policy-as-code guardrails at interconnection boundaries enforce constraints on what data may cross, what signalling messages are permitted, and what management operations may be initiated from external sources. These guardrails operate at the network function level, complementing the infrastructure-level policies applied to the hosting platform.
 
-![Figure 35.6 — Telecoms sovereign operations](images/figure-35-6.png)
+![Telecoms sovereign operations](images/figure-35-6.png)
 
 ***
 

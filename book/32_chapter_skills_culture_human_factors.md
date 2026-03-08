@@ -22,7 +22,7 @@ Fourth, and cutting across all the others, is **AI governance**. Sovereign opera
 
 The labour market reality compounds all of these shortfalls. Cloud-native engineering skills were already scarce before sovereignty and agentic operations added new requirements. The 2024 State of DevOps Report found that organisations identifying skills gaps as a primary constraint on their transformation efforts had increased year-on-year for the fourth consecutive year [3]. Sovereign operations skills are a strict superset of cloud-native skills—they require everything cloud-native engineering requires, plus regulatory fluency, plus sovereignty-specific design patterns, plus agent supervision capability—which means the talent pool is smaller still. Hiring alone will not close this gap. Organisations that depend entirely on external recruitment for sovereign operations skills will find themselves competing for a pool of candidates that is, at present, too small to serve the demand. The alternative—and, for most organisations, the necessity—is to grow these skills internally, which brings us to the question of what the target profile looks like and how to develop it.
 
-![Figure 32.1 — The sovereign operations skills gap](images/figure-32-1.png)
+![The sovereign operations skills gap](images/figure-32-1.png)
 
 ***
 
@@ -44,7 +44,7 @@ The Team Topologies model also highlights the importance of **interaction modes*
 
 Organisations building sovereign operations capability should expect to invest in all three modes deliberately, matching the mode to the knowledge transfer need. New sovereignty patterns might be introduced through facilitation; a complex cross-zone incident might be resolved through time-limited collaboration between infrastructure, security and compliance teams; and mature, well-understood platform capabilities might be consumed as a service by teams that need the capability but not the underlying expertise.
 
-![Figure 32.2 — The T-shaped sovereign operations engineer](images/figure-32-2.png)
+![The T-shaped sovereign operations engineer](images/figure-32-2.png)
 
 ***
 
@@ -90,7 +90,7 @@ The practical implications of this cultural shift are felt in several areas. **I
 
 The cultural transformation does not happen through a memo or a presentation. It happens through sustained, consistent action by leaders at every level—from the CTO who publicly celebrates a blameless post-incident review, to the team lead who pairs a junior engineer with a compliance specialist to work through a sovereignty problem together, to the platform engineer who designs a self-service interface that makes the secure path the easy path. Culture is, as the saying goes, what people do when nobody is watching. Changing it requires changing the incentive structures, the working practices, the feedback mechanisms and the leadership behaviours that together constitute the organisational environment.
 
-![Figure 32.3 — From gatekeeping to enabling](images/figure-32-3.png)
+![From gatekeeping to enabling](images/figure-32-3.png)
 
 ***
 
@@ -114,7 +114,7 @@ Several mechanisms support the development of calibrated trust. **Transparency o
 
 There is also a **team dimension** to trust calibration. In well-functioning teams, trust in the agent is not purely individual; it is a shared, discussed, socially constructed judgement. Teams that regularly discuss agent performance—during post-incident reviews, during shift handovers, during team retrospectives—develop a collective calibration that is more robust than any individual's assessment. A team member who notices that the agent consistently struggles with a particular class of incident can share that observation, and the whole team benefits. This social dimension of trust calibration is one of the reasons why the cultural factors described in Section 32.4 matter: in a generative culture, these discussions happen naturally and constructively; in a pathological or bureaucratic culture, they are suppressed or formalised into ineffective processes.
 
-![Figure 32.4 — Trust calibration spectrum](images/figure-32-4.png)
+![Trust calibration spectrum](images/figure-32-4.png)
 
 ***
 
@@ -140,7 +140,7 @@ At the **organisational level**, it means resisting the temptation to reduce tea
 
 Operator wellbeing is not a soft concern separate from operational performance; it is a direct determinant of it. Fatigued, overloaded operators make worse decisions, miss more signals, and are more likely to accept agent recommendations uncritically—precisely the over-trust failure described in Section 32.5. Investing in cognitive load management is investing in operational quality.
 
-![Figure 32.5 — Cognitive load in sovereign operations](images/figure-32-5.png)
+![Cognitive load in sovereign operations](images/figure-32-5.png)
 
 ***
 
@@ -214,7 +214,7 @@ The evidence is straightforward. The tooling described in this book—Concert, O
 
 IBM has to earn the trust of these teams, and earning trust takes time. It requires products that work reliably, documentation that is accurate and current, APIs that behave as specified, and a support experience that meets the standards set by the hyperscaler platforms these engineers are accustomed to. It also requires a willingness to acknowledge the gap openly: yes, the mainframe heritage is real; no, it does not define the current toolset; and here is the evidence. Organisations adopting the sovereign agentic model should create space for this conversation rather than suppressing it, because engineers who harbour private doubts about the tooling are less likely to invest in learning it than engineers whose concerns have been heard and addressed.
 
-![Figure 32.6 — The phased bridge model for hyperscaler-native teams](images/figure-32-6.png)
+![The phased bridge model for hyperscaler-native teams](images/figure-32-6.png)
 
 ***
 

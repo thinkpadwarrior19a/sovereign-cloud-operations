@@ -28,7 +28,7 @@ The third argument is **auditability as a by-product**. Every conversation turn 
 
 The ChatOps movement, which emerged in the early 2010s through tools such as Hubot at GitHub and subsequently spread through Slack-based bot integrations across the industry, established the foundational insight that chat channels could serve as operational control surfaces rather than merely communication channels [4]. Early ChatOps implementations were limited by the brittleness of their command parsers: operators had to memorise precise command syntaxes, and any deviation from the expected format produced an error rather than a clarification. The introduction of LLM-powered conversational agents has removed this limitation. An operator no longer needs to remember that the command is `/cert-check --fqdn api.payments.example.internal --zone payments-prod`; they can type "check the certificate status for the payments API in the regulated zone" and receive the same result, with the language model handling the translation from intent to structured tool invocation.
 
-![Figure 27.1 — Evolution of operational interfaces](images/figure-27-1.png)
+![Evolution of operational interfaces](images/figure-27-1.png)
 
 The convergence of these three arguments—reduced context switching, democratised access, and inherent auditability—makes conversational operations not merely a convenience layer but an architectural choice with structural implications for how operations teams are organised, how knowledge is shared, and how compliance is demonstrated. The remainder of this chapter examines how to realise this potential without introducing the new failure modes that poorly designed conversational interfaces inevitably create.
 
@@ -46,7 +46,7 @@ A conversational interface for operations is not a consumer chatbot. The design 
 
 **Confirmation patterns for destructive actions** are a non-negotiable governance requirement. Any conversational action that modifies production state—deploying a configuration change, scaling a service, rotating a credential, executing a runbook—must include an explicit confirmation step that presents the operator with the specific parameters of the action before execution. The confirmation must not be a generic "are you sure?" dialogue. It must present the exact action, the exact target, and the exact parameters, so that the operator can verify that the system's interpretation of their intent matches their actual intent. [Chapter 17](17_chapter_orchestrate_conversational_interface.html)'s approval gate mechanism is the workflow-level implementation of this principle; conversational confirmation extends it to single-step actions that do not involve a formal workflow [2].
 
-![Figure 27.2 — Conversational UX pattern catalogue](images/figure-27-2.png)
+![Conversational UX pattern catalogue](images/figure-27-2.png)
 
 **Avoiding the "magic command" anti-pattern** is as important as the positive principles. The magic command anti-pattern occurs when an operational conversational interface develops an implicit command language that operators must learn through trial and error: specific phrasings that produce correct results while semantically equivalent phrasings produce errors or unexpected behaviour. This anti-pattern reintroduces the very problem that conversational interfaces are meant to solve—the requirement for operator-side knowledge of tool-specific syntax—but makes it worse by hiding the syntax behind a veneer of natural language. Avoiding this anti-pattern requires investment in the quality of tool descriptions in the Orchestrate registry, in the breadth of the language model's training on operational vocabulary, and in systematic testing of conversational inputs against expected outputs. If an operator discovers that "check the cert for payments" works but "what's the certificate status for the payments service" does not, the interface has failed at its most fundamental promise.
 
@@ -64,7 +64,7 @@ The translation from natural language to operational action is the core technica
 
 **Multi-step planning** is the process by which the conversational interface decomposes a complex operator request into a sequence of tool calls. An operator who asks "investigate the latency spike in the payments zone and open a ticket if it looks like a real issue" has described a multi-step workflow: query Concert for recent findings in the payments zone, retrieve latency metrics from Instana, correlate with recent change events, evaluate whether the evidence supports a genuine issue, and conditionally create a ServiceNow incident record. Orchestrate's workflow engine can execute predefined multi-step flows ([Chapter 17](17_chapter_orchestrate_conversational_interface.html), Section 17.5), but the conversational interface must also handle ad hoc multi-step requests that do not correspond to a predefined workflow. The language model's ability to decompose these requests into a coherent plan—and to present that plan to the operator for confirmation before execution—is one of the distinguishing capabilities of LLM-powered conversational operations compared to earlier ChatOps implementations.
 
-![Figure 27.3 — Natural language to operational action pipeline](images/figure-27-3.png)
+![Natural language to operational action pipeline](images/figure-27-3.png)
 
 The reliability of this translation pipeline is not a fixed property of the system; it improves over time as tool descriptions are refined, as the entity mapping is enriched, and as conversation logs are analysed to identify patterns where the system's interpretation diverged from operator intent. Section 27.7 discusses the metrics that drive this continuous improvement.
 
@@ -412,7 +412,7 @@ The grounding verification step logs every instance where the model's proposed r
 
 Each degradation event is logged with the affected tool, the duration of the outage, and the number of operator requests that were degraded, providing data for the availability metrics described in Section 27.7.
 
-![Figure 27.4 — Error handling decision tree](images/figure-27-4.png)
+![Error handling decision tree](images/figure-27-4.png)
 
 ***
 
@@ -424,7 +424,7 @@ Text is the natural medium for conversational interfaces, but operational work i
 
 **Topology diagrams** serve a different purpose: they show structure rather than temporal behaviour. When Concert identifies that a degraded database is affecting three downstream services in a sovereign zone, presenting the dependency subgraph as a visual diagram—nodes for entities, edges for dependencies, colour-coded by health status—communicates the situation faster and more completely than a textual list. The diagram should be interactive where the client supports it: clicking a node should expand its details within the conversation, not navigate away from it. In environments where the conversational client is a web application, interactive SVG or canvas-based diagrams can be embedded directly. In environments where the client is a messaging platform with more limited rendering capabilities, a static image with a link to an interactive view is the pragmatic compromise.
 
-![Figure 27.5 — Multi-modal conversation example](images/figure-27-5.png)
+![Multi-modal conversation example](images/figure-27-5.png)
 
 **Metric dashboards on demand** extend inline visualisations to more comprehensive views. An operator who asks "give me the full health dashboard for the regulated zone" should receive a composite view: key metrics for each service in the zone, alert status, recent change activity, and compliance posture. This is not a replacement for the full Instana or Concert dashboard; it is a contextual snapshot assembled for the conversation, reflecting the operator's current focus. The distinction matters because the conversational dashboard is scoped to the operator's query and access permissions, whereas the full dashboard may contain information from zones the operator is not cleared to view. Section 27.5 examines this scoping in detail.
 
@@ -444,7 +444,7 @@ A conversational interface that can query the entire estate and display any info
 
 **Preventing data leakage through conversation context** is a subtler challenge. Language models maintain conversation history to provide continuity across turns. If an operator with high clearance discusses a sensitive finding in one conversation, and a different operator with lower clearance later accesses a shared conversation channel, the conversation history could expose information beyond the second operator's authorisation. The architectural response is to scope conversation history by operator session and clearance level. Shared channels (discussed in Section 27.6) must apply the most restrictive clearance level of any participant, or, where mixed-clearance collaboration is required, the system must filter conversation history before presenting it to each participant based on their individual authorisation.
 
-![Figure 27.6 — Sovereign-aware conversation flow](images/figure-27-6.png)
+![Sovereign-aware conversation flow](images/figure-27-6.png)
 
 **Audit logging of conversational interactions** is the accountability mechanism that underpins all other controls. Every conversation turn—the operator's message, the system's interpretation, the tool invocations dispatched, the results returned, and any data that was filtered or redacted—must be logged in a tamper-evident audit store within the appropriate sovereign zone. The audit log must capture not only what was shown to the operator but what was withheld and why, so that a subsequent review can verify that the access controls were applied correctly. In environments subject to DORA or NIS2, these logs form part of the organisation's evidence of operational control and must be retained for the periods specified by the applicable regulation [3].
 
@@ -466,7 +466,7 @@ The war room agent's ability to provide contextual onboarding for late joiners d
 
 **Shift handover through chat history** addresses one of the most persistent problems in operations: the loss of context during shift transitions. When an outgoing shift has been managing a developing situation—a slow-building capacity issue, an intermittent network anomaly, a change window that ran long—the incoming shift needs to understand what has happened, what has been tried, what is still in progress, and what decisions are pending. In a traditional model, this handover happens through a brief verbal summary, a ticket update, or a shared document. In a chat-first model, the handover is the conversation itself. The incoming shift reads the conversation history, which contains not just what was discussed but what was queried, what was found, and what actions were taken. Orchestrate can generate a structured handover summary—an automated precis of the conversation thread, highlighting open actions, pending approvals, and unresolved findings—that gives the incoming shift a five-minute briefing without requiring the outgoing shift to compose it manually.
 
-![Figure 27.7 — Collaborative operational chat patterns](images/figure-27-7.png)
+![Collaborative operational chat patterns](images/figure-27-7.png)
 
 **Integration with ITSM ticket workflows** connects the conversational collaboration surface to the organisation's formal process records. When a war room channel is active for a major incident, every significant action taken through the channel—diagnostic queries, remediation steps, approval decisions—should be reflected in the corresponding ServiceNow incident record. Orchestrate can be configured to append structured activity summaries to the ticket at defined intervals or at key milestones (diagnosis complete, remediation initiated, service restored). This integration ensures that the ITSM record is not a sparse afterthought composed once the incident is over but a contemporaneous record enriched throughout the incident's lifecycle. [Chapter 19](19_chapter_itsm_multi_agent_workflows.html) described the agent-mediated ITSM integration patterns in detail; the conversational collaboration layer extends those patterns to multi-operator scenarios.
 
@@ -522,7 +522,7 @@ A target IRA of 92 per cent or above is appropriate for a production deployment 
 
 These improvements are not hypothetical; they are derived from the reduction in context-switching overhead and the elimination of manual data gathering that the conversational interface provides [15]. Organisations should conduct their own baseline measurements before deploying conversational operations and repeat them quarterly to track realised improvements.
 
-![Figure 27.8 — Conversational effectiveness dashboard](images/figure-27-8.png)
+![Conversational effectiveness dashboard](images/figure-27-8.png)
 
 **Escalation rate** measures how often conversational interactions result in escalation to a human operator or a manual process. Some escalation is expected and healthy — complex situations that genuinely require human judgement should be escalated promptly rather than handled poorly by automation. The target escalation rate for routine operational tasks (queries, standard remediations, compliance checks) should be below 5 per cent. For complex diagnostic and provisioning tasks, an escalation rate of 10–15 per cent is acceptable in the first year of deployment, declining to below 8 per cent as tool descriptions and workflows mature. A rising escalation rate, or an escalation rate that is high for interaction categories that should be automatable, indicates that the conversational interface is not meeting its potential. Escalation events should be logged with sufficient context to enable root cause analysis: what was the operator's request, what did the system attempt, and why was the attempt insufficient.
 

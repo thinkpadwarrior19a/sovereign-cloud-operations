@@ -26,7 +26,7 @@ This failure mode has a measurable cost. Blameless post-incident reviews consist
 
 Knowledge-augmented operations addresses this problem by making accumulated operational knowledge available as a first-class operational resource—queryable, current, contextually relevant and accessible not only to human operators but to the AI agents that increasingly work alongside them. In this model, the knowledge base is not a passive filing system but an active component of the operations control plane, integrated into agent reasoning, surfaced in conversational interfaces, and continuously maintained against the reality of a changing estate.
 
-![Figure 20.1 — The operational knowledge gap](images/figure-20-1.png)
+![The operational knowledge gap](images/figure-20-1.png)
 
 ***
 
@@ -46,7 +46,7 @@ RAG avoids both of these issues. The knowledge base can be updated continuously�
 
 The quality of retrieval is the critical determinant of RAG system effectiveness—a point that the survey literature on RAG architectures addresses extensively [4]. Three design decisions are primary. **Chunking strategy** determines how source documents are divided into the segments that are individually embedded and stored. Documents that are chunked too coarsely (entire documents as single chunks) produce embeddings that average over too much meaning, reducing retrieval precision. Documents chunked too finely (single sentences) lose the surrounding context necessary for a retrieved chunk to be interpretable. Research and practice have converged on a strategy of hierarchical chunking—preserving document structure through headers and sections, with overlapping window chunks within sections—as a generally effective approach for technical prose [4]. **Embedding model choice** determines the quality of the semantic space in which retrieval operates. General-purpose embedding models, such as those available through open-source frameworks, perform reasonably well on general text; models fine-tuned on technical or operational corpora perform better on the specific vocabulary and conceptual structures of operations documentation. For a sovereign enterprise, the embedding model must run within the same sovereign zone as the documents it indexes, precluding the use of external embedding API services for sensitive operational content. **Metadata filtering** allows retrieval to be scoped before the semantic search, using structured attributes rather than embedding similarity—retrieving only documents relevant to a specific service, a specific sovereign zone, or a specific document type. Without metadata filtering, a query about a payment service incident might retrieve semantically similar documents from an entirely different service domain, consuming context window space with irrelevant content.
 
-![Figure 20.2 — RAG architecture for operational knowledge](images/figure-20-2.png)
+![RAG architecture for operational knowledge](images/figure-20-2.png)
 
 ***
 
@@ -72,7 +72,7 @@ Metadata enrichment deserves particular attention. Each chunk in the vector stor
 
 A further metadata field that merits consideration is a **confidence or authority level** for the document—a structured indicator of whether the content has been formally reviewed and approved, is a working draft, or is a historical document that may no longer reflect current practice. This field, used in retrieval ranking, allows the system to preferentially surface formally reviewed content while still making provisional content available when no authoritative equivalent exists.
 
-![Figure 20.3 — Operational knowledge base ingestion pipeline](images/figure-20-3.png)
+![Operational knowledge base ingestion pipeline](images/figure-20-3.png)
 
 ***
 
@@ -92,7 +92,7 @@ IaC changes provide a second category of automated trigger. When a Terraform mod
 
 The combination of automated triggers and provenance disclosure does not eliminate the need for scheduled reviews. High-usage documents—those retrieved frequently by agents and operators—should be subject to an explicit review cadence. Usage analytics in the vector store reveal which documents are retrieved most frequently and which are rarely or never retrieved. High-frequency documents are of disproportionate importance to operational quality and should be reviewed most often. Low-frequency documents may indicate either that the content is of limited relevance—suggesting candidates for archival—or that the content is very precise and rarely retrieved because it applies only to specific, infrequent situations—a distinction that requires human judgement to make.
 
-![Figure 20.4 — Knowledge lifecycle management](images/figure-20-4.png)
+![Knowledge lifecycle management](images/figure-20-4.png)
 
 ***
 
@@ -114,7 +114,7 @@ The **sovereign AI constraint** that applies throughout this book is particularl
 
 This constraint has architectural implications. Organisations with multiple sovereign zones may need separate vector stores—one per zone, each indexed by an embedding model running within that zone—with zone-specific retrieval pipelines. Queries that span zones, where permitted by policy, require careful design to avoid cross-zone data movement: the appropriate pattern is to run separate retrievals in each zone and aggregate only the retrieval results (embeddings, chunk text and metadata) rather than moving the raw source documents across the zone boundary.
 
-![Figure 20.5 — IBM watsonx operational knowledge architecture](images/figure-20-5.png)
+![IBM watsonx operational knowledge architecture](images/figure-20-5.png)
 
 ***
 
@@ -132,7 +132,7 @@ This combination also has important implications for knowledge base construction
 
 The practical consequence for Concert integration is that agents querying the knowledge layer should call Concert's topology API and the vector database retrieval tool as complementary steps in a single reasoning workflow, not as alternatives. Watsonx Orchestrate's tool-calling architecture accommodates this naturally: Concert topology queries and vector database retrieval queries are both expressed as tools, invocable by the orchestrating agent in whatever sequence the reasoning task requires.
 
-![Figure 20.6 — Dual-modality knowledge architecture](images/figure-20-6.png)
+![Dual-modality knowledge architecture](images/figure-20-6.png)
 
 ***
 
@@ -154,7 +154,7 @@ The human review loop also serves an organisational function that the automated 
 
 A useful instrument for the human review loop is a **knowledge interaction dashboard**—a live view of retrieval analytics that shows the most frequently retrieved documents in each category, the staleness distribution of retrieved content, the override rate by document and category, and the coverage assessment for each incident type category. This dashboard provides the input for review discussions and the output metrics that demonstrate programme value to operational leadership.
 
-![Figure 20.7 — Knowledge base quality metrics dashboard](images/figure-20-7.png)
+![Knowledge base quality metrics dashboard](images/figure-20-7.png)
 
 ***
 

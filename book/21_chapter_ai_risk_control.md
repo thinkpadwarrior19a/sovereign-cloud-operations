@@ -14,7 +14,7 @@ These are not hypothetical concerns. They are the characteristic failure modes o
 
 Managing these risks is the subject of this chapter. The approach taken here is deliberately pragmatic: not a philosophical treatment of AI ethics, but a structured application of established risk management disciplines to the specific challenges posed by operational AI agents in sovereign cloud estates. The chapter maps the NIST AI Risk Management Framework and the EU AI Act to operational agent deployments, enumerates the specific risks that arise in agentic operations, describes the practical structure of a sovereign AI risk register, examines the runtime controls that enforce risk boundaries during agent execution, and establishes the monitoring and feedback mechanisms that keep the risk posture current as the estate and its agents evolve.
 
-![Figure 21.1 — AI risk and control in the sovereign operations architecture](images/figure-21-1.png)
+![AI risk and control in the sovereign operations architecture](images/figure-21-1.png)
 
 ***
 
@@ -58,7 +58,7 @@ This mapping exercise is more demanding than it first appears. In a mature agent
 
 The mapping should also identify the contexts in which AI systems interact with each other. A planner agent that consults a knowledge retrieval agent, which in turn queries a vector database populated by an embedding model, represents a chain of AI-mediated decisions. The risk profile of the chain is not simply the sum of the individual component risks; it includes the risks that arise from the interactions between components—an embedding model that systematically under-retrieves certain document types creates a blind spot that the planner agent inherits and the reviewer agent may not detect.
 
-![Figure 21.2 — NIST AI RMF functions mapped to sovereign agentic operations](images/figure-21-2.png)
+![NIST AI RMF functions mapped to sovereign agentic operations](images/figure-21-2.png)
 
 ### Measure
 
@@ -108,7 +108,7 @@ High-risk AI systems must undergo a conformity assessment before being placed on
 
 The documentation burden is significant but not unprecedented for organisations that already maintain ISO 27001 or SOC 2 compliance. The required documentation includes a general description of the AI system, a detailed description of its components and development process, information about the monitoring, functioning, and control of the system, a description of the risk management system, and records of the conformity assessment process. In practice, organisations should integrate this documentation into their existing governance, risk and compliance platforms—IBM OpenPages, for instance, can serve as the system of record for AI Act conformity documentation alongside existing regulatory compliance records.
 
-![Figure 21.3 — EU AI Act risk classification decision tree for operational AI agents](images/figure-21-3.png)
+![EU AI Act risk classification decision tree for operational AI agents](images/figure-21-3.png)
 
 ***
 
@@ -164,7 +164,7 @@ Drift is particularly dangerous because it is gradual and may not produce obviou
 
 **Controls**: continuous monitoring of retrieval relevance scores and recommendation quality metrics (Section 21.7), scheduled model re-evaluation against current operational data, automated drift detection using statistical tests on model output distributions, and defined thresholds that trigger model refresh or replacement.
 
-![Figure 21.4 — Operational risk taxonomy for AI agents](images/figure-21-4.png)
+![Operational risk taxonomy for AI agents](images/figure-21-4.png)
 
 ***
 
@@ -256,7 +256,7 @@ A well-designed kill switch system has three tiers. The **global kill switch** h
 
 Circuit breakers operate on the same principle as kill switches but are automatic rather than manual. A circuit breaker monitors a defined metric—agent error rate, guardrail rejection rate, HITL escalation rate—and trips when the metric exceeds a threshold, automatically suspending agent activity until the condition is resolved. Circuit breakers protect against cascading failures in agent pipelines: if a planner agent begins producing poor-quality recommendations due to a knowledge base issue, the circuit breaker on the executor agent's error rate will prevent those recommendations from being executed before a human operator has diagnosed the problem.
 
-![Figure 21.5 — Runtime risk control architecture](images/figure-21-5.png)
+![Runtime risk control architecture](images/figure-21-5.png)
 
 ***
 
@@ -306,7 +306,7 @@ What change to the risk register, the control set, or the monitoring configurati
 
 The answers to these questions feed directly back into the risk register (updating likelihood and impact assessments), the control configuration (adjusting guardrail policies, confidence thresholds, or HITL gate placement), and the monitoring configuration (adding new drift detection metrics or adjusting alert thresholds). This feedback loop is what makes the AI risk management framework a living system rather than a compliance artefact—each incident makes the framework more accurate and the controls more effective.
 
-![Figure 21.6 — Continuous risk monitoring feedback loop](images/figure-21-6.png)
+![Continuous risk monitoring feedback loop](images/figure-21-6.png)
 
 ***
 

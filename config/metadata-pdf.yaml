@@ -1,0 +1,58 @@
+---
+title: "Sovereign Cloud Operations"
+subtitle: "Agentic AI, Observability, and Automation for the Fully Sovereign, Multi-Cloud Enterprise"
+author: "Alan Hamilton"
+date: \today
+lang: en-GB
+toc: true
+toc-depth: 2
+numbersections: false
+documentclass: book
+classoption:
+  - openany
+papersize: a4
+fontsize: 11pt
+mainfontoptions:
+  - Path=C:/Users/hamil/AppData/Local/Programs/MiKTeX/fonts/opentype/public/tex-gyre/
+  - BoldFont=texgyreheros-bold.otf
+  - ItalicFont=texgyreheros-italic.otf
+  - BoldItalicFont=texgyreheros-bolditalic.otf
+mainfont: "texgyreheros-regular.otf"
+sansfontoptions:
+  - Path=C:/Users/hamil/AppData/Local/Programs/MiKTeX/fonts/opentype/public/tex-gyre/
+  - BoldFont=texgyreheros-bold.otf
+  - ItalicFont=texgyreheros-italic.otf
+  - BoldItalicFont=texgyreheros-bolditalic.otf
+sansfont: "texgyreheros-regular.otf"
+monofontoptions:
+  - Path=C:/Users/hamil/AppData/Local/Programs/MiKTeX/fonts/truetype/public/dejavu/
+  - BoldFont=DejaVuSansMono-Bold.ttf
+  - ItalicFont=DejaVuSansMono-Oblique.ttf
+  - BoldItalicFont=DejaVuSansMono-BoldOblique.ttf
+  - Scale=0.85
+monofont: "DejaVuSansMono.ttf"
+colorlinks: true
+linkcolor: "NavyBlue"
+urlcolor: "NavyBlue"
+citecolor: "NavyBlue"
+toccolor: "NavyBlue"
+lof: true
+geometry:
+  - margin=2.5cm
+header-includes: |
+  \usepackage{imakeidx}
+  \makeindex[intoc, columnseprule]
+  \usepackage{fancyhdr}
+  \pagestyle{fancy}
+  \fancyhf{}
+  \fancyhead[LE,RO]{\thepage}
+  \fancyhead[RE]{\leftmark}
+  \fancyhead[LO]{\rightmark}
+  \renewcommand{\headrulewidth}{0.4pt}
+  \usepackage{caption}
+  \captionsetup{font=sf}
+  \usepackage{titlesec}
+  \titleformat{\chapter}[display]{\normalfont\sffamily\huge\bfseries}{Chapter \thechapter}{20pt}{\Huge}
+  \titleformat{\section}{\normalfont\sffamily\Large\bfseries}{\thesection}{1em}{}
+  \titleformat{\subsection}{\normalfont\sffamily\large\bfseries}{\thesubsection}{1em}{}
+---

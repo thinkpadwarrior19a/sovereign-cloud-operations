@@ -46,7 +46,7 @@ This architecture means that a Satellite location maps naturally onto a primary 
 
 **The zone boundary as a policy enforcement point.** In a well‑designed sovereign architecture, every network path that crosses a zone boundary is a policy enforcement point. This is realised in several complementary ways. Ingress and egress are governed by network policies enforced at the CNI layer and, where service mesh is deployed, at the sidecar proxy layer. Mutual TLS (mTLS) is enforced for all inter‑service communication that traverses a zone boundary, ensuring that both parties are authenticated and that the channel is encrypted end‑to‑end [7]. Open Policy Agent (OPA) and its Kubernetes integration, Gatekeeper, evaluate admission requests and runtime policies against the zone's data classification and operator constraint rules [8]. Any workload attempting to write to an external endpoint, call an API in a different zone, or escalate privileges must pass through these enforcement points before the action proceeds. The combination of CNI‑level network policy, service mesh mTLS and OPA/Gatekeeper admission control gives the primary sovereign zone a defence‑in‑depth boundary that is architecturally enforced rather than procedurally hoped for.
 
-![Figure 5.1 — Sovereign zone topology](images/figure-5-1.png)
+![Sovereign zone topology](images/figure-5-1.png)
 
 ***
 
@@ -154,7 +154,7 @@ In all of these patterns, **human geography** matters as much as technical geogr
 
 DORA's concentration risk provisions [2, Art. 30] provide an additional lens on topology patterns. The regulator's concern is that an organisation that has placed all its critical workloads, data and connectivity with a single provider has created a concentration risk that cannot be mitigated by contractual terms alone. The topology patterns described above are architectural responses to this concern: by distributing across zones, providers and operators, the organisation reduces the blast radius of any single provider failure or contractual disruption, and can demonstrate to its supervisor that it has the exit strategies and transition plans Article 30 requires.
 
-![Figure 5.2 — Multi‑cloud topology patterns](images/figure-5-2.png)
+![Multi‑cloud topology patterns](images/figure-5-2.png)
 
 ***
 

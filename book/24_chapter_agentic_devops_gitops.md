@@ -22,7 +22,7 @@ For sovereign estates specifically, the convergence of agentic AI and DevOps add
 
 This chapter explores how that convergence is operationalised. We begin with GitOps as the foundational control loop—the mechanism through which desired state is declared, versioned, and reconciled—and then examine how agentic systems participate in and extend that loop, from proposing changes through pull requests to driving progressive delivery based on real-time observability signals.
 
-![Figure 24.1 — The evolution from manual operations through pipeline automation to agentic DevOps](images/figure-24-1.png)
+![The evolution from manual operations through pipeline automation to agentic DevOps](images/figure-24-1.png)
 
 ### Executive Perspective
 
@@ -46,7 +46,7 @@ What makes GitOps particularly well suited to sovereign operations is not any si
 
 For sovereign estates, these properties combine to create a control loop with a level of transparency, traceability, and enforceability that imperative deployment approaches cannot match. The Git repository becomes the sovereign record of intent for each zone: what the organisation declares should exist, how it should be configured, and who authorised each change. The GitOps controller becomes the enforcement mechanism that continuously drives reality towards that declared intent, surfacing any deviation as a reconciliation event that can be observed, alerted on, and investigated.
 
-![Figure 24.2 — The GitOps control loop](images/figure-24-2.png)
+![The GitOps control loop](images/figure-24-2.png)
 
 ***
 
@@ -80,7 +80,7 @@ The second category is external secrets operators, which store a reference to a 
 
 Both approaches are compatible with agentic workflows. An agent proposing a configuration change that involves a new secret can create the secret in the zone-local secrets manager and include the corresponding ExternalSecret reference in its pull request, without the secret value ever appearing in the Git diff.
 
-![Figure 24.3 — Sovereign GitOps architecture](images/figure-24-3.png)
+![Sovereign GitOps architecture](images/figure-24-3.png)
 
 ***
 
@@ -108,7 +108,7 @@ The third role is the agent that operates as a validation gate: a required statu
 
 For sovereign estates, the validation gate is also the enforcement point for zone-specific policies. A pull request targeting a regulated zone's repository must pass a different—typically stricter—set of checks than one targeting a development zone. The agent enforces this by reading the zone classification from the repository metadata and selecting the corresponding policy set.
 
-![Figure 24.4 — Agent-assisted pull request lifecycle](images/figure-24-4.png)
+![Agent-assisted pull request lifecycle](images/figure-24-4.png)
 
 ***
 
@@ -174,7 +174,7 @@ For services deployed across multiple sovereign zones, progressive delivery must
 
 watsonx Orchestrate can coordinate this cross-zone sequencing by monitoring the promotion status of the rollout in each zone and triggering the next zone's deployment only when the preceding zone's canary has been promoted successfully [3]. The coordination respects zone boundaries: Orchestrate does not hold credentials to the downstream zone's cluster. Instead, it updates the downstream zone's GitOps repository (by merging the pending promotion pull request), and the downstream zone's GitOps controller applies the change. The control flow passes through Git, preserving the auditability and approval properties of the GitOps model.
 
-![Figure 24.5 — Multi-zone progressive delivery](images/figure-24-5.png)
+![Multi-zone progressive delivery](images/figure-24-5.png)
 
 ***
 
@@ -210,7 +210,7 @@ An unconstrained feedback loop—an agent that can propose any change to any con
 
 These guardrails ensure that the feedback loop accelerates convergence on good configuration without introducing the risks of unconstrained automation. The guardrails are not restrictions on agentic capability; they are the conditions under which agentic capability can be trusted to operate in a sovereign, regulated environment.
 
-![Figure 24.6 — The operational feedback loop](images/figure-24-6.png)
+![The operational feedback loop](images/figure-24-6.png)
 
 ***
 
