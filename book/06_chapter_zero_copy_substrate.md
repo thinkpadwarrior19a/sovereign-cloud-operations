@@ -75,7 +75,7 @@ Thus a zero‑copy substrate is **easier to reason about structurally** but **le
 
 ***
 
-![Zero-copy vs. copy-heavy data flows](images/figure-6-1.png)
+![Zero-copy vs. copy-heavy data flows](../images/figure-6-1.png)
 
 ***
 
@@ -101,7 +101,7 @@ Two Kafka features have particular operational significance. **Log compaction** 
 
 Adopting CloudEvents as a standard within the enterprise event fabric has immediate operational benefits. Observability tooling can be written once and applied consistently across event sources. Routing rules can reference standardised metadata fields. Audit logs can correlate events from different systems without manual field mapping. IBM Event Streams, IBM's managed Kafka service, supports CloudEvents as a standard envelope format, enabling enterprises to build observability and compliance tooling that operates uniformly across the event fabric [14].
 
-![Kafka topic architecture with zone-aware partitioning, consumer groups and retention policies](images/figure-6-3.png)
+![Kafka topic architecture with zone-aware partitioning, consumer groups and retention policies](../images/figure-6-3.png)
 
 **Events as multi-subscriber operational signals.** A particularly powerful property of a well-designed event fabric is that a single event can be consumed simultaneously by multiple subscribers with different concerns. Consider a configuration change event emitted by a platform control plane when an API gateway route is modified. A security auditing subscriber receives the event and writes it to an immutable audit log. An observability correlation subscriber receives the same event and annotates its incident timeline, allowing operators to see that a configuration change coincided with a latency anomaly. A compliance checking subscriber evaluates the change against policy constraints and raises a finding if the new route would expose a regulated endpoint without the appropriate authorisation controls. All three subscribers act on the same event without the originating system needing to know about any of them. The event fabric provides the decoupling; the CloudEvents schema provides the interoperability; the Kafka consumer group model provides the delivery guarantees.
 
@@ -147,7 +147,7 @@ Zero‑copy architectures tend to encourage the use of platforms that can provid
 
 ***
 
-![Event-driven lineage](images/figure-6-2.png)
+![Event-driven lineage](../images/figure-6-2.png)
 
 ***
 
@@ -167,7 +167,7 @@ In sovereign operations, network paths are also policy instruments. Zero‑copy 
 
 Apache Arrow's columnar in-memory format deserves mention here as a technical enabler of performant zero-copy access patterns [19]. When analytical queries must be served from a system of record without materialising a copy, the efficiency of the in-place read is critical. Arrow's columnar layout enables vectorised computation on data without per-row deserialization overhead, and its inter-process communication (IPC) format allows data to be passed between processes—including across language boundaries—without copying the underlying buffer. Apache Parquet, the columnar storage format that Arrow complements, enables efficient predicate pushdown and column pruning in analytical reads, so that a query accessing a subset of columns from a large dataset need not read the full record width [20]. Together, Arrow and Parquet represent the technical foundation for making zero-copy access to large analytical datasets operationally viable, not merely architecturally desirable.
 
-![Network sensitivity in zero-copy architectures](images/figure-6-5.png)
+![Network sensitivity in zero-copy architectures](../images/figure-6-5.png)
 
 IBM DataStage and IBM Data Fabric extend these principles into enterprise data virtualisation, providing query federation across heterogeneous sources—relational databases, object stores, mainframe datasets—through a unified access layer [21]. From a zero-copy perspective, virtualisation is the mechanism by which in-place access is made possible without requiring source systems to adopt new protocols or expose raw query interfaces. The virtualisation layer handles translation, optimisation and access control, presenting a consistent query surface to consumers while leaving the data in situ. Operationally, this means that the number of access patterns that must be monitored and governed is reduced to the virtualisation layer's query log rather than to the individual access logs of each source system.
 
@@ -187,7 +187,7 @@ Zero‑copy also makes it easier to **govern** agents. When data is centralised 
 
 In this sense, zero‑copy is not just friendly to agents; it is an enabler of **safe** agentic operations.
 
-![Agent reasoning over a zero-copy substrate](images/figure-6-4.png)
+![Agent reasoning over a zero-copy substrate](../images/figure-6-4.png)
 
 ***
 

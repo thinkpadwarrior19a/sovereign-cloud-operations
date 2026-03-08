@@ -61,7 +61,7 @@ The incident management lifecycle in an agent-integrated environment can be desc
 
 The transition from Concert situation to ITSM incident is the first integration point. A watsonx Orchestrate [6] agent, acting on a Concert event notification, calls the ServiceNow API to create an incident record, populating it with the situation identifier, the affected services identified by Concert's topology model, the initial severity classification derived from Concert's impact score, and a summary of the telemetry signals that triggered the situation. Crucially, the Concert situation identifier is written into the incident record as a cross-reference field, establishing the link between the ITSM record and the AI platform's internal representation of the event. This link is the foundation of the unified operational record that subsequent sections will discuss.
 
-![Agent-mediated incident creation](images/figure-19-1.png)
+![Agent-mediated incident creation](../images/figure-19-1.png)
 
 **Triage** follows immediately after detection. An executor agent queries Concert's knowledge graph to retrieve the full context of the affected services: their dependencies, their current health posture, the change history for the affected components in the preceding 72 hours, and the history of similar situations from Concert's operational memory. This context enrichment takes, typically, less than two minutes for a well-configured Concert deployment against a known service topology. The resulting context is appended to the ServiceNow incident record as a structured enrichment note, and the incident priority is updated based on Concert's calculated business impact. If the affected service is tier-one—a regulated financial transaction service, a critical citizen-facing application—the agent also triggers the notification workflow that pages the on-call team, supplying them with the pre-assembled context rather than a bare alert.
 
@@ -79,7 +79,7 @@ For higher-risk remediations—failover between availability zones, modification
 
 **Closure** is the stage most frequently handled with insufficient rigour in manual operations, because teams under pressure to resolve the next incident do not invest in documenting the last one adequately. Agent-assisted closure addresses this directly. Once the service metrics confirm restoration to normal operating parameters, a closure agent queries the full incident record—all activity notes, all change references, all agent-generated findings—and generates a structured incident summary that includes the timeline, the root cause hypothesis, the actions taken, the contributing change references, and the recommended follow-up actions for problem management. This summary is appended to the incident record before closure, creating the post-incident documentation that DORA's Article 17 requires without depending on an engineer to write it under time pressure. The Concert situation is also updated and closed, maintaining synchronisation between the ITSM system and the AI platform's operational record.
 
-![Full agent-assisted incident lifecycle on a single timeline](images/figure-19-2.png)
+![Full agent-assisted incident lifecycle on a single timeline](../images/figure-19-2.png)
 
 ***
 
@@ -103,7 +103,7 @@ The emergency CAB still approves; the agent prepares. This distinction preserves
 
 Every change record created in ServiceNow, whether for a standard, normal or emergency change, constitutes sovereign evidence in the sense described in [Chapter 3](03_chapter_regulatory_drivers.html): an authoritative, timestamped, attributed record of what changed, under what authority, with what justification, and with what outcome. When regulators examine the organisation's change management practices under DORA's ICT risk management framework or ISO 27001's change management controls, these records are the primary evidence. Agents that create and populate these records consistently, with structured content and complete attribution, produce better evidence than human-authored records that vary in completeness and quality under operational pressure.
 
-![Three-tier change management in an agentic environment](images/figure-19-3.png)
+![Three-tier change management in an agentic environment](../images/figure-19-3.png)
 
 ***
 
@@ -121,7 +121,7 @@ The ServiceNow Known Error Database (KEDB) is the institutional memory that prob
 
 Proactive problem management leverages Concert's continuous topology monitoring to identify conditions that have historically preceded incidents, before those conditions produce an incident. An agent running a scheduled proactive analysis might identify that a storage component's I/O wait metric has been trending upward for three weeks, that a similar trend preceded a significant outage twelve months ago, and that the affected storage component provides critical dependencies to two tier-one regulated services. This finding warrants a proactive problem record in ServiceNow, flagging the risk for engineering attention before it becomes an incident. The agent's analysis provides the trigger and the evidence; the human problem manager decides whether to treat it as a genuine risk and what remediation action to commission.
 
-![Problem management with agent assistance](images/figure-19-4.png)
+![Problem management with agent assistance](../images/figure-19-4.png)
 
 ***
 
@@ -143,7 +143,7 @@ Capacity adjustments represent a class of request that spans the boundary betwee
 
 SLA tracking for agent-executed service requests requires particular attention to the velocity difference between automated and manual execution. When a human service desk agent handles requests, SLA compliance is measured in hours and is an operational challenge. When an AI agent handles requests, execution typically completes in minutes, but the SLA clock starts from the moment the request is submitted, not from the moment the agent begins work. SLA breaches in an automated environment are therefore most commonly caused not by slow execution but by approval wait times, system availability windows, or policy evaluation delays. The SLA monitoring component of the Orchestrate workflow must track all of these contributions to the elapsed time, surface pending approvals that are at risk of breaching the SLA, and escalate to the service desk manager before the breach occurs rather than after.
 
-![Service catalogue backed by agent workflows](images/figure-19-5.png)
+![Service catalogue backed by agent workflows](../images/figure-19-5.png)
 
 ***
 
@@ -161,7 +161,7 @@ This pattern is particularly valuable for security-related changes. When Concert
 
 The unified operational record—the collection of linked artefacts across Concert, ServiceNow, Jira, and GitHub that together tell the story of an operational event from detection to full resolution—is the most complete expression of operational traceability in a modern DevOps enterprise. It is not assembled manually; it is constructed incrementally by agents that write cross-references as they create each artefact. By the time an operational event is fully resolved, the record exists whether or not anyone has thought to build it, because the integration patterns ensure that it is built automatically as a side effect of the agents doing their primary work.
 
-![Unified operational record](images/figure-19-6.png)
+![Unified operational record](../images/figure-19-6.png)
 
 The integration architecture for Jira and GitHub follows the same agency-through-API pattern used for ServiceNow, but with two additional considerations that reflect the development domain's different governance culture. First, Jira tickets created by agents are flagged with an "agent-created" label and include a structured provenance section that identifies the creating agent, the Concert situation that triggered creation, and the operational record that contains the supporting evidence. This transparency is important for development teams who need to distinguish between user-reported feature requests, manually created engineering tasks, and operationally-motivated work items generated by agents. Second, pull requests created by agents are submitted from a designated service account rather than from a human developer's account, and they are tagged with a label that triggers an additional review step in the CI/CD pipeline—a step that specifically checks that the change is consistent with the operational justification provided in the pull request description. This additional gate ensures that agent-generated code changes receive appropriate scrutiny even when they are routine from the agent's perspective.
 
@@ -183,7 +183,7 @@ The governance architecture must also address the meta-level compliance question
 
 The combination of these two audit trails—the ITSM operational record and the governance agent behaviour record—provides the dual-layer evidence that the most demanding regulatory frameworks require. DORA's requirements for ICT risk management framework adequacy, NIS2's requirements for documented cybersecurity measures, and ISO 27001's management system evidence requirements are all satisfied through records that the agentic ITSM integration produces as a natural consequence of operating correctly, without separate evidence production effort.
 
-![Compliance evidence architecture](images/figure-19-7.png)
+![Compliance evidence architecture](../images/figure-19-7.png)
 
 ***
 

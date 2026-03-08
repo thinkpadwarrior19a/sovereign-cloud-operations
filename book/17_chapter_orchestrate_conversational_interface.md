@@ -31,7 +31,7 @@ The problem that Orchestrate solves is different. It is not a problem of signal;
 
 Orchestrate approaches this friction by introducing a single conversational interface in front of the entire tool estate. The operator does not need to know which tool handles certificate renewal; they describe what they want in ordinary language, and Orchestrate determines which tools to call, in what order, with what parameters, based on its understanding of the operator's intent and its registry of available tools.
 
-![The Concert-to-Orchestrate handoff](images/figure-17-1.png)
+![The Concert-to-Orchestrate handoff](../images/figure-17-1.png)
 
 The conversation as audit trail deserves emphasis because it is not merely a convenience feature; it is a compliance mechanism. Every turn in a conversation with Orchestrate is timestamped, associated with the authenticated identity of the operator, and linked to the tool calls that were made on their behalf. When a regulator or an internal auditor asks "who authorised the certificate renewal on 14 February, and what exactly happened," the answer is retrievable from the conversation log without reconstructing it from four separate systems [1]. The conversation is not a paraphrase of what happened; it is what happened, in a form that both humans and automated audit tools can read.
 
@@ -53,7 +53,7 @@ The **memory layer** provides continuity across a conversation. Short-term memor
 
 The **governance integration layer** connects Orchestrate to the organisation's identity fabric, its approval systems, and its monitoring infrastructure. Authentication and authorisation flow through this layer; so do the hooks that allow watsonx.governance [3] to monitor the language model's behaviour over time and flag anomalies in how it interprets operator intent.
 
-![Orchestrate internal architecture](images/figure-17-2.png)
+![Orchestrate internal architecture](../images/figure-17-2.png)
 
 ### Deployment model
 
@@ -73,7 +73,7 @@ A tool definition has four mandatory components. The **name** is a short identif
 
 When the operator sends a message, the language model receives the conversation history and the full set of tool definitions from the registry. It evaluates whether the operator's request can be satisfied by calling one or more tools, or whether it should be answered directly in language. If it decides to call a tool, it generates a structured invocation: the tool name, and a JSON object matching the tool's input schema, with parameter values extracted or inferred from the operator's message and the conversation history [5].
 
-![Tool-calling decision cycle](images/figure-17-3.png)
+![Tool-calling decision cycle](../images/figure-17-3.png)
 
 Parameter extraction deserves attention because it is the point where natural-language ambiguity meets structured data requirements. An operator who types "renew the certificate for the payments API" has not specified a subject alternative name list, a key algorithm, a validity period, or a certificate authority. The language model must either infer these values from context—if they are stored in memory or derivable from the tool description—or ask the operator to supply them before proceeding. Well-designed tool descriptions and well-configured memory layers reduce the frequency of clarification requests; poorly designed ones produce conversations that feel interrogatory rather than assistive.
 
@@ -121,7 +121,7 @@ Source control tools allow Orchestrate to read repository content, create branch
 
 Kubernetes tools provide read and write access to cluster resources: reading pod logs, describing deployments, scaling workloads, applying manifests, and retrieving events. These tools are subject to the same zone-scoping requirements as Ansible tools; an operator must not be able to inadvertently apply a manifest to the wrong cluster.
 
-![Orchestrate tool library overview](images/figure-17-4.png)
+![Orchestrate tool library overview](../images/figure-17-4.png)
 
 ### Extending the tool library
 
@@ -201,7 +201,7 @@ steps:
         Verification status: {{ steps.verify_deployment.output.status }}.
 ```
 
-![Flow definition execution graph](images/figure-17-5.png)
+![Flow definition execution graph](../images/figure-17-5.png)
 
 ### Approval gates
 
@@ -231,7 +231,7 @@ Orchestrate is designed to function as the **planner agent** in a multi-agent sy
 
 The primary packaging mechanism for this pattern is the **agent skill**: a self-contained description of a specialised agent's capabilities, expressed in the same format as a tool definition. From Orchestrate's perspective, a specialised agent looks like a tool with a natural-language description of what it can do. Orchestrate calls it by sending a structured request; the agent returns a structured result. This uniformity is deliberate: it means that the planner does not need to know whether a capability is implemented as a direct tool call or as a call to another agent. The registry handles the indirection.
 
-![Multi-agent topology](images/figure-17-6.png)
+![Multi-agent topology](../images/figure-17-6.png)
 
 ### Agent-to-agent communication through Orchestrate
 
@@ -261,7 +261,7 @@ Natural language is inherently ambiguous. An operator who asks Orchestrate to "s
 
 **Conversation auditing** records every turn in the conversation, including the raw content of the language model's response before output validation, the result of validation, the tool invocations dispatched, and the results returned. This full record is necessary for post-incident analysis: it allows an investigation to determine not just what Orchestrate did, but what it interpreted the operator to have intended.
 
-![Governance control flow](images/figure-17-7.png)
+![Governance control flow](../images/figure-17-7.png)
 
 ### Model behaviour monitoring via watsonx.governance
 
@@ -335,7 +335,7 @@ Full execution log available at:
 
 The entire sequence—from the initial query to closure—took eleven minutes, two of which were the operator's own decision time at the approval gate. The same operation, coordinated manually across Concert, Ansible, the PKI portal, and ServiceNow, would typically require between forty-five minutes and two hours.
 
-![Timeline of the end-to-end certificate renewal scenario](images/figure-17-8.png)
+![Timeline of the end-to-end certificate renewal scenario](../images/figure-17-8.png)
 
 ### Design principles for operational conversational UX
 

@@ -37,7 +37,7 @@ At Level 1, operations are driven by individual effort and heroic response. Infr
 
 Sovereignty, if it is considered at all, exists as a set of policy documents that bear little relationship to how infrastructure is actually configured or where data actually flows. Compliance is demonstrated through periodic manual audits that sample a tiny fraction of the estate and produce findings that take months to remediate. Agents are not in use, or if they are, they are experimental tools used by individuals without organisational awareness or governance.
 
-![The five maturity levels of the Sovereign Operations Maturity Model, shown as an ascending progression with key characteristics at each level](images/figure-33-1.png)
+![The five maturity levels of the Sovereign Operations Maturity Model, shown as an ascending progression with key characteristics at each level](../images/figure-33-1.png)
 
 The defining characteristic of Level 1 is **unpredictability**. Outcomes depend on who is on call, what they happen to know, and whether the problem resembles one they have seen before. The same incident may be resolved in twenty minutes by one engineer and take four hours for another. There is no systematic learning from incidents, and the same failure modes recur.
 
@@ -97,7 +97,7 @@ Maturity is not a single axis. An organisation may have sophisticated observabil
 
 The Sovereign Operations Maturity Model assesses maturity across eight dimensions. Each dimension has its own progression from Level 1 to Level 5, and the descriptions below sketch what each level looks like for each dimension.
 
-![Radar chart showing eight assessment dimensions with an example organisation's maturity profile, illustrating typical unevenness across dimensions](images/figure-33-2.png)
+![Radar chart showing eight assessment dimensions with an example organisation's maturity profile, illustrating typical unevenness across dimensions](../images/figure-33-2.png)
 
 **Infrastructure codification.** This dimension assesses the extent to which infrastructure is defined, provisioned and managed through code. At Level 1, infrastructure is manually provisioned. At Level 2, IaC is used for some environments. At Level 3, IaC is the standard for all environments with peer review and automated testing. At Level 4, infrastructure changes are measured for their impact on reliability and compliance. At Level 5, infrastructure adapts autonomously within policy-defined boundaries.
 
@@ -199,7 +199,7 @@ The organisation must begin measuring operational outcomes quantitatively: not j
 
 Integration means connecting systems that were previously separate. The observability plane must integrate with the change management system, so that deployments and configuration changes are automatically correlated with operational outcomes. The compliance system must integrate with the observability plane, so that evidence is generated continuously rather than assembled retrospectively. Agent governance must integrate with the broader governance framework, so that agent actions are subject to the same scrutiny and accountability as human actions.
 
-![Feedback loops at Level 4](images/figure-33-3.png)
+![Feedback loops at Level 4](../images/figure-33-3.png)
 
 ### 33.5.4 Level 4 to Level 5 — Optimisation and autonomy
 

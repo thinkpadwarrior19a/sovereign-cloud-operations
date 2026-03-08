@@ -75,7 +75,7 @@ This is an easy mistake to make early in a programme and a difficult one to reme
 
 Adding a new national deployment then becomes a matter of instantiating a known pattern with different parameters, rather than inventing a new pattern from scratch. The differences are visible in code review, not hidden in console history.
 
-![Terraform module structure for sovereign zone deployment](images/figure-11-1.png)
+![Terraform module structure for sovereign zone deployment](../images/figure-11-1.png)
 
 ***
 
@@ -109,7 +109,7 @@ Policy-as-code tools sit naturally on top of this. Open Policy Agent (OPA), a po
 
 The DORA Regulation reinforces this requirement from the regulatory side, mandating that financial entities implement ICT risk management frameworks that operate continuously rather than periodically [8]. Policy-as-code is the technical implementation of that requirement: it transforms the periodic checklist into a continuous enforcement mechanism that cannot be skipped under time pressure.
 
-![Network, identity and key management as code](images/figure-11-3.png)
+![Network, identity and key management as code](../images/figure-11-3.png)
 
 ***
 
@@ -123,7 +123,7 @@ A regulated database module, built and maintained by the platform team, might en
 
 A sovereign cluster module—providing a Kubernetes or OpenShift cluster suitable for regulated workloads—might stand up the cluster with standard admission controllers that reject non-compliant pod specifications; connect the cluster to the correct identity providers and key services for the zone; configure network policies that enforce east-west segmentation between namespaces of different sensitivity levels; integrate with the zone's log forwarding infrastructure; and enable the audit log, directing it to an immutable log sink outside the cluster's own namespace. As with the database module, product teams get all of this by default. The cluster they receive is not a blank Kubernetes cluster with a note saying "please configure this securely"; it is a cluster that is, by construction, in the correct configuration for its zone.
 
-![Sovereign module registry](images/figure-11-4.png)
+![Sovereign module registry](../images/figure-11-4.png)
 
 The modules become **contracts** between risk, platform and product: codified, versioned, reviewable. Risk teams can audit the modules to confirm they encode the required controls. Platform teams can evolve the modules as standards change without requiring product teams to understand the underlying regulatory driver. Product teams can deploy with confidence that the infrastructure they are using meets the organisation's sovereign posture, because the code they reference is the same code that the risk team has approved.
 
@@ -153,7 +153,7 @@ The approval workflow in a well-designed GitOps pipeline for sovereign infrastru
 
 **Drift detection** is the GitOps property that most directly supports continuous compliance, and it closes the loop between the governance enforced at change time and the governance of the live environment. If someone creates a resource through the console—whether out of necessity, convenience, or error—the GitOps controller detects, within its next reconciliation interval, that actual state has diverged from desired state. In Argo CD, this surfaces as an "Out of Sync" status on the application, visible in the UI, queryable via API, and configurable to trigger an alert [9]. In the Terraform/Atlantis model, a scheduled plan run produces a non-empty diff—resources that exist in reality but not in code, or resources that exist in code but differ from reality—which becomes an alert or a ticket in the incident management system. In either case, the drift is not invisible: it generates a signal that can feed into observability pipelines, trigger human review and, if policy dictates, auto-revert without human intervention. For DORA compliance, this continuous reconciliation directly addresses the regulation's requirement to "continuously monitor, log and report on ICT-related incidents" and to maintain systems in their approved configuration [8]. Deviations from the declared secure baseline are surfaced automatically rather than discovered in a quarterly audit by which point they may have persisted for months.
 
-![GitOps change pipeline](images/figure-11-2.png)
+![GitOps change pipeline](../images/figure-11-2.png)
 
 ***
 
@@ -169,7 +169,7 @@ The same pattern applies to configuration changes. An Orchestrate agent respondi
 
 The **agent-to-Git workflow** can be implemented with varying levels of autonomy calibrated to the risk of the target environment. At the most conservative end, the agent generates a draft change and opens a pull request, but human approval is required for every apply regardless of environment or risk level. This is appropriate for any zone carrying a regulated or sensitive classification, and for any change affecting network topology, identity, or key management. At a less conservative setting, the agent may be permitted to auto-apply changes in non-regulated development environments if all policy checks pass—a setting appropriate for routine capacity adjustments or dependency updates in sandboxed environments. The sovereignty constraints embedded in the module registry and the OPA policy library do the heavy lifting in both cases: because agents reference the same shared modules as human engineers, the sovereignty constraints are enforced by design rather than by agent intelligence. An agent that generates a Terraform change referencing the `eu-regulated-cluster` module cannot place that cluster in a non-EU region, because the module's own variable validations and `precondition` blocks will fail the plan before it is even proposed as a pull request. The agent does not need to understand, explicitly, that "EU regulated means EU regions only"; that knowledge is encoded in the module it is calling, and the module enforces it without delegation.
 
-![Agent-to-Git workflow](images/figure-11-5.png)
+![Agent-to-Git workflow](../images/figure-11-5.png)
 
 This architecture has a further advantage that is easily overlooked: it makes agent behaviour **auditable in the same system** as human behaviour. The Git history of an infrastructure repository does not need a separate "agent action log"; the agent's pull requests are commits, authored under the agent's service identity, with descriptions written by the agent that explain its reasoning. An auditor—or a post-incident reviewer—can look at the repository history and see, interleaved with human commits, the agent's proposed changes, the policy check results, the human approvals, and the apply records. There is no separate system to query, no log format to translate, and no gap in the audit trail.
 

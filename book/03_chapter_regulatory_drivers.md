@@ -142,7 +142,7 @@ Proposed updates to the HIPAA Security Rule, published in late 2024 and expected
 
 **Implications for sovereign operations architecture.** Taken together, these healthcare frameworks reinforce a consistent set of operational design requirements. Observability pipelines must be capable of ePHI scrubbing — stripping or pseudonymising patient identifiers before telemetry leaves a health-data sovereign zone — while still preserving enough operational signal to support diagnosis and performance management. AI governance must account for model access to patient data: any model trained on or inferring from clinical records must be registered, governed and subject to the same access audit trails as the data itself. Federated observability, in which aggregated metrics and anonymised patterns flow to central teams while raw ePHI remains within the zone, is not merely architecturally convenient; it is the operational expression of the minimum necessary principle under HIPAA and the data minimisation principle under GDPR [5].
 
-![Healthcare regulatory framework mapping to sovereign zone controls](images/figure-3-2.png)
+![Healthcare regulatory framework mapping to sovereign zone controls](../images/figure-3-2.png)
 
 ***
 
@@ -158,7 +158,7 @@ The convergence of information technology and operational technology in manufact
 
 **Implications for sovereign operations architecture.** The operational consequence of these frameworks is that OT/IT convergence cannot be treated as a networking exercise alone. Observability must extend into the industrial domain — capturing not only traditional IT metrics but also controller states, safety instrumented system (SIS) status and process variable trends. ICS-aware monitoring must distinguish between benign operational changes and anomalous behaviours that could indicate compromise or misconfiguration. Supply chain security, enforced through SBOM management and continuous vulnerability correlation, must be embedded in the CI/CD pipeline as a default rather than a periodic audit activity. The sovereign zone model provides a natural architectural home for these requirements: OT zones with strict ingress and egress controls, dedicated observability pipelines that never co-mingle process telemetry with enterprise data, and governed change workflows that require explicit safety review before any modification reaches the control layer.
 
-![IEC 62443 zone and conduit model mapped to sovereign zone architecture](images/figure-3-3.png)
+![IEC 62443 zone and conduit model mapped to sovereign zone architecture](../images/figure-3-3.png)
 
 ***
 
@@ -192,7 +192,7 @@ A newer but rapidly hardening set of regulatory obligations concerns the environ
 
 **Implications for sovereign operations architecture.** The operational architecture implications of sustainability regulation are distinctive. Data centre energy observability — real-time power consumption per rack, per zone, per workload — must be a first-class telemetry stream alongside the traditional metrics of CPU, memory and network utilisation. Carbon-aware workload placement, in which the automation layer considers the carbon intensity of available regions when scheduling batch jobs or scaling services, becomes a governance-driven capability. Automated ESG evidence collection — aggregating energy, water and waste data from infrastructure providers, reconciling it against reported figures and producing audit-ready datasets — is an emerging requirement that integrates naturally with the governance and audit plane described in this book. Sustainability dashboards, fed by the same operational telemetry infrastructure that supports reliability and security monitoring, complete the picture: a single observability architecture serving multiple regulatory masters.
 
-![Sustainability telemetry flows from data centre to ESG report](images/figure-3-4.png)
+![Sustainability telemetry flows from data centre to ESG report](../images/figure-3-4.png)
 
 ***
 
@@ -256,7 +256,7 @@ The remaining parts of this book use these criteria as a lens. When we discuss t
 
 In this sense, regulation is not just a constraint; it is a source of clarity. It forces organisations to articulate what they are trying to achieve operationally and to build architectures that make those goals demonstrably true. Sovereign cloud operations, as described in this book, are one attempt to rise to that challenge.
 
-![Regulatory obligations mapped to operational design criteria](images/figure-3-1.png)
+![Regulatory obligations mapped to operational design criteria](../images/figure-3-1.png)
 
 ***
 

@@ -69,7 +69,7 @@ The opportunity cost dimension extends beyond compliance overhead. The Forsgren,
 
 These are the **hidden costs of manual and fragmented operations**. They rarely appear as a single line item in a budget. They are felt instead as a persistent sense that the organisation is always behind, always exhausted, always reacting.
 
-![The hidden costs of multi-cloud operations](images/figure-2-1.png)
+![The hidden costs of multi-cloud operations](../images/figure-2-1.png)
 
 ***
 
@@ -115,7 +115,7 @@ Multi‑cloud architectures are often justified by arguments about resilience an
 
 The net effect is an **operational tax** on sovereignty and multi‑cloud when they are not matched by an appropriate operations architecture. That tax consists of duplicated effort (multiple teams solving similar problems in different places), policy uncertainty (engineers unsure what is allowed), delays (changes waiting for manual approvals or cross‑team coordination), and risk (incidents handled in ways that technically solve the problem but quietly violate commitments). Architects who seek to reduce this tax will find that the strongest lever is not negotiating harder with providers but investing in the cross‑cutting operations plane.
 
-![Sovereignty and multi-cloud cost amplifiers](images/figure-2-2.png)
+![Sovereignty and multi-cloud cost amplifiers](../images/figure-2-2.png)
 
 ***
 
@@ -155,7 +155,7 @@ The McKinsey Global Institute's State of AI research corroborates this from a bu
 
 This **automation premium** is not an abstract concept. It manifests as measurable differences in deployment frequency, MTTR, change failure rate and lead time—the four DORA metrics—and those metric differences translate, through the causal mechanisms the research identifies, into differences in commercial performance, employee satisfaction and organisational resilience. Investing in agentic operations is, in this framing, investing in the capability to compete.
 
-![Agentic operations value chain](images/figure-2-3.png)
+![Agentic operations value chain](../images/figure-2-3.png)
 
 ***
 
@@ -207,7 +207,7 @@ Economically, this cross‑cutting approach has several benefits:
 
 None of this is free. It requires investment in platforms, integration and skills. But the alternative—operating each cloud separately and relying on humans to bridge the gaps—has its own, often higher, costs. A well‑designed operations plane turns multi‑cloud from a liability into an asset.
 
-![Cross-cutting operations plane spanning multiple cloud providers and sovereign zones](images/figure-2-4.png)
+![Cross-cutting operations plane spanning multiple cloud providers and sovereign zones](../images/figure-2-4.png)
 
 ***
 
@@ -271,7 +271,7 @@ Senior finance leadership will engage most readily with a business case that lea
 
 Supplement this with the DORA metrics baseline: show where the organisation sits relative to industry performance data, and show what the four‑metric improvement trajectory looks like over the programme's three‑year horizon. CFOs are accustomed to risk‑adjusted investment cases; a well‑constructed one that connects operational tooling to regulatory obligation, expected loss reduction, and competitive position will compete effectively for capital against conventional revenue‑growth investments.
 
-![Three-phase investment and payback trajectory for sovereign operations tooling](images/figure-2-5.png)
+![Three-phase investment and payback trajectory for sovereign operations tooling](../images/figure-2-5.png)
 
 ***
 

@@ -19,7 +19,7 @@ Risk identification and control implementation are necessary but insufficient co
 
 These are governance questions, and they require governance structures—standing bodies with defined mandates, documented decision rights, repeatable lifecycle processes, and auditable evidence trails. This chapter describes how to construct an AI governance framework that is specific to the demands of sovereign cloud operations: one that respects jurisdictional boundaries, integrates with existing enterprise governance, leverages policy-as-code for enforcement, and produces the regulatory evidence that post-DORA, post-NIS2 supervisory regimes demand.
 
-![The governance gap](images/figure-22-1.png)
+![The governance gap](../images/figure-22-1.png)
 
 ***
 
@@ -45,7 +45,7 @@ An AI governance operating model defines the organisational structures, roles, r
 
 The AI Governance Board is a decision-making body, not merely an advisory one. Its decision rights include: approval of the organisation's AI risk appetite statement; approval of new foundation model introductions into the estate; approval of agent autonomy tier elevations (the decision to permit an agent class to operate at a higher autonomy level, as defined in [Chapter 21](21_chapter_ai_risk_control.html)); review and acceptance of material model validation findings; and escalation decisions when model risk metrics breach defined thresholds. These decision rights should be formally documented in a board charter that is reviewed annually.
 
-![AI governance operating model](images/figure-22-2.png)
+![AI governance operating model](../images/figure-22-2.png)
 
 **The AI Ethics Committee** operates as a standing sub-committee of the AI Governance Board, with a more focused mandate: to evaluate AI deployments for ethical implications, review bias detection findings, assess the fairness of agent-driven operational decisions, and provide guidance on ethically ambiguous cases. The committee's membership should extend beyond the technology and risk functions to include perspectives from human resources (particularly where AI decisions affect workforce management), customer-facing functions (where AI decisions affect service delivery equity), and, where practical, external advisors with expertise in AI ethics and algorithmic accountability. The committee's output is advisory to the AI Governance Board, but its assessments should be required inputs to material deployment decisions.
 
@@ -73,7 +73,7 @@ The model card is not a one-time document. It is a living governance artefact th
 
 The AI Governance Board reviews the validation report and makes the deployment authorisation decision. This decision may be unconditional approval, conditional approval (deployment permitted subject to specified monitoring conditions or operational restrictions), or rejection (requiring the model to return to development for remediation). The decision, its rationale, and any conditions are recorded in the governance system and linked to the model's lifecycle record in watsonx.governance.
 
-![Model lifecycle governance](images/figure-22-3.png)
+![Model lifecycle governance](../images/figure-22-3.png)
 
 **Deployment** is the operational transition from a validated model to a production-serving model. In a sovereign operations environment, deployment involves not only the technical provisioning of the model to the appropriate inference infrastructure but also the configuration of the agent that will use the model, the activation of monitoring instrumentation, and the registration of the deployment in the operational topology maintained by IBM Concert. The governance requirement at deployment is to verify that all pre-deployment conditions specified in the deployment authorisation have been met: that monitoring is active, that the agent's autonomy tier is correctly configured, that the deployment is in the correct sovereign zone, and that the ITSM change record for the deployment has been approved by the CAB.
 
@@ -103,7 +103,7 @@ For a sovereign operations context, the evaluation criteria fall into five categ
 
 The foundation model selection process should produce a **model selection decision record** that documents the evaluation against each criterion, the governance body's assessment, the conditions under which the selection is approved, and any restrictions on the model's deployment. This record is maintained in the governance system and linked to the model's lifecycle record, ensuring that the basis for the selection decision is available to auditors and regulators.
 
-![Foundation model selection matrix](images/figure-22-4.png)
+![Foundation model selection matrix](../images/figure-22-4.png)
 
 ***
 
@@ -146,7 +146,7 @@ The policy rules are organised into a policy hierarchy that mirrors the governan
 
 Policy evolution is itself a governed process. Changes to policy rules are proposed through pull requests, reviewed by the governance function responsible for the policy layer being modified, tested against a suite of representative policy evaluation scenarios, and merged only after approval. The version history of every policy rule is maintained in the version control system, providing a complete audit trail of governance policy changes. watsonx.governance integrates with the policy-as-code pipeline to record which policy version was in effect at the time of each deployment decision, linking the deployment record to the specific policy rules that authorised it.
 
-![Policy-as-code enforcement architecture](images/figure-22-5.png)
+![Policy-as-code enforcement architecture](../images/figure-22-5.png)
 
 ***
 
@@ -170,7 +170,7 @@ The remediation of identified bias follows a structured process. Where bias aris
 
 The EU AI Act provides additional regulatory impetus for bias monitoring. For AI systems classified as high-risk, Article 10 requires that training, validation, and testing data sets be subject to examination for possible biases, and Article 9 requires that risk management measures address risks of bias [6]. While most operational AI systems in cloud management may not be classified as high-risk under the current regulation, the governance framework should anticipate evolving classification criteria and build the monitoring capability proactively.
 
-![Bias detection framework for operational AI](images/figure-22-6.png)
+![Bias detection framework for operational AI](../images/figure-22-6.png)
 
 ***
 
@@ -188,7 +188,7 @@ The approach is to design the governance framework's evidence management as a si
 
 **Audit packages** are pre-assembled collections of evidence organised for a specific regulatory or audit purpose. An EU AI Act audit package for a specific AI system assembles the model card, training data documentation, validation report, deployment record, monitoring reports, and fairness assessments into a single, navigable collection that maps to the regulation's documentation requirements. A DORA audit package for an ICT risk management review assembles the AI risk register entries, control evidence, incident records involving AI systems, and testing results into the format expected by the financial supervisor. The governance framework should include templates for the most commonly required audit packages, maintained by the Sovereign Compliance function and updated as regulatory expectations evolve.
 
-![Evidence management architecture](images/figure-22-7.png)
+![Evidence management architecture](../images/figure-22-7.png)
 
 **Regulator engagement** is the human process that accompanies the technical evidence management. The Sovereign Compliance function should maintain an active relationship with the relevant supervisory authorities, understanding their expectations, participating in industry consultations, and proactively sharing the governance framework's approach when regulatory clarity is emerging. Regulators in the post-DORA, post-NIS2 landscape have demonstrated a preference for organisations that engage proactively and transparently over those that provide minimum compliance documentation only when required [9]. The governance framework's evidence repository enables this proactive engagement by making it straightforward to assemble evidence packages that demonstrate the organisation's governance maturity, even in advance of formal supervisory requests.
 

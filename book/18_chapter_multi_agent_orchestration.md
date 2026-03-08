@@ -51,7 +51,7 @@ Before examining how multiple agents are arranged into topologies and how they c
 
 In Concert's operational model, these roles are not implemented as five separate products but as distinct, composable behaviours within a coherent workflow framework. Concert itself, with its topology and resilience intelligence, provides the world model that planner agents consult. The Orchestrate agent platform provides the execution and communication substrate through which executor, reviewer and synthesiser agents are instantiated and coordinated. Guardrail functions are distributed across both platforms and through the watsonx.governance integration, which supplies the policy definitions that reviewer and guardrail agents evaluate at runtime.
 
-![Agent role taxonomy in a sovereign operations pipeline](images/figure-18-1.png)
+![Agent role taxonomy in a sovereign operations pipeline](../images/figure-18-1.png)
 
 ***
 
@@ -219,7 +219,7 @@ For sovereign operations, the OPA policy library must encode zone-boundary rules
 
 The integration of watsonx.governance with the orchestration layer is what makes these guardrails operational at enterprise scale. Watsonx.governance maintains the inventory of approved agents, their authorised roles and capability bounds, the version-controlled policy sets that OPA evaluates, and the audit log of all policy evaluations and their outcomes. It provides the governance lifecycle management—policy authoring, review, approval and publication—that ensures guardrail rules remain current as the organisation's regulatory context evolves. The operational guardrails (OPA, rate limiters, circuit breakers, credential expiry) enforce the rules in real time; watsonx.governance provides the authoritative source of what those rules should be.
 
-![Guardrails architecture for a multi-agent sovereign operations pipeline](images/figure-18-2.png)
+![Guardrails architecture for a multi-agent sovereign operations pipeline](../images/figure-18-2.png)
 
 ***
 

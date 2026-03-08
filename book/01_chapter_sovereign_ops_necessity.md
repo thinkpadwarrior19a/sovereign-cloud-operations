@@ -83,7 +83,7 @@ From an economic perspective, zero‑copy reduces the "integration tax" of stora
 
 This book assumes that the reader either has embarked on a zero‑copy journey or recognises its architectural necessity. The focus here is not on re‑arguing that case, but on answering the next question: once you have—or intend to have—a zero‑copy, multi‑cloud architecture, how do you operate it sovereignly, reliably and at scale?
 
-![The operational gap](images/figure-1-1.png)
+![The operational gap](../images/figure-1-1.png)
 
 ***
 

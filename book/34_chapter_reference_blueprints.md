@@ -23,7 +23,7 @@ A word of caution before we begin. These blueprints are patterns, not prescripti
 
 Each blueprint is presented with a consistent structure: a description of the target scenario, a topology overview, networking and connectivity patterns, the observability and compliance architecture, the automation and agentic operations model, and the key trade-offs that distinguish it from alternatives. Cross-references to earlier chapters indicate where detailed treatments of specific components can be found.
 
-![Blueprint selection decision tree](images/figure-34-1.png)
+![Blueprint selection decision tree](../images/figure-34-1.png)
 
 ***
 
@@ -41,7 +41,7 @@ The single-zone topology comprises one or more cloud regions within the approved
 
 Compute clusters are organised by workload tier: a platform tier hosting shared services (identity, secrets management, observability backends, policy engines), an application tier hosting business workloads, and a data tier hosting databases, object stores, and event streaming infrastructure. Each tier runs on dedicated OpenShift clusters or dedicated namespaces within shared clusters, depending on the organisation's isolation requirements. Namespace-level isolation is often sufficient for workloads at the same classification level; cluster-level isolation is appropriate where regulatory or contractual obligations demand stronger separation [2].
 
-![Single-sovereign-zone topology](images/figure-34-2.png)
+![Single-sovereign-zone topology](../images/figure-34-2.png)
 
 ### 34.2.3 Networking
 
@@ -83,7 +83,7 @@ The multi-zone topology comprises two or more sovereign zones, each implemented 
 
 Within each zone, the internal topology follows the single-zone pattern described in section 34.2: hub-and-spoke networking, tiered compute, zone-local observability, and zone-local policy enforcement. The architectural novelty of the multi-zone blueprint lies in the inter-zone layer: how zones connect, what crosses zone boundaries, and how the organisation maintains a unified operational picture without violating the sovereignty constraints of any individual zone.
 
-![Multi-zone, multi-cloud topology](images/figure-34-3.png)
+![Multi-zone, multi-cloud topology](../images/figure-34-3.png)
 
 ### 34.3.3 Inter-zone connectivity
 
@@ -133,7 +133,7 @@ The air-gapped topology runs entirely on infrastructure within the organisation'
 
 The topology is self-contained: compute, storage, networking, identity, observability, and automation all reside within the air-gapped perimeter. External dependencies are eliminated or replaced with locally hosted equivalents. Container images are pulled from an internal registry that is populated through a controlled import process (see section 34.4.3). DNS resolution uses internal servers. Certificate authorities are locally operated. Time synchronisation uses internal NTP servers or GPS-derived sources rather than public NTP pools.
 
-![Air-gapped topology](images/figure-34-4.png)
+![Air-gapped topology](../images/figure-34-4.png)
 
 ### 34.4.3 The controlled transfer boundary
 
@@ -171,7 +171,7 @@ This is the pragmatic pattern. It acknowledges that sovereignty controls carry c
 
 The hybrid topology comprises one or more sovereign zones (which may follow the single-zone or multi-zone patterns described earlier) alongside one or more commercial cloud environments that operate under standard cloud provider terms without sovereign-specific controls. The sovereign zones are architecturally identical to those described in sections 34.2 and 34.3: dedicated infrastructure, zone-local observability, policy-as-code enforcement, and controlled connectivity. The commercial environments use standard cloud services—managed Kubernetes, managed databases, SaaS observability tools—with conventional security controls but without the additional sovereignty constraints.
 
-![Hybrid sovereign-commercial topology](images/figure-34-5.png)
+![Hybrid sovereign-commercial topology](../images/figure-34-5.png)
 
 ### 34.5.3 Boundary management
 

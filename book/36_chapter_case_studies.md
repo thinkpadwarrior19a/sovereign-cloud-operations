@@ -58,7 +58,7 @@ EFH's architecture team designed a programme around three pillars: sovereign zon
 
 **Unified operational intelligence** was implemented through IBM Concert, deployed as a group-wide reasoning layer that ingested signals from Instana agents running in each sovereign zone. Critically, Concert's architecture respected zone boundaries: raw telemetry remained in zone-local Instana backends, while Concert consumed aggregated metrics, topology information, and situation summaries through zone-aware integration points. This design satisfied the regulators' concerns about telemetry export while providing the group-wide operational visibility that had previously been absent.
 
-![EFH sovereign zone architecture with zone-local observability and group-level Concert reasoning layer](images/figure-36-1.png)
+![EFH sovereign zone architecture with zone-local observability and group-level Concert reasoning layer](../images/figure-36-1.png)
 
 ### Implementation
 
@@ -111,7 +111,7 @@ Healthnet's programme was designed around three workstreams: clinical data sover
 
 **Agent-assisted capacity management** was the most cautious element of the programme. Given the clinical safety implications, Healthnet adopted a deliberately conservative approach to agentic operations. The initial deployment used read-only agents that consumed bed management events—admissions, discharges, transfers, and "medically fit for discharge" declarations—and generated recommendations for discharge coordinators. The agents did not have authority to execute any actions; they surfaced information and suggested next steps, and humans decided what to act on.
 
-![Healthnet sovereign zone architecture](images/figure-36-2.png)
+![Healthnet sovereign zone architecture](../images/figure-36-2.png)
 
 ### Implementation
 
@@ -164,7 +164,7 @@ CAG's programme focused on three areas: federated observability, progressive age
 
 **Zero-copy risk integration** addressed the Solvency II reporting problem. Rather than extracting subsidiary risk data nightly into a central warehouse, CAG implemented a federated query model using data virtualisation. The group-level Solvency II calculation engine queried subsidiary risk data in place, through governed APIs that applied field-level masking and access controls appropriate to the requester's role and jurisdiction. Raw policy-level data remained in the subsidiary's sovereign zone; the group engine received only the aggregated risk metrics needed for its calculations [5].
 
-![CAG federated observability architecture](images/figure-36-3.png)
+![CAG federated observability architecture](../images/figure-36-3.png)
 
 ### Implementation
 
@@ -219,7 +219,7 @@ GovServe's programme was structured around national sovereign infrastructure, tr
 
 **The federated responsibility model** established clear boundaries between the platform team and departmental teams, encoded in policy-as-code. The platform team was responsible for shared infrastructure—compute, networking, identity, observability, and the agent framework. Departmental teams were responsible for their own application-level services. Concert's topology model was configured to recognise this boundary: when it identified a situation, it attributed root cause to either the platform layer or the departmental application layer, and routed recommendations accordingly. This attribution capability transformed incident coordination from a political negotiation into an evidence-based conversation.
 
-![GovServe operational architecture](images/figure-36-4.png)
+![GovServe operational architecture](../images/figure-36-4.png)
 
 ### Implementation
 
@@ -274,7 +274,7 @@ NatGrid's programme was structured around three zones, a controlled convergence 
 
 **Agent introduction** was handled with extreme caution. NatGrid's national security designation meant that any AI system used in operations required approval from the national cybersecurity authority. The approval process took seven months and resulted in a set of constraints: agents could operate only in the IT zone, could not receive data directly from the OT zone (only from the convergence zone's processed output), could not generate any output that could be interpreted as a control command, and their models had to run on nationally-operated infrastructure with no external API calls. Within these constraints, agents were deployed for IT operations only: incident diagnosis, remediation recommendations, and capacity management for the IT estate.
 
-![NatGrid three-zone architecture](images/figure-36-5.png)
+![NatGrid three-zone architecture](../images/figure-36-5.png)
 
 ### Implementation
 

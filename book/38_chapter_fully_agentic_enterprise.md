@@ -19,7 +19,7 @@ The answer is neither utopian nor dystopian. It is an enterprise in which AI age
 
 This chapter describes that enterprise. It draws on the architectural foundations laid in Parts II through IV, the tooling and workflow patterns explored in Parts V through IX, and the organisational and governance structures discussed in Parts X and XI. It is deliberately reflective rather than prescriptive: the fully agentic enterprise is not a product to be purchased but a condition to be cultivated, maintained, and continuously questioned.
 
-![The fully agentic enterprise](images/figure-38-1.png)
+![The fully agentic enterprise](../images/figure-38-1.png)
 
 ***
 
@@ -45,7 +45,7 @@ Throughout this book, the sovereign operations architecture has been described i
 
 In the fully agentic enterprise, these planes cease to be conceptual layers in an architecture diagram and become the lived infrastructure of daily operations. They function as a coherent whole—not because someone has drawn a line connecting them, but because the data flows, the decision pathways, and the governance controls that link them have been engineered, tested, and refined through years of operational experience.
 
-![The four-planes architecture at enterprise scale](images/figure-38-2.png)
+![The four-planes architecture at enterprise scale](../images/figure-38-2.png)
 
 **The observability plane at maturity** is not merely collecting metrics, logs, and traces; it is maintaining a continuously updated, topology-aware model of the entire estate. Instana's automatic discovery, combined with Concert's entity model and dependency graph (described in [Chapter 14](14_chapter_concert_architecture.html)), means that every service, every deployment, every infrastructure component, and every sovereign zone boundary is represented in a live model that agents can query and reason about. The observability plane understands not just that a service is slow but why it is slow, what depends on it, and what sovereign constraints apply to the remediation options. Signals are not raw data streams waiting for human interpretation; they are contextualised inputs to the agentic intelligence plane, enriched with topology, lineage, and policy metadata.
 
@@ -83,7 +83,7 @@ The incident response agent proposes a remediation: propagate the certificate to
 
 The infrastructure architect reviews the forecast, adjusts the growth assumption based on a conversation with the business team about a delayed product launch, and approves a modified capacity plan. The agent translates the approved plan into Terraform changes, raises a pull request, and schedules the change for the next maintenance window.
 
-![Timeline of a day in sovereign operations at agentic maturity](images/figure-38-3.png)
+![Timeline of a day in sovereign operations at agentic maturity](../images/figure-38-3.png)
 
 This is not a frictionless utopia. The operations team still faces uncertainty, still makes difficult judgements, still encounters situations that no agent has seen before. But the baseline of operational work—the detection, correlation, compliance checking, documentation, and routine remediation that once consumed the majority of engineering time—is handled by agents operating within well-governed boundaries. Human attention is directed where it matters most: the novel, the ambiguous, the consequential.
 
@@ -123,7 +123,7 @@ Honesty requires that a book advocating agentic operations also confront the ris
 
 **The accountability challenge** is perhaps the most difficult risk to address, because it is as much philosophical as technical. When an agent makes a recommendation, a human approves it, the automation executes it, and the outcome is harmful, who is accountable? The human, who approved a recommendation they may not have fully understood? The engineering team that designed the agent? The governance board that approved the agent's autonomy boundary? The vendor that provided the foundation model? Current regulatory frameworks are clear that human accountability cannot be delegated to machines [3], but the practical reality of allocating accountability in a complex human-agent system is far from settled. The fully agentic enterprise must invest in clear accountability frameworks—not merely as legal protections but as design constraints that ensure every consequential action has a named human who is empowered and equipped to exercise genuine oversight.
 
-![Risk landscape of the fully agentic enterprise](images/figure-38-4.png)
+![Risk landscape of the fully agentic enterprise](../images/figure-38-4.png)
 
 None of these risks is a reason to avoid agentic operations. Each of them is a reason to pursue agentic operations thoughtfully, with the same rigour and humility that the best engineering organisations apply to any consequential system change.
 

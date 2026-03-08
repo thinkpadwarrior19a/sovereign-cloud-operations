@@ -53,7 +53,7 @@ Post-incident retrospectives are the second testing mechanism. After any inciden
 
 All of this makes sense only if runbooks are **version-controlled in Git**. A runbook managed in a wiki or a shared document has no reliable change history, no review mechanism, and no rollback path. A runbook stored in Git alongside the infrastructure and application code it supports has all three. Pull requests for runbook changes can require review by the owning team and by representatives of any sovereign zone affected. Change history is preserved automatically. And, crucially, the relationship between runbooks and the automation that implements them is made explicit: the runbook is the human-readable specification, and the Orchestrate workflow or Ansible playbook is the machine-executable implementation derived from it. Changes to one should prompt review of the other.
 
-![Runbook anatomy](images/figure-12-1.png)
+![Runbook anatomy](../images/figure-12-1.png)
 
 ***
 
@@ -79,7 +79,7 @@ Before any runbook step is automated, it should be evaluated against a **safe-to
 
 **Graduated rollout** of automation mirrors the practices of good software deployment. New automated procedures begin in development and staging environments, where they are tested under realistic conditions. They are then applied in production non-regulated zones, initially with human approval gates retained for the remediation steps. Only once confidence is established—measured by successful execution rate, absence of unintended side effects, and positive assessment in post-incident retrospectives—are approval gates relaxed and the procedure allowed to run further autonomously. Sovereign zone constraints are applied throughout: a procedure that passes the safe-to-automate test in a non-regulated zone may not pass it in a regulated zone, where the regulatory consequences of an incorrect action are significantly higher.
 
-![The automation maturity ladder](images/figure-12-2.png)
+![The automation maturity ladder](../images/figure-12-2.png)
 
 ***
 
