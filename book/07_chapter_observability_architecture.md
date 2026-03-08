@@ -1,3 +1,8 @@
+---
+title: "7. Sovereign-Aware Observability Architecture"
+nav_order: 7
+---
+
 # Chapter 7 — Sovereign‑Aware Observability Architecture
 
 ***

@@ -1,3 +1,8 @@
+---
+title: "14. IBM Concert: Operational Brain"
+nav_order: 14
+---
+
 # Chapter 14 — IBM Concert: Architecture of the Operational Brain
 
 ***

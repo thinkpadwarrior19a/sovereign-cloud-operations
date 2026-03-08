@@ -1,3 +1,8 @@
+---
+title: "16. DevOps Insights and Change Risk"
+nav_order: 16
+---
+
 # Chapter 16 — DevOps Insights, Change Risk, and Continuous Quality
 
 ***

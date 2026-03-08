@@ -1,3 +1,8 @@
+---
+title: "36. Case Studies"
+nav_order: 36
+---
+
 # Chapter 36 — Case Studies in Sovereign Operations
 
 ***

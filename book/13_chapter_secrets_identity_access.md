@@ -1,3 +1,8 @@
+---
+title: "13. Secrets, Identity, and Access"
+nav_order: 13
+---
+
 # Chapter 13 — Secrets, Identity, and Access in a Sovereign Multi-Cloud Estate
 
 ***

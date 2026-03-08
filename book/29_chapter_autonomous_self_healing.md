@@ -1,3 +1,8 @@
+---
+title: "29. Autonomous Self-Healing Systems"
+nav_order: 29
+---
+
 # Chapter 29 — Autonomous Self-Healing Systems
 
 ***

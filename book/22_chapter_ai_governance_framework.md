@@ -1,3 +1,8 @@
+---
+title: "22. AI Governance Framework"
+nav_order: 22
+---
+
 # Chapter 22 — AI Governance Framework for Sovereign Estates
 
 ***

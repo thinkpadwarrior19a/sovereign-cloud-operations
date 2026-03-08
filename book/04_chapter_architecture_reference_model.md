@@ -1,3 +1,8 @@
+---
+title: "4. An Architectural Reference Model"
+nav_order: 4
+---
+
 # Chapter 4 — An Architectural Reference Model for Sovereign Cloud Operations
 
 ***

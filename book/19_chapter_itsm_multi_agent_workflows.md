@@ -1,3 +1,8 @@
+---
+title: "19. ITSM and Multi-Agent Workflows"
+nav_order: 19
+---
+
 # Chapter 19 — ITSM and Multi-Agent Workflows
 
 ***

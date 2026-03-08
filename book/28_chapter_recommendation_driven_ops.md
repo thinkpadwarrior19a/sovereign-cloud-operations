@@ -1,3 +1,8 @@
+---
+title: "28. Recommendation-Driven Operations"
+nav_order: 28
+---
+
 # Chapter 28 — Recommendation-Driven Operations
 
 ***

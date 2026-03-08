@@ -1,3 +1,8 @@
+---
+title: "38. The Fully Agentic Enterprise"
+nav_order: 38
+---
+
 # Chapter 38 — The Fully Agentic Enterprise
 
 ***

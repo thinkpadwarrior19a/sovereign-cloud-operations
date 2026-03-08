@@ -1,3 +1,8 @@
+---
+title: "20. Knowledge-Augmented Operations"
+nav_order: 20
+---
+
 # Chapter 20 — Knowledge-Augmented Operations
 
 ***

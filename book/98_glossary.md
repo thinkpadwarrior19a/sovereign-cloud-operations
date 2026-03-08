@@ -1,3 +1,8 @@
+---
+title: "Glossary"
+nav_order: 39
+---
+
 # Glossary
 
 **Accountability gap.** A structural problem in traditional IT operating models where separate functional teams (development, operations, security, compliance) each optimise locally, with no single team owning the end-to-end outcome of a service running reliably, securely, and in compliance with sovereignty obligations.

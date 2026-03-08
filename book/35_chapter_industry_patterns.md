@@ -1,3 +1,8 @@
+---
+title: "35. Industry Patterns"
+nav_order: 35
+---
+
 # Chapter 35 — Industry Patterns for Sovereign Operations
 
 ***

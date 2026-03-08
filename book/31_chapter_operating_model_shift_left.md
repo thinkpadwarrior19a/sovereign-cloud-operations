@@ -1,3 +1,8 @@
+---
+title: "31. Shift-Left Operations"
+nav_order: 31
+---
+
 # Chapter 31 — The Sovereign Operating Model: Shift-Left Operations
 
 ***

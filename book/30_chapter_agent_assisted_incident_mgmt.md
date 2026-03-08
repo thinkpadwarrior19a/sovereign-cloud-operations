@@ -1,3 +1,8 @@
+---
+title: "30. Agent-Assisted Incident Management"
+nav_order: 30
+---
+
 # Chapter 30 — Agent-Assisted Incident Management
 
 ***

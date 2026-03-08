@@ -1,3 +1,8 @@
+---
+title: "34. Reference Blueprints"
+nav_order: 34
+---
+
 # Chapter 34 — Reference Blueprints for Sovereign Estates
 
 ***

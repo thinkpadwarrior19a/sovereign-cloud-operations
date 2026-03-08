@@ -1,3 +1,8 @@
+---
+title: "21. AI Risk and Control"
+nav_order: 21
+---
+
 # Chapter 21 — AI Risk and Control in Sovereign Operations
 
 ***

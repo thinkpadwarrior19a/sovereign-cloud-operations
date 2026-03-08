@@ -1,3 +1,8 @@
+---
+title: "9. Events, Lineage, and Operational Signals"
+nav_order: 9
+---
+
 # Chapter 9 — Events, Lineage, and Operational Signals
 
 ***

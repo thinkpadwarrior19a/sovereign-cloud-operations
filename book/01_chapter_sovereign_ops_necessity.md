@@ -1,3 +1,8 @@
+---
+title: "1. The Sovereign Cloud Operations Necessity"
+nav_order: 1
+---
+
 # Chapter 1 — The Sovereign Cloud Operations Necessity
 
 ***

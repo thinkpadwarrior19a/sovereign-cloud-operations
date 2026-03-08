@@ -1,3 +1,8 @@
+---
+title: "8. Network Observability and Performance"
+nav_order: 8
+---
+
 # Chapter 8 — Network Observability and Performance in Zero‑Copy Architectures
 
 ***

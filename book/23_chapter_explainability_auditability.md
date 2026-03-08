@@ -1,3 +1,8 @@
+---
+title: "23. Explainability and Auditability"
+nav_order: 23
+---
+
 # Chapter 23 — Explainability and Auditability of Agentic Decisions
 
 ***

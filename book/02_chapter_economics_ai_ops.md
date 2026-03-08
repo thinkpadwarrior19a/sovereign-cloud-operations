@@ -1,3 +1,8 @@
+---
+title: "2. The Economics of AI-Driven Sovereign Operations"
+nav_order: 2
+---
+
 # Chapter 2 — The Economics of AI‑Driven Sovereign Operations
 
 ***

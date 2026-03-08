@@ -1,3 +1,8 @@
+---
+title: "26. AI-Assisted Development"
+nav_order: 26
+---
+
 # Chapter 26 — AI-Assisted Development: watsonx Code Assistant as Engineering Partner
 
 ***

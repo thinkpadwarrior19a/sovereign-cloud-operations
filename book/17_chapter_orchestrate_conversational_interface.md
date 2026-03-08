@@ -1,3 +1,8 @@
+---
+title: "17. watsonx Orchestrate"
+nav_order: 17
+---
+
 # Chapter 17 — IBM watsonx Orchestrate: The Conversational Operations Interface
 
 ***

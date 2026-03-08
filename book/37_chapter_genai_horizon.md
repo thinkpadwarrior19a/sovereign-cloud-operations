@@ -1,3 +1,8 @@
+---
+title: "37. The Generative AI Horizon"
+nav_order: 37
+---
+
 # Chapter 37 — The Generative AI Horizon
 
 ***

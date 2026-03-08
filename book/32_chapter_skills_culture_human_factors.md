@@ -1,3 +1,8 @@
+---
+title: "32. Skills, Culture and Human Factors"
+nav_order: 32
+---
+
 # Chapter 32 — Skills, Culture and Human Factors
 
 ***

@@ -1,3 +1,8 @@
+---
+title: "12. Runbooks, Automation, and Operations"
+nav_order: 12
+---
+
 # Chapter 12 — Runbooks, Automation, and the Muscle Memory of Operations
 
 ***

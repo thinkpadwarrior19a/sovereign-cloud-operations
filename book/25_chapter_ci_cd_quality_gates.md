@@ -1,3 +1,8 @@
+---
+title: "25. CI/CD Pipeline Design and Quality Gates"
+nav_order: 25
+---
+
 # Chapter 25 — CI/CD Pipeline Design and Quality Gates for Sovereign Cloud
 
 ***

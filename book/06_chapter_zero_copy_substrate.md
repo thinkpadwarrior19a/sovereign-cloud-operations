@@ -1,3 +1,8 @@
+---
+title: "6. Zero-Copy Integration as Operational Substrate"
+nav_order: 6
+---
+
 # Chapter 6 — Zero‑Copy Integration as Operational Substrate
 
 ***

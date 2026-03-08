@@ -1,3 +1,8 @@
+---
+title: "24. Agentic DevOps and GitOps"
+nav_order: 24
+---
+
 # Chapter 24 — Agentic DevOps and GitOps for Sovereign Estates
 
 ***

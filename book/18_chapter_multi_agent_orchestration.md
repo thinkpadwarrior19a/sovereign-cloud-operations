@@ -1,3 +1,8 @@
+---
+title: "18. Multi-Agent Orchestration Patterns"
+nav_order: 18
+---
+
 # Chapter 18 — Multi-Agent Orchestration Patterns
 
 ***

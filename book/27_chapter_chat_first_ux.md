@@ -1,3 +1,8 @@
+---
+title: "27. Chat-First Operations"
+nav_order: 27
+---
+
 # Chapter 27 — Chat-First Operations: Conversational Interfaces for Sovereign Estates
 
 ***
