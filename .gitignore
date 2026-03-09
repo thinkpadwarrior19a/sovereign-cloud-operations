@@ -1,1 +1,8 @@
+# Generated output formats - kept in private Forgejo repo only
+output/
+*.pdf
+*.epub
+*.docx
+
+# Jekyll build output
 _site/
