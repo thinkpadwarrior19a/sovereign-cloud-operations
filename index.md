@@ -3,6 +3,8 @@ title: "Home"
 nav_order: 0
 ---
 
+![Managing Your Sovereign Cloud Platform](images/sovereign-cloud-linkedin.png)
+
 # Sovereign Cloud Operations: AI-Driven Management of Sovereign Estates
 
 A practical guide to AI-driven sovereign cloud operations, multi-cloud governance, and agentic automation for the modern enterprise.
