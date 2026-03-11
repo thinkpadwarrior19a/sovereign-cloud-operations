@@ -1,4 +1,6 @@
 title: "Sovereign Cloud Operations"
 description: "A practical guide to AI-driven sovereign cloud operations, multi-cloud governance, and agentic automation for the modern enterprise."
+baseurl: /sovereign-cloud-operations
+url: https://thinkpadwarrior19a.github.io
 theme: jekyll-theme-primer
 markdown: kramdown
