@@ -27,8 +27,6 @@ Second, the cost of inference and the hardware required to run capable models ar
 
 Third, regulatory attention to AI is intensifying, not receding, and the organisations that will navigate this attention most successfully are those that have already built the operational foundations—observability, traceability, policy-as-code, bounded autonomy—described throughout this book. The regulators are not going to ask "do you use AI?" and accept a yes or no. They are going to ask how, where, under what governance, with what oversight, and with what evidence. The technical substrate for answering those questions is the same substrate that supports good operations in general.
 
-![The gap between research frontier and enterprise readiness](../images/figure-37-1.png)
-
 ***
 
 ## 37.2 Foundation model evolution and sovereign implications
